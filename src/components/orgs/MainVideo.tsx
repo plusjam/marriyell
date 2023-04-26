@@ -60,9 +60,9 @@ const MainVideo = () => {
     <div className={Styles.main} id="youtube_pc" ref={ref}>
       {!isPc && (
         <>
-          {/* <video className={Styles.video} loop autoPlay muted playsInline controlsList="nodownload">
+          <video className={Styles.video} loop autoPlay muted playsInline controlsList="nodownload">
             <source src="/videos/yoko.mp4" type="video/mp4" />
-          </video> */}
+          </video>
           {/* <iframe
             ref={iframe}
             className={Styles.iframe}
@@ -75,13 +75,13 @@ const MainVideo = () => {
             allowFullScreen
           ></iframe> */}
           {/* <YouTubePlayer videoId="vcZWQS9-tSw" /> */}
-          <YouTube videoId="2g811Eo7K8U" opts={opts} />
+          {/* <YouTube videoId="2g811Eo7K8U" opts={opts} /> */}
         </>
       )}
       {isPc && (
-        // <video className={Styles.video} loop autoPlay muted playsInline controlsList="nodownload">
-        //   <source src="/videos/tate2.mp4" type="video/mp4" />
-        // </video>
+        <video className={Styles.video} loop autoPlay muted playsInline controlsList="nodownload">
+          <source src="/videos/tate2.mp4" type="video/mp4" />
+        </video>
         // <iframe
         //   ref={iframe}
         //   className={Styles.iframe}
@@ -94,7 +94,6 @@ const MainVideo = () => {
         //   allowFullScreen
         // ></iframe>
         // <YouTubePlayer videoId="vcZWQS9-tSw" />
-        <div></div>
       )}
     </div>
   );
