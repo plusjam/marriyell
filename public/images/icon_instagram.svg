@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40.791" height="40.791" viewBox="0 0 40.791 40.791">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="長方形_328" data-name="長方形 328" width="40.791" height="40.791" transform="translate(0 0)" fill="#707070" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+  </defs>
+  <g id="icon_instagram" clip-path="url(#clip-path)">
+    <g id="インスタグラムのシンプルなロゴのアイコン_1" data-name="インスタグラムのシンプルなロゴのアイコン 1" transform="translate(0.341 0)">
+      <path id="パス_760" data-name="パス 760" d="M29.083,0H12.03A11.528,11.528,0,0,0,.5,11.528V29.263A11.528,11.528,0,0,0,12.03,40.791H29.083A11.528,11.528,0,0,0,40.611,29.263V11.528A11.528,11.528,0,0,0,29.083,0ZM4.594,11.528A7.443,7.443,0,0,1,12.03,4.093H29.083a7.443,7.443,0,0,1,7.435,7.435V29.263A7.443,7.443,0,0,1,29.083,36.7H12.03a7.443,7.443,0,0,1-7.435-7.435Z" transform="translate(-0.502)" fill="#707070"/>
+      <path id="パス_761" data-name="パス 761" d="M25.053,35.558a10.5,10.5,0,1,0-10.5-10.5A10.517,10.517,0,0,0,25.053,35.558Zm0-17.735a7.231,7.231,0,1,1-7.23,7.231A7.239,7.239,0,0,1,25.053,17.822Z" transform="translate(-4.999 -4.658)" fill="#707070"/>
+      <ellipse id="楕円形_21" data-name="楕円形 21" cx="2.353" cy="2.354" rx="2.353" ry="2.354" transform="translate(28.513 7.23)" fill="#707070"/>
+    </g>
+  </g>
+</svg>

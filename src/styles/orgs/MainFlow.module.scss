@@ -1,0 +1,151 @@
+.main {
+  width: 100%;
+  height: 100vh;
+}
+
+.image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.scroll {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+
+  color: #fff;
+  font-size: 10px;
+  font-family: hiragino-kaku-gothic-pron;
+}
+
+.flow {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-top: 360px;
+  padding-bottom: 374px;
+}
+
+.heading {
+  font-size: 32px;
+  line-height: 2;
+  letter-spacing: 0.06em;
+  margin-bottom: 80px;
+
+  span {
+    display: inline-block;
+  }
+}
+
+.description {
+  font-size: 16px;
+  max-width: 675px;
+  line-height: 2;
+}
+
+@media screen and (max-width: 1024px) {
+  .flow {
+    padding: 200px 40px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .image {
+    width: 137px;
+    height: auto;
+  }
+
+  .scroll {
+    top: 66%;
+    right: 0;
+    transform: translateY(-50%);
+    left: revert;
+    bottom: revert;
+    gap: 20px;
+
+    span {
+      position: relative;
+      display: block;
+      width: 7px;
+      height: 55px;
+
+      &::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #eee;
+        transform: translateX(-50%);
+        animation: circlemove 1.6s ease-in-out infinite, cirlemovehide 1.6s ease-out infinite;
+      }
+
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 1px;
+        height: 100%;
+        background: #eee;
+        transform: translateX(-50%);
+      }
+    }
+  }
+
+  .scrollText {
+    transform: rotate(90deg);
+  }
+
+  .flow {
+    padding: 226px 47px;
+  }
+
+  .heading {
+    font-size: 18px;
+    line-height: 2.22;
+    margin-bottom: 44px;
+  }
+
+  .description {
+    font-size: 14px;
+    line-height: 1.714;
+  }
+}
+
+@keyframes circlemove {
+  0% {
+    bottom: 95%;
+  }
+
+  100% {
+    bottom: -1%;
+  }
+}
+
+@keyframes cirlemovehide {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  80% {
+    opacity: 0.9;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}

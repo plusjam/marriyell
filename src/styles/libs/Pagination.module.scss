@@ -1,0 +1,17 @@
+.body {
+  position: fixed;
+  inset: 0;
+  background-color: #a6a08a;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  transition: 0.3s;
+
+  &.hide {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}

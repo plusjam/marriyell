@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="23" height="23" viewBox="0 0 23 23">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="長方形_471" data-name="長方形 471" width="23" height="23" transform="translate(0.285 -0.143)" fill="#fff" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+  </defs>
+  <g id="icon_spot" transform="translate(-0.285 0.143)" clip-path="url(#clip-path)">
+    <g id="マップのピンアイコン" transform="translate(3.584 0.107)">
+      <path id="パス_896" data-name="パス 896" d="M12.891,0A7.826,7.826,0,0,0,5.064,7.827c0,4.412,2.187,5.352,4.6,8.287a14.456,14.456,0,0,1,3.223,7.136,14.456,14.456,0,0,1,3.223-7.136c2.417-2.935,4.6-3.875,4.6-8.287A7.826,7.826,0,0,0,12.891,0Zm0,10.532a2.7,2.7,0,1,1,2.7-2.7A2.7,2.7,0,0,1,12.891,10.532Z" transform="translate(-5.064)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

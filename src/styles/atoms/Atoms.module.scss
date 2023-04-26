@@ -1,0 +1,303 @@
+.linkBridal {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+  height: 100%;
+  transition: 0.2s;
+
+  color: #a6a08a;
+  font-size: 12px;
+  text-align: center;
+
+  .body {
+    fill: #fff;
+    transition: 0.2s;
+  }
+
+  &:hover {
+    background-color: #a6a08a;
+    color: #fff;
+    fill: #fff;
+  }
+
+  &.open {
+    &:hover {
+      background-color: #f8f8f4;
+      color: #a6a08a;
+      fill: #a6a08a;
+    }
+  }
+
+  .line {
+    fill: #a6a08a;
+  }
+
+  .open {
+    background-color: #fff;
+    color: #a6a08a;
+    fill: #a6a08a;
+
+    &:hover {
+      .body {
+        fill: #a6a08a;
+      }
+    }
+  }
+}
+
+.hamburger {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & > div {
+    position: relative;
+    width: 40px;
+    height: 28px;
+  }
+
+  span {
+    position: absolute;
+    height: 2px;
+    background-color: #e0e0e0;
+    transition: 0.2s;
+
+    &:nth-of-type(1) {
+      width: 100%;
+
+      top: 0;
+    }
+
+    &:nth-of-type(2) {
+      width: 75%;
+
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    &:nth-of-type(3) {
+      width: 50%;
+      bottom: 0;
+    }
+  }
+
+  &:hover {
+    span {
+      &:nth-of-type(2) {
+        width: 100%;
+      }
+
+      &:nth-of-type(3) {
+        width: 100%;
+      }
+    }
+  }
+
+  &.open {
+    span {
+      &:nth-of-type(1) {
+        top: 50%;
+        transform: rotate(45deg) translateY(-50%);
+      }
+
+      &:nth-of-type(2) {
+        opacity: 0;
+      }
+
+      &:nth-of-type(3) {
+        width: 100%;
+        bottom: 50%;
+        transform: rotate(-45deg) translateY(50%);
+      }
+    }
+  }
+}
+
+.link {
+  margin-top: 80px;
+  width: 449px;
+  height: 77px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: #a6a08a 1px solid;
+  position: relative;
+  transition: 0.2s;
+  background-color: #fff;
+
+  .text {
+    font-size: 20px;
+    color: #a6a08a;
+  }
+
+  .arrow {
+    position: absolute;
+    right: 50px;
+    top: 46%;
+    transform: translateY(-50%);
+    transition: 0.2s;
+    fill: #a6a08a;
+  }
+
+  &:hover {
+    background-color: #a6a08a;
+
+    .text {
+      color: #fff;
+    }
+
+    .arrow {
+      transform: translateY(-50%) translateX(5px);
+      fill: #fff;
+    }
+  }
+}
+
+.contentLink {
+  width: 228px;
+  height: 70px;
+  border: solid 1px #a6a08a;
+  padding: 5px;
+  transition: 0.2s;
+
+  .inner {
+    width: 100%;
+    height: 100%;
+    border: solid 1px #a6a08a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    font-size: 16px;
+    letter-spacing: 0.04em;
+    color: #a6a08a;
+    transition: 0.2s;
+  }
+
+  .image {
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    transform: translateY(-50%);
+  }
+
+  svg {
+    transition: 0.2s;
+    fill: #a6a08a;
+  }
+
+  &:nth-of-type(4) {
+    svg {
+      fill: none;
+      stroke: #a6a08a;
+    }
+  }
+
+  &:hover {
+    background-color: #a6a08a;
+    border-color: #fff;
+
+    .inner {
+      color: #fff;
+      background-color: #a6a08a;
+      border-color: #fff;
+    }
+
+    svg {
+      fill: #fff;
+    }
+
+    &:nth-of-type(4) {
+      svg {
+        fill: none;
+        stroke: #fff;
+      }
+    }
+  }
+}
+
+.buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.button {
+  transition: 0.2s;
+
+  &:hover {
+    filter: drop-shadow(0px 0px 4px #fff);
+  }
+}
+
+.recruit {
+  width: 177px;
+  height: 42px;
+  background: #fff;
+  padding: 5px;
+  border: #fff 1px solid;
+  transition: 0.2s;
+
+  &:hover {
+    background: #a6a08a;
+
+    .recruitInner {
+      color: #fff;
+      border-color: #fff;
+    }
+  }
+}
+
+.recruitInner {
+  border: 1px solid #a6a08a;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: #a6a08a;
+  transition: 0.2s;
+}
+
+@media screen and (max-width: 1100px) {
+  .contentLink {
+    width: calc(50% - 8px);
+    height: 60px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .hamburger {
+    & > div {
+      width: 32px;
+      height: 20px;
+    }
+  }
+
+  .link {
+    width: 100%;
+    height: 50px;
+    margin-top: 55px;
+
+    .text {
+      font-size: 14px;
+    }
+  }
+
+  .contentLink {
+    min-width: 228px;
+    width: 66.08%;
+    height: 51px;
+
+    .text {
+      font-size: 14px;
+    }
+  }
+}

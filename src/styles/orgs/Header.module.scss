@@ -1,0 +1,198 @@
+.header {
+  height: 80px;
+  background-color: #fff;
+  display: grid;
+  grid-template-areas: "logo main bridal hamburger";
+  grid-template-columns: 145px 1fr 80px 80px;
+  grid-auto-rows: 1fr;
+  align-items: center;
+  padding-left: 80px;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  transition: 0.2s;
+  position: sticky;
+
+  &.isTop {
+    background-color: transparent;
+    position: fixed;
+
+    .phoneIcon {
+      fill: #eee;
+    }
+
+    .number {
+      color: #e0e0e0;
+    }
+
+    .navItem {
+      color: #e0e0e0;
+      border-right: 1px solid #e0e0e0;
+
+      &:first-child {
+        border-left: 1px solid #e0e0e0;
+      }
+    }
+
+    .hamburgerMenu {
+      background-color: transparent;
+
+      span {
+        background-color: #e0e0e0;
+      }
+    }
+
+    &.colored {
+      background-color: #f8f8f4;
+      color: #222;
+
+      .number,
+      .navItem {
+        color: #222;
+      }
+
+      .phoneIcon {
+        fill: #222;
+      }
+    }
+  }
+
+  .linkBridal {
+    background-color: #a6a08a;
+    color: #fff;
+    fill: #fff;
+
+    &:hover {
+      background-color: #f8f8f4;
+      color: #a6a08a;
+      fill: #a6a08a;
+    }
+  }
+
+  .hamburgerMenu {
+    span {
+      background-color: #707070;
+    }
+  }
+
+  &.colored {
+    background-color: #f8f8f4;
+    color: #707070;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+    .number,
+    .navItem {
+      color: #707070;
+    }
+
+    .phoneIcon {
+      fill: #707070;
+    }
+  }
+}
+
+.logo {
+  grid-area: logo;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.main {
+  grid-area: main;
+  display: flex;
+  gap: 9px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 0 24px;
+}
+
+.phone {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.phoneIcon {
+  width: 25px;
+  height: 25px;
+  fill: #707070;
+  transition: 0.2s;
+}
+
+.number {
+  font-size: 30px;
+  color: #707070;
+  transition: 0.2s;
+  letter-spacing: 0.04em;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.navItem {
+  font-size: 14px;
+  color: #707070;
+  padding: 0 14px;
+  min-width: 100px;
+  border-right: 1px solid #707070;
+  text-align: center;
+  transition: 0.2s;
+
+  &:first-child {
+    border-left: 1px solid #707070;
+  }
+}
+
+.bridal {
+  grid-area: bridal;
+  height: 100%;
+}
+
+.hamburger {
+  grid-area: hamburger;
+  height: 100%;
+}
+
+@media screen and (max-width: 1200px) {
+  .header {
+    padding-left: 24px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .main {
+    display: none;
+  }
+
+  .bridal {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    padding-left: 0;
+    grid-template-areas: "hamburger logo";
+    grid-template-columns: 60px 1fr;
+    grid-template-rows: 60px;
+    height: 60px;
+
+    &.istop {
+      grid-template-areas: "hamburger";
+      grid-template-columns: 60px;
+
+      .logo {
+        display: none;
+      }
+    }
+  }
+
+  .logo {
+    justify-content: center;
+    margin-right: 60px;
+  }
+}

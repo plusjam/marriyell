@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="38" height="38" viewBox="0 0 38 38">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="長方形_476" data-name="長方形 476" width="24" height="24" transform="translate(-0.428 -0.43)" fill="#fff"/>
+    </clipPath>
+  </defs>
+  <g id="button_instagram" transform="translate(-0.285 -0.143)">
+    <path id="パス_902" data-name="パス 902" d="M19,0A19,19,0,1,1,0,19,19,19,0,0,1,19,0Z" transform="translate(0.285 0.143)" fill="#e0e0e0"/>
+    <g id="マスクグループ_21" data-name="マスクグループ 21" transform="translate(7.714 8.571)" clip-path="url(#clip-path)">
+      <g id="インスタグラムのシンプルなロゴのアイコン_1" data-name="インスタグラムのシンプルなロゴのアイコン 1" transform="translate(0.516 -0.429)">
+        <path id="パス_900" data-name="パス 900" d="M16.55,0H6.83A6.571,6.571,0,0,0,.259,6.571V16.679A6.571,6.571,0,0,0,6.83,23.25h9.72a6.571,6.571,0,0,0,6.571-6.571V6.571A6.571,6.571,0,0,0,16.55,0ZM2.592,6.571A4.243,4.243,0,0,1,6.83,2.333h9.72a4.243,4.243,0,0,1,4.238,4.238V16.679a4.243,4.243,0,0,1-4.238,4.238H6.83a4.243,4.243,0,0,1-4.238-4.238Z" transform="translate(-0.259)" fill="#fff"/>
+        <path id="パス_901" data-name="パス 901" d="M13.5,19.492A5.987,5.987,0,1,0,7.517,13.5,5.994,5.994,0,0,0,13.5,19.492Zm0-10.109A4.121,4.121,0,1,1,9.383,13.5,4.126,4.126,0,0,1,13.5,9.383Z" transform="translate(-2.074 -1.879)" fill="#fff"/>
+        <ellipse id="楕円形_25" data-name="楕円形 25" cx="1.341" cy="1.341" rx="1.341" ry="1.341" transform="translate(16.252 4.121)" fill="#fff"/>
+      </g>
+    </g>
+  </g>
+</svg>

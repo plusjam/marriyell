@@ -1,0 +1,15 @@
+.section {
+  background: #f8f8f4;
+  padding-bottom: 40px;
+}
+
+.link {
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (max-width: 768px) {
+  .link {
+    padding: 0 15px;
+  }
+}

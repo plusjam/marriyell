@@ -1,0 +1,196 @@
+.section {
+  position: fixed;
+  inset: 0;
+  background: #a6a08a;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.2s;
+  display: grid;
+  grid-template-rows: 80px 1fr max-content;
+  grid-template-areas: "head" "main" "foot";
+  overflow: auto;
+
+  &.open {
+    opacity: 1;
+    pointer-events: unset;
+  }
+}
+
+.head {
+  grid-area: head;
+  display: grid;
+  grid-template-areas: "logo main bridal menu";
+  grid-template-columns: 145px 1fr 80px 80px;
+  grid-template-rows: 80px;
+  padding-left: 80px;
+}
+
+.logo {
+  grid-area: logo;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main {
+  grid-area: main;
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 14px;
+  padding-right: 24px;
+}
+
+.phone {
+  display: flex;
+  gap: 14px;
+  font-size: 30px;
+  letter-spacing: 0.04em;
+  color: #e0e0e0;
+}
+
+.phoneIcon {
+  width: 25px;
+  height: 25px;
+}
+
+.bridal {
+  grid-area: bridal;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  fill: #a6a08a;
+}
+
+.menu {
+  grid-area: menu;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.body {
+  grid-area: main;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 428px;
+  margin: 0 auto;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1.5em 56px;
+  max-height: 195px;
+  flex-wrap: wrap;
+}
+
+.link {
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+
+  transition: 0.2s;
+  position: relative;
+
+  &:before {
+    position: absolute;
+    content: "";
+    width: 3px;
+    height: 3px;
+    border-radius: 99px;
+    background: #fff;
+    top: 50%;
+    left: -8px;
+    opacity: 0;
+    transition: 0.2s;
+  }
+
+  &:hover {
+    &::before {
+      opacity: 1;
+    }
+  }
+}
+
+.foot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 66px;
+}
+
+.name {
+  font-size: 18px;
+  letter-spacing: 0.04em;
+  text-align: center;
+  line-height: 1.33;
+
+  span {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .head {
+    padding-left: 24px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .phone {
+    display: none;
+  }
+
+  .bridal {
+    display: none;
+  }
+
+  .main {
+    display: none;
+  }
+
+  .section {
+    grid-template-rows: 80px 1fr max-content;
+  }
+
+  .head {
+    grid-template-areas: "menu logo";
+    grid-template-columns: 60px 1fr;
+    grid-template-rows: 60px;
+    padding-left: 0;
+    height: 60px;
+  }
+
+  .logo {
+    margin-right: 80px;
+  }
+
+  .body {
+    width: 92%;
+    padding: 40px 15px;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+  }
+
+  .links {
+    width: 258px;
+    max-height: 374px;
+    margin: 0 auto;
+  }
+
+  .foot {
+    width: 92%;
+    padding: 40px 0;
+    border-bottom: 1px solid #fff;
+    margin: 0 auto 26px;
+  }
+
+  .name {
+    text-align: center;
+  }
+}

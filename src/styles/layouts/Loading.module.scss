@@ -1,0 +1,18 @@
+.logo {
+  position: fixed;
+  inset: 0;
+  background-color: #a6a08a;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  pointer-events: none;
+  opacity: 0;
+  transition: 0.2s;
+
+  &.acitve {
+    pointer-events: unset;
+    opacity: opacity 1;
+  }
+}

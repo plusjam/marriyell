@@ -1,0 +1,17 @@
+.container {
+  padding-top: 120px;
+
+  &:first-child {
+    padding-top: 80px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    padding-top: 80px;
+
+    &:first-child {
+      padding-top: 40px;
+    }
+  }
+}

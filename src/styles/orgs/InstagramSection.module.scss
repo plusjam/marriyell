@@ -1,0 +1,50 @@
+.section {
+  background: #fff;
+  padding-bottom: 80px;
+}
+
+.head {
+  margin-bottom: 62px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 19px;
+}
+
+.headText {
+  font-size: 32px;
+  letter-spacing: 0.06em;
+  color: #707070;
+}
+
+.headIcon {
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .head {
+    gap: 10px;
+  }
+
+  .headText {
+    font-size: 20px;
+    position: relative;
+    padding-bottom: 10px;
+
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: -0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 43px;
+      height: 1px;
+      background-color: #a6a08a;
+    }
+  }
+}
