@@ -46,7 +46,7 @@ const ContentsAndImage = (props: Props) => {
         <picture>
           <source srcSet={image} type="image/png" media="(min-width: 768px)" />
           <source srcSet={spImage} type="image/png" />
-          <img src={image} alt="" loading="lazy" className="fadein" />
+          <img src={image} alt="" className="fadein" />
         </picture>
       </div>
     </div>

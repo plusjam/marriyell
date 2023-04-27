@@ -136,7 +136,6 @@ const Animation = (props: Props) => {
   return (
     <div ref={ref} className="main">
       {children}
-      {/* <Loading isLoading={isLoading} /> */}
     </div>
   );
 };

@@ -27,7 +27,7 @@ const ImagesView = (props: Props) => {
           <picture>
             <source srcSet={image02} type="image/png" media="(min-width: 768px)" />
             <source srcSet={spImage02} type="image/png" />
-            <img src={image02} alt="" loading="lazy" className="fadein" />
+            <img src={image02} alt="" className="fadein" />
           </picture>
         </div>
         <div className={Styles.contents}>
@@ -41,7 +41,7 @@ const ImagesView = (props: Props) => {
           <picture>
             <source srcSet={image03} type="image/png" media="(min-width: 768px)" />
             <source srcSet={spImage03} type="image/png" />
-            <img src={image03} alt="" loading="lazy" className="fadein" />
+            <img src={image03} alt="" className="fadein" />
           </picture>
         </div>
         <div className={Styles.image04}>
@@ -49,7 +49,7 @@ const ImagesView = (props: Props) => {
           <picture>
             <source srcSet={image04} type="image/png" media="(min-width: 768px)" />
             <source srcSet={spImage04} type="image/png" />
-            <img src={image04} alt="" loading="lazy" className="fadein" />
+            <img src={image04} alt="" className="fadein" />
           </picture>
         </div>
       </div>
