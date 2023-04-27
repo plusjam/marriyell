@@ -43,7 +43,7 @@ const TopBridalFair = () => {
                       </div> */}
                     </div>
                     <div className={Styles.contents}>
-                      <div className={Styles.when}>{elem.when}</div>
+                      {/* <div className={Styles.when}>{elem.when}</div> */}
                       <div className={Styles.description}>{elem.description}</div>
                     </div>
                   </Link>
