@@ -10,13 +10,14 @@ const Motion = (props: Props) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
+      initial={{ opacity: 0.05 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{
         type: "spring",
         stiffness: 120,
         damping: 120,
+        delay: 0.4,
       }}
     >
       {children}

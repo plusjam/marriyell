@@ -9,6 +9,7 @@ import Head from "next/head";
 import GtmHead from "@/components/libs/GtmHead";
 import GtmBody from "@/components/libs/GtmBody";
 import Pagination from "@/components/libs/Pagination";
+import { useEffect } from "react";
 
 export default function App({ Component, pageProps }: AppProps) {
   const location = useRouter().pathname;
@@ -19,12 +20,12 @@ export default function App({ Component, pageProps }: AppProps) {
         <GtmHead />
       </Head>
 
-      {/* <AnimatePresence mode="wait" initial={false}> */}
-      <Pagination location={location} />
-      <Animation location={location}>
-        <Component {...pageProps} />
-      </Animation>
-      {/* </AnimatePresence> */}
+      <AnimatePresence mode="wait" initial={false}>
+        {/* <Pagination location={location} /> */}
+        <Animation location={location}>
+          <Component {...pageProps} />
+        </Animation>
+      </AnimatePresence>
     </>
   );
 }
