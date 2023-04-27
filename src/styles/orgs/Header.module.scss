@@ -145,6 +145,28 @@
   &:first-child {
     border-left: 1px solid #707070;
   }
+
+  position: relative;
+
+  &:before {
+    position: absolute;
+    content: "";
+    width: 3px;
+    height: 3px;
+    border-radius: 99px;
+    background: #a6a08a;
+    top: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: 0.2s;
+  }
+
+  &:hover {
+    &:before {
+      opacity: 1;
+    }
+  }
 }
 
 .bridal {
