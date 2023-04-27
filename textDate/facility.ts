@@ -17,7 +17,7 @@ export const ANGLEDEBONHEUR = {
     en: "Ange de Bonheur",
     ja: "アンジュドボヌール",
     description:
-      "輝く未来に導かれるように誓いの扉が開かれると、響きわたるライブメロディ。<br>永遠の誓いを祝福するのは、降りそそぐ光とゲストの笑顔。祝福の拍手がふたりを包み、生涯で最も幸福な時か訪れる。",
+      "輝く未来に導かれるように誓いの扉が開かれると、響きわたるライブメロディ。<br>永遠の誓いを祝福するのは、降りそそぐ光とゲストの笑顔。祝福の拍手がふたりを包み、生涯で最も幸福な時が訪れる。",
     image: "/images/facility_ceremony01.jpg",
     spImage: "/images/facility_ceremony01-sp.jpg",
     reserve: false,
@@ -90,7 +90,7 @@ export const FEARIA = {
 
 export const GROWRIA = {
   contents: {
-    en: "Growria",
+    en: "GROWRIA",
     ja: "グロウリア",
     description: "開放的に吹き抜ける大階段から歩をすすめば、四方を埋め尽くすスクリーン演出。ガーデンには自然で気取らないナチュラル空間。個性彩る演出と世界にひとつのアイデアで、全ての人を魅了して。",
     image: "/images/facility_growria01.jpg",
