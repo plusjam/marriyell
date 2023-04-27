@@ -15,7 +15,7 @@ const Pagination = (props: Props) => {
 
     setTimeout(() => {
       setHide(true);
-    }, 800);
+    }, 1100);
   }, [location]);
 
   return (
