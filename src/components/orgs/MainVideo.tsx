@@ -7,21 +7,21 @@ import YouTube from "react-youtube";
 
 const MainVideo = () => {
   const isPc = useMediaQuery(768, "max");
-  const ref = useRef<HTMLDivElement | null>(null);
-  const opts: any = {
-    playerVars: {
-      autoplay: 1,
-      controls: 0,
-      loop: 1,
-      modestbranding: 1,
-      iv_load_policy: 3,
-      playlist: "vcZWQS9-tSw",
-      fs: 0,
-      playsinline: 1,
-      mute: 1,
-      showinfo: 0,
-    },
-  };
+  // const ref = useRef<HTMLDivElement | null>(null);
+  // const opts: any = {
+  //   playerVars: {
+  //     autoplay: 1,
+  //     controls: 0,
+  //     loop: 1,
+  //     modestbranding: 1,
+  //     iv_load_policy: 3,
+  //     playlist: "vcZWQS9-tSw",
+  //     fs: 0,
+  //     playsinline: 1,
+  //     mute: 1,
+  //     showinfo: 0,
+  //   },
+  // };
 
   useEffect(() => {
     // const resize = () => {
@@ -57,7 +57,7 @@ const MainVideo = () => {
   }, []);
 
   return (
-    <div className={Styles.main} id="youtube_pc" ref={ref}>
+    <div className={Styles.main} id="youtube_pc">
       {!isPc && (
         <>
           <video className={Styles.video} loop autoPlay muted playsInline controlsList="nodownload">
