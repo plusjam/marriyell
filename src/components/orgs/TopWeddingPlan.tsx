@@ -19,6 +19,7 @@ const TopWeddingPlan = () => {
             spaceBetween={32}
             slidesPerView={1.84}
             centeredSlides={true}
+            initialSlide={1}
             breakpoints={{
               768: {
                 slidesPerView: 3,

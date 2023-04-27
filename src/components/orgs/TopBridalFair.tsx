@@ -18,6 +18,7 @@ const TopBridalFair = () => {
             spaceBetween={20}
             slidesPerView={1.31}
             centeredSlides={true}
+            initialSlide={1}
             breakpoints={{
               768: {
                 slidesPerView: 3,
