@@ -31,7 +31,11 @@ const TopBridalFair = () => {
                 <SwiperSlide className={`${Styles.block} fadeinTop`} data-delay={0.2 * index} key={`bridalfair0${index + 1}`}>
                   <Link href={elem.href} target="_blank">
                     <div className={Styles.image}>
-                      <Image src={elem.src} alt="" width={405} height={295} />
+                      {/* <Image src={elem.src} alt="" width={405} height={295} /> */}
+                      <picture>
+                        <source srcSet={elem.src} type="image/webp" />
+                        <img src={elem.src} alt="" width={405} height={295} />
+                      </picture>
                       {/* <div className={Styles.tag}>
                         <div className={Styles.yyyy_mm}>{elem.yyyymm}</div>
                         <div className={Styles.date}>{elem.date}</div>

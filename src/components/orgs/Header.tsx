@@ -43,7 +43,11 @@ const Header = (props: Props) => {
     <header className={isTop ? `${Styles.header} ${Styles.isTop}` : Styles.header} ref={ref}>
       <div className={Styles.logo}>
         <Link href="/">
-          <Image src="/images/art_logo_long.svg" alt="ル・クレア" width={145} height={34} />
+          {/* <Image src="/images/art_logo_long.svg" alt="ル・クレア" width={145} height={34} /> */}
+          <picture>
+            <source srcSet="/images/art_logo.svg" type="image/svg" />
+            <img src="/images/art_logo_long.svg" alt="ル・クレア" width={145} height={34} />
+          </picture>
         </Link>
       </div>
 

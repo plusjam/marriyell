@@ -14,7 +14,11 @@ const Footer = () => {
       <div className={Styles.container}>
         <div className={Styles.body}>
           <div className={Styles.logo}>
-            <Image src="/images/art_logo-nocolor.svg" alt="lu CREA" width={171} height={173} />
+            {/* <Image src="/images/art_logo-nocolor.svg" alt="lu CREA" width={171} height={173} /> */}
+            <picture>
+              <source srcSet="/images/art_logo.svg" type="image/svg" />
+              <img src="/images/art_logo-nocolor.svg" alt="lu CREA" width={171} height={173} />
+            </picture>
             <div className={Styles.title}>
               <span>lu CREA -ル・クレア- </span>
               <span className={Styles.pc}>│</span>
@@ -31,13 +35,21 @@ const Footer = () => {
             <div className={Styles.zipcode}>〒352-0001</div>
             <div className={Styles.address}>
               <span className={Styles.addressIcon}>
-                <Image src="/images/icon_spot.svg" alt="" width={23} height={23} />
+                {/* <Image src="/images/icon_spot.svg" alt="" width={23} height={23} /> */}
+                <picture>
+                  <source srcSet="/images/art_logo.svg" type="image/svg" />
+                  <img src="/images/icon_spot.svg" alt="" width={23} height={23} />
+                </picture>
               </span>
               京都府福知山市駅南町3-52
             </div>
             <Link href="tel:0773-24-1101" className={Styles.phone}>
               <span className={Styles.phoneIcon}>
-                <Image src="/images/icon_phone.svg" alt="" width={15} height={15} />
+                {/* <Image src="/images/icon_phone.svg" alt="" width={15} height={15} /> */}
+                <picture>
+                  <source srcSet="/images/art_logo.svg" type="image/svg" />
+                  <img src="/images/icon_phone.svg" alt="" width={15} height={15} />
+                </picture>
               </span>
               0773-24-1101
             </Link>

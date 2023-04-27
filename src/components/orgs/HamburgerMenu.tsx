@@ -22,13 +22,21 @@ const HamburgerMenu = (props: Props) => {
     <div className={isOpen ? `${Styles.section} ${Styles.open}` : `${Styles.section}`}>
       <div className={Styles.head}>
         <Link href="/" className={Styles.logo}>
-          <Image src="/images/art_logo_long.svg" alt="lu CREA" width={145} height={34} />
+          {/* <Image src="/images/art_logo_long.svg" alt="lu CREA" width={145} height={34} /> */}
+          <picture>
+            <source srcSet="/images/art_logo.svg" type="image/svg" />
+            <img src="/images/art_logo_long.svg" alt="lu CREA" width={145} height={34} />
+          </picture>
         </Link>
 
         <div className={Styles.main}>
           <Link href="tel:0773-24-1101" className={Styles.phone}>
             <span className={Styles.phoneIcon}>
-              <Image src="/images/icon_phone.svg" alt="" width={25} height={25} />
+              {/* <Image src="/images/icon_phone.svg" alt="" width={25} height={25} /> */}
+              <picture>
+                <source srcSet="/images/art_logo.svg" type="image/svg" />
+                <img src="/images/icon_phone.svg" alt="" width={25} height={25} />
+              </picture>
             </span>
             0773-24-1101
           </Link>
