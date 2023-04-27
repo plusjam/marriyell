@@ -39,7 +39,8 @@ export const originalWedding = [
   {
     en: "Garden",
     ja: "庭園",
-    description: "白亜の大聖堂から続く大階段、その先には広大なプライベートガーデンが。フラワーシャワーやバルーンリリースにブーケトス、ゲスト皆さまとのフォトタイムなど、思うままの過ごし方を。",
+    description:
+      "白亜の大聖堂から続く大階段、その先には約150坪の広大なプライベートガーデンが。フラワーシャワーやバルーンリリースにブーケトス、ゲスト皆さまとのフォトタイムなど、思うままの過ごし方を。",
     image: "/images/top_garden_wedding.jpg",
     spImage: "/images/top_garden_wedding-sp.jpg",
     href: "/facility#garden",

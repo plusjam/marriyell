@@ -39,7 +39,8 @@ export const GARDEN = {
   contents: {
     en: "Garden",
     ja: "庭園",
-    description: "白亜の大聖堂から続く大階段、その先には広大なプライベートガーデンが。フラワーシャワーやバルーンリリースにブーケトス、ゲスト皆さまとのフォトタイムなど、思うままの過ごし方を。",
+    description:
+      "白亜の大聖堂から続く大階段、その先には約150坪の広大なプライベートガーデンが。フラワーシャワーやバルーンリリースにブーケトス、ゲスト皆さまとのフォトタイムなど、思うままの過ごし方を。",
     image: "/images/facility_garden01.jpg",
     spImage: "/images/facility_garden01-sp.jpg",
     reverse: true,
@@ -90,7 +91,7 @@ export const FEARIA = {
 export const GLORIA = {
   contents: {
     en: "Gloria",
-    ja: "グロリア",
+    ja: "グロウリア",
     description: "開放的に吹き抜ける大階段から歩をすすめば、四方を埋め尽くすスクリーン演出。ガーデンには自然で気取らないナチュラル空間。個性彩る演出と世界にひとつのアイデアで、全ての人を魅了して。",
     image: "/images/facility_gloria01.jpg",
     spImage: "/images/facility_gloria01-sp.jpg",
