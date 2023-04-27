@@ -88,24 +88,24 @@ export const FEARIA = {
   },
 };
 
-export const GLORIA = {
+export const GROWRIA = {
   contents: {
-    en: "Gloria",
+    en: "Growria",
     ja: "グロウリア",
     description: "開放的に吹き抜ける大階段から歩をすすめば、四方を埋め尽くすスクリーン演出。ガーデンには自然で気取らないナチュラル空間。個性彩る演出と世界にひとつのアイデアで、全ての人を魅了して。",
-    image: "/images/facility_gloria01.jpg",
-    spImage: "/images/facility_gloria01-sp.jpg",
+    image: "/images/facility_growria01.jpg",
+    spImage: "/images/facility_growria01-sp.jpg",
     reverse: true,
   },
   views: {
     copy: "開放的な吹き抜けが広がるナチュラル空間",
     description: "ファッショナブルな大人モダン。ディティールにこだわった洗練された空間は本物を知る人にこそふさわしい。人とはひと味ちがうハイセンスな時間をお楽しみいただけます。",
-    image02: "/images/facility_gloria02.jpg",
-    spImage02: "/images/facility_gloria02-sp.jpg",
-    image03: "/images/facility_gloria03.jpg",
-    spImage03: "/images/facility_gloria03-sp.jpg",
-    image04: "/images/facility_gloria04.jpg",
-    spImage04: "/images/facility_gloria04-sp.jpg",
+    image02: "/images/facility_growria02.jpg",
+    spImage02: "/images/facility_growria02-sp.jpg",
+    image03: "/images/facility_growria03.jpg",
+    spImage03: "/images/facility_growria03-sp.jpg",
+    image04: "/images/facility_growria04.jpg",
+    spImage04: "/images/facility_growria04-sp.jpg",
     reverse: true,
   },
 };
