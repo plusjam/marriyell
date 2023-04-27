@@ -20,12 +20,12 @@ export default function App({ Component, pageProps }: AppProps) {
         <GtmHead />
       </Head>
 
-      {/* <AnimatePresence mode="wait" initial={false}> */}
-      {/* <Pagination location={location} /> */}
-      <Animation location={location}>
-        <Component {...pageProps} />
-      </Animation>
-      {/* </AnimatePresence> */}
+      <AnimatePresence mode="wait" initial={false}>
+        <Pagination location={location} />
+        <Animation location={location}>
+          <Component {...pageProps} />
+        </Animation>
+      </AnimatePresence>
     </>
   );
 }
