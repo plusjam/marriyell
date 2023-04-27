@@ -20,9 +20,9 @@ const Underlayer3 = () => {
         <div className={Styles.row}>
           {isFacility ? (
             <>
-              <Scroll className={`${Styles.link} ${Styles.inner} ${Styles.h3}`} to="ceremony" smooth={true} duration={500} offset={-120}>
-                <div className={Styles.en}>Ceremony</div>
-                <div className={Styles.ja}>挙式会場</div>
+              <Scroll className={`${Styles.link} ${Styles.inner} ${Styles.h3}`} to="ange_de_bonheur" smooth={true} duration={500} offset={-120}>
+                <div className={Styles.en}>Ange de Bonheur</div>
+                <div className={Styles.ja}>アンジュドボヌール</div>
               </Scroll>
               <Scroll className={`${Styles.link} ${Styles.inner} ${Styles.h3}`} to="garden" smooth={true} duration={500} offset={-120}>
                 <div className={Styles.en}>Garden</div>
@@ -31,9 +31,9 @@ const Underlayer3 = () => {
             </>
           ) : (
             <>
-              <Link className={Styles.link} href="/facility#ceremony">
-                <div className={Styles.en}>Ceremony</div>
-                <div className={Styles.ja}>挙式会場</div>
+              <Link className={Styles.link} href="/facility#ange_de_bonheur">
+                <div className={Styles.en}>Ange de Bonheur</div>
+                <div className={Styles.ja}>アンジュドボヌール</div>
               </Link>
               <Link className={Styles.link} href="/facility#garden">
                 <div className={Styles.en}>Garden</div>
