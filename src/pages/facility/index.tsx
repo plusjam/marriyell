@@ -5,7 +5,7 @@ import InstagramSection from "@/components/orgs/InstagramSection";
 import Underlayer1 from "@/components/orgs/Underlayer1";
 import Head from "next/head";
 import React from "react";
-import { MAIN, CHAPEL, ANGLEDEBONHEUR, GARDEN, BANQUET, FAERIA, GLORIA, PLUMERIA } from "../../../textDate/facility";
+import { MAIN, CHAPEL, ANGLEDEBONHEUR, GARDEN, BANQUET, FEARIA, GLORIA, PLUMERIA } from "../../../textDate/facility";
 import Underlayer2 from "@/components/orgs/Underlayer2";
 import Underlayer3 from "@/components/orgs/Underlayer3";
 import SectionHead from "@/components/mols/SectionHead";
@@ -50,7 +50,7 @@ export default function Home() {
           <section>
             <SectionHead {...BANQUET} />
             <div>
-              <Underlayer2 {...FAERIA} />
+              <Underlayer2 {...FEARIA} />
               <Underlayer2 {...GLORIA} />
               <Underlayer2 {...PLUMERIA} />
             </div>

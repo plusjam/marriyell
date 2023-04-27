@@ -11,7 +11,7 @@ import Link from "next/link";
 const TopWeddingPlan = () => {
   return (
     <section className={Styles.section}>
-      <SectionHead en="Wedding Plan" ja="ウエディングプラン" href="wedding-plan" />
+      <SectionHead en="Wedding Plan" ja="ウェディングプラン" href="wedding-plan" />
       <div className={Styles.container}>
         <div className={Styles.main}>
           <Swiper

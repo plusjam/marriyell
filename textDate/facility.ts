@@ -3,7 +3,7 @@ export const MAIN = {
   spImage: "/images/facility_main-sp.jpg",
   en: "Facility",
   ja: "施設紹介",
-  copy: "ゲストも嬉しい充実したウエディング空間</br>おふたりからゲストへ感謝の気持ちを伝えるために</br>豊富な会場からお選びいただけます",
+  copy: "ゲストも嬉しい充実したウェディング空間</br>おふたりからゲストへ感謝の気持ちを伝えるために</br>豊富な会場からお選びいただけます",
 };
 
 export const CHAPEL = {
@@ -47,7 +47,7 @@ export const GARDEN = {
   views: {
     copy: "色鮮やかな緑に囲まれて寛ぎのときを",
     description:
-      "四季折々の花たちが薫る緑豊かなガーデンは福知山駅からすぐと思えないほどの非日常感。澄んだ空気とあふれる緑に包まれて自然にみんながリラックスできるナチュラルガーデンウエディングは、ゲストの記憶にきざまれることでしょう。",
+      "四季折々の花たちが薫る緑豊かなガーデンは福知山駅からすぐと思えないほどの非日常感。澄んだ空気とあふれる緑に包まれて自然にみんながリラックスできるナチュラルガーデンウェディングは、ゲストの記憶にきざまれることでしょう。",
     image02: "/images/facility_garden02.jpg",
     spImage02: "/images/facility_garden02-sp.jpg",
     image03: "/images/facility_garden03.jpg",
@@ -64,25 +64,25 @@ export const BANQUET = {
   href: "banquet",
 };
 
-export const FAERIA = {
+export const FEARIA = {
   contents: {
-    en: "Faeria",
+    en: "Fearia",
     ja: "フェアリア",
     description:
-      "幸せば空間の名をもつ、ラグジュアリーなパーティー会場。主人公が大階段から舞い降りれば、そこは歓喜に包まれた光あふれる明るいバンケット。プロジェクションマッピングの演出やテラスまで自由に使って、ふたりらしいパーティを。",
-    image: "/images/facility_faeria01.jpg",
-    spImage: "/images/facility_faeria01-sp.jpg",
+      "幸せな空間の名をもつ、ラグジュアリーなパーティー会場。主人公が大階段から舞い降りれば、そこは歓喜に包まれた光あふれる明るいバンケット。プロジェクションマッピングの演出やテラスまで自由に使って、ふたりらしいパーティを。",
+    image: "/images/facility_fearia01.jpg",
+    spImage: "/images/facility_fearia01-sp.jpg",
     reverse: false,
   },
   views: {
     copy: "優美な光が降り注ぐ大人かわいい上質空間",
     description: "光あふれる陽光が降り注ぐ大人かわいい上質なバンケットと、開放的なガーデンのプライベート空間。いつまでも醒めないときを心に刻んで。",
-    image02: "/images/facility_faeria02.jpg",
-    spImage02: "/images/facility_faeria02-sp.jpg",
-    image03: "/images/facility_faeria03.jpg",
-    spImage03: "/images/facility_faeria03-sp.jpg",
-    image04: "/images/facility_faeria04.jpg",
-    spImage04: "/images/facility_faeria04-sp.jpg",
+    image02: "/images/facility_fearia02.jpg",
+    spImage02: "/images/facility_fearia02-sp.jpg",
+    image03: "/images/facility_fearia03.jpg",
+    spImage03: "/images/facility_fearia03-sp.jpg",
+    image04: "/images/facility_fearia04.jpg",
+    spImage04: "/images/facility_fearia04-sp.jpg",
     reverse: false,
   },
 };

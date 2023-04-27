@@ -13,9 +13,9 @@ const TopOriginalWedding = () => {
   return (
     <>
       <section className={Styles.section}>
-        <SectionHead en="Original Wedding" ja="オリジナルウエディング" href="original-wedding" />
+        <SectionHead en="Original Wedding" ja="オリジナルウェディング" href="original-wedding" />
         <div className={Styles.sectionCopy}>
-          北近畿最大級を誇る独立型チャペルと選べる３つの披露宴会場で叶えるオリジナルなウエディング。
+          北近畿最大級を誇る独立型チャペルと選べる３つの披露宴会場で叶えるオリジナルなウェディング。
           <br />
           併設のテラスやホワイエまで貸し切って 思い切り楽しむウェディングを叶えて。
         </div>
