@@ -18,6 +18,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <GtmHead />
+        <meta property="og:image" content=" https://lu-crea.jp/ogp.png" />
       </Head>
 
       <AnimatePresence mode="wait" initial={false}>
