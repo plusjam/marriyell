@@ -92,7 +92,7 @@ export const GROWRIA = {
   contents: {
     en: "GROWRIA",
     ja: "グロウリア",
-    description: "開放的に吹き抜ける大階段から歩をすすめば、四方を埋め尽くすスクリーン演出。ガーデンには自然で気取らないナチュラル空間。個性彩る演出と世界にひとつのアイデアで、全ての人を魅了して。",
+    description: "開放的に吹き抜ける大階段から歩をすすめれば、四方を埋め尽くすスクリーン演出。ガーデンには自然で気取らないナチュラル空間。個性彩る演出と世界にひとつのアイデアで、全ての人を魅了して。",
     image: "/images/facility_growria01.jpg",
     spImage: "/images/facility_growria01-sp.jpg",
     reverse: true,
