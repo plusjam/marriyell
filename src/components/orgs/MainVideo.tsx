@@ -60,40 +60,15 @@ const MainVideo = () => {
     <div className={Styles.main} id="youtube_pc">
       {!isPc && (
         <>
-          <video className={Styles.video} loop autoPlay muted playsInline controlsList="nodownload">
+          <video className={Styles.video} loop autoPlay muted playsInline controlsList="nodownload" preload="metadata">
             <source src="/videos/yoko.mp4" type="video/mp4" />
           </video>
-          {/* <iframe
-            ref={iframe}
-            className={Styles.iframe}
-            width={position.width}
-            height={position.height}
-            src="https://www.youtube.com/embed/vcZWQS9-tSw?autoplay=1&amp;fs=0&amp;playsinline=1&amp;mute=1&amp;loop=1&amp;controls=0&amp;modestbranding=1&amp;iv_load_policy=3&amp;playlist=vcZWQS9-tSw"
-            title="YouTube video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe> */}
-          {/* <YouTubePlayer videoId="vcZWQS9-tSw" /> */}
-          {/* <YouTube videoId="2g811Eo7K8U" opts={opts} /> */}
         </>
       )}
       {isPc && (
-        <video className={Styles.video} loop autoPlay muted playsInline controlsList="nodownload">
+        <video className={Styles.video} loop autoPlay muted playsInline controlsList="nodownload" preload="metadata">
           <source src="/videos/tate2.mp4" type="video/mp4" />
         </video>
-        // <iframe
-        //   ref={iframe}
-        //   className={Styles.iframe}
-        //   width={position.width}
-        //   height={position.height}
-        //   src="https://www.youtube.com/embed/vcZWQS9-tSw?autoplay=1&amp;fs=0&amp;playsinline=1&amp;mute=1&amp;loop=1&amp;controls=0&amp;modestbranding=1&amp;iv_load_policy=3&amp;playlist=vcZWQS9-tSw"
-        //   title="YouTube video player"
-        //   frameBorder="0"
-        //   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        //   allowFullScreen
-        // ></iframe>
-        // <YouTubePlayer videoId="vcZWQS9-tSw" />
       )}
     </div>
   );
