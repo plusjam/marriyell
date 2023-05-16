@@ -107,7 +107,7 @@ export const getStaticPaths = async () => {
   const posts: { category: NewsCategory[]; contents: NewsContents[] } = await res.json();
 
   const paths = posts.contents.map((post: any) => ({
-    params: { id: 1 },
+    params: { id: "1" },
     // params: { id: post.id.toString() },
   }));
 
