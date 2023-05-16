@@ -1,0 +1,193 @@
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+}
+
+.category {
+  width: calc(33% - 12px);
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: #a6a08a 1px solid;
+  color: #a6a08a;
+  font-size: 16px;
+  letter-spacing: 0.06em;
+  position: relative;
+  transition: 0.2s;
+  cursor: pointer;
+
+  &.selected {
+    background-color: #a6a08a;
+    color: #fff;
+  }
+
+  &:before {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    content: "";
+    display: inline-block;
+    background-size: contain;
+    vertical-align: middle;
+  }
+
+  &.all {
+    &:before {
+      background-image: url(/images/icon_fair_all.svg);
+    }
+  }
+
+  &.new {
+    &:before {
+      background-image: url(/images/icon_fair_new.svg);
+    }
+  }
+
+  &.food {
+    &:before {
+      background-image: url(/images/icon_fair_food.svg);
+    }
+  }
+
+  &.season {
+    &:before {
+      background-image: url(/images/icon_fair_season.svg);
+    }
+  }
+
+  &.ceremony {
+    &:before {
+      background-image: url(/images/icon_fair_ceremony.svg);
+    }
+  }
+
+  &.dress {
+    &:before {
+      background-image: url(/images/icon_fair_dress.svg);
+    }
+  }
+
+  &.weekends {
+    &:before {
+      background-image: url(/images/icon_fair_weekends.svg);
+    }
+  }
+
+  &.weekdays {
+    &:before {
+      background-image: url(/images/icon_fair_weekdays.svg);
+    }
+  }
+
+  &.online {
+    &:before {
+      background-image: url(/images/icon_fair_online.svg);
+    }
+  }
+
+  &.selected {
+    &.new {
+      &:before {
+        background-image: url(/images/icon_fair_new-hover.svg);
+      }
+    }
+
+    &.food {
+      &:before {
+        background-image: url(/images/icon_fair_food-hover.svg);
+      }
+    }
+
+    &.season {
+      &:before {
+        background-image: url(/images/icon_fair_season-hover.svg);
+      }
+    }
+
+    &.ceremony {
+      &:before {
+        background-image: url(/images/icon_fair_ceremony-hover.svg);
+      }
+    }
+
+    &.dress {
+      &:before {
+        background-image: url(/images/icon_fair_dress-hover.svg);
+      }
+    }
+
+    &.weekends {
+      &:before {
+        background-image: url(/images/icon_fair_weekends-hover.svg);
+      }
+    }
+
+    &.weekdays {
+      &:before {
+        background-image: url(/images/icon_fair_weekdays-hover.svg);
+      }
+    }
+
+    &.online {
+      &:before {
+        background-image: url(/images/icon_fair_online-hover.svg);
+      }
+    }
+  }
+}
+
+.categoryIcon {
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.label {
+}
+
+@media screen and (max-width: 1024px) {
+  .categories {
+    gap: 12px 12px;
+  }
+
+  .category {
+    width: calc(33% - 8px);
+    height: 40px;
+    font-size: 14px;
+
+    &:before {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .categories {
+    gap: 8px 5px;
+  }
+
+  .category {
+    width: calc(50% - 2.5px);
+    height: 36px;
+    font-size: 10px;
+    border-radius: 4px;
+
+    &:before {
+      width: 12px;
+      height: 12px;
+      left: 8px;
+    }
+
+    &:first-child {
+      width: 100%;
+    }
+  }
+}

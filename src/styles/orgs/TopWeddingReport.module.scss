@@ -3,13 +3,23 @@
   padding-bottom: 40px;
 }
 
+.lists {
+  padding: 80px 18px 0;
+}
+
 .link {
   display: flex;
   justify-content: center;
 }
 
 @media screen and (max-width: 768px) {
+  .lists {
+    padding: 40px 20px 0;
+  }
+
   .link {
-    padding: 0 15px;
+    padding: 0;
+    max-width: 281px;
+    margin: 0 auto;
   }
 }

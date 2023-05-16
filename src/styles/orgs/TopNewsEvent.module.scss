@@ -1,6 +1,12 @@
 .section {
   background: #fff;
-  padding-bottom: 40px;
+  padding: 0 24px 40px;
+}
+
+.container {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .link {
@@ -8,8 +14,153 @@
   justify-content: center;
 }
 
+.lists {
+  padding: 80px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px 88px;
+}
+
+.list {
+  width: calc(50% - 44px);
+  display: flex;
+  gap: 20px;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.image {
+  max-width: 140px;
+  min-width: 140px;
+  height: 140px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.description {
+  font-size: 16px;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+  color: #707070;
+}
+
+.date {
+  font-size: 16px;
+  letter-spacing: 0.04em;
+  color: #a6a08a;
+}
+
+.categories {
+  display: flex;
+  gap: 16px;
+}
+
+.category {
+  background: #a6a08a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  color: #e0e0e0;
+  letter-spacing: 0.04em;
+  padding: 8px 22px;
+}
+
+.imageLinks {
+  display: flex;
+  gap: 20px;
+  margin-top: 80px;
+  flex-wrap: wrap;
+}
+
+.imageLink {
+  width: calc(33% - 20px);
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .section {
+    padding: 0 15px 80px;
+  }
+
+  .lists {
+    padding: 40px 32px 0;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .list {
+    width: 100%;
+    gap: 13px;
+  }
+
+  .image {
+    max-width: 87px;
+    min-width: 87px;
+    height: 87px;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .description {
+    font-size: 14px;
+  }
+
+  .date {
+    font-size: 12px;
+  }
+
+  .categories {
+    display: flex;
+    gap: 16px;
+  }
+
+  .category {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+
+  .imageLinks {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+  }
+
+  .imageLink {
+    max-width: 320px;
+    width: 100%;
+  }
+}
+
 @media screen and (max-width: 768px) {
+  .section {
+    padding: 0 15px 160px;
+  }
+
   .link {
-    padding: 0 15px;
+    padding: 0;
+    max-width: 281px;
+    margin: 0 auto;
   }
 }

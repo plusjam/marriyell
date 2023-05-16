@@ -1,0 +1,40 @@
+.category {
+  width: calc(33% - 12px);
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: #a6a08a 1px solid;
+  color: #a6a08a;
+  font-size: 16px;
+  letter-spacing: 0.06em;
+  position: relative;
+  transition: 0.2s;
+
+  &:hover,
+  &.selected {
+    background-color: #a6a08a;
+    color: #fff;
+  }
+}
+
+.categoryIcon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  border-radius: 50%;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+}

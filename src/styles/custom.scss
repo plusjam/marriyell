@@ -1,0 +1,128 @@
+.weekday,
+.saturday,
+.sunday {
+  display: inline-block;
+
+  &.past {
+    color: #cacaca;
+  }
+}
+
+.fc .fc-daygrid-day-frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.fc-col-header-cell-cushion,
+.fc-daygrid-day-number {
+  color: #222;
+  font-size: 14px;
+}
+
+.fc-daygrid-day {
+  height: 20px; /* セルの高さを設定 */
+  // width: 50px; /* セルの幅を設定 */
+}
+
+.fc .fc-daygrid-day-events {
+  // display: none;
+
+  .fc-h-event {
+    border: none;
+    width: 24px;
+    height: 24px;
+    background: #e0e0e0;
+    border-radius: 99px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+  }
+}
+
+.fc-daygrid {
+  tr {
+    height: 20px;
+  }
+}
+
+.fc .fc-toolbar {
+  align-items: flex-start;
+}
+
+.fc .fc-toolbar-title {
+  font-size: 16px;
+  font-weight: normal;
+  color: #222;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.fc-col-header-cell-cushion {
+  font-size: 12px;
+  font-weight: normal;
+  color: #222;
+  text-transform: uppercase;
+}
+
+.fc .fc-button-primary {
+  background: none;
+  border: none;
+  color: #a6a08a;
+  font-size: 11px;
+
+  &:focus {
+    outline: none;
+    border: none;
+    box-shadow: none;
+  }
+
+  &:hover {
+    background: #a6a08a;
+    border: none;
+    color: #fff;
+  }
+
+  &:not(:disabled) {
+    &:active {
+      background: #a6a08a;
+      border: none;
+      color: #fff;
+    }
+  }
+}
+
+.fc-daygrid-day-frame {
+  height: 100%; /* セル内部のフレームの高さを100%に設定 */
+}
+
+.sunday {
+  color: #cb5353;
+}
+
+.saturday {
+  color: #6483d9;
+}
+
+a {
+  &[aria-label="Sunday"] {
+    color: #cb5353;
+  }
+  &[aria-label="Saturday"] {
+    color: #6483d9;
+  }
+}
+
+.fc-theme-standard {
+  td,
+  th {
+    border: none;
+  }
+
+  .fc-scrollgrid {
+    border: none;
+  }
+}

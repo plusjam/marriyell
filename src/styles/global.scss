@@ -2,7 +2,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  line-height: 1;
 }
 
 body {
@@ -11,12 +10,21 @@ body {
   font-style: normal;
   color: #e0e0e0;
   letter-spacing: 0.06em;
+  line-height: 1;
 }
 
 a {
   text-decoration: none;
   display: block;
   color: #ffffff;
+}
+
+li {
+  list-style: none;
+
+  &::marker {
+    display: none;
+  }
 }
 
 picture,

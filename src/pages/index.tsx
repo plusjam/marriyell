@@ -11,20 +11,23 @@ import TopNewsEvent from "@/components/orgs/TopNewsEvent";
 import TopOriginalWedding from "@/components/orgs/TopOriginalWedding";
 import TopWeddingPlan from "@/components/orgs/TopWeddingPlan";
 import TopWeddingReport from "@/components/orgs/TopWeddingReport";
+import { GetStaticProps } from "next";
 import Head from "next/head";
 import React from "react";
+import { ReportContents } from "./api/weddingReport/[id]";
+import useModalReport from "../../libs/useModalReport";
+import ReportModal from "@/components/orgs/ReportModal";
+import { NewsCategory, NewsContents } from "../../typings/news";
 
-export default function Home() {
-  const [isOpen, setIsOpen] = React.useState(false);
+type Props = {
+  reportLists: ReportContents[];
+  newsLists: { category: NewsCategory[]; contents: NewsContents[] };
+};
 
-  const toggleOpen = () => {
-    setIsOpen(!isOpen);
-  };
+export default function Home(props: Props) {
+  const { reportLists, newsLists } = props;
 
-  const childProps = {
-    toggleOpen,
-    isOpen,
-  };
+  const { videoID, openModal, closeModal } = useModalReport();
 
   return (
     <>
@@ -35,20 +38,34 @@ export default function Home() {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <main>
-          <Header {...childProps} isTop />
-          <HamburgerMenu {...childProps} isTop />
           <MainVideo />
           <MainFlow />
           <TopOriginalWedding />
           <TopBridalFair />
           <TopWeddingPlan />
-          {/* <TopWeddingReport /> */}
-          {/* <TopNewsEvent /> */}
-          {/* <TopContents /> */}
+          <TopWeddingReport contents={reportLists} openModal={openModal} />
+          <TopNewsEvent contents={newsLists.contents} />
+          <TopContents />
           {/* <InstagramSection /> */}
-          <Footer />
         </main>
+
+        <ReportModal videoID={videoID} closeModal={closeModal} />
       </Motion>
     </>
   );
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+  const reportRes = await fetch(`http://localhost:${process.env.PORT}/api/weddingReport/2`);
+  const reportLists: ReportContents[] = await reportRes.json();
+
+  const newsRes = await fetch(`http://localhost:${process.env.PORT}/api/news/1`);
+  const newsLists: { category: NewsCategory[]; contents: NewsContents[] } = await newsRes.json();
+
+  return {
+    props: {
+      reportLists,
+      newsLists,
+    },
+  };
+};

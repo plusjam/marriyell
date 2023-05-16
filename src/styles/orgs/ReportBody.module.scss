@@ -1,0 +1,44 @@
+.section {
+}
+
+.container {
+  max-width: 1220px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 60px 20px 0;
+}
+
+.copy {
+  font-size: 18px;
+  margin-bottom: 80px;
+  text-align: center;
+  color: #222;
+  letter-spacing: 0;
+
+  .sp {
+    display: none;
+  }
+}
+
+// .member {
+//   text-align: right;
+//   font-size: 13px;
+//   color: rgb(68, 68, 68);
+//   font-family: "EB Garamond", 游明朝体, "Yu Mincho", YuMincho, "ヒラギノ明朝 Pro", "Hiragino Mincho Pro", "MS P明朝", "MS PMincho", "Noto Serif JP", serif;
+// }
+
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 60px 24px 0;
+  }
+
+  .copy {
+    font-size: 14px;
+    margin-bottom: 30px;
+    line-height: 1.7;
+
+    .sp {
+      display: block;
+    }
+  }
+}

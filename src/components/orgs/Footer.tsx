@@ -3,7 +3,7 @@ import React from "react";
 import Styles from "../../styles/orgs/Footer.module.scss";
 import Atoms from "../../styles/atoms/Atoms.module.scss";
 import Link from "next/link";
-import { sitemapLinks } from "../../../textDate";
+import { sitemapLinks } from "../../textDate";
 import { useMediaQuery } from "../../../libs/useMediaQuery";
 import ButtonSns from "../atoms/ButtonSns";
 import LinkToRecruit from "../atoms/LinkToRecruit";

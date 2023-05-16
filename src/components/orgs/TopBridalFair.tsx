@@ -4,7 +4,7 @@ import LinkToLists from "../atoms/LinkToLists";
 import SectionHead from "../mols/SectionHead";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { BRIDALFAIR } from "../../../textDate";
+import { BRIDALFAIR } from "../../textDate";
 import Link from "next/link";
 
 const TopBridalFair = () => {

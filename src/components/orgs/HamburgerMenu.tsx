@@ -3,7 +3,7 @@ import Styles from "../../styles/orgs/HamburgerMenu.module.scss";
 import Atoms from "../../styles/atoms/Atoms.module.scss";
 import LinkToBridalFair from "../atoms/LinkToBridalFair";
 import HamburgerButton from "../atoms/HamburgerButton";
-import { sitemapLinks } from "../../../textDate";
+import { sitemapLinks } from "../../textDate";
 import Link from "next/link";
 import Image from "next/image";
 import ButtonSns from "../atoms/ButtonSns";

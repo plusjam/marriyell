@@ -1,0 +1,68 @@
+.section {
+  padding: 120px 0 0;
+  color: #fff;
+  margin-bottom: 60px;
+}
+
+.title {
+  color: #444;
+  font-size: 32px;
+  font-weight: 400;
+  margin-bottom: 0;
+  font-family: "EB Garamond", "游明朝体", "Yu Mincho", YuMincho, "ヒラギノ明朝 Pro", "Hiragino Mincho Pro", "MS P明朝", "MS PMincho", "Noto Serif JP", serif;
+  text-align: center;
+  padding: 0 20px;
+  font-weight: nomal;
+  letter-spacing: 0.1em;
+  line-height: 1.7;
+
+  .span {
+    font-size: 14px;
+    font-family: "EB Garamond", "游明朝体", "Yu Mincho", YuMincho, "ヒラギノ明朝 Pro", "Hiragino Mincho Pro", "MS P明朝", "MS PMincho", "Noto Serif JP", serif;
+    display: block;
+  }
+}
+
+.flow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 24px;
+}
+
+.text {
+  font-size: 10px;
+  width: 64px;
+  height: 64px;
+  border-radius: 64px;
+  color: #444;
+  border: 1px solid #444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  color: #444;
+
+  &.done {
+    background: #444;
+    color: #fff;
+  }
+}
+
+.arrow {
+  margin: 0 24px;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 0 24px;
+  }
+
+  .title {
+    font-size: 24px;
+
+    .span {
+      font-size: 14px;
+    }
+  }
+}

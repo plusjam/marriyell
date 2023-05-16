@@ -1,6 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
-import { navList } from "../../../textDate";
+import { navList } from "../../textDate";
 import Styles from "../../styles/orgs/Header.module.scss";
 import HamburgerButton from "../atoms/HamburgerButton";
 import LinkToBridalFair from "../atoms/LinkToBridalFair";
@@ -37,7 +36,7 @@ const Header = (props: Props) => {
     });
 
     return () => ctx.revert();
-  }, []);
+  }, [isTop]);
 
   return (
     <header className={isTop ? `${Styles.header} ${Styles.isTop}` : Styles.header} ref={ref}>

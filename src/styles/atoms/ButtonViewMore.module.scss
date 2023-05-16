@@ -1,0 +1,30 @@
+.more {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.button {
+  border: 1px solid #222;
+  color: #222;
+  text-align: center;
+  width: 250px;
+  height: 45px;
+  line-height: 45px;
+  font-size: 13px;
+  background: transparent;
+  transition: 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    color: #fff;
+    background: #222;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .button {
+    font-size: 12px;
+    width: 200px;
+  }
+}

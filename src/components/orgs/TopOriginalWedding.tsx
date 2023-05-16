@@ -1,7 +1,7 @@
 import React from "react";
 import SectionHead from "../mols/SectionHead";
 import Styles from "../../styles/orgs/TopOriginalWedding.module.scss";
-import { originalWedding, weddingInfo } from "../../../textDate";
+import { originalWedding, weddingInfo } from "../../textDate";
 import Link from "next/link";
 import Image from "next/image";
 import { useMediaQuery } from "../../../libs/useMediaQuery";

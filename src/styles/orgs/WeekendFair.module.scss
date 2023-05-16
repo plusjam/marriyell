@@ -1,0 +1,156 @@
+.section {
+  color: #222;
+  padding: 0 24px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.body {
+  margin-top: 40px;
+  margin-bottom: 132px;
+}
+
+.selects {
+  display: flex;
+  margin-bottom: 32px;
+}
+
+.select {
+  width: 25%;
+  font-size: 16px;
+  color: #cb5353;
+  letter-spacing: 0.04em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 19px 0 15px;
+  border: 1px solid #707070;
+  border-right: none;
+  cursor: pointer;
+  transition: 0.2s;
+
+  &:nth-of-type(odd) {
+    color: #6483d9;
+  }
+
+  &:last-child {
+    border-right: 1px solid #707070;
+  }
+
+  &:hover {
+    background: #a6a08a;
+    color: #fff;
+    border: 1px solid #a6a08a;
+  }
+
+  &.selected {
+    background: #a6a08a;
+    color: #fff;
+    border: 1px solid #a6a08a;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      display: inline-block;
+      width: 0;
+      height: 0;
+      border-left: 7px solid transparent;
+      border-right: 7px solid transparent;
+      border-top: 10px solid #a6a08a;
+    }
+  }
+}
+
+.contents {
+}
+
+.content {
+  // width: calc(33% - 12.5px);
+}
+
+.nothing {
+  text-align: center;
+  font-size: 16px;
+  color: #707070;
+  margin-top: 40px;
+  width: 100%;
+}
+
+.image {
+  margin-bottom: 16px;
+  background-color: #f4f4f4;
+
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+}
+
+.date {
+  font-size: 11px;
+  color: #a6a08a;
+  letter-spacing: 0.04em;
+  margin-bottom: 5px;
+}
+
+.description {
+  color: #707070;
+  font-size: 16px;
+  letter-spacing: 0.04em;
+  line-height: 2;
+}
+
+@media screen and (max-width: 768px) {
+  .section {
+    padding: 0;
+  }
+
+  .selects {
+    padding: 0 15px;
+  }
+
+  .select {
+    font-size: 10px;
+    padding: 7px 0;
+
+    &.selected {
+      &::after {
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-top: 8px solid #a6a08a;
+      }
+    }
+  }
+
+  .contents {
+  }
+
+  .content {
+  }
+
+  .nothing {
+    font-size: 14px;
+  }
+
+  .image {
+  }
+
+  .date {
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
+
+  .description {
+    font-size: 14px;
+    letter-spacing: 0.06em;
+  }
+}

@@ -1,7 +1,19 @@
-import React from "react";
+import Motion from "@/components/layouts/Motion";
+import ContactForm from "@/components/orgs/ContactForm";
+import Head from "next/head";
 
-const index = () => {
-  return <div>contact</div>;
-};
+export default function Home() {
+  return (
+    <>
+      <Motion>
+        <Head>
+          <title>lu CREA ル・クレア｜お問い合わせ</title>
+        </Head>
 
-export default index;
+        <main>
+          <ContactForm />
+        </main>
+      </Motion>
+    </>
+  );
+}

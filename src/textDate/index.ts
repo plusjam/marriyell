@@ -218,3 +218,21 @@ export const WEDDINGPLAN = [
       "22年内空きわずかにつき対象期間延長！生演奏・マッピング演出で盛り上げる、天井高10mの大聖堂挙式プレゼント！ウェディングドレス・タキシード30万円分特典☆新婦様2点目衣裳も含まれた内容充実プラン♪",
   },
 ];
+
+export const IMAGELINKS = [
+  {
+    src: "/images/top_news_line.png",
+    href: "",
+    target: "_blank",
+  },
+  {
+    src: "/images/top_news_contents.jpg",
+    href: "",
+    target: "",
+  },
+  {
+    src: "/images/top_news_contents.jpg",
+    href: "",
+    target: "",
+  },
+];

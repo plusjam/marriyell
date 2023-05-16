@@ -1,0 +1,494 @@
+.input,
+.date,
+.select {
+  &::placeholder {
+    color: #c6c6c6;
+  }
+}
+
+.section {
+  background: #f0f0f0;
+  padding: 0;
+  margin-top: 0;
+  opacity: 0;
+  pointer-events: none;
+  height: 0;
+  overflow: hidden;
+  transition: opacity 0.3s ease 0s, height 0.3s ease 0s;
+
+  &.on {
+    padding: 64px 0;
+    margin-top: 32px;
+    opacity: 1;
+    pointer-events: unset;
+    height: auto;
+  }
+}
+
+.container {
+  max-width: 750px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+  color: #222;
+  line-height: 1.7;
+  letter-spacing: 0;
+}
+
+.head {
+}
+
+.document {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 24px;
+}
+
+.p {
+  text-align: center;
+}
+
+.figure {
+  width: 175px;
+
+  img {
+    width: 100%;
+    height: auto;
+    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.1);
+  }
+}
+
+.figcaption {
+  text-align: center;
+  font-size: 10px;
+  margin-top: 10px;
+}
+
+.option {
+}
+
+.radio {
+  padding-left: 24px;
+  margin-bottom: 20px;
+}
+
+.radioLabel {
+  font-weight: 400;
+  margin-bottom: 0;
+}
+
+.radioInput {
+  margin-right: 5px;
+  display: none;
+
+  &:checked + .radioText {
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 11px;
+      height: 11px;
+      background: #707070;
+      border-radius: 50%;
+    }
+  }
+}
+
+.radioText {
+  padding-left: 20px;
+  position: relative;
+  margin-right: 20px;
+
+  &:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #999;
+    border-radius: 50%;
+  }
+}
+
+.radionote {
+  font-size: 13px;
+  color: #8c8c8c;
+  margin-top: 0;
+  margin-bottom: 24px;
+  padding-left: 24px;
+}
+
+.description {
+  text-align: center;
+  margin: 40px 0;
+}
+
+.color {
+  color: #cb4a5e;
+}
+
+.sumbitError {
+  display: block;
+  color: #e60012;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.on {
+}
+
+.sp {
+  display: none;
+}
+
+.inputs {
+}
+
+.inputFlex {
+  display: flex;
+  gap: 30px;
+
+  .inputBody {
+    width: 50%;
+  }
+}
+
+.inputBody {
+  margin-bottom: 32px;
+
+  &.finputBodyInquiry {
+  }
+}
+
+.inputBlockGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  grid-template-areas: "date time" "note note";
+
+  .inputBlockWrap {
+    width: 100%;
+  }
+
+  .inputBlock {
+    width: 100%;
+  }
+
+  .select {
+    width: 100%;
+  }
+
+  &.confirm {
+    gap: 0 4%;
+
+    .phonenote {
+      padding-left: 0;
+    }
+  }
+}
+
+.inputDate {
+  grid-area: date;
+  margin-bottom: 0;
+}
+
+.inputTime {
+  grid-area: time;
+  margin-bottom: 0;
+}
+
+.phonenote {
+  grid-area: note;
+}
+
+.inputBlockFlex {
+  display: flex;
+}
+
+.phonenote {
+  padding-left: 24px;
+  font-size: 13px;
+  margin-top: 5px;
+  margin-bottom: 32px;
+}
+
+.phonea {
+  color: #444;
+  display: inline-block;
+  text-decoration: underline;
+}
+
+.inputBlockWrap {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+
+  &.require {
+    &:after {
+      content: "※";
+      color: rgb(203, 74, 94);
+      padding-left: 10px;
+    }
+  }
+}
+
+.inputBlock {
+  padding-left: 24px;
+  width: 100%;
+
+  &.confirm {
+    padding: 0;
+
+    .input {
+      border: none;
+      padding: 12px;
+      border-radius: 4px;
+      min-height: 47px;
+      font-size: 15px;
+    }
+  }
+}
+
+.input {
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  line-height: 20px;
+  letter-spacing: 0.1em;
+  vertical-align: middle;
+  font-family: "EB Garamond", 游明朝体, "Yu Mincho", YuMincho, "ヒラギノ明朝 Pro", "Hiragino Mincho Pro", "MS P明朝", "MS PMincho", "Noto Serif JP", serif;
+  font-size: 16px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(112, 112, 112);
+  border-image: initial;
+
+  &.half {
+    width: 50%;
+  }
+
+  &.date {
+    position: relative;
+
+    &[type="date"]::-webkit-calendar-picker-indicator {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+    }
+  }
+}
+
+.error {
+  font-size: 93%;
+  color: #b70000;
+  display: block;
+}
+
+.inputInquiry {
+}
+
+.policy {
+  font-size: 13px;
+  text-align: center;
+}
+
+.link {
+  display: inline-block;
+  color: #222;
+  text-decoration: underline;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 40px 0 0;
+}
+
+.submit {
+  appearance: none;
+  text-align: center;
+  font-family: "EB Garamond", 游明朝体, "Yu Mincho", YuMincho, "ヒラギノ明朝 Pro", "Hiragino Mincho Pro", "MS P明朝", "MS PMincho", "Noto Serif JP", serif;
+  color: rgb(255, 255, 255);
+  width: 100%;
+  max-width: 480px;
+  height: 60px;
+  line-height: 60px;
+  cursor: pointer;
+  font-size: 16px;
+  outline: none;
+  background: rgb(68, 68, 68);
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(68, 68, 68);
+  border-image: initial;
+  margin: 10px;
+  transition: all 0.3s ease 0s;
+
+  &:hover {
+    background: rgb(255, 255, 255);
+    color: rgb(68, 68, 68);
+  }
+
+  &.back {
+    background: #666;
+    border: 1px solid #666;
+    color: #fff;
+
+    &:hover {
+      background: #333;
+      color: #fff;
+      border-color: #333;
+      border: 1px solid #333;
+    }
+  }
+}
+
+.note {
+  display: flex;
+  padding: 16px;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  margin-top: 50px;
+  font-size: 13px;
+}
+
+.mark {
+  width: 40px;
+  margin-right: 16px;
+  display: flex;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.ul {
+  margin: 10px 0;
+  padding: 0;
+  list-style: none;
+  flex: 1;
+}
+
+.li {
+  position: relative;
+  padding-left: 15px;
+
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
+
+  &::before {
+    content: "※";
+    position: absolute;
+    left: 0px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .inputBlock {
+    padding-left: 0;
+  }
+
+  .policy {
+    text-align: left;
+  }
+
+  .note {
+    flex-direction: column;
+    padding: 16px;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    margin-top: 50px;
+    font-size: 12px;
+  }
+
+  .mark {
+    margin: 0 auto 10px;
+  }
+
+  .li {
+  }
+
+  .radio {
+    padding-left: 0;
+  }
+
+  .radioLabel {
+    display: block;
+  }
+
+  .radionote {
+    padding-left: 0;
+  }
+
+  .inputFlex {
+    display: flex;
+    gap: 30px;
+
+    .inputBody {
+      width: 50%;
+    }
+  }
+
+  .inputBody {
+    margin-bottom: 32px;
+
+    &.finputBodyInquiry {
+    }
+  }
+
+  .inputBlockGrid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: "date" "time" "note";
+
+    .inputBlockWrap {
+      width: 100%;
+    }
+
+    .inputBlock {
+      width: 100%;
+    }
+
+    .select {
+      width: 100%;
+    }
+  }
+
+  .inputDate {
+    max-width: 79.81%;
+  }
+
+  .inputTime {
+    max-width: 79.81%;
+  }
+
+  .phonenote {
+    grid-area: note;
+  }
+
+  .inputBlockFlex {
+    gap: 8px;
+  }
+
+  .phonenote {
+    padding-left: 0;
+    margin-bottom: 32px;
+  }
+}
