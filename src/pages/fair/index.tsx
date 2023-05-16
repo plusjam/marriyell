@@ -149,7 +149,7 @@ export const getStaticProps: GetStaticProps = async () => {
   try {
     const res = await axios.get(url, {
       headers: {
-        // "Content-Type": "application/json",
+        "Content-Type": "application/json",
         "account-access-key": accessKey,
         "account-secret-key": secretKey,
         authorization: `Bearer ${token}`,
