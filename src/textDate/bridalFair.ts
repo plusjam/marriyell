@@ -221,7 +221,7 @@ export const BRIDAL_FAIR = [
         slug: "online",
       },
     ],
-    events: [{ date: "2023-05-07" }, { date: "2023-05-08" }],
+    events: [{ date: "2023-05-07" }, { date: "2023-05-08" }, { date: "2023-06-03" }],
   },
   {
     id: 5,

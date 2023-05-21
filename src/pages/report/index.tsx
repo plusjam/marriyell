@@ -109,11 +109,548 @@ export default function Home(props: Props) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const res = await fetch(`http://localhost:${process.env.PORT}/api/weddingReport/1`);
-  const lists: ReportContents[] = await res.json();
+  // const res = await fetch(`http://localhost:${process.env.PORT}/api/weddingReport/1`);
+  // const lists: ReportContents[] = await res.json();
 
-  const fairRes = await fetch(`http://localhost:${process.env.PORT}/api/fair`);
-  const fairLists: FairList = await fairRes.json();
+  // const fairRes = await fetch(`http://localhost:${process.env.PORT}/api/fair`);
+  // const fairLists: FairList = await fairRes.json();
+
+  const lists: ReportContents[] = [
+    {
+      id: "V2Q6aajSyFM",
+      category: "1THE TOP x GRAND DINING",
+      title: "2023.3月挙式 scene「Time Leap」",
+      description:
+        "Time Leap － 時間跳躍<br>結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない<br>辛く悲しい時も 力強く蹴って<br>飛び超えてほしい<br>そんな願いを込めて<br><br>planner:奴田原志織<br>creator:明坂泰葉<br>presenter:松川駿<br>stylist:川田砂和<br>",
+      member: 98,
+      publishDate: "2021-01-01",
+      createdDate: "2021-01-01",
+      updatedDate: "2021-01-01",
+    },
+    {
+      id: "V2Q6aajSyFM",
+      category: "2THE TOP x GRAND DINING",
+      title: "2023.3月挙式 scene「Time Leap」",
+      description:
+        "Time Leap － 時間跳躍<br>結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない<br>辛く悲しい時も 力強く蹴って<br>飛び超えてほしい<br>そんな願いを込めて<br><br>planner:奴田原志織<br>creator:明坂泰葉<br>presenter:松川駿<br>stylist:川田砂和<br>",
+      member: 98,
+      publishDate: "2021-01-01",
+      createdDate: "2021-01-01",
+      updatedDate: "2021-01-01",
+    },
+    {
+      id: "V2Q6aajSyFM",
+      category: "3THE TOP x GRAND DINING",
+      title: "2023.3月挙式 scene「Time Leap」",
+      description:
+        "Time Leap － 時間跳躍<br>結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない<br>辛く悲しい時も 力強く蹴って<br>飛び超えてほしい<br>そんな願いを込めて<br><br>planner:奴田原志織<br>creator:明坂泰葉<br>presenter:松川駿<br>stylist:川田砂和<br>",
+      member: 98,
+      publishDate: "2021-01-01",
+      createdDate: "2021-01-01",
+      updatedDate: "2021-01-01",
+    },
+    {
+      id: "V2Q6aajSyFM",
+      category: "4THE TOP x GRAND DINING",
+      title: "2023.3月挙式 scene「Time Leap」",
+      description:
+        "Time Leap － 時間跳躍<br>結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない<br>辛く悲しい時も 力強く蹴って<br>飛び超えてほしい<br>そんな願いを込めて<br><br>planner:奴田原志織<br>creator:明坂泰葉<br>presenter:松川駿<br>stylist:川田砂和<br>",
+      member: 98,
+      publishDate: "2021-01-01",
+      createdDate: "2021-01-01",
+      updatedDate: "2021-01-01",
+    },
+    {
+      id: "V2Q6aajSyFM",
+      category: "5THE TOP x GRAND DINING",
+      title: "2023.3月挙式 scene「Time Leap」",
+      description:
+        "Time Leap － 時間跳躍<br>結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない<br>辛く悲しい時も 力強く蹴って<br>飛び超えてほしい<br>そんな願いを込めて<br><br>planner:奴田原志織<br>creator:明坂泰葉<br>presenter:松川駿<br>stylist:川田砂和<br>",
+      member: 98,
+      publishDate: "2021-01-01",
+      createdDate: "2021-01-01",
+      updatedDate: "2021-01-01",
+    },
+    {
+      id: "V2Q6aajSyFM",
+      category: "6THE TOP x GRAND DINING",
+      title: "2023.3月挙式 scene「Time Leap」",
+      description:
+        "Time Leap － 時間跳躍<br>結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない<br>辛く悲しい時も 力強く蹴って<br>飛び超えてほしい<br>そんな願いを込めて<br><br>planner:奴田原志織<br>creator:明坂泰葉<br>presenter:松川駿<br>stylist:川田砂和<br>",
+      member: 98,
+      publishDate: "2021-01-01",
+      createdDate: "2021-01-01",
+      updatedDate: "2021-01-01",
+    },
+    {
+      id: "V2Q6aajSyFM",
+      category: "7THE TOP x GRAND DINING",
+      title: "2023.3月挙式 scene「Time Leap」",
+      description:
+        "Time Leap － 時間跳躍<br>結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない<br>辛く悲しい時も 力強く蹴って<br>飛び超えてほしい<br>そんな願いを込めて<br><br>planner:奴田原志織<br>creator:明坂泰葉<br>presenter:松川駿<br>stylist:川田砂和<br>",
+      member: 98,
+      publishDate: "2021-01-01",
+      createdDate: "2021-01-01",
+      updatedDate: "2021-01-01",
+    },
+    {
+      id: "V2Q6aajSyFM",
+      category: "8THE TOP x GRAND DINING",
+      title: "2023.3月挙式 scene「Time Leap」",
+      description:
+        "Time Leap － 時間跳躍<br>結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない<br>辛く悲しい時も 力強く蹴って<br>飛び超えてほしい<br>そんな願いを込めて<br><br>planner:奴田原志織<br>creator:明坂泰葉<br>presenter:松川駿<br>stylist:川田砂和<br>",
+      member: 98,
+      publishDate: "2021-01-01",
+      createdDate: "2021-01-01",
+      updatedDate: "2021-01-01",
+    },
+    {
+      id: "V2Q6aajSyFM",
+      category: "8THE TOP x GRAND DINING",
+      title: "2023.3月挙式 scene「Time Leap」",
+      description:
+        "Time Leap － 時間跳躍<br>結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない<br>辛く悲しい時も 力強く蹴って<br>飛び超えてほしい<br>そんな願いを込めて<br><br>planner:奴田原志織<br>creator:明坂泰葉<br>presenter:松川駿<br>stylist:川田砂和<br>",
+      member: 98,
+      publishDate: "2021-01-01",
+      createdDate: "2021-01-01",
+      updatedDate: "2021-01-01",
+    },
+    {
+      id: "V2Q6aajSyFM",
+      category: "8THE TOP x GRAND DINING",
+      title: "2023.3月挙式 scene「Time Leap」",
+      description:
+        "Time Leap － 時間跳躍<br>結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない<br>辛く悲しい時も 力強く蹴って<br>飛び超えてほしい<br>そんな願いを込めて<br><br>planner:奴田原志織<br>creator:明坂泰葉<br>presenter:松川駿<br>stylist:川田砂和<br>",
+      member: 98,
+      publishDate: "2021-01-01",
+      createdDate: "2021-01-01",
+      updatedDate: "2021-01-01",
+    },
+    {
+      id: "V2Q6aajSyFM",
+      category: "8THE TOP x GRAND DINING",
+      title: "2023.3月挙式 scene「Time Leap」",
+      description:
+        "Time Leap － 時間跳躍<br>結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない<br>辛く悲しい時も 力強く蹴って<br>飛び超えてほしい<br>そんな願いを込めて<br><br>planner:奴田原志織<br>creator:明坂泰葉<br>presenter:松川駿<br>stylist:川田砂和<br>",
+      member: 98,
+      publishDate: "2021-01-01",
+      createdDate: "2021-01-01",
+      updatedDate: "2021-01-01",
+    },
+    {
+      id: "V2Q6aajSyFM",
+      category: "8THE TOP x GRAND DINING",
+      title: "2023.3月挙式 scene「Time Leap」",
+      description:
+        "Time Leap － 時間跳躍<br>結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない<br>辛く悲しい時も 力強く蹴って<br>飛び超えてほしい<br>そんな願いを込めて<br><br>planner:奴田原志織<br>creator:明坂泰葉<br>presenter:松川駿<br>stylist:川田砂和<br>",
+      member: 98,
+      publishDate: "2021-01-01",
+      createdDate: "2021-01-01",
+      updatedDate: "2021-01-01",
+    },
+  ];
+
+  const fairLists: FairList = [
+    {
+      id: 1,
+      title: "【新型コロナウイルス感染症対策】",
+      src: "/images/bridal_fair02.jpg",
+      description: "適当な説明文が入ります。文字数が長い場合は自動で長さ調整を行うように設定します。",
+      categories: [
+        {
+          selected: false,
+          src: "/images/icon_fair_new.svg",
+          label: "初めての見学",
+          slug: "new",
+        },
+        {
+          selected: false,
+          src: "/images/icon_fair_food.svg",
+          label: "試食会つき",
+          slug: "food",
+        },
+        {
+          selected: false,
+          src: "/images/icon_fair_season.svg",
+          label: "季節・期間限定",
+          slug: "season",
+        },
+        {
+          selected: false,
+          src: "/images/icon_fair_ceremony.svg",
+          label: "挙式体験",
+          slug: "ceremony",
+        },
+        {
+          selected: true,
+          src: "/images/icon_fair_dress.svg",
+          label: "ドレス試着",
+          slug: "dress",
+        },
+        {
+          selected: false,
+          src: "/images/icon_fair_weekends.svg",
+          label: "土日祝開催",
+          slug: "weekends",
+        },
+        {
+          selected: true,
+          src: "/images/icon_fair_weekdays.svg",
+          label: "平日限定開催",
+          slug: "weekdays",
+        },
+        {
+          selected: false,
+          src: "/images/icon_fair_online.svg",
+          label: "オンライン相談会",
+          slug: "online",
+        },
+      ],
+      events: [{ date: "2023-05-20" }, { date: "2023-05-21" }, { date: "2023-06-03" }],
+    },
+    {
+      id: 2,
+      title: "【春のウェディングフェア】",
+      src: "/images/bridal_fair02.jpg",
+      description: "適当な説明文が入ります。文字数が長い場合は自動で長さ調整を行うように設定します。",
+      categories: [
+        {
+          selected: false,
+          src: "/images/icon_fair_new.svg",
+          label: "初めての見学",
+          slug: "new",
+        },
+        {
+          selected: false,
+          src: "/images/icon_fair_food.svg",
+          label: "試食会つき",
+          slug: "food",
+        },
+        {
+          selected: false,
+          src: "/images/icon_fair_season.svg",
+          label: "季節・期間限定",
+          slug: "season",
+        },
+        {
+          selected: false,
+          src: "/images/icon_fair_ceremony.svg",
+          label: "挙式体験",
+          slug: "ceremony",
+        },
+        {
+          selected: true,
+          src: "/images/icon_fair_dress.svg",
+          label: "ドレス試着",
+          slug: "dress",
+        },
+        {
+          selected: false,
+          src: "/images/icon_fair_weekends.svg",
+          label: "土日祝開催",
+          slug: "weekends",
+        },
+        {
+          selected: true,
+          src: "/images/icon_fair_weekdays.svg",
+          label: "平日限定開催",
+          slug: "weekdays",
+        },
+        {
+          selected: true,
+          src: "/images/icon_fair_online.svg",
+          label: "オンライン相談会",
+          slug: "online",
+        },
+      ],
+      events: [{ date: "2023-05-03" }, { date: "2023-05-04" }],
+    },
+    {
+      id: 3,
+      title: "【オンライン見学会】",
+      src: "/images/bridal_fair02.jpg",
+      description: "適当な説明文が入ります。文字数が長い場合は自動で長さ調整を行うように設定します。",
+      categories: [
+        {
+          selected: true,
+          src: "/images/icon_fair_new.svg",
+          label: "初めての見学",
+          slug: "new",
+        },
+        {
+          selected: false,
+          src: "/images/icon_fair_food.svg",
+          label: "試食会つき",
+          slug: "food",
+        },
+        {
+          selected: false,
+          src: "/images/icon_fair_season.svg",
+          label: "季節・期間限定",
+          slug: "season",
+        },
+        {
+          selected: false,
+          src: "/images/icon_fair_ceremony.svg",
+          label: "挙式体験",
+          slug: "ceremony",
+        },
+        {
+          selected: true,
+          src: "/images/icon_fair_dress.svg",
+          label: "ドレス試着",
+          slug: "dress",
+        },
+        {
+          selected: false,
+          src: "/images/icon_fair_weekends.svg",
+          label: "土日祝開催",
+          slug: "weekends",
+        },
+        {
+          selected: true,
+          src: "/images/icon_fair_weekdays.svg",
+          label: "平日限定開催",
+          slug: "weekdays",
+        },
+        {
+          selected: true,
+          src: "/images/icon_fair_online.svg",
+          label: "オンライン相談会",
+          slug: "online",
+        },
+      ],
+      events: [{ date: "2023-05-05" }, { date: "2023-05-06" }],
+    },
+    {
+      id: 4,
+      title: "【フードフェスティバル】",
+      src: "/images/bridal_fair02.jpg",
+      description: "適当な説明文が入ります。文字数が長い場合は自動で長さ調整を行うように設定します。",
+      categories: [
+        {
+          selected: true,
+          src: "/images/icon_fair_new.svg",
+          label: "初めての見学",
+          slug: "new",
+        },
+        {
+          selected: false,
+          src: "/images/icon_fair_food.svg",
+          label: "試食会つき",
+          slug: "food",
+        },
+        {
+          selected: false,
+          src: "/images/icon_fair_season.svg",
+          label: "季節・期間限定",
+          slug: "season",
+        },
+        {
+          selected: false,
+          src: "/images/icon_fair_ceremony.svg",
+          label: "挙式体験",
+          slug: "ceremony",
+        },
+        {
+          selected: true,
+          src: "/images/icon_fair_dress.svg",
+          label: "ドレス試着",
+          slug: "dress",
+        },
+        {
+          selected: false,
+          src: "/images/icon_fair_weekends.svg",
+          label: "土日祝開催",
+          slug: "weekends",
+        },
+        {
+          selected: true,
+          src: "/images/icon_fair_weekdays.svg",
+          label: "平日限定開催",
+          slug: "weekdays",
+        },
+        {
+          selected: true,
+          src: "/images/icon_fair_online.svg",
+          label: "オンライン相談会",
+          slug: "online",
+        },
+      ],
+      events: [{ date: "2023-05-07" }, { date: "2023-05-08" }, { date: "2023-06-03" }],
+    },
+    {
+      id: 5,
+      title: "【ドレス試着会】",
+      src: "/images/bridal_fair02.jpg",
+      description: "適当な説明文が入ります。文字数が長い場合は自動で長さ調整を行うように設定します。",
+      categories: [
+        {
+          selected: false,
+          src: "/images/icon_fair_new.svg",
+          label: "初めての見学",
+          slug: "new",
+        },
+        {
+          selected: false,
+          src: "/images/icon_fair_food.svg",
+          label: "試食会つき",
+          slug: "food",
+        },
+        {
+          selected: false,
+          src: "/images/icon_fair_season.svg",
+          label: "季節・期間限定",
+          slug: "season",
+        },
+        {
+          selected: false,
+          src: "/images/icon_fair_ceremony.svg",
+          label: "挙式体験",
+          slug: "ceremony",
+        },
+        {
+          selected: false,
+          src: "/images/icon_fair_dress.svg",
+          label: "ドレス試着",
+          slug: "dress",
+        },
+        {
+          selected: false,
+          src: "/images/icon_fair_weekends.svg",
+          label: "土日祝開催",
+          slug: "weekends",
+        },
+        {
+          selected: true,
+          src: "/images/icon_fair_weekdays.svg",
+          label: "平日限定開催",
+          slug: "weekdays",
+        },
+        {
+          selected: false,
+          src: "/images/icon_fair_online.svg",
+          label: "オンライン相談会",
+          slug: "online",
+        },
+      ],
+      events: [{ date: "2023-05-09" }, { date: "2023-05-10" }],
+    },
+    {
+      id: 6,
+      title: "【フードフェスティバル】",
+      src: "/images/bridal_fair02.jpg",
+      description: "適当な説明文が入ります。文字数が長い場合は自動で長さ調整を行うように設定します。",
+      categories: [
+        {
+          selected: true,
+          src: "/images/icon_fair_new.svg",
+          label: "初めての見学",
+          slug: "new",
+        },
+        {
+          selected: false,
+          src: "/images/icon_fair_food.svg",
+          label: "試食会つき",
+          slug: "food",
+        },
+        {
+          selected: false,
+          src: "/images/icon_fair_season.svg",
+          label: "季節・期間限定",
+          slug: "season",
+        },
+        {
+          selected: false,
+          src: "/images/icon_fair_ceremony.svg",
+          label: "挙式体験",
+          slug: "ceremony",
+        },
+        {
+          selected: true,
+          src: "/images/icon_fair_dress.svg",
+          label: "ドレス試着",
+          slug: "dress",
+        },
+        {
+          selected: false,
+          src: "/images/icon_fair_weekends.svg",
+          label: "土日祝開催",
+          slug: "weekends",
+        },
+        {
+          selected: true,
+          src: "/images/icon_fair_weekdays.svg",
+          label: "平日限定開催",
+          slug: "weekdays",
+        },
+        {
+          selected: true,
+          src: "/images/icon_fair_online.svg",
+          label: "オンライン相談会",
+          slug: "online",
+        },
+      ],
+      events: [{ date: "2023-05-20" }],
+    },
+    {
+      id: 7,
+      title: "【ドレス試着会】",
+      src: "/images/bridal_fair02.jpg",
+      description: "適当な説明文が入ります。文字数が長い場合は自動で長さ調整を行うように設定します。",
+      categories: [
+        {
+          selected: false,
+          src: "/images/icon_fair_new.svg",
+          label: "初めての見学",
+          slug: "new",
+        },
+        {
+          selected: false,
+          src: "/images/icon_fair_food.svg",
+          label: "試食会つき",
+          slug: "food",
+        },
+        {
+          selected: false,
+          src: "/images/icon_fair_season.svg",
+          label: "季節・期間限定",
+          slug: "season",
+        },
+        {
+          selected: false,
+          src: "/images/icon_fair_ceremony.svg",
+          label: "挙式体験",
+          slug: "ceremony",
+        },
+        {
+          selected: false,
+          src: "/images/icon_fair_dress.svg",
+          label: "ドレス試着",
+          slug: "dress",
+        },
+        {
+          selected: false,
+          src: "/images/icon_fair_weekends.svg",
+          label: "土日祝開催",
+          slug: "weekends",
+        },
+        {
+          selected: true,
+          src: "/images/icon_fair_weekdays.svg",
+          label: "平日限定開催",
+          slug: "weekdays",
+        },
+        {
+          selected: false,
+          src: "/images/icon_fair_online.svg",
+          label: "オンライン相談会",
+          slug: "online",
+        },
+      ],
+      events: [{ date: "2023-05-21" }, { date: "2023-05-28" }],
+    },
+  ];
 
   return {
     props: {

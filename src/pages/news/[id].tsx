@@ -102,6 +102,15 @@ const HOME = (props: Props) => {
 
 export default HOME;
 
+export const getStaticPaths = async () => {
+  // ここでパスを生成します。仮に、1から5までのidを生成するとします。
+
+  return {
+    paths: [{ params: { id: "1" } }],
+    fallback: false,
+  };
+};
+
 // export const getStaticPaths = async () => {
 //   const res = await fetch(`http://localhost:${process.env.PORT}/api/news/1`);
 //   const posts: { category: NewsCategory[]; contents: NewsContents[] } = await res.json();

@@ -71,7 +71,7 @@ const Body: FairList = [
         slug: "online",
       },
     ],
-    events: [{ date: "2023-05-20" }, { date: "2023-05-21" }],
+    events: [{ date: "2023-05-20" }, { date: "2023-05-21" }, { date: "2023-06-03" }],
   },
   {
     id: 2,
@@ -242,7 +242,7 @@ const Body: FairList = [
         slug: "online",
       },
     ],
-    events: [{ date: "2023-05-07" }, { date: "2023-05-08" }],
+    events: [{ date: "2023-05-07" }, { date: "2023-05-08" }, { date: "2023-06-03" }],
   },
   {
     id: 5,

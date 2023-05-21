@@ -14,7 +14,6 @@ const Footer = () => {
       <div className={Styles.container}>
         <div className={Styles.body}>
           <div className={Styles.logo}>
-            {/* <Image src="/images/art_logo-nocolor.svg" alt="lu CREA" width={171} height={173} /> */}
             <picture>
               <source srcSet="/images/art_logo.svg" type="image/svg" />
               <img src="/images/art_logo-nocolor.svg" alt="lu CREA" width={171} height={173} />
@@ -35,7 +34,6 @@ const Footer = () => {
             <div className={Styles.zipcode}>〒352-0001</div>
             <div className={Styles.address}>
               <span className={Styles.addressIcon}>
-                {/* <Image src="/images/icon_spot.svg" alt="" width={23} height={23} /> */}
                 <picture>
                   <source srcSet="/images/art_logo.svg" type="image/svg" />
                   <img src="/images/icon_spot.svg" alt="" width={23} height={23} />
@@ -45,7 +43,6 @@ const Footer = () => {
             </div>
             <Link href="tel:0773-24-1101" className={Styles.phone}>
               <span className={Styles.phoneIcon}>
-                {/* <Image src="/images/icon_phone.svg" alt="" width={15} height={15} /> */}
                 <picture>
                   <source srcSet="/images/art_logo.svg" type="image/svg" />
                   <img src="/images/icon_phone.svg" alt="" width={15} height={15} />
@@ -63,7 +60,7 @@ const Footer = () => {
           <div className={Styles.links}>
             {sitemapLinks.map((link, index) => {
               return (
-                <Link href={link.href} className={Styles.link} key={index} target={link?.blank ? "_blank" : ""}>
+                <Link href={link.href} className={Styles.link} key={index} target={""}>
                   {link.title}
                 </Link>
               );
