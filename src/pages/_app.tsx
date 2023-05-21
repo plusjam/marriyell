@@ -13,6 +13,10 @@ import HamburgerMenu from "@/components/orgs/HamburgerMenu";
 import Footer from "@/components/orgs/Footer";
 import useNav from "../../libs/useNav";
 import { RecoilRoot, atom } from "recoil";
+import "swiper/css";
+import { use, useEffect } from "react";
+import ScrollTrigger from "gsap/dist/ScrollTrigger";
+import FixedLinks from "@/components/orgs/FixedLinks";
 
 export type ContactData = {
   name: string;
@@ -33,10 +37,16 @@ export const contactData = atom<ContactData>({
   },
 });
 
+export const AppTrigger = ScrollTrigger;
+
 export default function App({ Component, pageProps }: AppProps) {
   const location = useRouter().pathname;
 
   const { childProps } = useNav();
+
+  useEffect(() => {
+    childProps.toggleOpen(false);
+  }, [location]);
 
   return (
     <>
@@ -44,7 +54,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <GtmHead />
         <meta
           name="description"
-          content="京都 福知山の結婚式場・ウェディングなら“ル・クレア”。福知山駅徒歩3分でアクセス至便！北近畿最大級、天井高10mの白亜の大聖堂と、1件貸切の邸宅会場でゲストとともに心から楽しむウェディングを。"
+          content="京都 福知山の結婚式場・ウェディングならlu Crea（ル・クレア）。福知山駅徒歩3分でアクセス至便！北近畿最大級、天井高10mの白亜の大聖堂と、1件貸切の邸宅会場でゲストをおもてなしいたします。"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -59,7 +69,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta property="og:site_name" content="lu CREA -ル・クレア- │京都 福知山の結婚式場" />
         <meta
           property="og:description"
-          content="京都 福知山の結婚式場・ウェディングなら“ル・クレア”。福知山駅徒歩3分でアクセス至便！北近畿最大級、天井高10mの白亜の大聖堂と、1件貸切の邸宅会場でゲストとともに心から楽しむウェディングを。"
+          content="京都 福知山の結婚式場・ウェディングならlu Crea（ル・クレア）。福知山駅徒歩3分でアクセス至便！北近畿最大級、天井高10mの白亜の大聖堂と、1件貸切の邸宅会場でゲストをおもてなしいたします。"
         ></meta>
       </Head>
 
@@ -69,6 +79,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <Animation location={location}>
             <Header {...childProps} isTop={location === "/"} />
             <HamburgerMenu {...childProps} />
+            <FixedLinks />
             <Component {...pageProps} />
             <Footer />
           </Animation>

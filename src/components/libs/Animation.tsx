@@ -1,8 +1,7 @@
+import { AppTrigger } from "@/pages/_app";
 import { gsap } from "gsap";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
-import Router, { useRouter } from "next/router";
-import { ReactNode, useEffect, useLayoutEffect, useRef, useState } from "react";
-import Loading from "../layouts/Loading";
+import { ReactNode, useEffect, useRef } from "react";
 
 type Props = {
   children: ReactNode;
@@ -12,9 +11,8 @@ type Props = {
 const Animation = (props: Props) => {
   const { children, location } = props;
 
-  const [isLoading, setIsLoading] = useState(true);
   const ref = useRef<HTMLDivElement>(null);
-  gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(AppTrigger);
 
   useEffect(() => {
     const ctx = gsap.context((self) => {
@@ -41,7 +39,7 @@ const Animation = (props: Props) => {
             },
             ease: "none",
             onComplete: () => {
-              ScrollTrigger.refresh();
+              AppTrigger.refresh();
             },
           }
         );
@@ -72,7 +70,7 @@ const Animation = (props: Props) => {
             },
             ease: "none",
             onComplete: () => {
-              ScrollTrigger.refresh();
+              AppTrigger.refresh();
             },
           }
         );
@@ -103,7 +101,7 @@ const Animation = (props: Props) => {
             },
             ease: "none",
             onComplete: () => {
-              ScrollTrigger.refresh();
+              AppTrigger.refresh();
             },
           }
         );
@@ -133,7 +131,7 @@ const Animation = (props: Props) => {
             },
             ease: "none",
             onComplete: () => {
-              ScrollTrigger.refresh();
+              AppTrigger.refresh();
             },
           }
         );
@@ -163,7 +161,7 @@ const Animation = (props: Props) => {
             },
             ease: "none",
             onComplete: () => {
-              ScrollTrigger.refresh();
+              AppTrigger.refresh();
             },
           }
         );
@@ -171,7 +169,7 @@ const Animation = (props: Props) => {
     }, ref);
 
     setTimeout(() => {
-      ScrollTrigger.refresh();
+      AppTrigger.refresh();
     }, 400);
 
     return () => {

@@ -9,22 +9,20 @@ export const navList = [
   },
   {
     title: "ドレス・和装",
-    href: "/dress-item",
+    href: "/dress",
   },
   {
     title: "フェア",
-    href: "https://lu-crea.fuwel.wedding/fair",
-    blank: true,
+    href: "/fair",
   },
   {
     title: "プラン",
-    href: "https://lu-crea.fuwel.wedding/plan",
-    blank: true,
+    href: "/plan",
   },
-  // {
-  //   title: "お問い合わせ",
-  //   href: "/contact",
-  // },
+  {
+    title: "お問い合わせ",
+    href: "/contact",
+  },
 ];
 
 export const originalWedding = [
@@ -67,7 +65,7 @@ export const weddingInfo = [
     ja: "ドレス",
     image: "/images/top_dress.jpg",
     spImage: "/images/top_dress-sp.jpg",
-    href: "/dress-item",
+    href: "/dress",
   },
 ];
 
@@ -113,50 +111,48 @@ export const sitemapLinks = [
   },
   {
     title: "ドレス・和装",
-    href: "dress-item",
+    href: "dress",
   },
   {
     title: "フェア",
-    href: "https://lu-crea.fuwel.wedding/fair",
-    blank: true,
+    href: "/fair",
   },
   {
     title: "プラン",
-    href: "https://lu-crea.fuwel.wedding/plan",
-    blank: true,
+    href: "/plan",
   },
-  // {
-  //   title: "初めての方へ",
-  //   href: "",
-  // },
-  // {
-  //   title: "ご成約の方へ",
-  //   href: "",
-  // },
-  // {
-  //   title: "ご列席の方へ",
-  //   href: "",
-  // },
-  // {
-  //   title: "来館予約",
-  //   href: "",
-  // },
-  // {
-  //   title: "資料請求",
-  //   href: "",
-  // },
-  // {
-  //   title: "アクセス",
-  //   href: "",
-  // },
-  // {
-  //   title: "よくある質問",
-  //   href: "",
-  // },
-  // {
-  //   title: "お問い合わせ",
-  //   href: "",
-  // },
+  {
+    title: "初めての方へ",
+    href: "/first",
+  },
+  {
+    title: "ご成約の方へ",
+    href: "/for-brides",
+  },
+  {
+    title: "ご列席の方へ",
+    href: "/for-guest",
+  },
+  {
+    title: "来館予約",
+    href: "/contact/reservation/",
+  },
+  {
+    title: "資料請求",
+    href: "/contact/brochure",
+  },
+  {
+    title: "アクセス",
+    href: "/access",
+  },
+  {
+    title: "よくある質問",
+    href: "/faq",
+  },
+  {
+    title: "お問い合わせ",
+    href: "/contact",
+  },
 ];
 
 export const BRIDALFAIR = [
@@ -222,7 +218,7 @@ export const WEDDINGPLAN = [
 export const IMAGELINKS = [
   {
     src: "/images/top_news_line.png",
-    href: "",
+    href: "https://page.line.me/kbm7305t",
     target: "_blank",
   },
   {
@@ -236,3 +232,31 @@ export const IMAGELINKS = [
     target: "",
   },
 ];
+
+export const FIXEDLINKS = {
+  line: {
+    label: "LINE相談",
+    href: "https://page.line.me/kbm7305t",
+    target: "_blank",
+  },
+  reservation: {
+    label: "来館予約",
+    href: "/contact/reservation/",
+    target: "",
+  },
+  document: {
+    label: "資料請求",
+    href: "/contact/brochure",
+    target: "",
+  },
+  phone: {
+    label: "電話予約",
+    href: "0773-24-1101",
+    target: "",
+  },
+  fair: {
+    label: "ブライダルフェア",
+    href: "/fair",
+    target: "",
+  },
+};

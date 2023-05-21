@@ -1,18 +1,18 @@
+import { ContactBrochureData } from "@/pages/contact/brochure";
 import Styles from "@/styles/orgs/ContactForm.module.scss";
 import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useRecoilState } from "recoil";
 import { Step } from "../orgs/ContactForm";
-import { ContactBrochureData, contactBrochureData } from "@/pages/contact/brochure";
 
 type Props = {
   step2: boolean;
   handleStep: (step: Step) => void;
   option: boolean;
+  contactBrochureData: ContactBrochureData;
 };
 
 const ContactFormConfirmBrochure = (props: Props) => {
-  const { step2, handleStep, option } = props;
+  const { step2, handleStep, option, contactBrochureData } = props;
 
   const {
     register,
@@ -23,37 +23,29 @@ const ContactFormConfirmBrochure = (props: Props) => {
     mode: "onChange",
   });
 
-  const [data, setData] = useRecoilState(contactBrochureData);
-
   const onSubmit: SubmitHandler<ContactBrochureData> = async (data) => {
-    alert("送信");
+    console.log(data);
+    try {
+      const res = await fetch("/api/contact/brochure", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      const json = await res.json();
+      console.log(json);
 
-    // await fetch("/api/contact", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(data),
-    // })
-    //   .then((res) => {
-    //     if (res.status === 200) {
-    //       // Router.push(`/contact/thanks`);
-    //       handleStep({ step1: false, step2: false, step3: true });
-    //     // ページトップにスムーズにスクロール
-    // window.scrollTo({
-    //   top: 0,
-    //   behavior: "smooth",
-    // });
-    //     } else {
-    //       // Router.push(`/contact/error`);
-    //     }
-    //   })
-    //   .then((data) => console.log("データ", data))
-    //   .catch((err) => console.log("エラーerr", err));
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const onBack = () => {
-    setData(data);
     handleStep({ step1: true, step2: false, step3: false });
 
     // ページトップにスムーズにスクロール
@@ -78,15 +70,6 @@ const ContactFormConfirmBrochure = (props: Props) => {
           <div className={Styles.head}>
             <p className={Styles.description}>こちらの内容でよろしければ送信ボタンを押してください。</p>
           </div>
-          {/* <div className={Styles.preview}>
-            <p className={"check-text"}>
-              こちらの内容でよろしければ
-              <br className={"sp"} />
-              送信ボタンを押してください。
-            </p>
-          </div> */}
-
-          {/*  */}
           {option && (
             <div className={Styles.inputs}>
               <div className={Styles.inputBody}>
@@ -94,7 +77,7 @@ const ContactFormConfirmBrochure = (props: Props) => {
                   お名前
                 </label>
                 <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                  <input disabled className={Styles.input} id="name" {...register("name", {})} placeholder="例　山田　花子" value={data.name} />
+                  <input disabled className={Styles.input} id="name" {...register("name", {})} placeholder="例　山田　花子" value={contactBrochureData.name} />
                   {errors.name && <span className={Styles.error}>{errors.name.message as string}</span>}
                 </div>
               </div>
@@ -103,7 +86,7 @@ const ContactFormConfirmBrochure = (props: Props) => {
                   お名前（フリガナ）
                 </label>
                 <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                  <input disabled className={Styles.input} id="furigana" {...register("furigana", {})} placeholder="例　ヤマダ　ハナコ" value={data.furigana} />
+                  <input disabled className={Styles.input} id="furigana" {...register("furigana", {})} placeholder="例　ヤマダ　ハナコ" value={contactBrochureData.furigana} />
                   {errors.furigana && <span className={Styles.error}>{errors.furigana.message as string}</span>}
                 </div>
               </div>
@@ -112,7 +95,7 @@ const ContactFormConfirmBrochure = (props: Props) => {
                   電話番号
                 </label>
                 <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                  <input disabled className={Styles.input} id="phone" {...register("phone", {})} placeholder="例　09012345678" value={data.phone} />
+                  <input disabled className={Styles.input} id="phone" {...register("phone", {})} placeholder="例　09012345678" value={contactBrochureData.phone} />
                   {errors.phone && <span className={Styles.error}>{errors.phone.message as string}</span>}
                 </div>
               </div>
@@ -121,7 +104,7 @@ const ContactFormConfirmBrochure = (props: Props) => {
                   メールアドレス
                 </label>
                 <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                  <input disabled className={Styles.input} id="email" {...register("email", {})} placeholder="例　abcd@lucrea" value={data.email} />
+                  <input disabled className={Styles.input} id="email" {...register("email", {})} placeholder="例　abcd@lucrea" value={contactBrochureData.email} />
                   {errors.email && <span className={Styles.error}>{errors.email.message as string}</span>}
                 </div>
               </div>
@@ -138,7 +121,7 @@ const ContactFormConfirmBrochure = (props: Props) => {
                     cols={50}
                     rows={5}
                     disabled
-                    value={data.inquiry}
+                    value={contactBrochureData.inquiry}
                   ></textarea>
                   {errors.inquiry && <span className={Styles.error}>{errors.inquiry.message as string}</span>}
                 </div>
@@ -154,7 +137,7 @@ const ContactFormConfirmBrochure = (props: Props) => {
                   お名前
                 </label>
                 <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                  <input disabled className={Styles.input} id="name" {...register("name", {})} placeholder="例　山田　花子" value={data.name} />
+                  <input disabled className={Styles.input} id="name" {...register("name", {})} placeholder="例　山田　花子" value={contactBrochureData.name} />
                   {errors.name && <span className={Styles.error}>{errors.name.message as string}</span>}
                 </div>
               </div>
@@ -163,7 +146,7 @@ const ContactFormConfirmBrochure = (props: Props) => {
                   お名前（フリガナ）
                 </label>
                 <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                  <input disabled className={Styles.input} id="furigana" {...register("furigana", {})} placeholder="例　ヤマダ　ハナコ" value={data.furigana} />
+                  <input disabled className={Styles.input} id="furigana" {...register("furigana", {})} placeholder="例　ヤマダ　ハナコ" value={contactBrochureData.furigana} />
                   {errors.furigana && <span className={Styles.error}>{errors.furigana.message as string}</span>}
                 </div>
               </div>
@@ -172,7 +155,7 @@ const ContactFormConfirmBrochure = (props: Props) => {
                   電話番号
                 </label>
                 <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                  <input disabled className={Styles.input} id="phone" {...register("phone", {})} placeholder="例　09012345678" value={data.phone} />
+                  <input disabled className={Styles.input} id="phone" {...register("phone", {})} placeholder="例　09012345678" value={contactBrochureData.phone} />
                   {errors.phone && <span className={Styles.error}>{errors.phone.message as string}</span>}
                 </div>
               </div>
@@ -181,7 +164,7 @@ const ContactFormConfirmBrochure = (props: Props) => {
                   メールアドレス
                 </label>
                 <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                  <input disabled className={Styles.input} id="email" {...register("email", {})} placeholder="例　abcd@lucrea" value={data.email} />
+                  <input disabled className={Styles.input} id="email" {...register("email", {})} placeholder="例　abcd@lucrea" value={contactBrochureData.email} />
                   {errors.email && <span className={Styles.error}>{errors.email.message as string}</span>}
                 </div>
               </div>
@@ -190,7 +173,7 @@ const ContactFormConfirmBrochure = (props: Props) => {
                   郵便番号
                 </label>
                 <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                  <input disabled className={`${Styles.input} ${Styles.half}`} id="zipcode" {...register("zipcode", {})} placeholder="例　abcd@lucrea" value={data.zipcode} />
+                  <input disabled className={`${Styles.input} ${Styles.half}`} id="zipcode" {...register("zipcode", {})} placeholder="例　abcd@lucrea" value={contactBrochureData.zipcode} />
                   {errors.zipcode && <span className={Styles.error}>{errors.zipcode.message as string}</span>}
                 </div>
               </div>
@@ -199,7 +182,7 @@ const ContactFormConfirmBrochure = (props: Props) => {
                   住所
                 </label>
                 <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                  <input disabled className={Styles.input} id="address" {...register("address", {})} placeholder="例　abcd@lucrea" value={data.address} />
+                  <input disabled className={Styles.input} id="address" {...register("address", {})} placeholder="例　abcd@lucrea" value={contactBrochureData.address} />
                   {errors.address && <span className={Styles.error}>{errors.address.message as string}</span>}
                 </div>
               </div>
@@ -216,7 +199,7 @@ const ContactFormConfirmBrochure = (props: Props) => {
                     cols={50}
                     rows={5}
                     disabled
-                    value={data.inquiry}
+                    value={contactBrochureData.inquiry}
                   ></textarea>
                   {errors.inquiry && <span className={Styles.error}>{errors.inquiry.message as string}</span>}
                 </div>

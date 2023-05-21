@@ -1,20 +1,20 @@
+import { ContactBrochureData } from "@/pages/contact/brochure";
 import Styles from "@/styles/orgs/ContactForm.module.scss";
 import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useRecoilState } from "recoil";
 import { Step } from "../orgs/ContactForm";
-import { useState } from "react";
-import { ContactBrochureData, contactBrochureData } from "@/pages/contact/brochure";
 
 type Props = {
   step1: boolean;
   handleStep: (step: Step) => void;
   option: boolean;
   handleOption: (option: boolean) => void;
+  contactBrochureData: ContactBrochureData;
+  updateContactBrochureData: (data: ContactBrochureData) => void;
 };
 
 const ContactFormInputBrochure = (props: Props) => {
-  const { step1, handleStep, option, handleOption } = props;
+  const { step1, handleStep, option, handleOption, contactBrochureData, updateContactBrochureData } = props;
 
   const {
     register,
@@ -24,8 +24,6 @@ const ContactFormInputBrochure = (props: Props) => {
   } = useForm<ContactBrochureData>({
     mode: "onChange",
   });
-
-  const [data, setData] = useRecoilState(contactBrochureData);
 
   const validatePhone = (value: string) => {
     let boolean;
@@ -48,7 +46,7 @@ const ContactFormInputBrochure = (props: Props) => {
   };
 
   const onSubmit: SubmitHandler<ContactBrochureData> = (data) => {
-    setData(data);
+    updateContactBrochureData(data);
     handleStep({ step1: false, step2: true, step3: false });
 
     // ページトップにスムーズにスクロール
@@ -115,11 +113,11 @@ const ContactFormInputBrochure = (props: Props) => {
                       required: rules.required,
                       maxLength: rules.maxLength,
                       onChange: (e) => {
-                        setData({ ...data, name: e.target.value });
+                        updateContactBrochureData({ ...contactBrochureData, name: e.target.value });
                       },
                     })}
                     placeholder="例　山田　花子"
-                    value={data.name}
+                    value={contactBrochureData.name}
                   />
                   {errors.name && <span className={Styles.error}>{errors.name.message as string}</span>}
                 </div>
@@ -137,11 +135,11 @@ const ContactFormInputBrochure = (props: Props) => {
                       maxLength: rules.maxLength,
                       pattern: rules.furiganaPattern,
                       onChange: (e) => {
-                        setData({ ...data, furigana: e.target.value });
+                        updateContactBrochureData({ ...contactBrochureData, furigana: e.target.value });
                       },
                     })}
                     placeholder="例　ヤマダ　ハナコ"
-                    value={data.furigana}
+                    value={contactBrochureData.furigana}
                   />
                   {errors.furigana && <span className={Styles.error}>{errors.furigana.message as string}</span>}
                 </div>
@@ -160,11 +158,11 @@ const ContactFormInputBrochure = (props: Props) => {
                         return validatePhone(value) || rules.phone;
                       },
                       onChange: (e) => {
-                        setData({ ...data, phone: e.target.value });
+                        updateContactBrochureData({ ...contactBrochureData, phone: e.target.value });
                       },
                     })}
                     placeholder="例　09012345678"
-                    value={data.phone}
+                    value={contactBrochureData.phone}
                   />
                   {errors.phone && <span className={Styles.error}>{errors.phone.message as string}</span>}
                 </div>
@@ -181,11 +179,11 @@ const ContactFormInputBrochure = (props: Props) => {
                       required: rules.required,
                       pattern: rules.emailPattern,
                       onChange: (e) => {
-                        setData({ ...data, email: e.target.value });
+                        updateContactBrochureData({ ...contactBrochureData, email: e.target.value });
                       },
                     })}
                     placeholder="例　abcd@lucrea"
-                    value={data.email}
+                    value={contactBrochureData.email}
                   />
                   {errors.email && <span className={Styles.error}>{errors.email.message as string}</span>}
                 </div>
@@ -201,15 +199,14 @@ const ContactFormInputBrochure = (props: Props) => {
                     {...register("inquiry", {
                       required: rules.required,
                       onChange: (e) => {
-                        setData({ ...data, inquiry: e.target.value });
+                        updateContactBrochureData({ ...contactBrochureData, inquiry: e.target.value });
                       },
                     })}
                     placeholder="ご希望・ご質問などをご記載ください。"
                     cols={50}
                     rows={5}
-                  >
-                    {data.inquiry}
-                  </textarea>
+                    value={contactBrochureData.inquiry}
+                  ></textarea>
                   {errors.inquiry && <span className={Styles.error}>{errors.inquiry.message as string}</span>}
                 </div>
               </div>
@@ -230,11 +227,11 @@ const ContactFormInputBrochure = (props: Props) => {
                       required: rules.required,
                       maxLength: rules.maxLength,
                       onChange: (e) => {
-                        setData({ ...data, name: e.target.value });
+                        updateContactBrochureData({ ...contactBrochureData, name: e.target.value });
                       },
                     })}
                     placeholder="例　山田　花子"
-                    value={data.name}
+                    value={contactBrochureData.name}
                   />
                   {errors.name && <span className={Styles.error}>{errors.name.message as string}</span>}
                 </div>
@@ -252,11 +249,11 @@ const ContactFormInputBrochure = (props: Props) => {
                       maxLength: rules.maxLength,
                       pattern: rules.furiganaPattern,
                       onChange: (e) => {
-                        setData({ ...data, furigana: e.target.value });
+                        updateContactBrochureData({ ...contactBrochureData, furigana: e.target.value });
                       },
                     })}
                     placeholder="例　ヤマダ　ハナコ"
-                    value={data.furigana}
+                    value={contactBrochureData.furigana}
                   />
                   {errors.furigana && <span className={Styles.error}>{errors.furigana.message as string}</span>}
                 </div>
@@ -275,11 +272,11 @@ const ContactFormInputBrochure = (props: Props) => {
                         return validatePhone(value) || rules.phone;
                       },
                       onChange: (e) => {
-                        setData({ ...data, phone: e.target.value });
+                        updateContactBrochureData({ ...contactBrochureData, phone: e.target.value });
                       },
                     })}
                     placeholder="例　09012345678"
-                    value={data.phone}
+                    value={contactBrochureData.phone}
                   />
                   {errors.phone && <span className={Styles.error}>{errors.phone.message as string}</span>}
                 </div>
@@ -296,11 +293,11 @@ const ContactFormInputBrochure = (props: Props) => {
                       required: rules.required,
                       pattern: rules.emailPattern,
                       onChange: (e) => {
-                        setData({ ...data, email: e.target.value });
+                        updateContactBrochureData({ ...contactBrochureData, email: e.target.value });
                       },
                     })}
                     placeholder="例　abcd@lucrea"
-                    value={data.email}
+                    value={contactBrochureData.email}
                   />
                   {errors.email && <span className={Styles.error}>{errors.email.message as string}</span>}
                 </div>
@@ -317,11 +314,11 @@ const ContactFormInputBrochure = (props: Props) => {
                       required: rules.required,
                       pattern: rules.zipcodePattern,
                       onChange: (e) => {
-                        setData({ ...data, zipcode: e.target.value });
+                        updateContactBrochureData({ ...contactBrochureData, zipcode: e.target.value });
                       },
                     })}
                     placeholder="例　123-4567"
-                    value={data.zipcode}
+                    value={contactBrochureData.zipcode}
                   />
                   {errors.zipcode && <span className={Styles.error}>{errors.zipcode.message as string}</span>}
                 </div>
@@ -338,11 +335,11 @@ const ContactFormInputBrochure = (props: Props) => {
                       required: rules.required,
                       maxLength: rules.maxLength,
                       onChange: (e) => {
-                        setData({ ...data, address: e.target.value });
+                        updateContactBrochureData({ ...contactBrochureData, address: e.target.value });
                       },
                     })}
                     placeholder="東京都千代田区千代田1-1"
-                    value={data.address}
+                    value={contactBrochureData.address}
                   />
                   {errors.address && <span className={Styles.error}>{errors.address.message as string}</span>}
                 </div>
@@ -358,15 +355,14 @@ const ContactFormInputBrochure = (props: Props) => {
                     {...register("inquiry", {
                       required: rules.required,
                       onChange: (e) => {
-                        setData({ ...data, inquiry: e.target.value });
+                        updateContactBrochureData({ ...contactBrochureData, inquiry: e.target.value });
                       },
                     })}
                     placeholder="ご希望・ご質問などをご記載ください。"
                     cols={50}
                     rows={5}
-                  >
-                    {data.inquiry}
-                  </textarea>
+                    value={contactBrochureData.inquiry}
+                  ></textarea>
                   {errors.inquiry && <span className={Styles.error}>{errors.inquiry.message as string}</span>}
                 </div>
               </div>

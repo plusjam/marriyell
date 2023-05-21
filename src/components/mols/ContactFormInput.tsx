@@ -64,13 +64,6 @@ const ContactFormInput = (props: Props) => {
               <br /> 「<span className={Styles.color}>※</span>」の項目は必須事項です。
             </p>
           </div>
-          {/* <div className={Styles.preview}>
-            <p className={"check-text"}>
-              こちらの内容でよろしければ
-              <br className={"sp"} />
-              送信ボタンを押してください。
-            </p>
-          </div> */}
           <div className={Styles.inputs}>
             <div className={Styles.inputBody}>
               <label className={`${Styles.label} ${Styles.require}`} htmlFor="name">

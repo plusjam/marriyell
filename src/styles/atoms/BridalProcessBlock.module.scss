@@ -1,0 +1,129 @@
+.block {
+  display: flex;
+  gap: 24px;
+  color: #707070;
+}
+
+.contents {
+  width: 100%;
+  display: grid;
+  grid-template-areas:
+    "head"
+    "description"
+    "link";
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 1fr;
+}
+
+.image {
+  grid-area: image;
+  min-width: 180px;
+  height: 180px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.head {
+  grid-area: head;
+  display: grid;
+  grid-template-areas: "step title time";
+  grid-template-rows: 1fr;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #a6a08a;
+  margin-bottom: 5.5px;
+}
+
+.step {
+  grid-area: step;
+  font-family: "EB Garamond";
+  font-size: 24px;
+  letter-spacing: 0;
+  margin-right: 12px;
+}
+
+.title {
+  grid-area: title;
+  font-size: 20px;
+  letter-spacing: 0.03em;
+}
+
+.time {
+  grid-area: time;
+  font-size: 15px;
+
+  span {
+    font-family: "EB Garamond";
+  }
+}
+
+.description {
+  grid-area: description;
+  font-size: 15px;
+  line-height: 1.73;
+  color: #222222;
+}
+
+.link {
+  grid-area: link;
+  color: #a6a08a;
+  font-size: 15px;
+  letter-spacing: 0;
+}
+
+@media screen and (max-width: 670px) {
+  .block {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .contents {
+  }
+
+  .image {
+    grid-area: image;
+    min-width: 100%;
+    height: 100%;
+    max-width: 345px;
+    margin: 0 auto;
+  }
+
+  .head {
+    grid-area: head;
+    display: grid;
+    grid-template-areas: "step title time";
+    grid-template-rows: 1fr;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #a6a08a;
+    margin-bottom: 5.5px;
+  }
+
+  .step {
+    font-size: 18px;
+    margin-right: 8px;
+  }
+
+  .title {
+    font-size: 18px;
+  }
+
+  .time {
+    font-size: 13px;
+  }
+
+  .description {
+    font-size: 15px;
+  }
+
+  .link {
+    font-size: 15px;
+    margin-top: 32px;
+  }
+}

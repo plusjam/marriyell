@@ -1,7 +1,4 @@
 import Motion from "@/components/layouts/Motion";
-import Footer from "@/components/orgs/Footer";
-import HamburgerMenu from "@/components/orgs/HamburgerMenu";
-import Header from "@/components/orgs/Header";
 import InstagramSection from "@/components/orgs/InstagramSection";
 import { MainFlow } from "@/components/orgs/MainFlow";
 import MainVideo from "@/components/orgs/MainVideo";
@@ -18,6 +15,7 @@ import { ReportContents } from "./api/weddingReport/[id]";
 import useModalReport from "../../libs/useModalReport";
 import ReportModal from "@/components/orgs/ReportModal";
 import { NewsCategory, NewsContents } from "../../typings/news";
+import { META } from "@/textDate/head";
 
 type Props = {
   reportLists: ReportContents[];
@@ -33,10 +31,9 @@ export default function Home(props: Props) {
     <>
       <Motion>
         <Head>
-          <title>lu CREA ル・クレア</title>
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link rel="icon" href="/favicon.ico" />
+          <title>{META.top.title}</title>
         </Head>
+
         <main>
           <MainVideo />
           <MainFlow />
@@ -46,7 +43,7 @@ export default function Home(props: Props) {
           <TopWeddingReport contents={reportLists} openModal={openModal} />
           <TopNewsEvent contents={newsLists.contents} />
           <TopContents />
-          {/* <InstagramSection /> */}
+          <InstagramSection />
         </main>
 
         <ReportModal videoID={videoID} closeModal={closeModal} />

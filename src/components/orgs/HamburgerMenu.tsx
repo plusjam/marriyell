@@ -1,13 +1,9 @@
-import React from "react";
-import Styles from "../../styles/orgs/HamburgerMenu.module.scss";
-import Atoms from "../../styles/atoms/Atoms.module.scss";
-import LinkToBridalFair from "../atoms/LinkToBridalFair";
-import HamburgerButton from "../atoms/HamburgerButton";
-import { sitemapLinks } from "../../textDate";
 import Link from "next/link";
-import Image from "next/image";
+import Styles from "../../styles/orgs/HamburgerMenu.module.scss";
+import { sitemapLinks } from "../../textDate";
 import ButtonSns from "../atoms/ButtonSns";
-import LinkToRecruit from "../atoms/LinkToRecruit";
+import HamburgerButton from "../atoms/HamburgerButton";
+import LinkToBridalFair from "../atoms/LinkToBridalFair";
 
 type Props = {
   toggleOpen: () => void;
@@ -22,7 +18,6 @@ const HamburgerMenu = (props: Props) => {
     <div className={isOpen ? `${Styles.section} ${Styles.open}` : `${Styles.section}`}>
       <div className={Styles.head}>
         <Link href="/" className={Styles.logo}>
-          {/* <Image src="/images/art_logo_long.svg" alt="lu CREA" width={145} height={34} /> */}
           <picture>
             <source srcSet="/images/art_logo.svg" type="image/svg" />
             <img src="/images/art_logo_long.svg" alt="lu CREA" width={145} height={34} />
@@ -32,7 +27,6 @@ const HamburgerMenu = (props: Props) => {
         <div className={Styles.main}>
           <Link href="tel:0773-24-1101" className={Styles.phone}>
             <span className={Styles.phoneIcon}>
-              {/* <Image src="/images/icon_phone.svg" alt="" width={25} height={25} /> */}
               <picture>
                 <source srcSet="/images/art_logo.svg" type="image/svg" />
                 <img src="/images/icon_phone.svg" alt="" width={25} height={25} />
@@ -55,7 +49,7 @@ const HamburgerMenu = (props: Props) => {
         <div className={Styles.links}>
           {sitemapLinks.map((link, index) => {
             return (
-              <Link href={link.href} className={Styles.link} key={index} target={link?.blank ? "_blank" : ""} onClick={() => toggleOpen()}>
+              <Link href={link.href} className={Styles.link} key={index} target={""}>
                 {link.title}
               </Link>
             );

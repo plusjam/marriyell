@@ -23,6 +23,6 @@ export const apricotClient = async (accessKey: string | undefined, secretKey: st
 
     return await cms.data;
   } catch (error) {
-    console.log("エラー", error);
+    console.log("トークン取得エラー", error);
   }
 };

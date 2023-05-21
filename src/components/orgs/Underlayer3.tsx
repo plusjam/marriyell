@@ -66,7 +66,7 @@ const Underlayer3 = () => {
           </Link>
         </div>
         <div className={Styles.row}>
-          <Link className={Styles.link} href="/dress-item">
+          <Link className={Styles.link} href="/dress">
             <div className={Styles.en}>Dress</div>
             <div className={Styles.ja}>ドレス・和装</div>
           </Link>

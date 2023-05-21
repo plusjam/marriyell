@@ -2,7 +2,7 @@ import Motion from "@/components/layouts/Motion";
 import UnderlayerHead from "@/components/orgs/UnderlayerHead";
 import { GetStaticProps } from "next";
 import Head from "next/head";
-import React, { use, useEffect } from "react";
+import React, { useEffect } from "react";
 import WeekendFair from "@/components/orgs/WeekendFair";
 import SelectFair from "@/components/orgs/SelectFair";
 import BridalFair from "@/components/orgs/BridalFair";
@@ -17,6 +17,8 @@ import { FairList } from "../api/fair";
 import useGetWeekend from "../../../libs/useGetWeekend";
 import axios from "axios";
 import { apricotClient } from "../../../libs/cms";
+import { AppTrigger } from "../_app";
+import { META } from "@/textDate/head";
 
 type Props = {
   reportLists: ReportContents[];
@@ -32,27 +34,41 @@ export default function Home(props: Props) {
   const { categories, handleSelect } = useSelectFair();
   const { selected: selectedWeekend, handleSelect: handleWeekendSelect } = useGetWeekend();
 
-  // カテゴリーの絞り込み検索
+  // const { ScrollTrigger } = useAnimation();
+
+  // 選択されたカテゴリーから絞り込み or検索
   const getSelectedLists = async () => {
-    const selectedCategories = categories
-      .filter((category) => {
-        if (category.selected) {
-          return category.slug;
-        }
-      })
-      .map((category) => {
-        return category.slug;
+    const initLists = [...fairLists];
+    let selectedLists = [];
+
+    const selectedCategory = categories.find((category) => {
+      return category.selected;
+    })?.slug;
+
+    if (selectedCategory !== "all") {
+      selectedLists = initLists.filter((list) => {
+        return list.categories.some((category) => {
+          return category.slug === selectedCategory && category.selected;
+        });
       });
+    } else {
+      selectedLists = initLists;
+    }
 
-    const url = `/api/fair`;
-    const res = await fetch(url, {
-      method: "POST",
-      body: JSON.stringify(selectedCategories),
+    setLists(selectedLists);
+    setTimeout(() => {
+      AppTrigger.refresh();
+    }, 1000);
+
+    const target = document.querySelector("#bridal-fair") as HTMLElement;
+    // targetのページトップからの距離を取得
+    const rect = target.getBoundingClientRect();
+    const top = rect.top + window.pageYOffset;
+    // スクロール
+    window.scrollTo({
+      top,
+      behavior: "smooth",
     });
-    const data = await res.json();
-
-    setLists(data);
-    document.querySelector("#bridal-fair")?.scrollIntoView({ behavior: "smooth" });
   };
 
   useEffect(() => {
@@ -111,11 +127,11 @@ export default function Home(props: Props) {
     <>
       <Motion>
         <Head>
-          <title>lu CREA ル・クレア｜Bridal Fair</title>
+          <title>{META.fair.title}</title>
         </Head>
 
         <main>
-          <UnderlayerHead en="Bridal Fair" ja="ブライダルフェア" image="" spImage="" />
+          <UnderlayerHead en="Bridal Fair" ja="ブライダルフェア" image="/images/fair_main.jpg" spImage="/images/fair_main-sp.jpg" />
 
           <WeekendFair lists={weekendLists} weekend={selectedWeekend} handleSelect={handleWeekendSelect} />
           <SelectFair categories={categories} handleSelected={handleSelect} getSelectedLists={getSelectedLists} getSelectedDateLists={getSelectedDateLists} />
@@ -134,32 +150,34 @@ export default function Home(props: Props) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const accessKey = process.env.API_KEY;
-  const secretKey = process.env.API_SECRET;
-  const cmsUrl = process.env.CMS_URL;
-  const { token } = await apricotClient(accessKey, secretKey);
+  // const accessKey = process.env.API_KEY;
+  // const secretKey = process.env.API_SECRET;
+  // const cmsUrl = process.env.CMS_URL;
+  // const { token } = await apricotClient(accessKey, secretKey);
 
-  const endpoint = "event";
-  const url = `${cmsUrl}/api/v1/${endpoint}`;
+  // const endpoint = "event";
+  // const url = `${cmsUrl}/api/v1/${endpoint}`;
 
-  if (!accessKey || !secretKey || !token) {
-    throw new Error("APIキーが設定されていません。");
-  }
+  // if (!accessKey || !secretKey || !token) {
+  //   throw new Error("APIキーが設定されていません。");
+  // }
 
-  try {
-    const res = await axios.get(url, {
-      headers: {
-        "Content-Type": "application/json",
-        "account-access-key": accessKey,
-        "account-secret-key": secretKey,
-        authorization: `Bearer ${token}`,
-      },
-    });
+  // try {
+  //   const res = await axios.get(url, {
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       "account-access-key": accessKey,
+  //       "account-secret-key": secretKey,
+  //       authorization: `Bearer ${token}`,
+  //     },
+  //   });
 
-    console.log("デーーーーーーーーた！！！", await res.data);
-  } catch (e) {
-    console.log("エラーだよ！！！", e);
-  }
+  //   console.log("レスすすすすすすす", res);
+
+  //   console.log("デーーーーーーーーた！！！", await res.data);
+  // } catch (e) {
+  //   console.log("エラーだよ！！！", e.response ? e.response : e);
+  // }
 
   const reportRes = await fetch(`http://localhost:${process.env.PORT}/api/weddingReport/2`);
   const reportLists: ReportContents[] = await reportRes.json();

@@ -25,30 +25,26 @@ const ContactFormConfirm = (props: Props) => {
   const [data, setData] = useRecoilState(contactData);
 
   const onSubmit: SubmitHandler<ContactData> = async (data) => {
-    alert("送信");
+    console.log(data);
 
-    // await fetch("/api/contact", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(data),
-    // })
-    //   .then((res) => {
-    //     if (res.status === 200) {
-    //       // Router.push(`/contact/thanks`);
-    //       handleStep({ step1: false, step2: false, step3: true });
-    //     // ページトップにスムーズにスクロール
-    // window.scrollTo({
-    //   top: 0,
-    //   behavior: "smooth",
-    // });
-    //     } else {
-    //       // Router.push(`/contact/error`);
-    //     }
-    //   })
-    //   .then((data) => console.log("データ", data))
-    //   .catch((err) => console.log("エラーerr", err));
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      const json = await res.json();
+      console.log(json);
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const onBack = () => {

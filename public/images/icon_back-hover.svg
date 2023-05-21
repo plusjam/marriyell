@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="17.912" height="12.688" viewBox="0 0 17.912 12.688">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="長方形_634" data-name="長方形 634" width="17.912" height="12.688" fill="none" stroke="#fff" stroke-width="1"/>
+    </clipPath>
+  </defs>
+  <g id="icon_back" clip-path="url(#clip-path)">
+    <path id="線_84" data-name="線 84" d="M13.061.5H0A.5.5,0,0,1-.5,0,.5.5,0,0,1,0-.5H13.061a.5.5,0,0,1,.5.5A.5.5,0,0,1,13.061.5Z" transform="translate(0.373 8.583)" fill="#fff"/>
+    <path id="パス_784" data-name="パス 784" d="M5.007,24.548a.5.5,0,0,1-.354-.146L.922,20.67a.5.5,0,0,1,0-.707l3.732-3.732a.5.5,0,0,1,.707.707L1.983,20.316l3.378,3.378a.5.5,0,0,1-.354.854Z" transform="translate(-0.902 -11.733)" fill="#fff"/>
+    <path id="線_85" data-name="線 85" d="M12.981.5H0A.5.5,0,0,1-.5,0,.5.5,0,0,1,0-.5H12.981a.5.5,0,0,1,.5.5A.5.5,0,0,1,12.981.5Z" transform="translate(0.373 0.373)" fill="#fff"/>
+    <path id="パス_785" data-name="パス 785" d="M45.929,9.986a.5.5,0,0,1,0-1,3.6,3.6,0,0,0,0-7.21.5.5,0,1,1,0-1,4.6,4.6,0,0,1,0,9.21Z" transform="translate(-32.494 -0.903)" fill="#fff"/>
+  </g>
+</svg>

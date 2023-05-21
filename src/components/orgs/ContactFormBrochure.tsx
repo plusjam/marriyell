@@ -2,6 +2,7 @@ import React from "react";
 import ContactFormInputBrochure from "../mols/ContactFormInputBrochure";
 import ContactHeader from "./ContactHeader";
 import ContactFormConfirmBrochure from "../mols/ContactFormConfirmBrochure";
+import { ContactBrochureData } from "@/pages/contact/brochure";
 
 export type Step = {
   step1: boolean;
@@ -9,7 +10,14 @@ export type Step = {
   step3: boolean;
 };
 
-const ContactFormBrochure = () => {
+type Props = {
+  contactBrochureData: ContactBrochureData;
+  updateContactBrochureData: (data: ContactBrochureData) => void;
+};
+
+const ContactFormBrochure = (props: Props) => {
+  const { contactBrochureData, updateContactBrochureData } = props;
+
   const [option, setOption] = React.useState(true);
 
   const [step, setStep] = React.useState({
@@ -29,8 +37,15 @@ const ContactFormBrochure = () => {
   return (
     <>
       <ContactHeader step={step} ja="資料請求" en="Request" />
-      <ContactFormInputBrochure option={option} step1={step.step1} handleStep={handleStep} handleOption={handleOption} />
-      <ContactFormConfirmBrochure option={option} step2={step.step2} handleStep={handleStep} />
+      <ContactFormInputBrochure
+        option={option}
+        step1={step.step1}
+        handleStep={handleStep}
+        handleOption={handleOption}
+        contactBrochureData={contactBrochureData}
+        updateContactBrochureData={updateContactBrochureData}
+      />
+      <ContactFormConfirmBrochure option={option} step2={step.step2} handleStep={handleStep} contactBrochureData={contactBrochureData} />
     </>
   );
 };

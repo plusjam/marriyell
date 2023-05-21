@@ -1,0 +1,16 @@
+.scrolls {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  padding: 48px 0;
+  max-width: 716px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 768px) {
+  .scrolls {
+    flex-direction: column;
+    gap: 20px;
+    padding: 73px 0 0;
+  }
+}

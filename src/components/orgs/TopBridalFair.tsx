@@ -96,7 +96,7 @@ const TopBridalFair = () => {
           </Swiper>
         </div>
         <div className={Styles.link}>
-          <LinkToLists href="https://lu-crea.fuwel.wedding/fair" target text="フェア一覧を見る" />
+          <LinkToLists href="/fair" target text="フェア一覧を見る" />
         </div>
       </div>
     </section>

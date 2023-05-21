@@ -422,7 +422,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     const categories = req.body;
     let newArray = [...Body];
 
-    // if (categories !== '["all"]' && categories !== "[]") {
+    // if (categories !== '["all"]' || categories !== "[]") {
     //   const json: string[] = JSON.parse(categories);
 
     //   const filterd = newArray.filter((item) => {

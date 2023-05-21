@@ -1,5 +1,6 @@
 import Motion from "@/components/layouts/Motion";
 import ContactForm from "@/components/orgs/ContactForm";
+import { META } from "@/textDate/head";
 import Head from "next/head";
 
 export default function Home() {
@@ -7,7 +8,7 @@ export default function Home() {
     <>
       <Motion>
         <Head>
-          <title>lu CREA ル・クレア｜お問い合わせ</title>
+          <title>{META.contact.title}</title>
         </Head>
 
         <main>

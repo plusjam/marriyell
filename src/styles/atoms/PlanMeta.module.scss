@@ -1,0 +1,95 @@
+.info {
+  height: 97px;
+  padding: 6px;
+  background-color: #f6f6ef;
+  color: #8c8c8c;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.meta {
+  padding: 0 26px 0 6px;
+  position: relative;
+}
+
+.metaLabel {
+  font-size: 16px;
+  letter-spacing: 0.06em;
+
+  // border-bottom: dotted 1px #a6a08a;
+  margin-bottom: 16px;
+
+  span {
+    font-size: 12px;
+  }
+
+  &:before {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    content: "";
+    height: 1px;
+    width: 100%;
+    background-image: linear-gradient(to right, black 50%, transparent 50%);
+    background-size: 10px 100%; /* この値を調整することで、点の間隔を調節します */
+  }
+}
+
+.number {
+  font-size: 16px;
+  letter-spacing: 0.06em;
+}
+
+.price {
+  font-size: 32px;
+  letter-spacing: 0;
+
+  span {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .price {
+    font-size: 26px;
+    letter-spacing: 0;
+
+    span {
+      font-size: 14px;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .info {
+    height: 67px;
+    padding: 8px;
+    gap: 24px;
+  }
+
+  .meta {
+    padding: 0 2px;
+  }
+
+  .metaLabel {
+    font-size: 11px;
+    margin-bottom: 11px;
+
+    span {
+      font-size: 8px;
+    }
+  }
+
+  .number {
+    font-size: 11px;
+  }
+
+  .price {
+    font-size: 22px;
+    span {
+      font-size: 9px;
+    }
+  }
+}

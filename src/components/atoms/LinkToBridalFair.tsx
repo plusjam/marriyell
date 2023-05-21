@@ -12,7 +12,7 @@ const LinkToBridalFair = (props: Props) => {
   const { isOpen } = props;
 
   return (
-    <Link href="https://lu-crea.fuwel.wedding/fair" target="_blank" className={isOpen ? `${Atoms.linkBridal} ${Atoms.open}` : `${Atoms.linkBridal} ${Header.linkBridal}`}>
+    <Link href="/fair" target="_blank" className={isOpen ? `${Atoms.linkBridal} ${Atoms.open}` : `${Atoms.linkBridal} ${Header.linkBridal}`}>
       <svg xmlns="http://www.w3.org/2000/svg" width="18.656" height="16.169" viewBox="0 0 18.656 16.169">
         <g id="icon_heart" transform="translate(-1310.672 -15.916)">
           <path

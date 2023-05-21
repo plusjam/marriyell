@@ -2,7 +2,7 @@ import React from "react";
 import Styles from "@/styles/orgs/UnderlayerHead.module.scss";
 
 type Props = {
-  en: string;
+  en?: string;
   ja: string;
   image: string;
   spImage: string;
@@ -14,8 +14,14 @@ const UnderlayerHead = (props: Props) => {
   return (
     <section className={Styles.section}>
       <h1 className={Styles.title}>
-        <span className={Styles.en}>{en}</span>
-        <span className={Styles.ja}>{ja}</span>
+        {en ? (
+          <>
+            <span className={Styles.en}>{en}</span>
+            <span className={Styles.ja}>{ja}</span>
+          </>
+        ) : (
+          <span className={`${Styles.ja} ${Styles.only}`}>{ja}</span>
+        )}
       </h1>
       <picture className={Styles.picture}>
         <source srcSet={image} media="(min-width: 768px)" />

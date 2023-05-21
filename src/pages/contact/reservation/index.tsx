@@ -1,5 +1,6 @@
 import Motion from "@/components/layouts/Motion";
 import ContactFormReservation from "@/components/orgs/ContactFormReservation";
+import { META } from "@/textDate/head";
 import Head from "next/head";
 import { atom } from "recoil";
 
@@ -33,7 +34,7 @@ export default function Home() {
     <>
       <Motion>
         <Head>
-          <title>lu CREA ル・クレア｜来館予約</title>
+          <title>{META.contactReservation.title}</title>
         </Head>
 
         <main>

@@ -1,0 +1,145 @@
+.section {
+  padding: 80px 24px 113px;
+  color: #707070;
+  background-color: #edece7;
+}
+
+.container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.head {
+  text-align: center;
+  font-size: 24px;
+  letter-spacing: 0.08em;
+  color: #707070;
+  padding-bottom: 20px;
+  margin-bottom: 40px;
+  position: relative;
+
+  &:before {
+    width: 53px;
+    height: 1px;
+    background-color: #a6a08a;
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.body {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.block {
+  display: flex;
+  gap: 8px;
+  width: calc(33.33% - (40px / 3));
+}
+
+.tag {
+  min-width: 100px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border-radius: 10px;
+  background-color: #a6a08a;
+}
+
+.image {
+  width: 36px;
+  height: 36px;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.label {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: #ffffff;
+}
+
+.description {
+  font-size: 14px;
+  line-height: 2;
+  color: #707070;
+  letter-spacing: 0.06em;
+  padding-top: 20px;
+}
+
+@media screen and (max-width: 1024px) {
+  .section {
+    padding: 40px 15px 80px;
+    color: #707070;
+    background-color: #edece7;
+  }
+
+  .head {
+    font-size: 18px;
+    letter-spacing: 0.06em;
+    margin-bottom: 30px;
+
+    &:before {
+      width: 42px;
+    }
+  }
+
+  .tag {
+    min-width: 80px;
+    height: 80px;
+    border-radius: 4px;
+    gap: 4px;
+  }
+
+  .image {
+    width: 28px;
+    height: 28px;
+  }
+
+  .description {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .slide {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .block {
+    width: 100%;
+    gap: 8px;
+  }
+
+  .tag {
+    min-width: 64px;
+    height: 64px;
+    border-radius: 8px;
+    gap: 8px;
+  }
+
+  .image {
+    width: 24px;
+    height: 24px;
+  }
+
+  .description {
+    font-size: 12px;
+    line-height: 2;
+  }
+}

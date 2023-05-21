@@ -15,7 +15,7 @@ const TopWeddingReport = (props: Props) => {
 
   return (
     <section className={Styles.section}>
-      <SectionHead en="Wedding Report" ja="ウェディングレポート" href="report" />
+      <SectionHead en="Wedding Report" ja="ウェディングレポート" href="report" isShort />
       <div className={Styles.container}>
         <div className={Styles.lists}>
           <ReportLists contents={contents} openModal={openModal} isTop />

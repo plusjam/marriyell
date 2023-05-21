@@ -3,8 +3,8 @@ import React, { useState } from "react";
 const useNav = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleOpen = () => {
-    setIsOpen(!isOpen);
+  const toggleOpen = (boolean?: boolean) => {
+    setIsOpen(boolean === false ? boolean : !isOpen);
   };
 
   const childProps = {

@@ -20,7 +20,7 @@ const WeekendFair = (props: Props) => {
   return (
     <section className={Styles.section}>
       <div className={Styles.container}>
-        <SectionHead en="Weekend Fair" ja="週末のフェア" />
+        <SectionHead en="Weekend Fair" ja="週末のフェア" isShort />
         <div className={Styles.body}>
           <div className={Styles.selects}>
             {weekend.map((date, index) => {

@@ -1,0 +1,35 @@
+.section {
+  padding: 64px 24px 0;
+}
+
+.container {
+}
+
+.body {
+}
+
+.copy {
+  font-size: 16px;
+  text-align: center;
+  line-height: 2;
+  color: #8c8c8c;
+
+  .br {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .section {
+    padding: 80px 15px 0;
+  }
+
+  .copy {
+    font-size: 14px;
+    line-height: 2.28;
+
+    .br {
+      display: block;
+    }
+  }
+}

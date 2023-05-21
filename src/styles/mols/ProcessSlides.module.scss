@@ -1,0 +1,81 @@
+.swiper {
+  & > div {
+    align-items: stretch;
+  }
+}
+
+.slide {
+  border-radius: 30px;
+  background: #ffffff;
+  padding: 24px 16px;
+  height: unset;
+}
+
+.head {
+  margin-top: 3px;
+  font-size: 41px;
+  color: #a6a08a;
+  letter-spacing: 0;
+  margin-bottom: 30px;
+}
+
+.image {
+  width: 100%;
+  margin-bottom: 23px;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.title {
+  font-size: 20px;
+  color: #1f261f;
+  letter-spacing: 0.06em;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.description {
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  line-height: 2;
+  color: #707070;
+}
+
+.link {
+  color: #cb5353;
+  text-decoration: underline;
+  display: inline;
+}
+
+.phone {
+  color: #6483d9;
+  text-decoration: underline;
+  display: inline;
+}
+
+@media screen and (max-width: 768px) {
+  .slide {
+    padding: 20px 14px 40px;
+  }
+
+  .head {
+    margin-top: 0;
+    font-size: 32px;
+    margin-bottom: 30px;
+  }
+
+  .image {
+    margin-bottom: 14px;
+  }
+
+  .title {
+    font-size: 16px;
+  }
+
+  .description {
+    font-size: 12px;
+  }
+}

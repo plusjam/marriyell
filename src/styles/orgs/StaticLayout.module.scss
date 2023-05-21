@@ -1,0 +1,417 @@
+.section {
+  padding: 57px 0 103px;
+  color: #707070;
+  position: relative;
+  margin-bottom: 40px;
+
+  &:first-child {
+    margin-top: 274px;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &:before {
+    content: "";
+    width: 84.72vw;
+    height: 100%;
+    background-color: #f8f8f4;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: -1;
+  }
+
+  &:nth-of-type(2n) {
+    .body {
+      flex-direction: row-reverse;
+    }
+
+    .title {
+      text-align: left;
+    }
+
+    .image {
+      margin: 0 auto 0 0;
+    }
+
+    .contents {
+      align-items: flex-start;
+      // padding-left: 220px;
+      margin: 0 0 0 auto;
+      padding-right: 0;
+    }
+
+    .content {
+      align-items: flex-start;
+      padding-left: 63px;
+      padding-right: 0;
+    }
+
+    &:before {
+      left: 0;
+    }
+  }
+
+  &.brides {
+    &:nth-of-type(2n) {
+      .content {
+        align-items: flex-start;
+      }
+    }
+
+    .title {
+      font-size: 15px;
+
+      span {
+        font-size: 40px;
+        font-family: "EB Garamond";
+      }
+    }
+
+    .content {
+      display: inline-flex;
+      width: auto;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .block {
+      display: flex;
+      gap: 11px;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .number {
+      font-size: 32px;
+      font-family: "EB Garamond";
+    }
+
+    .text {
+      font-size: 15px;
+      line-height: 1.73;
+    }
+  }
+
+  &.step7 {
+    padding: 52px 0 110px;
+
+    .title {
+      font-size: 32px;
+      letter-spacing: 0.12em;
+      text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.74);
+      color: #fff;
+    }
+
+    .caption {
+      font-size: 15px;
+      line-height: 1.73;
+      color: #707070;
+      max-width: 496px;
+      padding: 32px 28px 31px 29px;
+      background-color: rgba(255, 255, 255, 0.8);
+      margin: 0 0 0 auto;
+      letter-spacing: 0;
+    }
+
+    .background {
+      width: 84.72vw;
+      aspect-ratio: 1220/400;
+
+      height: auto;
+      background-color: #f8f8f4;
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: -1;
+
+      img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+      }
+    }
+
+    &:before {
+      content: unset;
+    }
+  }
+}
+
+.container {
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.body {
+  display: flex;
+}
+
+.imageArea {
+  min-width: 547px;
+}
+
+.title {
+  font-size: 26px;
+  letter-spacing: 0.12em;
+  padding-bottom: 10px;
+  margin-bottom: 40px;
+  position: relative;
+  text-align: right;
+
+  &:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #707070;
+  }
+}
+
+.image {
+  max-width: 496px;
+  background-color: #f4f4f4;
+  margin: 0 0 0 auto;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.contents {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  // padding-right: 220px;
+  max-width: 673px;
+}
+
+.content {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-end;
+  padding-right: 63px;
+}
+
+.link {
+  display: flex;
+  justify-content: center;
+  margin-top: 80px;
+  width: 100%;
+
+  a {
+  }
+}
+
+.banners {
+  margin-top: 117px;
+  display: flex;
+  gap: 27px;
+}
+
+.banner {
+  aspect-ratio: 336/143;
+  width: 336px;
+  height: 143px;
+  background-color: #f4f4f4;
+  max-width: 336px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .section {
+    &:nth-of-type(2n) {
+      .contents {
+        align-items: center;
+        max-width: unset;
+      }
+
+      .content {
+        align-items: center;
+        padding-left: 0;
+      }
+
+      .banners {
+        justify-content: flex-start;
+        padding-left: 15.71%;
+        padding-right: unset;
+      }
+    }
+  }
+
+  .contents {
+    align-items: center;
+    max-width: unset;
+  }
+
+  .content {
+    align-items: center;
+    padding-right: 0;
+  }
+
+  .banners {
+    justify-content: flex-end;
+    padding-right: 15.71%;
+  }
+}
+
+@media screen and (max-width: 1250px) {
+  .section {
+    &:nth-of-type(2n) {
+      .banners {
+        padding-left: 10.71%;
+      }
+    }
+  }
+
+  .banners {
+    padding-right: 10.71%;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .section {
+    &:nth-of-type(2n) {
+      .banners {
+        padding-left: 3.71%;
+      }
+    }
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .imageArea {
+    min-width: 440px;
+  }
+
+  .image {
+    max-width: 90%;
+  }
+
+  .banners {
+    padding-right: 3.71%;
+    gap: 20px;
+  }
+
+  .banner {
+    width: calc(50% - 10px);
+    height: auto;
+
+    img {
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .section {
+    &:nth-of-type(2n) {
+      .body {
+        flex-direction: column;
+      }
+
+      .imageArea {
+        padding-left: 24px;
+        padding-right: unset;
+      }
+
+      .banners {
+        padding-right: unset;
+        justify-content: center;
+      }
+    }
+
+    &.step7 {
+      .caption {
+        max-width: 100%;
+      }
+    }
+  }
+
+  .body {
+    flex-direction: column;
+  }
+
+  .imageArea {
+    min-width: unset;
+    width: 100%;
+    padding-right: 24px;
+    margin-bottom: 64px;
+  }
+
+  .banners {
+    padding-right: unset;
+    justify-content: center;
+    padding: 0 24px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .section {
+    padding: 57px 0 32px;
+    margin-bottom: 80px;
+
+    &:first-child {
+      margin-top: 184px;
+    }
+
+    &:before {
+      content: "";
+      width: 87.46vw;
+    }
+
+    &:nth-of-type(2n) {
+      .imageArea {
+        padding-left: 15px;
+      }
+    }
+
+    &.step7 {
+      padding: 50px 0 137px;
+
+      .caption {
+        padding: 32px 26px 33px 29px;
+      }
+
+      .background {
+        width: 87.46vw;
+        aspect-ratio: 328/480;
+      }
+    }
+  }
+
+  .imageArea {
+    padding-right: 15px;
+  }
+
+  .image {
+    max-width: 100%;
+  }
+
+  .banners {
+    margin-top: 132px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .banner {
+    width: 100%;
+  }
+}

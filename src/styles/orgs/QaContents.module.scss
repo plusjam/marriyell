@@ -1,0 +1,18 @@
+.section {
+  padding: 62px 24px 0;
+}
+
+.container {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.body {
+}
+
+@media screen and (max-width: 768px) {
+  .section {
+    padding: 80px 15px 0;
+  }
+}

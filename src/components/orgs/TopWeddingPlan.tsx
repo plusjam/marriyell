@@ -2,9 +2,7 @@ import React from "react";
 import Styles from "../../styles/orgs/TopWeddingPlan.module.scss";
 import SectionHead from "../mols/SectionHead";
 import LinkToLists from "../atoms/LinkToLists";
-import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
 import { WEDDINGPLAN } from "../../textDate";
 import Link from "next/link";
 
@@ -51,7 +49,7 @@ const TopWeddingPlan = () => {
           </Swiper>
         </div>
         <div className={Styles.link}>
-          <LinkToLists href="https://lu-crea.fuwel.wedding/plan" target text="プラン一覧を見る" />
+          <LinkToLists href="/plan" target text="プラン一覧を見る" />
         </div>
       </div>
     </section>

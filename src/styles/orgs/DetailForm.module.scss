@@ -1,0 +1,58 @@
+.section {
+  padding: 80px 24px 40px;
+  color: #707070;
+}
+
+.container {
+  width: 100%;
+  max-width: 776px;
+  margin: 0 auto;
+}
+
+.head {
+  margin-bottom: 73px;
+}
+
+.title {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 40px;
+}
+
+.description {
+  text-align: center;
+  font-size: 14px;
+  line-height: 2;
+}
+
+.note {
+}
+
+.links {
+}
+
+.toLists {
+}
+
+.toDetail {
+}
+
+@media screen and (max-width: 768px) {
+  .section {
+    padding: 80px 15px;
+  }
+
+  .head {
+    margin-bottom: 42px;
+    padding: 0 32px;
+  }
+
+  .title {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+
+  .description {
+    font-size: 12px;
+  }
+}

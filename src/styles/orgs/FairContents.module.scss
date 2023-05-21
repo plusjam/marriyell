@@ -1,0 +1,136 @@
+.section {
+  padding: 80px 24px;
+  background: #edece7;
+  color: #707070;
+}
+
+.container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.head {
+  text-align: center;
+  font-size: 24px;
+  letter-spacing: 0.08em;
+  color: #707070;
+  padding-bottom: 20px;
+  margin-bottom: 40px;
+  position: relative;
+
+  &:before {
+    width: 53px;
+    height: 1px;
+    background-color: #a6a08a;
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.body {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px 70px;
+}
+
+.block {
+  width: calc(50% - 35px);
+  display: grid;
+  grid-template-areas: "image title" "image description";
+  grid-template-columns: 130px 1fr;
+  grid-template-rows: auto auto;
+  gap: 8px 16px;
+}
+
+.image {
+  grid-area: image;
+  width: 130px;
+  height: 130px;
+  background-color: #f4f4f4;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.title {
+  grid-area: title;
+  font-size: 18px;
+  letter-spacing: 0;
+  padding-bottom: 8.5px;
+  border-bottom: solid 1px #707070;
+  margin-bottom: 8.5px;
+}
+
+.description {
+  grid-area: description;
+  font-size: 14px;
+  line-height: 2;
+  letter-spacing: 0.06em;
+}
+
+@media screen and (max-width: 1024px) {
+  .section {
+    padding: 40px 15px 80px;
+  }
+
+  .head {
+    font-size: 18px;
+    letter-spacing: 0.06em;
+    margin-bottom: 30px;
+
+    &:before {
+      width: 42px;
+    }
+  }
+
+  .title {
+    font-size: 16px;
+    margin-bottom: 0px;
+  }
+
+  .description {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .body {
+    justify-content: center;
+    gap: 25px 20px;
+  }
+
+  .block {
+    width: calc(33.33% - 20px);
+    grid-template-areas: "image" "title";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    gap: 8px;
+  }
+
+  .image {
+    width: 100px;
+    height: 100px;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .title {
+    font-size: 12px;
+    letter-spacing: 0.06;
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    text-align: center;
+  }
+
+  .description {
+    display: none;
+  }
+}

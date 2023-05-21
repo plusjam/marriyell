@@ -1,7 +1,8 @@
 import Motion from "@/components/layouts/Motion";
 import ContactFormBrochure from "@/components/orgs/ContactFormBrochure";
+import { META } from "@/textDate/head";
 import Head from "next/head";
-import { atom } from "recoil";
+import { useState } from "react";
 
 export type ContactBrochureData = {
   name: string;
@@ -13,9 +14,8 @@ export type ContactBrochureData = {
   inquiry: string;
 };
 
-export const contactBrochureData = atom<ContactBrochureData>({
-  key: "contactData",
-  default: {
+export default function Home() {
+  const [contactBrochureData, setContactBrochureData] = useState<ContactBrochureData>({
     name: "",
     furigana: "",
     phone: "",
@@ -23,19 +23,21 @@ export const contactBrochureData = atom<ContactBrochureData>({
     zipcode: "",
     address: "",
     inquiry: "",
-  },
-});
+  });
 
-export default function Home() {
+  const updateContactBrochureData = (data: ContactBrochureData) => {
+    setContactBrochureData(data);
+  };
+
   return (
     <>
       <Motion>
         <Head>
-          <title>lu CREA ル・クレア｜資料請求</title>
+          <title>{META.contactBrochure.title}</title>
         </Head>
 
         <main>
-          <ContactFormBrochure />
+          <ContactFormBrochure contactBrochureData={contactBrochureData} updateContactBrochureData={updateContactBrochureData} />
         </main>
       </Motion>
     </>

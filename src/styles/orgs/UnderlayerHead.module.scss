@@ -13,22 +13,45 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  z-index: 1;
 }
 
 .en {
   font-size: 32px;
   text-align: center;
   letter-spacing: 0.1em;
-  padding: 0px 20px;
+  padding: 0px 20px 27px;
+  position: relative;
+  margin-bottom: 24px;
+  font-weight: normal;
+
+  &:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: block;
+    width: 86px;
+    height: 1px;
+    background-color: #fff;
+  }
 }
 
 .ja {
   font-size: 14px;
+  font-weight: normal;
+
+  &.only {
+    font-size: 32px;
+  }
 }
 
 .picture {
+  background-color: #000;
+  display: block;
   img {
+    opacity: 0.8;
     width: 100%;
     height: auto;
   }

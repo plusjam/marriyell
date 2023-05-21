@@ -67,7 +67,7 @@ const Header = (props: Props) => {
         <div className={Styles.nav}>
           {navList.map((item, index) => {
             return (
-              <Link href={item.href} key={index} className={Styles.navItem} target={item?.blank ? "_blank" : ""}>
+              <Link href={item.href} key={index} className={Styles.navItem} target={""}>
                 {item.title}
               </Link>
             );

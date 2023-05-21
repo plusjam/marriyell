@@ -13,7 +13,7 @@ const LinkToInfo = (props: Props) => {
   return (
     <>
       {type === "warning" && (
-        <Link className={Styles.contentLink} href={""}>
+        <Link className={Styles.contentLink} href={"/first"}>
           <div className={Styles.inner}>
             <div className={Styles.image}>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
@@ -29,7 +29,7 @@ const LinkToInfo = (props: Props) => {
       )}
 
       {type === "heart" && (
-        <Link className={Styles.contentLink} href={""}>
+        <Link className={Styles.contentLink} href={"/for-brides"}>
           <div className={Styles.inner}>
             <div className={Styles.image}>
               <svg id="icon_heart" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17">
@@ -48,7 +48,7 @@ const LinkToInfo = (props: Props) => {
       )}
 
       {type === "member" && (
-        <Link className={Styles.contentLink} href={""}>
+        <Link className={Styles.contentLink} href={"/for-guest"}>
           <div className={Styles.inner}>
             <div className={Styles.image}>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
@@ -64,7 +64,7 @@ const LinkToInfo = (props: Props) => {
       )}
 
       {type === "question" && (
-        <Link className={Styles.contentLink} href={""}>
+        <Link className={Styles.contentLink} href={"/faq"}>
           <div className={Styles.inner}>
             <div className={Styles.image}>
               <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17">

@@ -1,6 +1,6 @@
 .section {
   color: #222;
-  padding: 0 24px;
+  padding: 0 24px 80px;
 }
 
 .container {
@@ -11,7 +11,6 @@
 
 .body {
   margin-top: 40px;
-  margin-bottom: 132px;
 }
 
 .selects {
@@ -111,7 +110,7 @@
 
 @media screen and (max-width: 768px) {
   .section {
-    padding: 0;
+    padding: 0 0 40px;
   }
 
   .selects {
@@ -139,6 +138,7 @@
 
   .nothing {
     font-size: 14px;
+    padding-bottom: 40px;
   }
 
   .image {

@@ -1,4 +1,33 @@
 .calendar {
   color: #444;
   padding: 12px 12px 0;
+  position: relative;
+}
+
+.next,
+.prev {
+  display: none;
+  font-size: 10px;
+  color: #707070;
+  letter-spacing: 0.04em;
+}
+
+@media screen and (max-width: 768px) {
+  .calendar {
+    padding: 20px 10px;
+  }
+
+  .next {
+    display: block;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+
+  .prev {
+    display: block;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
 }
