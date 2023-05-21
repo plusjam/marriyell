@@ -111,22 +111,10 @@ export const getStaticPaths = async () => {
   };
 };
 
-// export const getStaticPaths = async () => {
-//   const res = await fetch(`http://localhost:${process.env.PORT}/api/news/1`);
-//   const posts: { category: NewsCategory[]; contents: NewsContents[] } = await res.json();
-
-//   const paths = posts.contents.map((post: any) => ({
-//     params: { id: "1" },
-//     // params: { id: post.id.toString() },
-//   }));
-
-//   return { paths, fallback: false };
-// };
-
-// export const getStaticProps: GetStaticProps = async (context) => {
-//   const id = context.params?.page;
-//   const res = await fetch(`http://localhost:${process.env.PORT}/api/news/all/${id}`);
-//   const post: NewsContents[] = await res.json();
-
-//   return { props: { post } };
-// };
+export const getStaticProps: GetStaticProps = async () => {
+  return {
+    props: {
+      post: [],
+    },
+  };
+};
