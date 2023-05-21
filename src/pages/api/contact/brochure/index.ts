@@ -100,6 +100,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     //   );
     // });
   } catch (e) {
-    res.status(500).json({ statusCode: 500, message: e.message });
+    res.status(500).json({ statusCode: 500, message: "e.message" });
   }
 }
