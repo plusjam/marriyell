@@ -2,62 +2,53 @@ import Styles from "@/styles/orgs/ContactForm.module.scss";
 import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useRecoilState } from "recoil";
-import { ContactData, contactData } from "../../pages/_app";
 import { Step } from "../orgs/ContactForm";
-import { ContactReservationData, contactReservationData } from "@/pages/contact/reservation";
+import { ContactReservationData } from "@/pages/contact/reservation";
+import { Status } from "../../../libs/useApi";
 
 type Props = {
   step2: boolean;
   handleStep: (step: Step) => void;
+  contactReservationData: ContactReservationData;
+  handleStatus: (status: Status) => void;
 };
 
 const ContactFormReservationConfirm = (props: Props) => {
-  const { step2, handleStep } = props;
+  const { step2, handleStep, contactReservationData, handleStatus } = props;
 
-  const {
-    register,
-    handleSubmit,
-    getValues,
-    formState: { errors },
-  } = useForm<ContactReservationData>({
+  const { register, handleSubmit } = useForm<ContactReservationData>({
     mode: "onChange",
   });
 
-  const [data, setData] = useRecoilState(contactReservationData);
-
   // 2023-05-18 の形をyyyy年MM月dd日に変換
-  const date = data.date.split("-");
+  const date = contactReservationData.date.split("-");
   const dateStr = `${date[0]}年${date[1]}月${date[2]}日`;
 
-  const onSubmit: SubmitHandler<ContactReservationData> = async (data) => {
-    alert("送信");
+  const onSubmit: SubmitHandler<ContactReservationData> = async () => {
+    try {
+      handleStep({ step1: false, step2: false, step3: true });
+      handleStatus("loading");
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
 
-    // await fetch("/api/contact", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(data),
-    // })
-    //   .then((res) => {
-    //     if (res.status === 200) {
-    //       // Router.push(`/contact/thanks`);
-    //       handleStep({ step1: false, step2: false, step3: true });
-    //     // ページトップにスムーズにスクロール
-    // window.scrollTo({
-    //   top: 0,
-    //   behavior: "smooth",
-    // });
-    //     } else {
-    //       // Router.push(`/contact/error`);
-    //     }
-    //   })
-    //   .then((data) => console.log("データ", data))
-    //   .catch((err) => console.log("エラーerr", err));
+      const res = await fetch("/api/contact/reservation", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(contactReservationData),
+      });
+      const json = await res.json();
+
+      handleStatus("success");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const onBack = () => {
-    setData(data);
     handleStep({ step1: true, step2: false, step3: false });
 
     // ページトップにスムーズにスクロール
@@ -65,15 +56,7 @@ const ContactFormReservationConfirm = (props: Props) => {
       top: 0,
       behavior: "smooth",
     });
-
-    // Router.push(`/contact/`);
   };
-
-  // useEffect(() => {
-  //   if ((data.name === "", data.email === "", data.furigana === "", data.inquiry === "",  data.phone === "")) {
-  //     Router.push("/contact");
-  //   }
-  // }, []);
 
   return (
     <section className={step2 ? `${Styles.section} ${Styles.on}` : Styles.section}>
@@ -82,20 +65,13 @@ const ContactFormReservationConfirm = (props: Props) => {
           <div className={Styles.head}>
             <p className={Styles.description}>こちらの内容でよろしければ送信ボタンを押してください。</p>
           </div>
-          {/* <div className={Styles.preview}>
-            <p className={"check-text"}>
-              こちらの内容でよろしければ
-              <br className={"sp"} />
-              送信ボタンを押してください。
-            </p>
-          </div> */}
           <div className={Styles.inputs}>
             <div className={Styles.inputBody}>
               <label className={`${Styles.label} ${Styles.require}`} htmlFor="name">
                 お名前
               </label>
               <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                <input disabled className={Styles.input} id="name" {...register("name", {})} value={data.name} />
+                <input disabled className={Styles.input} id="name" {...register("name", {})} value={contactReservationData.name} />
               </div>
             </div>
             <div className={Styles.inputBody}>
@@ -103,7 +79,7 @@ const ContactFormReservationConfirm = (props: Props) => {
                 お名前（フリガナ）
               </label>
               <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                <input disabled className={Styles.input} id="furigana" {...register("furigana", {})} value={data.furigana} />
+                <input disabled className={Styles.input} id="furigana" {...register("furigana", {})} value={contactReservationData.furigana} />
               </div>
             </div>
             <div className={Styles.inputBody}>
@@ -111,7 +87,7 @@ const ContactFormReservationConfirm = (props: Props) => {
                 電話番号
               </label>
               <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                <input disabled className={Styles.input} id="phone" {...register("phone", {})} value={data.phone} />
+                <input disabled className={Styles.input} id="phone" {...register("phone", {})} value={contactReservationData.phone} />
               </div>
             </div>
             <div className={Styles.inputBody}>
@@ -119,7 +95,7 @@ const ContactFormReservationConfirm = (props: Props) => {
                 メールアドレス
               </label>
               <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                <input disabled className={Styles.input} id="email" {...register("email", {})} value={data.email} />
+                <input disabled className={Styles.input} id="email" {...register("email", {})} value={contactReservationData.email} />
               </div>
             </div>
             <div className={`${Styles.inputBlockGrid} ${Styles.confirm}`}>
@@ -141,7 +117,7 @@ const ContactFormReservationConfirm = (props: Props) => {
                 <div className={Styles.inputBlockFlex}>
                   <div className={Styles.inputBlockWrap}>
                     <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                      <input disabled className={Styles.input} id="time" {...register("hh", {})} value={`${data.hh}時${data.mm}分`} />
+                      <input disabled className={Styles.input} id="time" {...register("hh", {})} value={`${contactReservationData.hh}時${contactReservationData.mm}分`} />
                     </div>
                   </div>
                 </div>
@@ -161,7 +137,7 @@ const ContactFormReservationConfirm = (props: Props) => {
                 ご希望・ご質問など
               </label>
               <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                <textarea className={`${Styles.input} ${Styles.inputInquiry}`} id="inquiry" {...register("inquiry", {})} disabled value={data.inquiry}></textarea>
+                <textarea className={`${Styles.input} ${Styles.inputInquiry}`} id="inquiry" {...register("inquiry", {})} disabled value={contactReservationData.inquiry}></textarea>
               </div>
             </div>
           </div>

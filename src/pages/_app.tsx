@@ -12,30 +12,10 @@ import Header from "@/components/orgs/Header";
 import HamburgerMenu from "@/components/orgs/HamburgerMenu";
 import Footer from "@/components/orgs/Footer";
 import useNav from "../../libs/useNav";
-import { RecoilRoot, atom } from "recoil";
 import "swiper/css";
-import { use, useEffect } from "react";
+import { useEffect } from "react";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import FixedLinks from "@/components/orgs/FixedLinks";
-
-export type ContactData = {
-  name: string;
-  furigana: string;
-  phone: string;
-  email: string;
-  inquiry: string;
-};
-
-export const contactData = atom<ContactData>({
-  key: "contactData",
-  default: {
-    name: "",
-    furigana: "",
-    phone: "",
-    email: "",
-    inquiry: "",
-  },
-});
 
 export const AppTrigger = ScrollTrigger;
 
@@ -73,18 +53,16 @@ export default function App({ Component, pageProps }: AppProps) {
         ></meta>
       </Head>
 
-      <RecoilRoot>
-        <AnimatePresence mode="wait" initial>
-          <Pagination location={location} />
-          <Animation location={location}>
-            <Header {...childProps} isTop={location === "/"} />
-            <HamburgerMenu {...childProps} />
-            <FixedLinks />
-            <Component {...pageProps} />
-            <Footer />
-          </Animation>
-        </AnimatePresence>
-      </RecoilRoot>
+      <AnimatePresence mode="wait" initial>
+        <Pagination location={location} />
+        <Animation location={location}>
+          <Header {...childProps} isTop={location === "/"} />
+          <HamburgerMenu {...childProps} />
+          <FixedLinks />
+          <Component {...pageProps} />
+          <Footer />
+        </Animation>
+      </AnimatePresence>
     </>
   );
 }

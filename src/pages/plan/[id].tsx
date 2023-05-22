@@ -21,8 +21,9 @@ import WeddingPlan from "@/components/orgs/WeddingPlan";
 import { PlanLists } from "../api/plan";
 import PlanDetail from "@/components/orgs/PlanDetail";
 import PlanContents from "@/components/orgs/PlanContents";
-import DetailForm from "@/components/orgs/DetailForm";
+import DetailForm from "@/components/orgs/DetailFairForm";
 import Process from "@/components/orgs/Process";
+import DetailPlanForm from "@/components/orgs/DetailPlanForm";
 
 type Props = {
   reportLists: ReportContents[];
@@ -76,7 +77,7 @@ export default function Home(props: Props) {
         <main>
           <PlanDetail content={planList} />
           <PlanContents />
-          <DetailForm title={planList.title} />
+          <DetailPlanForm title={planList.title} />
           <Process />
           <WeekendFair lists={weekendLists} weekend={selectedWeekend} handleSelect={handleWeekendSelect} />
           <TopWeddingReport contents={reportLists} openModal={openModal} />

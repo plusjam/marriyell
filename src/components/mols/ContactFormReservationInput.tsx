@@ -1,4 +1,4 @@
-import { ContactReservationData, contactReservationData } from "@/pages/contact/reservation";
+import { ContactReservationData } from "@/pages/contact/reservation";
 import Styles from "@/styles/orgs/ContactForm.module.scss";
 import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -9,10 +9,12 @@ import { useRef } from "react";
 type Props = {
   step1: boolean;
   handleStep: (step: Step) => void;
+  contactReservationData: ContactReservationData;
+  updateContactReservationData: (data: ContactReservationData) => void;
 };
 
 const ContactFormReservationInput = (props: Props) => {
-  const { step1, handleStep } = props;
+  const { step1, handleStep, contactReservationData, updateContactReservationData } = props;
 
   const clickIcon = () => {
     const date = document.getElementById("date");
@@ -27,8 +29,6 @@ const ContactFormReservationInput = (props: Props) => {
   } = useForm<ContactReservationData>({
     mode: "onChange",
   });
-
-  const [data, setData] = useRecoilState(contactReservationData);
 
   const validatePhone = (value: string) => {
     let boolean;
@@ -50,7 +50,7 @@ const ContactFormReservationInput = (props: Props) => {
   };
 
   const onSubmit: SubmitHandler<ContactReservationData> = (data) => {
-    setData(data);
+    updateContactReservationData(data);
     handleStep({ step1: false, step2: true, step3: false });
 
     // ページトップにスムーズにスクロール
@@ -70,13 +70,6 @@ const ContactFormReservationInput = (props: Props) => {
               <br /> 「<span className={Styles.color}>※</span>」の項目は必須事項です。
             </p>
           </div>
-          {/* <div className={Styles.preview}>
-            <p className={"check-text"}>
-              こちらの内容でよろしければ
-              <br className={"sp"} />
-              送信ボタンを押してください。
-            </p>
-          </div> */}
           <div className={Styles.inputs}>
             <div className={Styles.inputBody}>
               <label className={`${Styles.label} ${Styles.require}`} htmlFor="name">
@@ -90,11 +83,11 @@ const ContactFormReservationInput = (props: Props) => {
                     required: rules.required,
                     maxLength: rules.maxLength,
                     onChange: (e) => {
-                      setData({ ...data, name: e.target.value });
+                      updateContactReservationData({ ...contactReservationData, name: e.target.value });
                     },
                   })}
                   placeholder="例　山田　花子"
-                  value={data.name}
+                  value={contactReservationData.name}
                 />
                 {errors.name && <span className={Styles.error}>{errors.name.message as string}</span>}
               </div>
@@ -112,11 +105,11 @@ const ContactFormReservationInput = (props: Props) => {
                     maxLength: rules.maxLength,
                     pattern: rules.furiganaPattern,
                     onChange: (e) => {
-                      setData({ ...data, furigana: e.target.value });
+                      updateContactReservationData({ ...contactReservationData, furigana: e.target.value });
                     },
                   })}
                   placeholder="例　ヤマダ　ハナコ"
-                  value={data.furigana}
+                  value={contactReservationData.furigana}
                 />
                 {errors.furigana && <span className={Styles.error}>{errors.furigana.message as string}</span>}
               </div>
@@ -135,11 +128,11 @@ const ContactFormReservationInput = (props: Props) => {
                       return validatePhone(value) || rules.phone;
                     },
                     onChange: (e) => {
-                      setData({ ...data, phone: e.target.value });
+                      updateContactReservationData({ ...contactReservationData, phone: e.target.value });
                     },
                   })}
                   placeholder="例　09012345678"
-                  value={data.phone}
+                  value={contactReservationData.phone}
                 />
                 {errors.phone && <span className={Styles.error}>{errors.phone.message as string}</span>}
               </div>
@@ -156,11 +149,11 @@ const ContactFormReservationInput = (props: Props) => {
                     required: rules.required,
                     pattern: rules.emailPattern,
                     onChange: (e) => {
-                      setData({ ...data, email: e.target.value });
+                      updateContactReservationData({ ...contactReservationData, email: e.target.value });
                     },
                   })}
                   placeholder="例　abcd@lucrea"
-                  value={data.email}
+                  value={contactReservationData.email}
                 />
                 {errors.email && <span className={Styles.error}>{errors.email.message as string}</span>}
               </div>
@@ -178,12 +171,11 @@ const ContactFormReservationInput = (props: Props) => {
                       {...register("date", {
                         required: rules.required,
                         onChange: (e) => {
-                          console.log(e.target.value);
-                          setData({ ...data, date: e.target.value });
+                          updateContactReservationData({ ...contactReservationData, date: e.target.value });
                         },
                       })}
                       type="date"
-                      value={data.date}
+                      value={contactReservationData.date}
                     />
                     {errors.date && <span className={Styles.error}>{errors.date.message as string}</span>}
                   </div>
@@ -202,7 +194,7 @@ const ContactFormReservationInput = (props: Props) => {
                         {...register("hh", {
                           required: rules.required,
                           onChange: (e) => {
-                            setData({ ...data, hh: e.target.value });
+                            updateContactReservationData({ ...contactReservationData, hh: e.target.value });
                           },
                         })}
                         className={`${Styles.input} ${Styles.select}`}
@@ -232,7 +224,7 @@ const ContactFormReservationInput = (props: Props) => {
                         {...register("mm", {
                           required: rules.required,
                           onChange: (e) => {
-                            setData({ ...data, hh: e.target.value });
+                            updateContactReservationData({ ...contactReservationData, hh: e.target.value });
                           },
                         })}
                         className={`${Styles.input} ${Styles.select}`}
@@ -267,15 +259,14 @@ const ContactFormReservationInput = (props: Props) => {
                   id="inquiry"
                   {...register("inquiry", {
                     onChange: (e) => {
-                      setData({ ...data, inquiry: e.target.value });
+                      updateContactReservationData({ ...contactReservationData, inquiry: e.target.value });
                     },
                   })}
                   placeholder="お問い合わせ内容をご記載ください。"
                   cols={50}
                   rows={5}
-                >
-                  {data.inquiry}
-                </textarea>
+                  value={contactReservationData.inquiry}
+                ></textarea>
                 {errors.inquiry && <span className={Styles.error}>{errors.inquiry.message as string}</span>}
               </div>
             </div>

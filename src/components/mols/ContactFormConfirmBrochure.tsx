@@ -3,43 +3,45 @@ import Styles from "@/styles/orgs/ContactForm.module.scss";
 import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Step } from "../orgs/ContactForm";
+import { Status } from "../../../libs/useApi";
 
 type Props = {
   step2: boolean;
   handleStep: (step: Step) => void;
-  option: boolean;
   contactBrochureData: ContactBrochureData;
+  handleStatus: (status: Status) => void;
 };
 
 const ContactFormConfirmBrochure = (props: Props) => {
-  const { step2, handleStep, option, contactBrochureData } = props;
+  const { step2, handleStep, contactBrochureData, handleStatus } = props;
 
   const {
     register,
     handleSubmit,
-    getValues,
     formState: { errors },
   } = useForm<ContactBrochureData>({
     mode: "onChange",
   });
 
-  const onSubmit: SubmitHandler<ContactBrochureData> = async (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<ContactBrochureData> = async () => {
     try {
+      handleStep({ step1: false, step2: false, step3: true });
+      handleStatus("loading");
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+
       const res = await fetch("/api/contact/brochure", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(contactBrochureData),
       });
       const json = await res.json();
-      console.log(json);
 
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
+      handleStatus("success");
     } catch (error) {
       console.log(error);
     }
@@ -53,15 +55,7 @@ const ContactFormConfirmBrochure = (props: Props) => {
       top: 0,
       behavior: "smooth",
     });
-
-    // Router.push(`/contact/`);
   };
-
-  // useEffect(() => {
-  //   if ((data.name === "", data.email === "", data.furigana === "", data.inquiry === "",  data.phone === "")) {
-  //     Router.push("/contact");
-  //   }
-  // }, []);
 
   return (
     <section className={step2 ? `${Styles.section} ${Styles.on}` : Styles.section}>
@@ -70,7 +64,7 @@ const ContactFormConfirmBrochure = (props: Props) => {
           <div className={Styles.head}>
             <p className={Styles.description}>こちらの内容でよろしければ送信ボタンを押してください。</p>
           </div>
-          {option && (
+          {contactBrochureData.type === "download" && (
             <div className={Styles.inputs}>
               <div className={Styles.inputBody}>
                 <label className={`${Styles.label} ${Styles.require}`} htmlFor="name">
@@ -109,7 +103,7 @@ const ContactFormConfirmBrochure = (props: Props) => {
                 </div>
               </div>
               <div className={`${Styles.inputBody}`}>
-                <label className={`${Styles.label} ${Styles.require}`} htmlFor="inquiry">
+                <label className={`${Styles.label}`} htmlFor="inquiry">
                   ご希望・ご質問など
                 </label>
                 <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
@@ -130,7 +124,7 @@ const ContactFormConfirmBrochure = (props: Props) => {
           )}
 
           {/*  */}
-          {!option && (
+          {contactBrochureData.type === "post" && (
             <div className={Styles.inputs}>
               <div className={Styles.inputBody}>
                 <label className={`${Styles.label} ${Styles.require}`} htmlFor="name">
@@ -187,7 +181,7 @@ const ContactFormConfirmBrochure = (props: Props) => {
                 </div>
               </div>
               <div className={`${Styles.inputBody}`}>
-                <label className={`${Styles.label} ${Styles.require}`} htmlFor="inquiry">
+                <label className={`${Styles.label}`} htmlFor="inquiry">
                   ご希望・ご質問など
                 </label>
                 <div className={`${Styles.inputBlock} ${Styles.confirm}`}>

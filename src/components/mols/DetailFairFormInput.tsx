@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import Styles from "@/styles/orgs/ContactForm.module.scss";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import Link from "next/link";
+import { Status } from "../../../libs/useApi";
 
-type ContactData = {
+export type ContactDataDetailFair = {
   title: string;
   name: string;
-  type: "direct" | "online" | "other" | "";
   furigana: string;
   phone: string;
   email: string;
@@ -17,25 +17,23 @@ type ContactData = {
 
 type Props = {
   title: string;
+  handleStatus: (status: Status) => void;
 };
 
-const PlanDetailFormInput = (props: Props) => {
-  const { title } = props;
+const DetailFairFormInput = (props: Props) => {
+  const { title, handleStatus } = props;
 
   const {
     register,
     handleSubmit,
-    getValues,
     formState: { errors },
-    control,
-  } = useForm<ContactData>({
+  } = useForm<ContactDataDetailFair>({
     mode: "onChange",
   });
 
-  const [data, setData] = useState<ContactData>({
+  const [data, setData] = useState<ContactDataDetailFair>({
     title: title.replaceAll("<br>", " "),
     name: "",
-    type: "",
     furigana: "",
     phone: "",
     email: "",
@@ -63,14 +61,30 @@ const PlanDetailFormInput = (props: Props) => {
     phone: "電話番号を正しく入力してください。",
   };
 
-  const onSubmit: SubmitHandler<ContactData> = (data) => {
-    console.log(data);
-    // setData(data);
-    // // ページトップにスムーズにスクロール
-    // window.scrollTo({
-    //   top: 0,
-    //   behavior: "smooth",
-    // });
+  const onSubmit: SubmitHandler<ContactDataDetailFair> = async (data) => {
+    try {
+      // トップからreservationまでの高さを取得
+      const reservationTopPosition = document.getElementById("reservation") as HTMLElement;
+      const reservationTop = reservationTopPosition?.getBoundingClientRect().top + window.pageYOffset;
+
+      // reservationTopの位置までスクロール
+      window.scrollTo({ top: reservationTop - 100, behavior: "smooth" });
+
+      if (handleStatus) handleStatus("loading");
+
+      const res = await fetch(`/api/contact/fair`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ...data, title: title.replaceAll("<br>", " ") }),
+      });
+      const json = await res.json();
+
+      if (handleStatus) handleStatus("success");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -104,33 +118,6 @@ const PlanDetailFormInput = (props: Props) => {
               value={data.name}
             />
             {errors.name && <span className={Styles.error}>{errors.name.message as string}</span>}
-          </div>
-        </div>
-        <div className={Styles.inputBody}>
-          <div className={`${Styles.label} ${Styles.require}`}>相談方法</div>
-          <div className={Styles.inputBlock}>
-            <Controller
-              control={control}
-              name="type"
-              rules={{ required: rules.required }}
-              render={({ field: { onChange, value } }) => (
-                <div className={Styles.radioBlock}>
-                  <label className={Styles.radioLabel} htmlFor="direct">
-                    <input className={Styles.radioInput} checked={value === "direct"} id="direct" type="radio" value="direct" onChange={onChange} />
-                    <div className={Styles.labelText}>来館して直接相談する</div>
-                  </label>
-                  <label className={Styles.radioLabel} htmlFor="online">
-                    <input className={Styles.radioInput} checked={value === "online"} id="online" type="radio" value="online" onChange={onChange} />
-                    <div className={Styles.labelText}>オンラインで相談する</div>
-                  </label>
-                  <label className={Styles.radioLabel} htmlFor="other">
-                    <input className={Styles.radioInput} checked={value === "other"} id="other" type="radio" value="other" onChange={onChange} />
-                    <div className={Styles.labelText}>その他（電話、メールなど）</div>
-                  </label>
-                </div>
-              )}
-            ></Controller>
-            {errors.type && <span className={Styles.error}>{errors.type.message as string}</span>}
           </div>
         </div>
         <div className={Styles.inputBody}>
@@ -212,7 +199,6 @@ const PlanDetailFormInput = (props: Props) => {
                   {...register("date", {
                     required: rules.required,
                     onChange: (e) => {
-                      console.log(e.target.value);
                       setData({ ...data, date: e.target.value });
                     },
                   })}
@@ -236,7 +222,6 @@ const PlanDetailFormInput = (props: Props) => {
                   {...register("time", {
                     required: rules.required,
                     onChange: (e) => {
-                      console.log(e.target.value);
                       setData({ ...data, time: e.target.value });
                     },
                   })}
@@ -276,7 +261,7 @@ const PlanDetailFormInput = (props: Props) => {
           </div>
         </div>
         <div className={`${Styles.inputBody}`}>
-          <label className={`${Styles.label} ${Styles.require}`} htmlFor="inquiry">
+          <label className={`${Styles.label}`} htmlFor="inquiry">
             ご希望・ご質問など
           </label>
           <div className={Styles.inputBlock}>
@@ -284,7 +269,6 @@ const PlanDetailFormInput = (props: Props) => {
               className={`${Styles.input} ${Styles.inputInquiry}`}
               id="inquiry"
               {...register("inquiry", {
-                required: rules.required,
                 onChange: (e) => {
                   setData({ ...data, inquiry: e.target.value });
                 },
@@ -322,4 +306,4 @@ const PlanDetailFormInput = (props: Props) => {
   );
 };
 
-export default PlanDetailFormInput;
+export default DetailFairFormInput;

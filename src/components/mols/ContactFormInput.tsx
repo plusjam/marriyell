@@ -1,17 +1,18 @@
+import { ContactData } from "@/pages/contact";
 import Styles from "@/styles/orgs/ContactForm.module.scss";
 import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useRecoilState } from "recoil";
-import { ContactData, contactData } from "../../pages/_app";
 import { Step } from "../orgs/ContactForm";
 
 type Props = {
   step1: boolean;
   handleStep: (step: Step) => void;
+  contactData: ContactData;
+  updateContactData: (data: ContactData) => void;
 };
 
 const ContactFormInput = (props: Props) => {
-  const { step1, handleStep } = props;
+  const { step1, handleStep, contactData, updateContactData } = props;
 
   const {
     register,
@@ -21,8 +22,6 @@ const ContactFormInput = (props: Props) => {
   } = useForm<ContactData>({
     mode: "onChange",
   });
-
-  const [data, setData] = useRecoilState(contactData);
 
   const validatePhone = (value: string) => {
     let boolean;
@@ -44,7 +43,7 @@ const ContactFormInput = (props: Props) => {
   };
 
   const onSubmit: SubmitHandler<ContactData> = (data) => {
-    setData(data);
+    updateContactData(data);
     handleStep({ step1: false, step2: true, step3: false });
 
     // ページトップにスムーズにスクロール
@@ -77,11 +76,11 @@ const ContactFormInput = (props: Props) => {
                     required: rules.required,
                     maxLength: rules.maxLength,
                     onChange: (e) => {
-                      setData({ ...data, name: e.target.value });
+                      updateContactData({ ...contactData, name: e.target.value });
                     },
                   })}
                   placeholder="例　山田　花子"
-                  value={data.name}
+                  value={contactData.name}
                 />
                 {errors.name && <span className={Styles.error}>{errors.name.message as string}</span>}
               </div>
@@ -99,11 +98,11 @@ const ContactFormInput = (props: Props) => {
                     maxLength: rules.maxLength,
                     pattern: rules.furiganaPattern,
                     onChange: (e) => {
-                      setData({ ...data, furigana: e.target.value });
+                      updateContactData({ ...contactData, furigana: e.target.value });
                     },
                   })}
                   placeholder="例　ヤマダ　ハナコ"
-                  value={data.furigana}
+                  value={contactData.furigana}
                 />
                 {errors.furigana && <span className={Styles.error}>{errors.furigana.message as string}</span>}
               </div>
@@ -122,11 +121,11 @@ const ContactFormInput = (props: Props) => {
                       return validatePhone(value) || rules.phone;
                     },
                     onChange: (e) => {
-                      setData({ ...data, phone: e.target.value });
+                      updateContactData({ ...contactData, phone: e.target.value });
                     },
                   })}
                   placeholder="例　09012345678"
-                  value={data.phone}
+                  value={contactData.phone}
                 />
                 {errors.phone && <span className={Styles.error}>{errors.phone.message as string}</span>}
               </div>
@@ -143,11 +142,11 @@ const ContactFormInput = (props: Props) => {
                     required: rules.required,
                     pattern: rules.emailPattern,
                     onChange: (e) => {
-                      setData({ ...data, email: e.target.value });
+                      updateContactData({ ...contactData, email: e.target.value });
                     },
                   })}
                   placeholder="例　abcd@lucrea"
-                  value={data.email}
+                  value={contactData.email}
                 />
                 {errors.email && <span className={Styles.error}>{errors.email.message as string}</span>}
               </div>
@@ -163,15 +162,14 @@ const ContactFormInput = (props: Props) => {
                   {...register("inquiry", {
                     required: rules.required,
                     onChange: (e) => {
-                      setData({ ...data, inquiry: e.target.value });
+                      updateContactData({ ...contactData, inquiry: e.target.value });
                     },
                   })}
                   placeholder="お問い合わせ内容をご記載ください。"
                   cols={50}
                   rows={5}
-                >
-                  {data.inquiry}
-                </textarea>
+                  value={contactData.inquiry}
+                ></textarea>
                 {errors.inquiry && <span className={Styles.error}>{errors.inquiry.message as string}</span>}
               </div>
             </div>

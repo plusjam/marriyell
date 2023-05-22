@@ -5,6 +5,7 @@ import Head from "next/head";
 import { useState } from "react";
 
 export type ContactBrochureData = {
+  type: "download" | "post";
   name: string;
   furigana: string;
   phone: string;
@@ -16,6 +17,7 @@ export type ContactBrochureData = {
 
 export default function Home() {
   const [contactBrochureData, setContactBrochureData] = useState<ContactBrochureData>({
+    type: "download",
     name: "",
     furigana: "",
     phone: "",

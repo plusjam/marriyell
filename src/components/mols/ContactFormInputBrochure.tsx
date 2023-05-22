@@ -7,14 +7,12 @@ import { Step } from "../orgs/ContactForm";
 type Props = {
   step1: boolean;
   handleStep: (step: Step) => void;
-  option: boolean;
-  handleOption: (option: boolean) => void;
   contactBrochureData: ContactBrochureData;
   updateContactBrochureData: (data: ContactBrochureData) => void;
 };
 
 const ContactFormInputBrochure = (props: Props) => {
-  const { step1, handleStep, option, handleOption, contactBrochureData, updateContactBrochureData } = props;
+  const { step1, handleStep, contactBrochureData, updateContactBrochureData } = props;
 
   const {
     register,
@@ -46,7 +44,7 @@ const ContactFormInputBrochure = (props: Props) => {
   };
 
   const onSubmit: SubmitHandler<ContactBrochureData> = (data) => {
-    updateContactBrochureData(data);
+    updateContactBrochureData(contactBrochureData);
     handleStep({ step1: false, step2: true, step3: false });
 
     // ページトップにスムーズにスクロール
@@ -81,12 +79,12 @@ const ContactFormInputBrochure = (props: Props) => {
             <dl className={Styles.optionInner}>
               <dt className={`${Styles.label} ${Styles.require}`}>資料請求方法</dt>
               <dd className={Styles.radio}>
-                <label className={Styles.radioLabel} onClick={() => handleOption(true)}>
-                  <input className={Styles.radioInput} type="radio" name="option" checked={option} />
+                <label className={Styles.radioLabel} onClick={() => updateContactBrochureData({ ...contactBrochureData, type: "download" })}>
+                  <input className={Styles.radioInput} type="radio" name="option" checked={contactBrochureData.type === "download"} />
                   <span className={Styles.radioText}>ダウンロード</span>
                 </label>
-                <label className={Styles.radioLabel} onClick={() => handleOption(false)}>
-                  <input className={Styles.radioInput} type="radio" name="option" checked={!option} />
+                <label className={Styles.radioLabel} onClick={() => updateContactBrochureData({ ...contactBrochureData, type: "post" })}>
+                  <input className={Styles.radioInput} type="radio" name="option" checked={contactBrochureData.type === "post"} />
                   <span className={Styles.radioText}>郵送</span>
                 </label>
               </dd>
@@ -99,7 +97,7 @@ const ContactFormInputBrochure = (props: Props) => {
           </div>
 
           {/* option ===  true*/}
-          {option && (
+          {contactBrochureData.type === "download" && (
             <div className={Styles.inputs}>
               <div className={Styles.inputBody}>
                 <label className={`${Styles.label} ${Styles.require}`} htmlFor="name">
@@ -189,7 +187,7 @@ const ContactFormInputBrochure = (props: Props) => {
                 </div>
               </div>
               <div className={`${Styles.inputBody}`}>
-                <label className={`${Styles.label} ${Styles.require}`} htmlFor="inquiry">
+                <label className={`${Styles.label}`} htmlFor="inquiry">
                   ご希望・ご質問など
                 </label>
                 <div className={Styles.inputBlock}>
@@ -197,7 +195,6 @@ const ContactFormInputBrochure = (props: Props) => {
                     className={`${Styles.input} ${Styles.inputInquiry}`}
                     id="inquiry"
                     {...register("inquiry", {
-                      required: rules.required,
                       onChange: (e) => {
                         updateContactBrochureData({ ...contactBrochureData, inquiry: e.target.value });
                       },
@@ -213,7 +210,7 @@ const ContactFormInputBrochure = (props: Props) => {
             </div>
           )}
           {/* option === false */}
-          {!option && (
+          {contactBrochureData.type === "post" && (
             <div className={Styles.inputs}>
               <div className={Styles.inputBody}>
                 <label className={`${Styles.label} ${Styles.require}`} htmlFor="name">
@@ -345,7 +342,7 @@ const ContactFormInputBrochure = (props: Props) => {
                 </div>
               </div>
               <div className={`${Styles.inputBody}`}>
-                <label className={`${Styles.label} ${Styles.require}`} htmlFor="inquiry">
+                <label className={`${Styles.label}`} htmlFor="inquiry">
                   ご希望・ご質問など
                 </label>
                 <div className={Styles.inputBlock}>
@@ -353,7 +350,6 @@ const ContactFormInputBrochure = (props: Props) => {
                     className={`${Styles.input} ${Styles.inputInquiry}`}
                     id="inquiry"
                     {...register("inquiry", {
-                      required: rules.required,
                       onChange: (e) => {
                         updateContactBrochureData({ ...contactBrochureData, inquiry: e.target.value });
                       },

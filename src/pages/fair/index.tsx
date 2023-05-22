@@ -60,9 +60,9 @@ export default function Home(props: Props) {
       AppTrigger.refresh();
     }, 1000);
 
-    const target = document.querySelector("#bridal-fair") as HTMLElement;
+    const bridalFair = document.querySelector("#bridal-fair") as HTMLElement;
     // targetのページトップからの距離を取得
-    const rect = target.getBoundingClientRect();
+    const rect = bridalFair.getBoundingClientRect();
     const top = rect.top + window.pageYOffset;
     // スクロール
     window.scrollTo({
@@ -119,8 +119,15 @@ export default function Home(props: Props) {
       setLists(fairLists);
     }
 
-    console.log(document.querySelector("#bridal-fair"));
-    document.querySelector("#bridal-fair")?.scrollIntoView({ behavior: "smooth" });
+    const bridalFair = document.querySelector("#bridal-fair") as HTMLElement;
+    // targetのページトップからの距離を取得
+    const rect = bridalFair.getBoundingClientRect();
+    const top = rect.top + window.pageYOffset;
+    // スクロール
+    window.scrollTo({
+      top,
+      behavior: "smooth",
+    });
   };
 
   return (
