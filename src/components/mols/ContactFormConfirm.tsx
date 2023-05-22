@@ -25,6 +25,7 @@ const ContactFormConfirm = (props: Props) => {
 
   const onSubmit: SubmitHandler<ContactData> = async () => {
     try {
+      handleStep({ step1: false, step2: false, step3: true });
       handleStatus("loading");
       window.scrollTo({
         top: 0,
@@ -41,7 +42,6 @@ const ContactFormConfirm = (props: Props) => {
       const json = await res.json();
 
       handleStatus("success");
-      handleStep({ step1: false, step2: false, step3: true });
     } catch (error) {
       console.log(error);
     }
