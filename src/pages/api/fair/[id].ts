@@ -74,7 +74,7 @@ const Body: FairList = [
     events: [{ date: "2023-05-20" }, { date: "2023-05-21" }, { date: "2023-06-03" }],
   },
   {
-    id: 2,
+    id: 1,
     title: "【春のウェディングフェア】",
     src: "/images/bridal_fair02.jpg",
     description: "適当な説明文が入ります。文字数が長い場合は自動で長さ調整を行うように設定します。",
@@ -131,7 +131,7 @@ const Body: FairList = [
     events: [{ date: "2023-05-03" }, { date: "2023-05-04" }],
   },
   {
-    id: 3,
+    id: 1,
     title: "【オンライン見学会】",
     src: "/images/bridal_fair02.jpg",
     description: "適当な説明文が入ります。文字数が長い場合は自動で長さ調整を行うように設定します。",
@@ -188,7 +188,7 @@ const Body: FairList = [
     events: [{ date: "2023-05-05" }, { date: "2023-05-06" }],
   },
   {
-    id: 4,
+    id: 1,
     title: "【フードフェスティバル】",
     src: "/images/bridal_fair02.jpg",
     description: "適当な説明文が入ります。文字数が長い場合は自動で長さ調整を行うように設定します。",
@@ -245,7 +245,7 @@ const Body: FairList = [
     events: [{ date: "2023-05-07" }, { date: "2023-05-08" }, { date: "2023-06-03" }],
   },
   {
-    id: 5,
+    id: 1,
     title: "【ドレス試着会】",
     src: "/images/bridal_fair02.jpg",
     description: "適当な説明文が入ります。文字数が長い場合は自動で長さ調整を行うように設定します。",
@@ -302,7 +302,7 @@ const Body: FairList = [
     events: [{ date: "2023-05-09" }, { date: "2023-05-10" }],
   },
   {
-    id: 6,
+    id: 1,
     title: "【フードフェスティバル】",
     src: "/images/bridal_fair02.jpg",
     description: "適当な説明文が入ります。文字数が長い場合は自動で長さ調整を行うように設定します。",
@@ -359,7 +359,7 @@ const Body: FairList = [
     events: [{ date: "2023-05-20" }],
   },
   {
-    id: 7,
+    id: 1,
     title: "【ドレス試着会】",
     src: "/images/bridal_fair02.jpg",
     description: "適当な説明文が入ります。文字数が長い場合は自動で長さ調整を行うように設定します。",

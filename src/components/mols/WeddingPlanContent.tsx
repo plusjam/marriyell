@@ -55,10 +55,10 @@ const WeddingPlanContent = (props: Props) => {
         </div>
 
         <div className={Styles.links}>
-          <Link className={Styles.toPlan} href="">
+          <Link className={Styles.toPlan} href={`/plan/${content.id}`}>
             プラン詳細を見る
           </Link>
-          <Link className={Styles.toContact} href="">
+          <Link className={Styles.toContact} href={`/plan/${content.id}#reservation`}>
             プランの相談をする
           </Link>
         </div>

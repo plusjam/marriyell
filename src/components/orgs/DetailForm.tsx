@@ -10,7 +10,7 @@ const DetailForm = (props: Props) => {
   const { title } = props;
 
   return (
-    <section className={Styles.section}>
+    <section className={Styles.section} id="reservation">
       <div className={Styles.container}>
         <div className={Styles.head}>
           <div className={Styles.title}>このプランの相談をする</div>
