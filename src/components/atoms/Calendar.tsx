@@ -35,7 +35,7 @@ const Calendar = (props: Props) => {
         const fcScrollgridSyncTable = ref.current?.querySelector(".fc-scrollgrid-sync-table") as HTMLElement;
 
         if (fcViewHarness && isPc) {
-          fcViewHarness.style.height = "38px";
+          fcViewHarness.style.height = "44px";
           fcScrollgridSyncTable.style.height = "20px";
         }
       }, 100);
