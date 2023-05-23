@@ -1,7 +1,7 @@
 "use client";
 
-import dayGridPlugin from "@fullcalendar/daygrid";
 import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
 import { useMediaQuery } from "../../../libs/useMediaQuery";
 import Styles from "../../styles/atoms/Calendar.module.scss";
 import { useEffect, useRef, useState } from "react";
