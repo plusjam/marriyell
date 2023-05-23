@@ -1,6 +1,7 @@
 import type { AppProps } from "next/app";
 import "../styles/reset.scss";
 import "../styles/global.scss";
+import "../styles/calendar.scss";
 import "../styles/custom.scss";
 import Animation from "@/components/libs/Animation";
 import { AnimatePresence } from "framer-motion";
