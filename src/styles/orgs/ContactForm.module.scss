@@ -1,6 +1,9 @@
 .input,
 .date,
 .select {
+  -webkit-appearance: none;
+  color: #707070;
+
   &::placeholder {
     color: #c6c6c6;
   }
@@ -182,7 +185,7 @@ Detail Form Start
   }
 
   .input {
-    height: 60px;
+    min-height: 60px;
     font-size: 14px;
 
     &:disabled {
@@ -485,7 +488,8 @@ Detail Form End
 }
 
 .input {
-  width: 100%;
+  min-width: 100%;
+  height: 44px;
   background-color: rgb(255, 255, 255);
   line-height: 20px;
   letter-spacing: 0.1em;
@@ -505,6 +509,7 @@ Detail Form End
 
   &.date {
     position: relative;
+    -webkit-appearance: none;
 
     &[type="date"]::-webkit-calendar-picker-indicator {
       position: absolute;
