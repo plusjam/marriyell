@@ -1,11 +1,9 @@
-import Styles from "@/styles/orgs/ContactForm.module.scss";
-import Link from "next/link";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { useRecoilState } from "recoil";
-import { Step } from "../orgs/ContactForm";
 import { ContactReservationData } from "@/pages/contact/reservation";
+import Styles from "@/styles/orgs/ContactForm.module.scss";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { Status } from "../../../libs/useApi";
 import ContactPolicy from "../atoms/ContactPolicy";
+import { Step } from "../orgs/ContactForm";
 
 type Props = {
   step2: boolean;
@@ -150,7 +148,7 @@ const ContactFormReservationConfirm = (props: Props) => {
               入力画面に戻る
             </div>
             <button className={Styles.submit} type="submit">
-              入力内容を確認する
+              この内容で送信する
             </button>
           </div>
 

@@ -14,7 +14,7 @@ import { FairList } from "../api/fair";
 import { PlanLists } from "../api/plan";
 import { ReportContents } from "../api/weddingReport/[id]";
 import axios from "axios";
-import { apricotClient } from "../../../libs/cms";
+import { META } from "@/textDate/head";
 
 type Props = {
   reportLists: ReportContents[];
@@ -62,11 +62,11 @@ export default function Home(props: Props) {
     <>
       <Motion>
         <Head>
-          <title>lu CREA ル・クレア｜Wedding Plan</title>
+          <title>{META.plan.title}</title>
         </Head>
 
         <main>
-          <UnderlayerHead en="Wedding Plan" ja="ウェディングプラン" image="/images/plan_main.jpg" spImage="/images/plan_main-sp.jpg" />
+          <UnderlayerHead en="Bridal Plan" ja="ブライダルプラン" image="/images/plan_main.jpg" spImage="/images/plan_main-sp.jpg" />
 
           <WeddingPlan planLists={planLists} />
           <WeekendFair lists={weekendLists} weekend={selectedWeekend} handleSelect={handleWeekendSelect} />

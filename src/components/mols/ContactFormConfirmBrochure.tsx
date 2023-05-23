@@ -1,10 +1,9 @@
 import { ContactBrochureData } from "@/pages/contact/brochure";
 import Styles from "@/styles/orgs/ContactForm.module.scss";
-import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Step } from "../orgs/ContactForm";
 import { Status } from "../../../libs/useApi";
 import ContactPolicy from "../atoms/ContactPolicy";
+import { Step } from "../orgs/ContactForm";
 
 type Props = {
   step2: boolean;
@@ -209,7 +208,7 @@ const ContactFormConfirmBrochure = (props: Props) => {
               入力画面に戻る
             </div>
             <button className={Styles.submit} type="submit">
-              入力内容を確認する
+              この内容で送信する
             </button>
           </div>
 
