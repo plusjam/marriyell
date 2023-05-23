@@ -28,7 +28,7 @@ export const ReplyToOperation = (body: ContactDataDetailPlan) => {
       <p><b>【メールアドレス】</b></p>
       <p>　${body.email}</p>
       <p></p>
-      <p>【相談方法】</p>
+      <p><b>【相談方法】</b></p>
       <p>${body.type === "direct" ? "来館して直接相談" : body.type === "online" ? "オンラインで相談する" : "その他(電話、メールなど)"}</p>
       <p></p>
       <p><b>【ご来場希望日】</b></p>
@@ -66,7 +66,7 @@ export const ReplyToCustomer = (body: ContactDataDetailPlan) => {
     <p><b>【プラン名】</b></p>
     <p>　${body.title}</p>
     <p></p>
-    <p>【相談方法】</p>
+    <p><b>【相談方法】</b></p>
     <p>${body.type === "direct" ? "来館して直接相談" : body.type === "online" ? "オンラインで相談する" : "その他(電話、メールなど)"}</p>
     <p></p>
     <p><b>【ご来場希望日】</b></p>

@@ -134,6 +134,14 @@ export const sitemapLinks = [
     href: "/for-guest",
   },
   {
+    title: "ウエディングレポート",
+    href: "/report",
+  },
+  {
+    title: "お知らせ・イベント",
+    href: "/news",
+  },
+  {
     title: "来館予約",
     href: "/contact/reservation/",
   },

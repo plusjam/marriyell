@@ -53,7 +53,7 @@ const Footer = () => {
             <div className={Styles.info}>営業時間 10:00 - 19:00（祝祭日を除く木曜日休館）</div>
             <div className={Styles.infoLinks}>
               <ButtonSns />
-              {/* <LinkToRecruit /> */}
+              <LinkToRecruit />
             </div>
           </div>
 

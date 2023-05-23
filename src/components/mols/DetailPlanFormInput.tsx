@@ -103,27 +103,6 @@ const DetailPlanFormInput = (props: Props) => {
           </div>
         </div>
         <div className={Styles.inputBody}>
-          <label className={`${Styles.label} ${Styles.require}`} htmlFor="name">
-            お名前
-          </label>
-          <div className={Styles.inputBlock}>
-            <input
-              className={Styles.input}
-              id="name"
-              {...register("name", {
-                required: rules.required,
-                maxLength: rules.maxLength,
-                onChange: (e) => {
-                  setData({ ...data, name: e.target.value });
-                },
-              })}
-              placeholder="例　山田　花子"
-              value={data.name}
-            />
-            {errors.name && <span className={Styles.error}>{errors.name.message as string}</span>}
-          </div>
-        </div>
-        <div className={Styles.inputBody}>
           <div className={`${Styles.label} ${Styles.require}`}>相談方法</div>
           <div className={Styles.inputBlock}>
             <Controller
@@ -148,6 +127,27 @@ const DetailPlanFormInput = (props: Props) => {
               )}
             ></Controller>
             {errors.type && <span className={Styles.error}>{errors.type.message as string}</span>}
+          </div>
+        </div>
+        <div className={Styles.inputBody}>
+          <label className={`${Styles.label} ${Styles.require}`} htmlFor="name">
+            お名前
+          </label>
+          <div className={Styles.inputBlock}>
+            <input
+              className={Styles.input}
+              id="name"
+              {...register("name", {
+                required: rules.required,
+                maxLength: rules.maxLength,
+                onChange: (e) => {
+                  setData({ ...data, name: e.target.value });
+                },
+              })}
+              placeholder="例　山田　花子"
+              value={data.name}
+            />
+            {errors.name && <span className={Styles.error}>{errors.name.message as string}</span>}
           </div>
         </div>
         <div className={Styles.inputBody}>

@@ -91,7 +91,8 @@
 }
 
 .links {
-  height: 126px;
+  // height: 126px;
+  height: 190px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -229,6 +230,26 @@
 }
 
 @media screen and (max-width: 900px) {
+  .body {
+    display: grid;
+    grid-template-areas:
+      "logo"
+      "main"
+      "links";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+  }
+
+  .logo {
+    justify-content: center;
+  }
+
+  .main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   .footer {
     padding: 40px 24px 0;
   }
