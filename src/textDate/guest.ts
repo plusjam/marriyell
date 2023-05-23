@@ -11,12 +11,13 @@ export type Content = {
     }[];
   }[];
   src: string;
+  banners: string[];
 };
 
 export const DRESS: Content = {
   title: "レンタル衣装",
   contentTitle: "衣裳のレンタルはコスチュームサロンにて<br>承っております",
-  caption: "衣裳のレンタルは当館にございますコスチュームサロンにて承っております<br>親御様の留袖やモーニングをはじめ ご親族やお子様の衣裳ご列席の方のドレスなど 幅広く取り揃えております",
+  caption: "衣裳のレンタルは当館にございますコスチュームサロンにて<br>承っております<br>親御様の留袖やモーニングをはじめご親族やお子様の衣裳<br>ご列席の方のドレスなど 幅広く取り揃えております",
   table: [
     {
       title: "内容",
@@ -33,7 +34,7 @@ export const DRESS: Content = {
         },
         {
           title: "お父様紋服",
-          price: 16500,
+          price: 33000,
           just: false,
         },
         {
@@ -50,6 +51,7 @@ export const DRESS: Content = {
     },
   ],
   src: "/images/guest_dress.jpg",
+  banners: ["/images/banner_costume.jpg", "/images/banner_costume_contact.png"],
 };
 
 export const HAIR: Content = {
@@ -114,6 +116,7 @@ export const HAIR: Content = {
     },
   ],
   src: "/images/guest_hair.jpg",
+  banners: ["/images/banner_brides.jpg", "/images/banner_brides_contact.png"],
 };
 
 export const CONTENT = {

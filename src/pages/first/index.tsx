@@ -74,7 +74,7 @@ export default function Home(props: Props) {
         </Head>
 
         <main>
-          <UnderlayerHead ja="はじめてご来館の方へ" image="/images/plan_main.jpg" spImage="/images/plan_main-sp.jpg" />
+          <UnderlayerHead ja="はじめて<br>ご来館の方へ" image="/images/first_main.jpg" spImage="/images/first_main-sp.jpg" />
 
           <FirstScroll />
           <WhatBridal />

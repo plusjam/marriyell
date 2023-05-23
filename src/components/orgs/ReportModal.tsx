@@ -10,14 +10,14 @@ const ReportModal = (props: Props) => {
   const { videoID, closeModal } = props;
   const ref = React.useRef<HTMLDivElement>(null);
 
+  const handleClickOutside = (event: MouseEvent) => {
+    if (ref.current && ref.current === event.target) {
+      closeModal();
+    }
+  };
+
   // ref.currentが押された時にcloseModalを実行
   React.useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (ref.current && ref.current === event.target) {
-        closeModal();
-      }
-    };
-
     document.addEventListener("click", handleClickOutside, false);
 
     return () => {
@@ -28,7 +28,7 @@ const ReportModal = (props: Props) => {
   return (
     <div className={videoID !== null ? `${Styles.modal} ${Styles.on}` : Styles.modal} ref={ref}>
       <iframe src={`https://www.youtube.com/embed/${videoID}`} className={Styles.iframe} frameBorder={0} allowFullScreen></iframe>
-      <div className={Styles.close}></div>
+      <div className={Styles.close} onClick={closeModal}></div>
     </div>
   );
 };

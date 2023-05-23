@@ -37,7 +37,7 @@ const ProcessSlides = () => {
           担当者より、お電話でご連絡させていただきます。わからないことなどございましたら、気兼ねなくお申し付けください。
           <br />
           当サイト内に
-          <Link href="/" className={Styles.link}>
+          <Link href="/faq" className={Styles.link}>
             よくあるご質問
           </Link>
           もございますので、ご覧いただけると幸いです。
@@ -51,7 +51,7 @@ const ProcessSlides = () => {
         <div className={Styles.title}>ご来館の準備</div>
         <div className={Styles.description}>
           当日のご準備に関しては、
-          <Link className={Styles.link} href="">
+          <Link className={Styles.link} href="/first">
             はじめてご来館の方へ
           </Link>
           向けたページをご用意しております。ご予約後にキャンセルされる場合は、お電話にてご連絡頂けますようお願い申し上げます。
@@ -78,7 +78,7 @@ const ProcessSlides = () => {
           を元に、お二人専任のオペレーターがご案内しますので、ご安心ください。
           <br />
           当式場の場所はサイト内の
-          <Link className={Styles.link} href="">
+          <Link className={Styles.link} href="/access">
             アクセスページ
           </Link>
           をご参照ください。

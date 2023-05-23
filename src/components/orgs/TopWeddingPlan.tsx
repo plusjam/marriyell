@@ -49,7 +49,7 @@ const TopWeddingPlan = () => {
           </Swiper>
         </div>
         <div className={Styles.link}>
-          <LinkToLists href="/plan" target text="プラン一覧を見る" />
+          <LinkToLists href="/plan" text="プラン一覧を見る" />
         </div>
       </div>
     </section>

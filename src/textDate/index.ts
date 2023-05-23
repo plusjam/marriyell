@@ -222,12 +222,12 @@ export const IMAGELINKS = [
     target: "_blank",
   },
   {
-    src: "/images/top_news_contents.jpg",
+    src: "/images/top_news_contents01.jpg",
     href: "",
     target: "",
   },
   {
-    src: "/images/top_news_contents.jpg",
+    src: "/images/top_news_contents02.jpg",
     href: "",
     target: "",
   },

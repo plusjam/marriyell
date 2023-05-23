@@ -31,13 +31,20 @@ const DetailFairFormInput = (props: Props) => {
     mode: "onChange",
   });
 
+  // 今日の日付を取得
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = ("0" + (today.getMonth() + 1)).slice(-2);
+  const day = ("0" + today.getDate()).slice(-2);
+  const todayDate = year + "-" + month + "-" + day;
+
   const [data, setData] = useState<ContactDataDetailFair>({
     title: title.replaceAll("<br>", " "),
     name: "",
     furigana: "",
     phone: "",
     email: "",
-    date: "",
+    date: todayDate,
     time: "",
     inquiry: "",
   });
@@ -92,7 +99,7 @@ const DetailFairFormInput = (props: Props) => {
       <div className={Styles.inputs}>
         <div className={Styles.inputBody}>
           <label className={`${Styles.label} ${Styles.require} ${Styles.disabled}`} htmlFor="title">
-            プラン名
+            フェア名
           </label>
           <div className={Styles.inputBlock}>
             <input className={Styles.input} id="title" {...register("title", {})} value={data.title} disabled />
@@ -295,12 +302,12 @@ const DetailFairFormInput = (props: Props) => {
       </div>
 
       <div className={Styles.buttons}>
-        <Link className={`${Styles.action} ${Styles.toFair}`} href="/plan">
+        <Link className={`${Styles.action} ${Styles.toFair}`} href="/fair">
           他のフェアを探す
         </Link>
-        <button className={`${Styles.action} ${Styles.toTop}`} onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+        <div className={`${Styles.action} ${Styles.toTop}`} onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
           もう一度詳細を見る
-        </button>
+        </div>
       </div>
     </form>
   );

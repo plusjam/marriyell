@@ -1,5 +1,6 @@
 .section {
-  padding: 80px 24px 40px;
+  margin-top: -80px;
+  padding: 160px 24px 40px;
   color: #707070;
 }
 
@@ -39,7 +40,7 @@
 
 @media screen and (max-width: 768px) {
   .section {
-    padding: 80px 15px;
+    padding: 160px 15px 80px;
   }
 
   .head {

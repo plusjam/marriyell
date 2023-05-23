@@ -8,8 +8,20 @@
   margin: 0 auto;
 }
 
+.search {
+  font-size: 16px;
+  border-bottom: #707070 1px solid;
+  padding-bottom: 16px;
+  color: #707070;
+  margin-top: 40px;
+}
+
+.number {
+  font-size: 20px;
+}
+
 .body {
-  margin-top: 80px;
+  margin-top: 40px;
 }
 
 .nothing {
@@ -28,7 +40,7 @@
   }
 
   .body {
-    margin-top: 51px;
+    margin-top: 40px;
   }
 
   .nothing {

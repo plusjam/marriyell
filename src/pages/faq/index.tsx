@@ -15,20 +15,18 @@ import useGetWeekend from "../../../libs/useGetWeekend";
 import useModalReport from "../../../libs/useModalReport";
 import { QASet, Qa, QaType } from "../../../typings/qa";
 import { FairList } from "../api/fair";
-import { PlanLists } from "../api/plan";
 import { ReportContents } from "../api/weddingReport/[id]";
 import { META } from "@/textDate/head";
 
 type Props = {
   reportLists: ReportContents[];
   fairLists: FairList;
-  planLists: PlanLists;
 };
 
 export default function Home(props: Props) {
-  const { reportLists, fairLists, planLists } = props;
+  const { reportLists, fairLists } = props;
   const [weekendLists, setWeekendLists] = React.useState([...fairLists]);
-  const [selectedFaqType, setSelectedFaqType] = React.useState<Qa>([...QA]);
+  const [selectedFaqType, setSelectedFaqType] = React.useState<Qa>(QA.map((v) => ({ ...v })));
   const [qaSet, setQaSet] = React.useState<QASet>({ ...QA[0] });
 
   const { videoID, openModal, closeModal } = useModalReport();
@@ -36,6 +34,10 @@ export default function Home(props: Props) {
 
   useEffect(() => {
     getSelectedWeekendLists();
+
+    return () => {
+      setSelectedFaqType(QA.map((v) => ({ ...v })));
+    };
   }, [selectedWeekend]);
 
   // weekendListsをselectedWeekendで絞り込み
@@ -65,7 +67,8 @@ export default function Home(props: Props) {
 
   // selectedFaqTypeを選択する
   const handleSelectFaqType = (slug: QaType) => {
-    const selected = [...QA];
+    // QAをコピー
+    const selected = QA.map((v) => ({ ...v }));
     const selectedType = selected.filter((elem) => {
       return elem.slug === slug;
     });
@@ -146,99 +149,6 @@ export const getStaticProps: GetStaticProps = async () => {
 
   // const planRef = await fetch(`http://localhost:${process.env.PORT}/api/plan`);
   // const planLists: PlanLists = await planRef.json();
-
-  const planLists: PlanLists = [
-    {
-      id: 1,
-      src: "/images/plan_1.png",
-      title: "挙式料＆衣裳無料！40名約215万円⇒135万円<br>特別演出もプレゼント",
-      member: 40,
-      price: 1352100,
-      categories: [
-        {
-          selected: false,
-          label: "大人数可",
-          slug: "many",
-        },
-        {
-          selected: true,
-          label: "家族婚・少人数",
-          slug: "less",
-        },
-        {
-          selected: false,
-          label: "フォト婚",
-          slug: "photo",
-        },
-        {
-          selected: false,
-          label: "期間限定",
-          slug: "limited",
-        },
-      ],
-      term: "10名よりご利用いただけます　※1名様増減　16,940円",
-    },
-    {
-      id: 2,
-      src: "/images/plan_1.png",
-      title: "挙式料＆衣裳無料！40名約215万円⇒135万円<br>特別演出もプレゼント",
-      member: 40,
-      price: 1352100,
-      categories: [
-        {
-          selected: false,
-          label: "大人数可",
-          slug: "many",
-        },
-        {
-          selected: true,
-          label: "家族婚・少人数",
-          slug: "less",
-        },
-        {
-          selected: false,
-          label: "フォト婚",
-          slug: "photo",
-        },
-        {
-          selected: false,
-          label: "期間限定",
-          slug: "limited",
-        },
-      ],
-      term: "10名よりご利用いただけます　※1名様増減　16,940円",
-    },
-    {
-      id: 3,
-      src: "/images/plan_1.png",
-      title: "挙式料＆衣裳無料！40名約215万円⇒135万円<br>特別演出もプレゼント",
-      member: 40,
-      price: 1352100,
-      categories: [
-        {
-          selected: false,
-          label: "大人数可",
-          slug: "many",
-        },
-        {
-          selected: true,
-          label: "家族婚・少人数",
-          slug: "less",
-        },
-        {
-          selected: false,
-          label: "フォト婚",
-          slug: "photo",
-        },
-        {
-          selected: false,
-          label: "期間限定",
-          slug: "limited",
-        },
-      ],
-      term: "10名よりご利用いただけます　※1名様増減　16,940円",
-    },
-  ];
 
   const reportLists: ReportContents[] = [
     {
@@ -781,7 +691,6 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       reportLists,
       fairLists,
-      planLists,
     },
   };
 };

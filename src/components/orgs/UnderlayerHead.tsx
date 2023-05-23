@@ -20,7 +20,7 @@ const UnderlayerHead = (props: Props) => {
             <span className={Styles.ja}>{ja}</span>
           </>
         ) : (
-          <span className={`${Styles.ja} ${Styles.only}`}>{ja}</span>
+          <span className={`${Styles.ja} ${Styles.only}`} dangerouslySetInnerHTML={{ __html: ja }}></span>
         )}
       </h1>
       <picture className={Styles.picture}>

@@ -34,9 +34,9 @@ const BridalProcessBlock = (props: Props) => {
         </div>
         <div className={Styles.description} dangerouslySetInnerHTML={{ __html: description }}></div>
         {link && (
-          <Link className={Styles.link} href={link.to}>
-            {link.text}
-          </Link>
+          <div className={Styles.link}>
+            <Link href={link.to}>{link.text}</Link>
+          </div>
         )}
       </div>
     </div>

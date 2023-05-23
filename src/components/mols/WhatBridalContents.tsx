@@ -16,7 +16,7 @@ const WhatBridalContents = () => {
               </div>
               <div className={Styles.content}>
                 <div className={Styles.title}>{content.title}</div>
-                <div className={Styles.description}>{content.descritpion}</div>
+                <div className={Styles.description} dangerouslySetInnerHTML={{ __html: content.descritpion }}></div>
               </div>
             </div>
           );

@@ -15,13 +15,20 @@ export type ContactReservationData = {
   inquiry: string;
 };
 
+// 今日の日付を取得
+const today = new Date();
+const year = today.getFullYear();
+const month = ("0" + (today.getMonth() + 1)).slice(-2);
+const day = ("0" + today.getDate()).slice(-2);
+const todayDate = year + "-" + month + "-" + day;
+
 export default function Home() {
   const [contactReservationData, setContactReservationData] = useState<ContactReservationData>({
     name: "",
     furigana: "",
     phone: "",
     email: "",
-    date: "",
+    date: todayDate,
     hh: "",
     mm: "",
     inquiry: "",

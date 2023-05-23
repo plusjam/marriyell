@@ -44,12 +44,17 @@
 
   &.only {
     font-size: 32px;
+
+    br {
+      display: none;
+    }
   }
 }
 
 .picture {
   background-color: #000;
   display: block;
+
   img {
     opacity: 0.8;
     width: 100%;
@@ -64,5 +69,15 @@
 
   .ja {
     font-size: 11px;
+
+    &.only {
+      font-size: 13px;
+      text-align: center;
+      line-height: 1.84;
+
+      br {
+        display: block;
+      }
+    }
   }
 }

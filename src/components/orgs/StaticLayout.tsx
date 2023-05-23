@@ -36,24 +36,26 @@ const StaticLayout = (props: Props) => {
 
             {is1440 && (
               <div className={Styles.banners}>
-                <div className={Styles.banner}>
-                  <Image className={Styles.bannerImage} src="/images/" alt="" width={336} height={143} />
-                </div>
-                <div className={Styles.banner}>
-                  <Image className={Styles.bannerImage} src="/images/" alt="" width={336} height={143} />
-                </div>
+                {contents.banners.map((content, index) => {
+                  return (
+                    <div className={Styles.banner} key={`banner${index}`}>
+                      <Image className={Styles.bannerImage} src={content} alt="" width={336} height={143} />
+                    </div>
+                  );
+                })}
               </div>
             )}
           </div>
         </div>
         {!is1440 && (
           <div className={Styles.banners}>
-            <div className={Styles.banner}>
-              <Image className={Styles.bannerImage} src="/images/" alt="" width={336} height={143} />
-            </div>
-            <div className={Styles.banner}>
-              <Image className={Styles.bannerImage} src="/images/" alt="" width={336} height={143} />
-            </div>
+            {contents.banners.map((content, index) => {
+              return (
+                <div className={Styles.banner} key={`banner${index}`}>
+                  <Image className={Styles.bannerImage} src={content} alt="" width={336} height={143} />
+                </div>
+              );
+            })}
           </div>
         )}
       </div>

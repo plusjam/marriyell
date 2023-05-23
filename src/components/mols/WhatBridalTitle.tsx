@@ -10,7 +10,7 @@ const WhatBridalTitle = () => {
       </h2>
       <div className={Styles.body}>
         <div className={Styles.image}>
-          <Image src="/images/" alt="" width={284} height={197} />
+          <Image src="/images/first_whatBridal.jpg" alt="" width={284} height={197} />
         </div>
         <div className={Styles.description}>
           <p>ブライダルフェアとは、結婚式場内の施設見学や、結婚式に関する相談会など、結婚式を挙げたい皆さまが参加されるイベントのことを言います。</p>

@@ -19,7 +19,7 @@ const DetailFairForm = (props: Props) => {
     <section className={Styles.section} id="reservation">
       <div className={Styles.container}>
         <div className={Styles.head}>
-          <div className={Styles.title}>このプランの相談をする</div>
+          <div className={Styles.title}>このフェアを予約する</div>
           {status === "idle" && (
             <div className={Styles.description}>
               各項目をご入力後、「確認画面に進む」ボタンを押してください。

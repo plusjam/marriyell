@@ -3,6 +3,7 @@ import Styles from "@/styles/orgs/ContactForm.module.scss";
 import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Step } from "../orgs/ContactForm";
+import ContactPolicy from "../atoms/ContactPolicy";
 
 type Props = {
   step1: boolean;
@@ -364,17 +365,8 @@ const ContactFormInputBrochure = (props: Props) => {
               </div>
             </div>
           )}
-          <p className={Styles.policy}>
-            <Link href="" target="_blank" rel="noopener noreferrer" className={Styles.link}>
-              プライバシーポリシー
-            </Link>
-            をよくお読みいただき同意いただけましたら下のボタンを押してください。
-            <br /> ご不明点やご質問に関しては、
-            <Link href="/" className={Styles.link} target="_brank" rel="noopener noreferrer">
-              よくあるご質問
-            </Link>
-            のページもご参照ください。
-          </p>
+
+          <ContactPolicy />
 
           <div className={Styles.button}>
             <button className={Styles.submit} type="submit">

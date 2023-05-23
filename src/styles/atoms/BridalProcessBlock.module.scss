@@ -71,9 +71,14 @@
 
 .link {
   grid-area: link;
-  color: #a6a08a;
-  font-size: 15px;
-  letter-spacing: 0;
+
+  a {
+    color: #a6a08a;
+    font-size: 15px;
+    letter-spacing: 0;
+    text-decoration: underline;
+    display: inline-block;
+  }
 }
 
 @media screen and (max-width: 670px) {

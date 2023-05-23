@@ -45,7 +45,7 @@ const BridalaFairContent = (props: Props) => {
           <Link className={Styles.toDetail} href={`/fair/${content.id}`}>
             フェア詳細
           </Link>
-          <Link className={Styles.toReservation} href={`/fair/${content.id}#resevation`}>
+          <Link className={Styles.toReservation} href={`/fair/${content.id}#reservation`}>
             このフェアを予約
           </Link>
         </div>

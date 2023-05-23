@@ -22,7 +22,7 @@ const HOME = (props: Props) => {
         </Head>
 
         <main>
-          <UnderlayerHead en="News" ja="お知らせ" image="" spImage="" />
+          <UnderlayerHead en="News ＆ Event" ja="お知らせ・イベント" image="" spImage="" />
 
           <div className={Styles.container}>
             <section className={Styles.header}>

@@ -326,11 +326,11 @@ const DetailPlanFormInput = (props: Props) => {
 
       <div className={Styles.buttons}>
         <Link className={`${Styles.action} ${Styles.toFair}`} href="/plan">
-          他のフェアを探す
+          他のプランを探す
         </Link>
-        <button className={`${Styles.action} ${Styles.toTop}`} onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+        <div className={`${Styles.action} ${Styles.toTop}`} onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
           もう一度詳細を見る
-        </button>
+        </div>
       </div>
     </form>
   );
