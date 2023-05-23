@@ -14,6 +14,13 @@ type Props = {
   getSelectedLists: () => void;
 };
 
+// 今日の日付を取得
+const today = new Date();
+const year = today.getFullYear();
+const month = ("0" + (today.getMonth() + 1)).slice(-2);
+const day = ("0" + today.getDate()).slice(-2);
+const todayDate = year + "-" + month + "-" + day;
+
 const SelectFair = (props: Props) => {
   const { categories, handleSelected, getSelectedLists, getSelectedDateLists } = props;
 
@@ -45,7 +52,7 @@ const SelectFair = (props: Props) => {
               <span>日付から選択</span>
             </div>
             <div className={Styles.inputWrap}>
-              <input type="date" className={Styles.input} onChange={(e) => getSelectedDateLists(e)} />
+              <input type="date" className={Styles.input} onChange={(e) => getSelectedDateLists(e)} value={todayDate} />
               <div className={Styles.inputImage}>
                 <Image src="/images/icon_fair_calendar.svg" alt="" width={22} height={20} />
               </div>

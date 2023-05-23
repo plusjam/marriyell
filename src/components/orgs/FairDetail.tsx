@@ -7,6 +7,7 @@ import Previlege from "../mols/Previlege";
 import { FairList } from "@/pages/api/fair";
 import Calendar from "../atoms/Calendar";
 import BridalCategories from "../mols/BridalCategories";
+import { useMediaQuery } from "../../../libs/useMediaQuery";
 
 const categories = [
   {
@@ -60,6 +61,8 @@ const categories = [
 ];
 
 const FairDetail = () => {
+  const isPc = useMediaQuery(768, "max");
+
   return (
     <section className={Styles.section}>
       <div className={Styles.container}>
@@ -78,15 +81,23 @@ const FairDetail = () => {
             <div className={Styles.categories}>
               <BridalCategories categories={categories} />
             </div>
-            <div className={Styles.description}>
-              ＼国産牛&キャビアなど絶品6品コース仕立て！3万円相当大人気試食フェア◎／1軒目来館で1万円相当ギフト贈呈&30名以上の披露宴ご成約で挙式料全額プレゼント！会場費最大25万円&前撮り衣裳プレゼントなど、フェア限定最大100万円優待♪
-            </div>
+            {!isPc && (
+              <div className={Styles.description}>
+                ＼国産牛&キャビアなど絶品6品コース仕立て！3万円相当大人気試食フェア◎／1軒目来館で1万円相当ギフト贈呈&30名以上の披露宴ご成約で挙式料全額プレゼント！会場費最大25万円&前撮り衣裳プレゼントなど、フェア限定最大100万円優待♪
+              </div>
+            )}
           </div>
 
           <div className={Styles.info}>
             <div className={Styles.calendar}>
               <Calendar events={[{ date: "2023-05-21" }]} />
             </div>
+
+            {isPc && (
+              <div className={Styles.description}>
+                ＼国産牛&キャビアなど絶品6品コース仕立て！3万円相当大人気試食フェア◎／1軒目来館で1万円相当ギフト贈呈&30名以上の披露宴ご成約で挙式料全額プレゼント！会場費最大25万円&前撮り衣裳プレゼントなど、フェア限定最大100万円優待♪
+              </div>
+            )}
 
             <div className={Styles.terms}>
               <div className={Styles.term}>

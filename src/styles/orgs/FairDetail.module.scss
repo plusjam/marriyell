@@ -110,7 +110,7 @@
 
   .block {
     display: grid;
-    grid-template-areas: "title" "image" "contents";
+    grid-template-areas: "title" "contents" "info";
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto;
     gap: 0;
@@ -133,12 +133,16 @@
 
   .categories {
     gap: 5px 4.5px;
-    margin-top: 8px;
-    margin-bottom: 16px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .description {
+    margin-bottom: 23px;
   }
 
   .terms {
-    margin-bottom: 40px;
+    margin-bottom: 0;
   }
 
   .term {
