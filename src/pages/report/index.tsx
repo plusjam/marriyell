@@ -92,7 +92,7 @@ export default function Home(props: Props) {
         </Head>
 
         <main>
-          <UnderlayerHead en="Wedding Report" ja="ウェディングレポート" image="" spImage="" />
+          <UnderlayerHead en="Wedding Report" ja="ウェディングレポート" image="/images/report_main.jpg" spImage="/images/report_main-sp.jpg" />
 
           <ReportBody {...reportLists} next={page} clickViewMore={clickViewMore} openModal={openModal} />
 
