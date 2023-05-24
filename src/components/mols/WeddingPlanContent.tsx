@@ -58,7 +58,7 @@ const WeddingPlanContent = (props: Props) => {
           <Link className={Styles.toPlan} href={`/plan/${content.id}`}>
             プラン詳細を見る
           </Link>
-          <Link className={Styles.toContact} href={`/plan/${content.id}#reservation`}>
+          <Link className={Styles.toContact} href={`/plan/${content.id}?id=reservation`}>
             プランの相談をする
           </Link>
         </div>

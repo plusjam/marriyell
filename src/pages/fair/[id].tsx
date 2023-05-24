@@ -13,6 +13,8 @@ import useModalReport from "../../../libs/useModalReport";
 import { ReportContents } from "../api/weddingReport/[id]";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+import { gsap } from "gsap";
+import ScrollToPlugin from "gsap/dist/ScrollToPlugin";
 
 type Props = {
   reportLists: ReportContents[];
@@ -24,16 +26,24 @@ export default function Home(props: Props) {
   const { videoID, openModal, closeModal } = useModalReport();
   const router = useRouter();
 
+  gsap.registerPlugin(ScrollToPlugin);
+
   useEffect(() => {
-    if (router.asPath.match(/#reservation/)) {
-      const target = document.getElementById("reservation");
+    setTimeout(() => {
+      const url = new URL(router.asPath, "http://dummy.com");
+      const params = new URLSearchParams(url.search.split("?")[1]);
+      const target = params.get("id");
+
       if (target) {
-        target.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
+        gsap.to(window, {
+          duration: 1,
+          scrollTo: {
+            y: `#${target}`,
+            autoKill: false,
+          },
         });
       }
-    }
+    }, 2500);
   }, []);
 
   return (

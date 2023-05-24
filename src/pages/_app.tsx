@@ -61,15 +61,15 @@ export default function App({ Component, pageProps, router }: AppProps) {
       </Head>
 
       <Pagination location={location} />
-      <AnimatePresence mode="wait" initial>
-        <Animation location={location} key={router.route}>
-          <Header {...childProps} isTop={location === "/"} />
-          <HamburgerMenu {...childProps} />
-          <FixedLinks />
-          <Component {...pageProps} />
-          <Footer />
-        </Animation>
-      </AnimatePresence>
+      {/* <AnimatePresence mode="wait" initial> */}
+      <Animation location={location} key={router.route}>
+        <Header {...childProps} isTop={location === "/"} />
+        <HamburgerMenu {...childProps} />
+        <FixedLinks />
+        <Component {...pageProps} />
+        <Footer />
+      </Animation>
+      {/* </AnimatePresence> */}
     </RecoilRoot>
   );
 }

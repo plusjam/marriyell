@@ -15,6 +15,10 @@ import useModalReport from "../../../libs/useModalReport";
 import { FairList } from "../api/fair";
 import { PlanLists } from "../api/plan";
 import { ReportContents } from "../api/weddingReport/[id]";
+import { useRouter } from "next/router";
+import { gsap } from "gsap";
+import ScrollToPlugin from "gsap/dist/ScrollToPlugin";
+
 type Props = {
   reportLists: ReportContents[];
   fairLists: FairList;
@@ -27,10 +31,31 @@ export default function Home(props: Props) {
 
   const { videoID, openModal, closeModal } = useModalReport();
   const { selected: selectedWeekend, handleSelect: handleWeekendSelect } = useGetWeekend();
+  const router = useRouter();
+
+  gsap.registerPlugin(ScrollToPlugin);
 
   useEffect(() => {
     getSelectedWeekendLists();
   }, [selectedWeekend]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      const url = new URL(router.asPath, "http://dummy.com");
+      const params = new URLSearchParams(url.search.split("?")[1]);
+      const target = params.get("id");
+
+      if (target) {
+        gsap.to(window, {
+          duration: 1,
+          scrollTo: {
+            y: `#${target}`,
+            autoKill: false,
+          },
+        });
+      }
+    }, 2500);
+  }, []);
 
   // weekendListsをselectedWeekendで絞り込み
   const getSelectedWeekendLists = async () => {

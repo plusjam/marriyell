@@ -5,6 +5,7 @@ import TopWeddingReport from "@/components/orgs/TopWeddingReport";
 import UnderlayerHead from "@/components/orgs/UnderlayerHead";
 import WeddingPlan from "@/components/orgs/WeddingPlan";
 import WeekendFair from "@/components/orgs/WeekendFair";
+import { META } from "@/textDate/head";
 import { GetStaticProps } from "next";
 import Head from "next/head";
 import React, { useEffect } from "react";
@@ -13,8 +14,6 @@ import useModalReport from "../../../libs/useModalReport";
 import { FairList } from "../api/fair";
 import { PlanLists } from "../api/plan";
 import { ReportContents } from "../api/weddingReport/[id]";
-import axios from "axios";
-import { META } from "@/textDate/head";
 
 type Props = {
   reportLists: ReportContents[];
