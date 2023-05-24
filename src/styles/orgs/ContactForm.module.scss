@@ -535,6 +535,10 @@ Detail Form End
       height: 100%;
       opacity: 0;
     }
+
+    &[type="date"]::-webkit-date-and-time-value {
+      text-align: left;
+    }
   }
 
   &.time {
@@ -789,9 +793,6 @@ Detail Form End
 
   .input {
     .date {
-      &::-webkit-date-and-time-value {
-        text-align: left;
-      }
     }
   }
 
