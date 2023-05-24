@@ -1,6 +1,6 @@
 import React from "react";
 
-export type Status = "idle" | "loading" | "error" | "success";
+export type Status = "idle" | "confirm" | "loading" | "error" | "success";
 
 const useApi = () => {
   const [status, setStatus] = React.useState<Status>("idle");

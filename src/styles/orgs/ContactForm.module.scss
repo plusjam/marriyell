@@ -156,6 +156,15 @@ Detail Form Start
 --------- */
 
 .detailForm {
+  &.confirm {
+    .input {
+      &:read-only {
+        &:focus-visible {
+          outline: none;
+        }
+      }
+    }
+  }
   .inputBody {
     margin-bottom: 40px;
   }

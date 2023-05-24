@@ -1,27 +1,17 @@
-import React, { useState } from "react";
 import Styles from "@/styles/orgs/ContactForm.module.scss";
-import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import Link from "next/link";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { Status } from "../../../libs/useApi";
-
-export type ContactDataDetailFair = {
-  title: string;
-  name: string;
-  furigana: string;
-  phone: string;
-  email: string;
-  date: string;
-  time: string;
-  inquiry?: string;
-};
+import { ContactDataDetailFair } from "../orgs/DetailFairForm";
 
 type Props = {
-  title: string;
   handleStatus: (status: Status) => void;
+  data: ContactDataDetailFair;
+  handleData: (data: ContactDataDetailFair) => void;
 };
 
 const DetailFairFormInput = (props: Props) => {
-  const { title, handleStatus } = props;
+  const { handleStatus, data, handleData } = props;
 
   const {
     register,
@@ -29,24 +19,6 @@ const DetailFairFormInput = (props: Props) => {
     formState: { errors },
   } = useForm<ContactDataDetailFair>({
     mode: "onChange",
-  });
-
-  // 今日の日付を取得
-  const today = new Date();
-  const year = today.getFullYear();
-  const month = ("0" + (today.getMonth() + 1)).slice(-2);
-  const day = ("0" + today.getDate()).slice(-2);
-  const todayDate = year + "-" + month + "-" + day;
-
-  const [data, setData] = useState<ContactDataDetailFair>({
-    title: title.replaceAll("<br>", " "),
-    name: "",
-    furigana: "",
-    phone: "",
-    email: "",
-    date: todayDate,
-    time: "",
-    inquiry: "",
   });
 
   const validatePhone = (value: string) => {
@@ -68,30 +40,15 @@ const DetailFairFormInput = (props: Props) => {
     phone: "電話番号を正しく入力してください。",
   };
 
-  const onSubmit: SubmitHandler<ContactDataDetailFair> = async (data) => {
-    try {
-      // トップからreservationまでの高さを取得
-      const reservationTopPosition = document.getElementById("reservation") as HTMLElement;
-      const reservationTop = reservationTopPosition?.getBoundingClientRect().top + window.pageYOffset;
+  const onSubmit: SubmitHandler<ContactDataDetailFair> = async () => {
+    // トップからreservationまでの高さを取得
+    const reservationTopPosition = document.getElementById("reservation") as HTMLElement;
+    const reservationTop = reservationTopPosition?.getBoundingClientRect().top + window.pageYOffset;
 
-      // reservationTopの位置までスクロール
-      window.scrollTo({ top: reservationTop - 100, behavior: "smooth" });
+    // reservationTopの位置までスクロール
+    window.scrollTo({ top: reservationTop - 100, behavior: "smooth" });
 
-      if (handleStatus) handleStatus("loading");
-
-      const res = await fetch(`/api/contact/fair`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ ...data, title: title.replaceAll("<br>", " ") }),
-      });
-      const json = await res.json();
-
-      if (handleStatus) handleStatus("success");
-    } catch (error) {
-      console.log(error);
-    }
+    if (handleStatus) handleStatus("confirm");
   };
 
   return (
@@ -118,7 +75,7 @@ const DetailFairFormInput = (props: Props) => {
                 required: rules.required,
                 maxLength: rules.maxLength,
                 onChange: (e) => {
-                  setData({ ...data, name: e.target.value });
+                  handleData({ ...data, name: e.target.value });
                 },
               })}
               placeholder="例　山田　花子"
@@ -140,7 +97,7 @@ const DetailFairFormInput = (props: Props) => {
                 maxLength: rules.maxLength,
                 pattern: rules.furiganaPattern,
                 onChange: (e) => {
-                  setData({ ...data, furigana: e.target.value });
+                  handleData({ ...data, furigana: e.target.value });
                 },
               })}
               placeholder="例　ヤマダ　ハナコ"
@@ -163,7 +120,7 @@ const DetailFairFormInput = (props: Props) => {
                   return validatePhone(value) || rules.phone;
                 },
                 onChange: (e) => {
-                  setData({ ...data, phone: e.target.value });
+                  handleData({ ...data, phone: e.target.value });
                 },
               })}
               placeholder="例　09012345678"
@@ -184,7 +141,7 @@ const DetailFairFormInput = (props: Props) => {
                 required: rules.required,
                 pattern: rules.emailPattern,
                 onChange: (e) => {
-                  setData({ ...data, email: e.target.value });
+                  handleData({ ...data, email: e.target.value });
                 },
               })}
               placeholder="例　abcd@lucrea"
@@ -206,7 +163,7 @@ const DetailFairFormInput = (props: Props) => {
                   {...register("date", {
                     required: rules.required,
                     onChange: (e) => {
-                      setData({ ...data, date: e.target.value });
+                      handleData({ ...data, date: e.target.value });
                     },
                   })}
                   type="date"
@@ -229,7 +186,7 @@ const DetailFairFormInput = (props: Props) => {
                   {...register("time", {
                     required: rules.required,
                     onChange: (e) => {
-                      setData({ ...data, time: e.target.value });
+                      handleData({ ...data, time: e.target.value });
                     },
                   })}
                   type="time"
@@ -277,7 +234,7 @@ const DetailFairFormInput = (props: Props) => {
               id="inquiry"
               {...register("inquiry", {
                 onChange: (e) => {
-                  setData({ ...data, inquiry: e.target.value });
+                  handleData({ ...data, inquiry: e.target.value });
                 },
               })}
               placeholder="ご希望・ご質問などをご記載ください。"

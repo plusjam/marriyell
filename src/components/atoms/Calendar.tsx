@@ -2,11 +2,15 @@
 
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
+import interactionPlugin, { DateClickArg } from "@fullcalendar/interaction";
 import { useMediaQuery } from "../../../libs/useMediaQuery";
 import Styles from "../../styles/atoms/Calendar.module.scss";
 import { useEffect, useRef, useState } from "react";
 import { CalendarApi } from "@fullcalendar/core";
 import jaLocale from "@fullcalendar/core/locales/ja";
+import { useRouter } from "next/router";
+import { useRecoilState } from "recoil";
+import { selectFairDate } from "@/pages/_app";
 
 type Props = {
   events: {
@@ -17,17 +21,33 @@ type Props = {
 const Calendar = (props: Props) => {
   const { events } = props;
 
+  const router = useRouter();
   const calendarRef = useRef<FullCalendar>(null);
   const ref = useRef<HTMLDivElement>(null);
   const isPc = useMediaQuery(768, "max");
   const [month, setMonth] = useState<number>(0);
   const [year, setYear] = useState<number>(0);
+  const [selectDate, setSelectDate] = useRecoilState<any>(selectFairDate);
 
   useEffect(() => {
     if (calendarRef.current) {
       const API: CalendarApi = calendarRef.current.getApi();
       API.changeView(!isPc ? "dayGridMonth" : "dayGridWeek");
     }
+
+    const mouseover = (e: MouseEvent) => {
+      const target = e.currentTarget as HTMLElement;
+      const fcEvent = target.querySelector(".fc-event") as HTMLElement;
+      fcEvent.style.backgroundColor = "#bcbcbc";
+      target.style.cursor = "pointer";
+    };
+
+    const mouseout = (e: MouseEvent) => {
+      const target = e.currentTarget as HTMLElement;
+      const fcEvent = target.querySelector(".fc-event") as HTMLElement;
+      fcEvent.style.backgroundColor = "";
+      target.style.cursor = "";
+    };
 
     const adjustCalendarHeight = () => {
       setTimeout(() => {
@@ -42,6 +62,21 @@ const Calendar = (props: Props) => {
     };
 
     adjustCalendarHeight();
+
+    const hoverEventDate = () => {
+      const dayFuture = ref.current?.querySelectorAll(".fc-day-future") as NodeListOf<HTMLElement>;
+
+      dayFuture.forEach((day) => {
+        const fcEvent = day.querySelector(".fc-event") as HTMLElement;
+
+        if (fcEvent) {
+          day.addEventListener("mouseover", mouseover);
+          day.addEventListener("mouseout", mouseout);
+        }
+      });
+    };
+
+    hoverEventDate();
 
     window.addEventListener("resize", adjustCalendarHeight);
 
@@ -97,13 +132,20 @@ const Calendar = (props: Props) => {
     elem?.click();
   };
 
+  const handleDateClick = (arg: DateClickArg) => {
+    const date = arg.dateStr;
+    console.log("date", date);
+    setSelectDate(date);
+    router.push(`/fair/1#reservation`);
+  };
+
   return (
     <div className={Styles.calendar} ref={ref}>
       <div>
         <FullCalendar
           // locale={jaLocale}
           ref={calendarRef}
-          plugins={[dayGridPlugin]}
+          plugins={[dayGridPlugin, interactionPlugin]}
           initialView={"dayGridMonth"}
           locales={[jaLocale]}
           locale="ja"
@@ -140,6 +182,7 @@ const Calendar = (props: Props) => {
             const daysShort = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
             return { html: daysShort[headerInfo.date.getDay()] };
           }}
+          dateClick={(e) => handleDateClick(e)}
         ></FullCalendar>
         <div className={Styles.next} onClick={() => pagenation(".fc-next-button")}>
           {month === 12 ? 1 : month + 1}月 &gt;

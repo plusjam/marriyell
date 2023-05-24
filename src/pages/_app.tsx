@@ -14,13 +14,19 @@ import HamburgerMenu from "@/components/orgs/HamburgerMenu";
 import Footer from "@/components/orgs/Footer";
 import useNav from "../../libs/useNav";
 import "swiper/css";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import FixedLinks from "@/components/orgs/FixedLinks";
+import { RecoilRoot, atom } from "recoil";
 
 export const AppTrigger = ScrollTrigger;
 
-export default function App({ Component, pageProps }: AppProps) {
+export const selectFairDate = atom({
+  key: "selectFairDate",
+  default: "",
+});
+
+export default function App({ Component, pageProps, router }: AppProps) {
   const location = useRouter().pathname;
 
   const { childProps } = useNav();
@@ -30,7 +36,7 @@ export default function App({ Component, pageProps }: AppProps) {
   }, [location]);
 
   return (
-    <>
+    <RecoilRoot>
       <Head>
         <GtmHead />
         <meta
@@ -54,9 +60,9 @@ export default function App({ Component, pageProps }: AppProps) {
         ></meta>
       </Head>
 
+      <Pagination location={location} />
       <AnimatePresence mode="wait" initial>
-        <Pagination location={location} />
-        <Animation location={location}>
+        <Animation location={location} key={router.route}>
           <Header {...childProps} isTop={location === "/"} />
           <HamburgerMenu {...childProps} />
           <FixedLinks />
@@ -64,6 +70,6 @@ export default function App({ Component, pageProps }: AppProps) {
           <Footer />
         </Animation>
       </AnimatePresence>
-    </>
+    </RecoilRoot>
   );
 }

@@ -3,26 +3,17 @@ import Styles from "@/styles/orgs/ContactForm.module.scss";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import Link from "next/link";
 import { Status } from "../../../libs/useApi";
-
-export type ContactDataDetailPlan = {
-  title: string;
-  name: string;
-  type: "direct" | "online" | "other" | "";
-  furigana: string;
-  phone: string;
-  email: string;
-  date: string;
-  time: string;
-  inquiry?: string;
-};
+import { ContactDataDetailPlan } from "../orgs/DetailPlanForm";
 
 type Props = {
   title: string;
   handleStatus?: (status: Status) => void;
+  data: ContactDataDetailPlan;
+  handleData: (data: ContactDataDetailPlan) => void;
 };
 
 const DetailPlanFormInput = (props: Props) => {
-  const { title, handleStatus } = props;
+  const { handleStatus, data, handleData } = props;
 
   const {
     register,
@@ -31,18 +22,6 @@ const DetailPlanFormInput = (props: Props) => {
     control,
   } = useForm<ContactDataDetailPlan>({
     mode: "onChange",
-  });
-
-  const [data, setData] = useState<ContactDataDetailPlan>({
-    title: title.replaceAll("<br>", " "),
-    name: "",
-    type: "",
-    furigana: "",
-    phone: "",
-    email: "",
-    date: "",
-    time: "",
-    inquiry: "",
   });
 
   const validatePhone = (value: string) => {
@@ -65,29 +44,14 @@ const DetailPlanFormInput = (props: Props) => {
   };
 
   const onSubmit: SubmitHandler<ContactDataDetailPlan> = async (data) => {
-    try {
-      // トップからreservationまでの高さを取得
-      const reservationTopPosition = document.getElementById("reservation") as HTMLElement;
-      const reservationTop = reservationTopPosition?.getBoundingClientRect().top + window.pageYOffset;
+    // トップからreservationまでの高さを取得
+    const reservationTopPosition = document.getElementById("reservation") as HTMLElement;
+    const reservationTop = reservationTopPosition?.getBoundingClientRect().top + window.pageYOffset;
 
-      // reservationTopの位置までスクロール
-      window.scrollTo({ top: reservationTop - 100, behavior: "smooth" });
+    // reservationTopの位置までスクロール
+    window.scrollTo({ top: reservationTop - 100, behavior: "smooth" });
 
-      if (handleStatus) handleStatus("loading");
-
-      const res = await fetch(`/api/contact/plan`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ ...data, title: title.replaceAll("<br>", " ") }),
-      });
-      const json = await res.json();
-
-      if (handleStatus) handleStatus("success");
-    } catch (error) {
-      console.log(error);
-    }
+    if (handleStatus) handleStatus("confirm");
   };
 
   return (
@@ -141,7 +105,7 @@ const DetailPlanFormInput = (props: Props) => {
                 required: rules.required,
                 maxLength: rules.maxLength,
                 onChange: (e) => {
-                  setData({ ...data, name: e.target.value });
+                  handleData({ ...data, name: e.target.value });
                 },
               })}
               placeholder="例　山田　花子"
@@ -163,7 +127,7 @@ const DetailPlanFormInput = (props: Props) => {
                 maxLength: rules.maxLength,
                 pattern: rules.furiganaPattern,
                 onChange: (e) => {
-                  setData({ ...data, furigana: e.target.value });
+                  handleData({ ...data, furigana: e.target.value });
                 },
               })}
               placeholder="例　ヤマダ　ハナコ"
@@ -186,7 +150,7 @@ const DetailPlanFormInput = (props: Props) => {
                   return validatePhone(value) || rules.phone;
                 },
                 onChange: (e) => {
-                  setData({ ...data, phone: e.target.value });
+                  handleData({ ...data, phone: e.target.value });
                 },
               })}
               placeholder="例　09012345678"
@@ -207,7 +171,7 @@ const DetailPlanFormInput = (props: Props) => {
                 required: rules.required,
                 pattern: rules.emailPattern,
                 onChange: (e) => {
-                  setData({ ...data, email: e.target.value });
+                  handleData({ ...data, email: e.target.value });
                 },
               })}
               placeholder="例　abcd@lucrea"
@@ -229,7 +193,7 @@ const DetailPlanFormInput = (props: Props) => {
                   {...register("date", {
                     required: rules.required,
                     onChange: (e) => {
-                      setData({ ...data, date: e.target.value });
+                      handleData({ ...data, date: e.target.value });
                     },
                   })}
                   type="date"
@@ -252,7 +216,7 @@ const DetailPlanFormInput = (props: Props) => {
                   {...register("time", {
                     required: rules.required,
                     onChange: (e) => {
-                      setData({ ...data, time: e.target.value });
+                      handleData({ ...data, time: e.target.value });
                     },
                   })}
                   type="time"
@@ -300,7 +264,7 @@ const DetailPlanFormInput = (props: Props) => {
               id="inquiry"
               {...register("inquiry", {
                 onChange: (e) => {
-                  setData({ ...data, inquiry: e.target.value });
+                  handleData({ ...data, inquiry: e.target.value });
                 },
               })}
               placeholder="ご希望・ご質問などをご記載ください。"

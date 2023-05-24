@@ -6,9 +6,22 @@ import useApi from "../../../libs/useApi";
 import LoadingForm from "../mols/LoadingForm";
 import Error from "next/error";
 import ErrorForm from "../mols/ErrorForm";
+import DetailPlanFormConfirmInput from "../mols/DetailPlanFormConfirmInput";
 
 type Props = {
   title: string;
+};
+
+export type ContactDataDetailPlan = {
+  title: string;
+  name: string;
+  type: "direct" | "online" | "other" | "";
+  furigana: string;
+  phone: string;
+  email: string;
+  date: string;
+  time: string;
+  inquiry?: string;
 };
 
 const DetailPlanForm = (props: Props) => {
@@ -16,11 +29,42 @@ const DetailPlanForm = (props: Props) => {
 
   const { status, handleStatus } = useApi();
 
+  /* =====
+    フォームの値
+  ==== */
+  const [data, setData] = useState<ContactDataDetailPlan>({
+    title: title.replaceAll("<br>", " "),
+    name: "",
+    type: "",
+    furigana: "",
+    phone: "",
+    email: "",
+    date: "",
+    time: "",
+    inquiry: "",
+  });
+
+  const handleData = (newData: ContactDataDetailPlan) => {
+    setData(newData);
+  };
+
   return (
     <section className={Styles.section} id="reservation">
       <div className={Styles.container}>
         <div className={Styles.head}>
-          <div className={Styles.title}>このプランの相談をする</div>
+          <div className={Styles.title}>
+            {status === "idle"
+              ? "このプランの相談をする"
+              : status === "confirm"
+              ? "入力内容を確認する"
+              : status === "loading"
+              ? "送信中"
+              : status === "success"
+              ? "送信完了"
+              : status === "error"
+              ? "送信失敗"
+              : "このプランの相談をする"}
+          </div>
           {status === "idle" && (
             <div className={Styles.description}>
               各項目をご入力後、「確認画面に進む」ボタンを押してください。
@@ -31,7 +75,8 @@ const DetailPlanForm = (props: Props) => {
         </div>
 
         <div className={Styles.body}>
-          {status === "idle" && <DetailPlanFormInput title={title} handleStatus={handleStatus} />}
+          {status === "idle" && <DetailPlanFormInput title={title} handleStatus={handleStatus} data={data} handleData={handleData} />}
+          {status === "confirm" && <DetailPlanFormConfirmInput title={title} handleStatus={handleStatus} data={data} />}
           {status === "loading" && <LoadingForm />}
           {status === "success" && <ThanksForm description="この度はお問い合わせいただき誠にありがとうございました。" />}
           {status === "error" && <ErrorForm />}
