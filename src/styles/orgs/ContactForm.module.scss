@@ -7,6 +7,10 @@
   &::placeholder {
     color: #c6c6c6;
   }
+
+  &:focus {
+    outline: none;
+  }
 }
 
 .section {
@@ -403,9 +407,10 @@ Detail Form End
 
 .inputBlockGrid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 48% 48%;
   grid-template-rows: auto auto;
   grid-template-areas: "date time" "note note";
+  justify-content: space-between;
 
   .inputBlockWrap {
     width: 100%;
@@ -541,6 +546,42 @@ Detail Form End
       height: 100%;
       opacity: 0;
     }
+  }
+}
+
+.dateWrap {
+  position: relative;
+
+  &:before {
+    content: "";
+    width: 87%;
+    height: 100%;
+    // z-index: -1;
+    border-radius: 8px;
+    border-width: 0.5px;
+    border-style: solid;
+    border-color: rgb(112, 112, 112);
+    border-image: initial;
+    background-color: #fff;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .input {
+    &.date {
+      background-color: unset;
+      border: none;
+    }
+  }
+
+  img {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    pointer-events: none;
   }
 }
 

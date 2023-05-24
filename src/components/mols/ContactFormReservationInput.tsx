@@ -17,15 +17,9 @@ type Props = {
 const ContactFormReservationInput = (props: Props) => {
   const { step1, handleStep, contactReservationData, updateContactReservationData } = props;
 
-  const clickIcon = () => {
-    const date = document.getElementById("date");
-    date?.focus();
-  };
-
   const {
     register,
     handleSubmit,
-    getValues,
     formState: { errors },
   } = useForm<ContactReservationData>({
     mode: "onChange",
@@ -166,21 +160,23 @@ const ContactFormReservationInput = (props: Props) => {
                 </label>
                 <div className={Styles.inputBlockWrap}>
                   <div className={Styles.inputBlock}>
-                    <input
-                      className={`${Styles.input} ${Styles.date}`}
-                      id="date"
-                      {...register("date", {
-                        required: rules.required,
-                        onChange: (e) => {
-                          updateContactReservationData({ ...contactReservationData, date: e.target.value });
-                        },
-                      })}
-                      type="date"
-                      value={contactReservationData.date}
-                    />
+                    <div className={Styles.dateWrap}>
+                      <input
+                        className={`${Styles.input} ${Styles.date}`}
+                        id="date"
+                        {...register("date", {
+                          required: rules.required,
+                          onChange: (e) => {
+                            updateContactReservationData({ ...contactReservationData, date: e.target.value });
+                          },
+                        })}
+                        type="date"
+                        value={contactReservationData.date}
+                      />
+                      <img src="/images/icon_calendar.svg" alt="" width={30} height={30} />
+                    </div>
                     {errors.date && <span className={Styles.error}>{errors.date.message as string}</span>}
                   </div>
-                  <img src="/images/icon_calendar.svg" alt="" width={30} height={30} onClick={() => clickIcon()} />
                 </div>
               </div>
 
