@@ -17,7 +17,7 @@ const useGetWeekend = () => {
 
       if (day === 0 || day === 6) {
         weekend.push({
-          date: `${month + 1}月${dateNum}日`,
+          date: `${month + 1}月${dateNum}日（${day === 6 ? "土" : "日"}）`,
           selected: false,
         });
       }

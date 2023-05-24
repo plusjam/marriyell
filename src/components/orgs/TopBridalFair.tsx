@@ -7,7 +7,6 @@ import "swiper/css";
 import { BRIDALFAIR } from "../../textDate";
 import Link from "next/link";
 import { FairList } from "@/pages/api/fair";
-import Calendar from "../atoms/Calendar";
 import CalendarTOP from "../atoms/CalendarTOP";
 import { useState } from "react";
 
@@ -30,11 +29,11 @@ const TopBridalFair = (props: Props) => {
     <section className={Styles.section}>
       <SectionHead en="Bridal Fair" ja="ブライダルフェア" href="bridal-fair" />
       <div className={Styles.options}>
-        <div className={options ? `${Styles.option}${Styles.active}` : Styles.option}>
+        <div className={options ? `${Styles.option} ${Styles.active}` : Styles.option} onClick={() => setOptions(true)}>
           {options ? <Image src="/images/icon_top_contents-active.svg" alt="" width={16} height={14} /> : <Image src="/images/icon_top_contents.svg" alt="" width={16} height={14} />}
           <div className={Styles.optionTitle}>フェア内容で探す</div>
         </div>
-        <div className={!options ? `${Styles.option}${Styles.active}` : Styles.option}>
+        <div className={!options ? `${Styles.option} ${Styles.active}` : Styles.option} onClick={() => setOptions(false)}>
           {options ? <Image src="/images/icon_top_date-active.svg" alt="" width={13} height={12} /> : <Image src="/images/icon_top_date.svg" alt="" width={13} height={12} />}
           <div className={Styles.optionTitle}>開催日時で探す</div>
         </div>
@@ -125,9 +124,6 @@ const TopBridalFair = (props: Props) => {
         </SwiperSlide> */}
               </Swiper>
             </div>
-            <div className={Styles.link}>
-              <LinkToLists href="/fair" target text="フェア一覧を見る" />
-            </div>
           </>
         ) : (
           <div className={`${Styles.main} ${Styles.week}`}>
@@ -191,6 +187,9 @@ const TopBridalFair = (props: Props) => {
             </div>
           </div>
         )}
+        <div className={Styles.link}>
+          <LinkToLists href="/fair" text="フェア一覧を見る" />
+        </div>
       </div>
     </section>
   );

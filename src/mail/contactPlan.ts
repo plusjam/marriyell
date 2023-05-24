@@ -1,4 +1,4 @@
-import { ContactDataDetailPlan } from "@/components/mols/DetailPlanFormInput";
+import { ContactDataDetailPlan } from "@/components/orgs/DetailPlanForm";
 
 export const ReplyToOperation = (body: ContactDataDetailPlan) => {
   return {

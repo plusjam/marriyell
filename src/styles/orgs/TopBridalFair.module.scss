@@ -5,21 +5,40 @@
 
 .options {
   display: flex;
+  margin-top: 60px;
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
 .option {
   width: 50%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 11.5px;
+  padding-top: 20.5px;
   padding-bottom: 20.5px;
   font-size: 16px;
   position: relative;
   color: #e0e0e0;
-  transform: 0.2s;
+  transition: 0.2s;
+  cursor: pointer;
 
   &.active {
     color: #a6a08a;
+
+    &:before {
+      opacity: 1;
+    }
+  }
+
+  &:hover {
+    color: #a6a08a;
+
+    &:before {
+      opacity: 1;
+    }
   }
 
   &:before {
@@ -31,13 +50,14 @@
     height: 1px;
     background-color: #a6a08a;
     transform: translateX(-50%);
-    transition: transform 0.2s;
+    transition: 0.2s;
+    opacity: 0;
   }
 }
 
 .container {
   max-width: 1280px;
-  margin: 80px auto 0;
+  margin: 40px auto 0;
 }
 
 .main {
@@ -46,7 +66,7 @@
 }
 
 .weekends {
-  width: 48%;
+  width: 42.18%;
 }
 
 .weekendsHead {
@@ -72,7 +92,8 @@
 }
 
 .calendar {
-  width: 48%;
+  width: 45.93%;
+  margin-right: 4%;
   border: 1px solid #a6a08a;
 }
 
@@ -176,17 +197,12 @@
   justify-content: center;
   align-items: center;
   padding: 19px 0 15px;
-  border: 1px solid #707070;
-  border-right: none;
   cursor: pointer;
   transition: 0.2s;
+  background-color: #e0e0e0;
 
   &:nth-of-type(odd) {
     color: #6483d9;
-  }
-
-  &:last-child {
-    border-right: 1px solid #707070;
   }
 
   &:hover {
