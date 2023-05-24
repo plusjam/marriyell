@@ -43,7 +43,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
           name="description"
           content="京都 福知山の結婚式場・ウェディングならlu Crea（ル・クレア）。福知山駅徒歩3分でアクセス至便！北近畿最大級、天井高10mの白亜の大聖堂と、1件貸切の邸宅会場でゲストをおもてなしいたします。"
         />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0" />
 
         {/* favicon */}
         <link rel="icon" href="/favicon.ico" />
