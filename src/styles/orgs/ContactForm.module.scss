@@ -787,6 +787,14 @@ Detail Form End
     margin-bottom: 32px;
   }
 
+  .input {
+    .date {
+      &::-webkit-date-and-time-value {
+        text-align: left;
+      }
+    }
+  }
+
   /* ---------
 Radio Block Start
 --------- */
