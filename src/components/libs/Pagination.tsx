@@ -22,8 +22,8 @@ const Pagination = (props: Props) => {
     <div className={hide ? `${Styles.body} ${Styles.hide}` : Styles.body}>
       {/* <Image src="/images/art_logo-nocolor.svg" alt="" width={171} height={173} /> */}
       <picture>
-        <source srcSet="/images/art_logo.svg" type="image/svg" />
-        <img src="/images/art_logo-nocolor.svg" alt="" width={171} height={173} />
+        <source srcSet="/images/art_logo_tate.png" type="image/png" />
+        <img src="/images/art_logo-tater.png" alt="" width={171} height={173} />
       </picture>
     </div>
   );

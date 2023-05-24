@@ -20,13 +20,12 @@ const ButtonSns = () => {
           <img src="/images/button_instagram.svg" alt="Instagram" width={40} height={40} />
         </picture>
       </Link>
-      <Link className={Atoms.button} href="https://page.line.me/kbm7305t" target="_blank">
-        {/* <Image src="/images/button_line.svg" alt="LINE" width={40} height={40} /> */}
+      {/* <Link className={Atoms.button} href="https://page.line.me/kbm7305t" target="_blank">
         <picture>
           <source srcSet="/images/art_logo.svg" type="image/svg" />
           <img src="/images/button_line.svg" alt="LINE" width={40} height={40} />
         </picture>
-      </Link>
+      </Link> */}
     </div>
   );
 };

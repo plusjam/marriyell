@@ -259,7 +259,7 @@ export const FIXEDLINKS = {
   },
   phone: {
     label: "電話予約",
-    href: "0773-24-1101",
+    href: "0120-362-241",
     target: "",
   },
   fair: {

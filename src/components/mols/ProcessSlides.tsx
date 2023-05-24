@@ -55,8 +55,8 @@ const ProcessSlides = () => {
             はじめてご来館の方へ
           </Link>
           向けたページをご用意しております。ご予約後にキャンセルされる場合は、お電話にてご連絡頂けますようお願い申し上げます。
-          <Link className={Styles.phone} href="tel:0773-24-1101">
-            ☎ 0773-24-1101
+          <Link className={Styles.phone} href="tel:0120-362-241">
+            ☎ 0120-362-241
           </Link>
         </div>
       </SwiperSlide>

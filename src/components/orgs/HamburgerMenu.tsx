@@ -17,22 +17,22 @@ const HamburgerMenu = (props: Props) => {
   return (
     <div className={isOpen ? `${Styles.section} ${Styles.open}` : `${Styles.section}`}>
       <div className={Styles.head}>
-        <Link href="/" className={Styles.logo}>
+        {/* <Link href="/" className={Styles.logo}>
           <picture>
-            <source srcSet="/images/art_logo.svg" type="image/svg" />
-            <img src="/images/art_logo_long.svg" alt="lu CREA" width={145} height={34} />
+            <source srcSet="/images/art_logo_yoko.png" type="image/png" />
+            <img src="/images/art_logo_yoko.png" alt="lu CREA" width={145} height={34} />
           </picture>
-        </Link>
+        </Link> */}
 
         <div className={Styles.main}>
-          <Link href="tel:0773-24-1101" className={Styles.phone}>
+          <Link href="tel:0120-362-241" className={Styles.phone}>
             <span className={Styles.phoneIcon}>
               <picture>
-                <source srcSet="/images/art_logo.svg" type="image/svg" />
-                <img src="/images/icon_phone.svg" alt="" width={25} height={25} />
+                <source srcSet="/images/icon_phone-white.svg" type="image/svg" />
+                <img src="/images/icon_phone-white.svg" alt="" width={25} height={25} />
               </picture>
             </span>
-            0773-24-1101
+            0120-362-241
           </Link>
         </div>
 
@@ -59,8 +59,9 @@ const HamburgerMenu = (props: Props) => {
 
       <div className={Styles.foot}>
         <div className={Styles.name}>
-          lu CREA -ル・クレア- <br />
-          <span>京都 福知山の結婚式場</span>
+          『マリエール高崎』
+          <br />
+          <span>群馬・高崎の結婚式場</span>
         </div>
         <ButtonSns />
         {/* <LinkToRecruit /> */}

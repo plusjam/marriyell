@@ -1,7 +1,7 @@
 .footer {
-  background-color: #93c7c3;
+  background-color: #f4f7f8;
   padding: 40px 40px 0;
-  color: #fff;
+  color: #707070;
 }
 
 .container {
@@ -33,7 +33,7 @@
 
 .main {
   margin-right: 7px;
-  color: #ffffff;
+  color: #707070;
 }
 
 .links {
@@ -71,8 +71,8 @@
   margin-bottom: 11px;
   font-size: 17px;
   letter-spacing: 0.04em;
-  color: #fff;
   margin-left: 4px;
+  color: #707070;
 }
 
 .info {
@@ -102,9 +102,9 @@
 }
 
 .link {
-  color: #fff;
   transition: 0.2s;
   position: relative;
+  color: #707070;
 
   &:before {
     position: absolute;
@@ -112,7 +112,7 @@
     width: 3px;
     height: 3px;
     border-radius: 99px;
-    background: #fff;
+    background: #93c7c3;
     top: 50%;
     left: -8px;
     opacity: 0;

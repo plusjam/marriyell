@@ -59,8 +59,8 @@ const Header = (props: Props) => {
               />
             </svg>
           </div>
-          <Link className={Styles.number} href="tel:0773-24-1101">
-            0773-24-1101
+          <Link className={Styles.number} href="tel:0120-362-241">
+            0120-362-241
           </Link>
         </div>
         <div className={Styles.nav}>

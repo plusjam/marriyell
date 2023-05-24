@@ -70,7 +70,7 @@ export const ReplyToCustomer = (body: ContactData) => {
     <p>ーーーーーーーーーーーーーーーーーーーーーーー</p>
     <p>lu CREA -ル・クレア- │京都 福知山の結婚式場</p>
     <p>京都府福知山市駅南町3-52</p>
-    <p>TEL：0773-24-1101</p>
+    <p>TEL：0120-362-241</p>
     <p>mail：welcome@lu-crea.jp</p>
     <p>URL：https://lu-crea.jp/</p>
     <p>ーーーーーーーーーーーーーーーーーーーーーーー</p>
