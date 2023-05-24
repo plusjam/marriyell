@@ -9,7 +9,7 @@
 .title {
   font-size: 18px;
   letter-spacing: 0;
-  border-bottom: 1px solid #a6a08a;
+  border-bottom: 1px solid #93c7c3;
   margin-bottom: 20px;
   padding: 0 12px 11px;
   color: #707070;
@@ -43,7 +43,7 @@
 
 .calendar {
   grid-area: calendar;
-  border: 1px solid #a6a08a;
+  border: 1px solid #93c7c3;
 }
 
 .links {
@@ -55,11 +55,11 @@
 .toDetail {
   width: 47%;
   height: 65px;
-  border: solid 1px #a6a08a;
+  border: solid 1px #93c7c3;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #a6a08a;
+  color: #93c7c3;
   font-size: 16px;
   letter-spacing: 0.06em;
 
@@ -73,14 +73,14 @@
 .toReservation {
   width: 47%;
   height: 65px;
-  border: solid 1px #a6a08a;
+  border: solid 1px #93c7c3;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
   font-size: 16px;
   letter-spacing: 0.06em;
-  background-color: #a6a08a;
+  background-color: #93c7c3;
 
   transition: 0.2s;
 

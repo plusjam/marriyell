@@ -1,16 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="12" height="12" viewBox="0 0 12 12">
   <defs>
     <clipPath id="clip-path">
-      <rect id="長方形_903" data-name="長方形 903" width="12" height="12" transform="translate(8 9)" fill="#a6a08a" stroke="#fff" stroke-width="1"/>
+      <rect id="長方形_903" data-name="長方形 903" width="12" height="12" transform="translate(8 9)" fill="#93C7C3" stroke="#fff" stroke-width="1"/>
     </clipPath>
     <clipPath id="clip-path-2">
-      <rect id="長方形_492" data-name="長方形 492" width="12" height="12" fill="#a6a08a" stroke="#fff" stroke-width="0.545"/>
+      <rect id="長方形_492" data-name="長方形 492" width="12" height="12" fill="#93C7C3" stroke="#fff" stroke-width="0.545"/>
     </clipPath>
   </defs>
   <g id="icon_plan_limited" transform="translate(-8 -9)" clip-path="url(#clip-path)">
     <g id="グループ_2048" data-name="グループ 2048" transform="translate(-365.637 -418.637)">
       <g id="マスクグループ_25" data-name="マスクグループ 25" transform="translate(373.636 427.636)" clip-path="url(#clip-path-2)">
-        <path id="パス_889" data-name="パス 889" d="M.851,1.565h9.581a1.23,1.23,0,0,1,1.229,1.229v7.983a1.23,1.23,0,0,1-1.229,1.229H.852A1.231,1.231,0,0,1-.376,10.777V2.794A1.231,1.231,0,0,1,.851,1.565Zm9.581,9.58a.369.369,0,0,0,.368-.368V2.794a.369.369,0,0,0-.368-.368H.853a.369.369,0,0,0-.368.368v7.983a.369.369,0,0,0,.368.368Zm-2.72-6.24.648.567L5.567,8.665,4.919,8.1Z" transform="translate(0.358 0.007)" fill="#a6a08a"/>
+        <path id="パス_889" data-name="パス 889" d="M.851,1.565h9.581a1.23,1.23,0,0,1,1.229,1.229v7.983a1.23,1.23,0,0,1-1.229,1.229H.852A1.231,1.231,0,0,1-.376,10.777V2.794A1.231,1.231,0,0,1,.851,1.565Zm9.581,9.58a.369.369,0,0,0,.368-.368V2.794a.369.369,0,0,0-.368-.368H.853a.369.369,0,0,0-.368.368v7.983a.369.369,0,0,0,.368.368Zm-2.72-6.24.648.567L5.567,8.665,4.919,8.1Z" transform="translate(0.358 0.007)" fill="#93C7C3"/>
       </g>
     </g>
   </g>

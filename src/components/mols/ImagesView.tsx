@@ -4,8 +4,8 @@ import Image from "next/image";
 import { useMediaQuery } from "../../../libs/useMediaQuery";
 
 type Props = {
-  copy: string;
-  description: string;
+  copy?: string;
+  description?: string;
   image02: string;
   spImage02: string;
   image03: string;
@@ -30,10 +30,12 @@ const ImagesView = (props: Props) => {
             <img src={image02} alt="" className="fadein" />
           </picture>
         </div>
-        <div className={Styles.contents}>
-          <div className={Styles.copy}>{copy}</div>
-          <div className={Styles.description}>{description}</div>
-        </div>
+        {copy && description && (
+          <div className={Styles.contents}>
+            <div className={Styles.copy}>{copy}</div>
+            <div className={Styles.description}>{description}</div>
+          </div>
+        )}
       </div>
       <div className={Styles.images}>
         <div className={Styles.image03}>

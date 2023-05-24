@@ -4,6 +4,7 @@
   padding: 20px;
   gap: 20px;
   color: #222;
+  // border: 1px solid #93c7c3;
   border: 1px solid #a6a08a;
 }
 
@@ -29,7 +30,7 @@
   line-height: 1.5em;
   padding-bottom: 6px;
   margin-bottom: 8px;
-  border-bottom: 1px solid #a6a08a;
+  border-bottom: 1px solid #93c7c3;
 }
 
 .categories {
@@ -74,9 +75,9 @@
 .toPlan {
   width: 194px;
   height: 65px;
-  border: solid 1px #a6a08a;
+  border: solid 1px #93c7c3;
   font-size: 16px;
-  color: #a6a08a;
+  color: #93c7c3;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -91,13 +92,13 @@
 .toContact {
   width: 194px;
   height: 65px;
-  border: solid 1px #a6a08a;
+  border: solid 1px #93c7c3;
   font-size: 16px;
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #a6a08a;
+  background: #93c7c3;
   transition: 0.2s;
 
   &:hover {

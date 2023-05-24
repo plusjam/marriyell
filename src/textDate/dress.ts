@@ -3,34 +3,34 @@ export const MAIN = {
   spImage: "/images/dress_main-sp.jpg",
   en: "Dress",
   ja: "ドレス・和装",
-  copy: "幸せの象徴である純白のドレスはもちろん、個性を活かしたカラードレスや艶やかな和装。</br>あなたの魅力が際立つ運命の出会いをご提案。",
+  copy: "プロの美容師による着付け・ヘアメイクで特別な1日をお過ごしください",
 };
 
-export const CATCHCOPY = {
-  en: "Dress",
-  ja: "ドレス",
-  href: "dress",
+export const GRANMANIE = {
+  en: "GRANMANIE",
+  ja: "グランマニエ",
+  href: "granmanie",
 };
 
-export const CATCHCOPY3 = {
+export const NATURE = {
   contents: {
-    en: "Dress",
-    ja: "ドレス",
+    // en: "Dress",
+    ja: "県内唯一のお取り扱い！100％シルク素材のドレスブランド",
     description:
-      "ル・クレア館内に設けられた専属ドレスサロンでは常時200着のドレスをご用意。<br>花嫁の魅力を引き出す選りすぐりの品揃えの中から運命の一着に出会うためのお手伝いをいたします。<br>ドレスはもちろん、和装やメンズも豊富にご用意しております。",
-    image: "/images/dress_dress01.jpg",
-    spImage: "/images/dress_dress01-sp.jpg",
+      "グランマニエのドレスがもつ洗練されたデザインとシルク素材の着心地の良さは、一度袖を通したら誰もが虜になってしまうほど。風に揺れるほど柔らかく優しい素材を身にまとって1ランク上の花嫁姿で大切な1日を迎えてみませんか？",
+    image: "/images/dress_granmanie01.jpg",
+    spImage: "/images/dress_granmanie01-sp.jpg",
     reserve: false,
   },
   views: {
     copy: "京都府初の新作ドレスも入荷",
     description: "特別な1日を彩るドレス。定番のドレスからトレンドのドレスまで専属スタイリストがあなたにぴったりの一着をご提案。",
-    image02: "/images/dress_dress02.jpg",
-    spImage02: "/images/dress_dress02-sp.jpg",
-    image03: "/images/dress_dress03.jpg",
-    spImage03: "/images/dress_dress03-sp.jpg",
-    image04: "/images/dress_dress04.jpg",
-    spImage04: "/images/dress_dress04-sp.jpg",
+    image02: "/images/dress_granmanie02.jpg",
+    spImage02: "/images/dress_granmanie02-sp.jpg",
+    image03: "/images/dress_granmanie03.jpg",
+    spImage03: "/images/dress_granmanie03-sp.jpg",
+    image04: "/images/dress_granmanie04.jpg",
+    spImage04: "/images/dress_granmanie04-sp.jpg",
     reserve: false,
   },
 };

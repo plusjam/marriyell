@@ -2,7 +2,7 @@ import InstagramSection from "@/components/orgs/InstagramSection";
 import Underlayer1 from "@/components/orgs/Underlayer1";
 import Head from "next/head";
 import React, { useEffect } from "react";
-import { MAIN, CHAPEL, ANGLEDEBONHEUR, GARDEN, BANQUET, FEARIA, GROWRIA, PLUMERIA } from "../../textDate/facility";
+import { MAIN, CHAPEL, CEREMONY, GARDEN, ORIGINALWEDDING, HAMPTON, NORTHVILLA, JARDINET } from "../../textDate/facility";
 import Underlayer2 from "@/components/orgs/Underlayer2";
 import Underlayer3 from "@/components/orgs/Underlayer3";
 import SectionHead from "@/components/mols/SectionHead";
@@ -74,17 +74,17 @@ export default function Home(props: Props) {
           <section>
             <SectionHead {...CHAPEL} />
             <div>
-              <Underlayer2 {...ANGLEDEBONHEUR} />
+              <Underlayer2 {...CEREMONY} />
               <Underlayer2 {...GARDEN} />
             </div>
           </section>
 
           <section>
-            <SectionHead {...BANQUET} />
+            <SectionHead {...ORIGINALWEDDING} />
             <div>
-              <Underlayer2 {...FEARIA} />
-              <Underlayer2 {...GROWRIA} />
-              <Underlayer2 {...PLUMERIA} />
+              <Underlayer2 {...HAMPTON} />
+              <Underlayer2 {...NORTHVILLA} />
+              <Underlayer2 {...JARDINET} />
             </div>
           </section>
 
@@ -113,10 +113,10 @@ export const getStaticProps: GetStaticProps = async () => {
   const reportLists: ReportContents[] = [
     {
       id: "V2Q6aajSyFM",
-      category: "1THE TOP x GRAND DINING",
-      title: "2023.3月挙式 scene「Time Leap」",
+      category: "1神前式 × Shikijo",
+      title: "レポートのタイトルが入ります",
       description:
-        "Time Leap － 時間跳躍<br>結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない<br>辛く悲しい時も 力強く蹴って<br>飛び超えてほしい<br>そんな願いを込めて<br><br>planner:奴田原志織<br>creator:明坂泰葉<br>presenter:松川駿<br>stylist:川田砂和<br>",
+        "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
       member: 98,
       publishDate: "2021-01-01",
       createdDate: "2021-01-01",
@@ -124,10 +124,10 @@ export const getStaticProps: GetStaticProps = async () => {
     },
     {
       id: "V2Q6aajSyFM",
-      category: "2THE TOP x GRAND DINING",
-      title: "2023.3月挙式 scene「Time Leap」",
+      category: "2神前式 × Shikijo",
+      title: "レポートのタイトルが入ります",
       description:
-        "Time Leap － 時間跳躍<br>結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない<br>辛く悲しい時も 力強く蹴って<br>飛び超えてほしい<br>そんな願いを込めて<br><br>planner:奴田原志織<br>creator:明坂泰葉<br>presenter:松川駿<br>stylist:川田砂和<br>",
+        "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
       member: 98,
       publishDate: "2021-01-01",
       createdDate: "2021-01-01",
@@ -135,10 +135,10 @@ export const getStaticProps: GetStaticProps = async () => {
     },
     {
       id: "V2Q6aajSyFM",
-      category: "3THE TOP x GRAND DINING",
-      title: "2023.3月挙式 scene「Time Leap」",
+      category: "3神前式 × Shikijo",
+      title: "レポートのタイトルが入ります",
       description:
-        "Time Leap － 時間跳躍<br>結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない<br>辛く悲しい時も 力強く蹴って<br>飛び超えてほしい<br>そんな願いを込めて<br><br>planner:奴田原志織<br>creator:明坂泰葉<br>presenter:松川駿<br>stylist:川田砂和<br>",
+        "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
       member: 98,
       publishDate: "2021-01-01",
       createdDate: "2021-01-01",
@@ -146,10 +146,10 @@ export const getStaticProps: GetStaticProps = async () => {
     },
     {
       id: "V2Q6aajSyFM",
-      category: "4THE TOP x GRAND DINING",
-      title: "2023.3月挙式 scene「Time Leap」",
+      category: "4神前式 × Shikijo",
+      title: "レポートのタイトルが入ります",
       description:
-        "Time Leap － 時間跳躍<br>結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない<br>辛く悲しい時も 力強く蹴って<br>飛び超えてほしい<br>そんな願いを込めて<br><br>planner:奴田原志織<br>creator:明坂泰葉<br>presenter:松川駿<br>stylist:川田砂和<br>",
+        "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
       member: 98,
       publishDate: "2021-01-01",
       createdDate: "2021-01-01",
@@ -157,10 +157,10 @@ export const getStaticProps: GetStaticProps = async () => {
     },
     {
       id: "V2Q6aajSyFM",
-      category: "5THE TOP x GRAND DINING",
-      title: "2023.3月挙式 scene「Time Leap」",
+      category: "5神前式 × Shikijo",
+      title: "レポートのタイトルが入ります",
       description:
-        "Time Leap － 時間跳躍<br>結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない<br>辛く悲しい時も 力強く蹴って<br>飛び超えてほしい<br>そんな願いを込めて<br><br>planner:奴田原志織<br>creator:明坂泰葉<br>presenter:松川駿<br>stylist:川田砂和<br>",
+        "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
       member: 98,
       publishDate: "2021-01-01",
       createdDate: "2021-01-01",
@@ -168,10 +168,10 @@ export const getStaticProps: GetStaticProps = async () => {
     },
     {
       id: "V2Q6aajSyFM",
-      category: "6THE TOP x GRAND DINING",
-      title: "2023.3月挙式 scene「Time Leap」",
+      category: "6神前式 × Shikijo",
+      title: "レポートのタイトルが入ります",
       description:
-        "Time Leap － 時間跳躍<br>結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない<br>辛く悲しい時も 力強く蹴って<br>飛び超えてほしい<br>そんな願いを込めて<br><br>planner:奴田原志織<br>creator:明坂泰葉<br>presenter:松川駿<br>stylist:川田砂和<br>",
+        "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
       member: 98,
       publishDate: "2021-01-01",
       createdDate: "2021-01-01",
@@ -179,10 +179,10 @@ export const getStaticProps: GetStaticProps = async () => {
     },
     {
       id: "V2Q6aajSyFM",
-      category: "7THE TOP x GRAND DINING",
-      title: "2023.3月挙式 scene「Time Leap」",
+      category: "7神前式 × Shikijo",
+      title: "レポートのタイトルが入ります",
       description:
-        "Time Leap － 時間跳躍<br>結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない<br>辛く悲しい時も 力強く蹴って<br>飛び超えてほしい<br>そんな願いを込めて<br><br>planner:奴田原志織<br>creator:明坂泰葉<br>presenter:松川駿<br>stylist:川田砂和<br>",
+        "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
       member: 98,
       publishDate: "2021-01-01",
       createdDate: "2021-01-01",
@@ -190,10 +190,10 @@ export const getStaticProps: GetStaticProps = async () => {
     },
     {
       id: "V2Q6aajSyFM",
-      category: "8THE TOP x GRAND DINING",
-      title: "2023.3月挙式 scene「Time Leap」",
+      category: "8神前式 × Shikijo",
+      title: "レポートのタイトルが入ります",
       description:
-        "Time Leap － 時間跳躍<br>結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない<br>辛く悲しい時も 力強く蹴って<br>飛び超えてほしい<br>そんな願いを込めて<br><br>planner:奴田原志織<br>creator:明坂泰葉<br>presenter:松川駿<br>stylist:川田砂和<br>",
+        "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
       member: 98,
       publishDate: "2021-01-01",
       createdDate: "2021-01-01",
@@ -201,10 +201,10 @@ export const getStaticProps: GetStaticProps = async () => {
     },
     {
       id: "V2Q6aajSyFM",
-      category: "8THE TOP x GRAND DINING",
-      title: "2023.3月挙式 scene「Time Leap」",
+      category: "8神前式 × Shikijo",
+      title: "レポートのタイトルが入ります",
       description:
-        "Time Leap － 時間跳躍<br>結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない<br>辛く悲しい時も 力強く蹴って<br>飛び超えてほしい<br>そんな願いを込めて<br><br>planner:奴田原志織<br>creator:明坂泰葉<br>presenter:松川駿<br>stylist:川田砂和<br>",
+        "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
       member: 98,
       publishDate: "2021-01-01",
       createdDate: "2021-01-01",
@@ -212,10 +212,10 @@ export const getStaticProps: GetStaticProps = async () => {
     },
     {
       id: "V2Q6aajSyFM",
-      category: "8THE TOP x GRAND DINING",
-      title: "2023.3月挙式 scene「Time Leap」",
+      category: "8神前式 × Shikijo",
+      title: "レポートのタイトルが入ります",
       description:
-        "Time Leap － 時間跳躍<br>結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない<br>辛く悲しい時も 力強く蹴って<br>飛び超えてほしい<br>そんな願いを込めて<br><br>planner:奴田原志織<br>creator:明坂泰葉<br>presenter:松川駿<br>stylist:川田砂和<br>",
+        "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
       member: 98,
       publishDate: "2021-01-01",
       createdDate: "2021-01-01",
@@ -223,10 +223,10 @@ export const getStaticProps: GetStaticProps = async () => {
     },
     {
       id: "V2Q6aajSyFM",
-      category: "8THE TOP x GRAND DINING",
-      title: "2023.3月挙式 scene「Time Leap」",
+      category: "8神前式 × Shikijo",
+      title: "レポートのタイトルが入ります",
       description:
-        "Time Leap － 時間跳躍<br>結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない<br>辛く悲しい時も 力強く蹴って<br>飛び超えてほしい<br>そんな願いを込めて<br><br>planner:奴田原志織<br>creator:明坂泰葉<br>presenter:松川駿<br>stylist:川田砂和<br>",
+        "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
       member: 98,
       publishDate: "2021-01-01",
       createdDate: "2021-01-01",
@@ -234,10 +234,10 @@ export const getStaticProps: GetStaticProps = async () => {
     },
     {
       id: "V2Q6aajSyFM",
-      category: "8THE TOP x GRAND DINING",
-      title: "2023.3月挙式 scene「Time Leap」",
+      category: "8神前式 × Shikijo",
+      title: "レポートのタイトルが入ります",
       description:
-        "Time Leap － 時間跳躍<br>結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない<br>辛く悲しい時も 力強く蹴って<br>飛び超えてほしい<br>そんな願いを込めて<br><br>planner:奴田原志織<br>creator:明坂泰葉<br>presenter:松川駿<br>stylist:川田砂和<br>",
+        "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
       member: 98,
       publishDate: "2021-01-01",
       createdDate: "2021-01-01",

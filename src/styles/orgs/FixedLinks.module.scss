@@ -57,7 +57,7 @@
 
 .reservation {
   grid-area: reservation;
-  background: #918270;
+  background: #7694be;
   padding: 21px 0 32px;
 
   &:before {
@@ -75,7 +75,7 @@
 .document {
   padding: 21px 0 32px;
   grid-area: document;
-  background: #6c6052;
+  background: #93c7c3;
 
   &:before {
     content: "";
@@ -108,7 +108,7 @@
 .fair {
   grid-area: fair;
   display: none;
-  background-color: #a6a08a;
+  background-color: #93c7c3;
 
   .label {
     color: #fff;

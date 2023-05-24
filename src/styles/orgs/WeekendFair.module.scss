@@ -41,15 +41,15 @@
   }
 
   &:hover {
-    background: #a6a08a;
+    background: #93c7c3;
     color: #fff;
-    border: 1px solid #a6a08a;
+    border: 1px solid #93c7c3;
   }
 
   &.selected {
-    background: #a6a08a;
+    background: #93c7c3;
     color: #fff;
-    border: 1px solid #a6a08a;
+    border: 1px solid #93c7c3;
     position: relative;
 
     &::after {
@@ -63,7 +63,7 @@
       height: 0;
       border-left: 7px solid transparent;
       border-right: 7px solid transparent;
-      border-top: 10px solid #a6a08a;
+      border-top: 10px solid #93c7c3;
     }
   }
 }
@@ -96,7 +96,7 @@
 
 .date {
   font-size: 11px;
-  color: #a6a08a;
+  color: #93c7c3;
   letter-spacing: 0.04em;
   margin-bottom: 5px;
 }
@@ -125,7 +125,7 @@
       &::after {
         border-left: 6px solid transparent;
         border-right: 6px solid transparent;
-        border-top: 8px solid #a6a08a;
+        border-top: 8px solid #93c7c3;
       }
     }
   }

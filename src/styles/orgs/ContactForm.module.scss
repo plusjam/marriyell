@@ -232,8 +232,8 @@ Detail Form Start
   .submit {
     width: 348px;
     height: 67px;
-    background: #a6a08a;
-    border: 1px solid #a6a08a;
+    background: #7694be;
+    border: 1px solid #7694be;
     font-size: 18px;
     font-weight: 300;
     font-family: "Yu Mincho";
@@ -261,9 +261,9 @@ Detail Form Start
   .action {
     width: calc(50% - 3.8%);
     height: 67px;
-    border: 1px solid #a6a08a;
+    border: 1px solid #93c7c3;
     font-size: 18px;
-    color: #a6a08a;
+    color: #93c7c3;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -272,7 +272,7 @@ Detail Form Start
     position: relative;
 
     &:hover {
-      background: #a6a08a;
+      background: #93c7c3;
       color: #fff;
     }
 
@@ -644,7 +644,7 @@ Detail Form End
 
   &:hover {
     background: rgb(255, 255, 255);
-    color: rgb(68, 68, 68);
+    color: #7694be;
   }
 
   &.back {
@@ -897,8 +897,8 @@ Detail Form Start
     .submit {
       width: 348px;
       height: 67px;
-      background: #a6a08a;
-      border: 1px solid #a6a08a;
+      background: #93c7c3;
+      border: 1px solid #93c7c3;
       font-size: 18px;
       margin: 0;
     }

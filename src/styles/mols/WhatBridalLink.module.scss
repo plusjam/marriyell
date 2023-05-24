@@ -6,7 +6,7 @@
 
 .note {
   height: 96px;
-  border: 1px solid #a6a08a;
+  border: 1px solid #93c7c3;
   background-color: #f1ebd8;
   display: flex;
   justify-content: center;
@@ -24,15 +24,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #a6a08a;
+  background-color: #93c7c3;
   font-size: 16px;
   color: #fff;
   transition: 0.2s;
-  border: #a6a08a solid 1px;
+  border: #93c7c3 solid 1px;
 
   &:hover {
     background-color: #fff;
-    color: #a6a08a;
+    color: #93c7c3;
   }
 }
 

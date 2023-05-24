@@ -1,16 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
   <defs>
     <clipPath id="clip-path">
-      <rect id="長方形_691" data-name="長方形 691" width="20" height="20" transform="translate(548 1161)" fill="#fff" stroke="#a6a08a" stroke-width="1"/>
+      <rect id="長方形_691" data-name="長方形 691" width="20" height="20" transform="translate(548 1161)" fill="#fff" stroke="#93C7C3" stroke-width="1"/>
     </clipPath>
     <clipPath id="clip-path-2">
-      <rect id="長方形_492" data-name="長方形 492" width="20" height="20" fill="#fff" stroke="#a6a08a" stroke-width="0.909"/>
+      <rect id="長方形_492" data-name="長方形 492" width="20" height="20" fill="#fff" stroke="#93C7C3" stroke-width="0.909"/>
     </clipPath>
   </defs>
   <g id="icon_fair_season" transform="translate(-548 -1161)" clip-path="url(#clip-path)">
     <g id="グループ_2048" data-name="グループ 2048" transform="translate(-74.727 448.273)">
       <g id="マスクグループ_25" data-name="マスクグループ 25" transform="translate(622.727 712.727)" clip-path="url(#clip-path-2)">
-        <path id="パス_889" data-name="パス 889" d="M4.081,0V6.653M14.727,0V6.653m-8.65,4.656L8.738,13.97l4.656-5.322M1.42,3.326H17.387a1.331,1.331,0,0,1,1.331,1.331v13.3a1.331,1.331,0,0,1-1.331,1.331H1.42A1.331,1.331,0,0,1,.091,17.962V4.657A1.331,1.331,0,0,1,1.42,3.326Z" transform="translate(0.596 0.011)" fill="none" stroke="#a6a08a" stroke-width="1.435"/>
+        <path id="パス_889" data-name="パス 889" d="M4.081,0V6.653M14.727,0V6.653m-8.65,4.656L8.738,13.97l4.656-5.322M1.42,3.326H17.387a1.331,1.331,0,0,1,1.331,1.331v13.3a1.331,1.331,0,0,1-1.331,1.331H1.42A1.331,1.331,0,0,1,.091,17.962V4.657A1.331,1.331,0,0,1,1.42,3.326Z" transform="translate(0.596 0.011)" fill="none" stroke="#93C7C3" stroke-width="1.435"/>
       </g>
     </g>
   </g>

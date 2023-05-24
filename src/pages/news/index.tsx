@@ -84,7 +84,7 @@ export default function Home(props: Props) {
         </Head>
 
         <main>
-          <UnderlayerHead en="News ＆ Event" ja="お知らせ・イベント" image="" spImage="" />
+          <UnderlayerHead en="News ＆ Event" ja="お知らせ・イベント情報" image="" spImage="" />
           <NewsBody {...newsLists} next={page} clickCategory={clickCategory} clickViewMore={clickViewMore} />
 
           <TopWeddingPlan />

@@ -24,9 +24,9 @@ const Underlayer3 = () => {
                 <div className={Styles.en}>Chapel</div>
                 <div className={Styles.ja}>チャペル</div>
               </Scroll>
-              <Scroll className={`${Styles.link} ${Styles.inner} ${Styles.h3}`} to="garden" smooth={true} duration={500} offset={-80}>
-                <div className={Styles.en}>Garden</div>
-                <div className={Styles.ja}>庭園</div>
+              <Scroll className={`${Styles.link} ${Styles.inner} ${Styles.h3}`} to="ceremony" smooth={true} duration={500} offset={-80}>
+                <div className={Styles.en}>Ceremony</div>
+                <div className={Styles.ja}>セントマリーチャーチ高崎</div>
               </Scroll>
             </>
           ) : (
@@ -35,9 +35,9 @@ const Underlayer3 = () => {
                 <div className={Styles.en}>Chapel</div>
                 <div className={Styles.ja}>チャペル</div>
               </Link>
-              <Link className={Styles.link} href="/facility#garden">
-                <div className={Styles.en}>Garden</div>
-                <div className={Styles.ja}>庭園</div>
+              <Link className={Styles.link} href="/facility#ceremony">
+                <div className={Styles.en}>Ceremony</div>
+                <div className={Styles.ja}>セントマリーチャーチ高崎</div>
               </Link>
             </>
           )}
@@ -45,16 +45,16 @@ const Underlayer3 = () => {
         <div className={Styles.row}>
           {isFacility ? (
             <>
-              <Scroll className={`${Styles.link} ${Styles.inner}`} to="banquet" smooth={true} duration={500}>
-                <div className={Styles.en}>Banquet</div>
-                <div className={Styles.ja}>宴会場</div>
+              <Scroll className={`${Styles.link} ${Styles.inner}`} to="originalwedding" smooth={true} duration={500}>
+                <div className={Styles.en}>Original Wedding</div>
+                <div className={Styles.ja}>オリジナルウエディング</div>
               </Scroll>
             </>
           ) : (
             <>
-              <Link className={Styles.link} href="/facility#banquet">
-                <div className={Styles.en}>Banquet</div>
-                <div className={Styles.ja}>宴会場</div>
+              <Link className={Styles.link} href="/facility#originalwedding">
+                <div className={Styles.en}>Original Wedding</div>
+                <div className={Styles.ja}>オリジナルウエディング</div>
               </Link>
             </>
           )}

@@ -39,10 +39,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
     <RecoilRoot>
       <Head>
         <GtmHead />
-        <meta
-          name="description"
-          content="京都 福知山の結婚式場・ウェディングならlu Crea（ル・クレア）。福知山駅徒歩3分でアクセス至便！北近畿最大級、天井高10mの白亜の大聖堂と、1件貸切の邸宅会場でゲストをおもてなしいたします。"
-        />
+        <meta name="description" content="群馬県高崎市の結婚式場「マリエール高崎」。県内初の挙式・​ウェルカムパーティー・披露宴の3つのイベントを1日で行える特別なウェディングスタイルをご用意。" />
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0" />
 
         {/* favicon */}
@@ -52,11 +49,11 @@ export default function App({ Component, pageProps, router }: AppProps) {
         <meta property="og:image" content=" https://lu-crea.jp/ogp.png" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://lu-crea.jp/" />
-        <meta property="og:title" content="【公式】lu CREA ル・クレア┃京都 福知山の結婚式場" />
-        <meta property="og:site_name" content="lu CREA -ル・クレア- │京都 福知山の結婚式場" />
+        <meta property="og:title" content="【公式】マリエール高崎 │群馬 高崎市の結婚式場" />
+        <meta property="og:site_name" content="マリエール高崎 │群馬 高崎市の結婚式場" />
         <meta
           property="og:description"
-          content="京都 福知山の結婚式場・ウェディングならlu Crea（ル・クレア）。福知山駅徒歩3分でアクセス至便！北近畿最大級、天井高10mの白亜の大聖堂と、1件貸切の邸宅会場でゲストをおもてなしいたします。"
+          content="群馬県高崎市の結婚式場「マリエール高崎」。県内初の挙式・​ウェルカムパーティー・披露宴の3つのイベントを1日で行える特別なウェディングスタイルをご用意。"
         ></meta>
       </Head>
 

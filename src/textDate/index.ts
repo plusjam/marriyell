@@ -121,24 +121,24 @@ export const sitemapLinks = [
     title: "プラン",
     href: "/plan",
   },
-  {
-    title: "初めての方へ",
-    href: "/first",
-  },
-  {
-    title: "ご成約の方へ",
-    href: "/for-brides",
-  },
-  {
-    title: "ご列席の方へ",
-    href: "/for-guest",
-  },
+  // {
+  //   title: "はじめての方へ",
+  //   href: "/first",
+  // },
+  // {
+  //   title: "ご成約の方へ",
+  //   href: "/for-brides",
+  // },
+  // {
+  //   title: "ご列席の方へ",
+  //   href: "/for-guest",
+  // },
   {
     title: "ウエディングレポート",
     href: "/report",
   },
   {
-    title: "お知らせ・イベント",
+    title: "お知らせ・イベント情報",
     href: "/news",
   },
   {
@@ -153,10 +153,10 @@ export const sitemapLinks = [
     title: "アクセス",
     href: "/access",
   },
-  {
-    title: "よくある質問",
-    href: "/faq",
-  },
+  // {
+  //   title: "よくある質問",
+  //   href: "/faq",
+  // },
   {
     title: "お問い合わせ",
     href: "/contact",

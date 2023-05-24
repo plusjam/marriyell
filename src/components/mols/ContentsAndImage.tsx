@@ -6,8 +6,8 @@ import Link from "next/link";
 import { useMediaQuery } from "../../../libs/useMediaQuery";
 
 type Props = {
-  en: string;
-  ja: string;
+  en?: string;
+  ja?: string;
   description: string;
   href?: string;
   image: string;
@@ -21,12 +21,13 @@ const ContentsAndImage = (props: Props) => {
   const isPc = useMediaQuery(768, "min");
 
   return (
-    <div className={reverse ? `${Styles.item} ${Styles.reverse} fadein` : `${Styles.item} fadein`} id={en.toLocaleLowerCase().replaceAll(" ", "_")}>
+    <div className={reverse ? `${Styles.item} ${Styles.reverse} fadein` : `${Styles.item} fadein`} id={en && en.toLocaleLowerCase().replaceAll(" ", "_")}>
       <div className={Styles.contents}>
         <div className={Styles.title}>
-          <div className={Styles.en}>{en}</div>
-          <h3 className={Styles.ja}>{ja}</h3>
+          {en && <div className={Styles.en}>{en}</div>}
+          {ja && <h3 className={Styles.ja}>{ja}</h3>}
         </div>
+
         <div
           className={Styles.description}
           dangerouslySetInnerHTML={{

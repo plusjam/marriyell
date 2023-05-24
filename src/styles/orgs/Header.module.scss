@@ -43,7 +43,7 @@
     }
 
     &.colored {
-      background-color: #f8f8f4;
+      background-color: #f4f7f8;
       color: #222;
 
       .number,
@@ -58,14 +58,14 @@
   }
 
   .linkBridal {
-    background-color: #a6a08a;
+    background-color: #93c7c3;
     color: #fff;
     fill: #fff;
 
     &:hover {
-      background-color: #f8f8f4;
-      color: #a6a08a;
-      fill: #a6a08a;
+      background-color: #f4f7f8;
+      color: #93c7c3;
+      fill: #93c7c3;
     }
   }
 
@@ -76,7 +76,7 @@
   }
 
   &.colored {
-    background-color: #f8f8f4;
+    background-color: #f4f7f8;
     color: #707070;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 
@@ -154,7 +154,7 @@
     width: 3px;
     height: 3px;
     border-radius: 99px;
-    background: #a6a08a;
+    background: #93c7c3;
     top: -4px;
     left: 50%;
     transform: translateX(-50%);

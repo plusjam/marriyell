@@ -15,15 +15,15 @@ const TopOriginalWedding = () => {
       <section className={Styles.section}>
         <SectionHead en="Original Wedding" ja="オリジナルウェディング" href="original-wedding" />
         <div className={Styles.sectionCopy}>
-          北近畿最大級を誇る独立型チャペルと選べる３つの披露宴会場で叶えるオリジナルなウェディング。
+          特徴を伝えるボディーコピーが入ります。端的に伝える文言をご用意ください。
           <br />
-          併設のテラスやホワイエまで貸し切って 思い切り楽しむウェディングを叶えて。
+          適度な文章量でご指示時ください。
         </div>
-        <div className={Styles.container}>
+        {/* <div className={Styles.container}>
           {originalWedding.map((item, index) => {
             return <ContentsAndImage {...item} key={index} reverse={index % 2 === 1} />;
           })}
-        </div>
+        </div> */}
         <div className={`${Styles.container} ${Styles.plan}`}>
           {weddingInfo.map((info, index) => {
             return (

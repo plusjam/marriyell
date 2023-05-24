@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
   <defs>
     <clipPath id="clip-path">
-      <rect id="長方形_691" data-name="長方形 691" width="20" height="20" transform="translate(548 1161)" fill="#fff" stroke="#a6a08a" stroke-width="1"/>
+      <rect id="長方形_691" data-name="長方形 691" width="20" height="20" transform="translate(548 1161)" fill="#fff" stroke="#93C7C3" stroke-width="1"/>
     </clipPath>
     <clipPath id="clip-path-2">
-      <rect id="長方形_492" data-name="長方形 492" width="20" height="20" fill="#fff" stroke="#a6a08a" stroke-width="0.909"/>
+      <rect id="長方形_492" data-name="長方形 492" width="20" height="20" fill="#fff" stroke="#93C7C3" stroke-width="0.909"/>
     </clipPath>
   </defs>
   <g id="icon_fair_food" transform="translate(-548 -1161)" clip-path="url(#clip-path)">
@@ -12,15 +12,15 @@
       <g id="マスクグループ_24" data-name="マスクグループ 24" transform="translate(622.727 712.727)" clip-path="url(#clip-path-2)">
         <g id="グループ_2125" data-name="グループ 2125" transform="translate(0 1.663)">
           <path id="パス_1482" data-name="パス 1482" d="M7.694,0A7.694,7.694,0,1,1,0,7.694,7.694,7.694,0,0,1,7.694,0Z" transform="translate(2.684 1.195)" fill="#fff"/>
-          <path id="パス_1482_-_アウトライン" data-name="パス 1482 - アウトライン" d="M7.694,1.074a6.621,6.621,0,1,0,6.621,6.621A6.621,6.621,0,0,0,7.694,1.074M7.694,0A7.694,7.694,0,1,1,0,7.694,7.694,7.694,0,0,1,7.694,0Z" transform="translate(2.684 1.195)" fill="#a6a08a"/>
+          <path id="パス_1482_-_アウトライン" data-name="パス 1482 - アウトライン" d="M7.694,1.074a6.621,6.621,0,1,0,6.621,6.621A6.621,6.621,0,0,0,7.694,1.074M7.694,0A7.694,7.694,0,1,1,0,7.694,7.694,7.694,0,0,1,7.694,0Z" transform="translate(2.684 1.195)" fill="#93C7C3"/>
           <path id="合体_22" data-name="合体 22" d="M.42,16.582V11.036H-.944S-2.2,2.808-.944.862s3.924,0,3.924,0v15.72Z" transform="translate(17.019)" fill="#fff"/>
-          <path id="合体_22_-_アウトライン" data-name="合体 22 - アウトライン" d="M1.909,15.508V1.467A3.015,3.015,0,0,0,.636,1.074a.709.709,0,0,0-.672.373c-.587.909-.444,4.947.029,8.52h1.5v5.545h.416m1.071,1.07H.42V11.036H-.944S-2.2,2.808-.944.862s3.924,0,3.924,0Z" transform="translate(17.019)" fill="#a6a08a"/>
+          <path id="合体_22_-_アウトライン" data-name="合体 22 - アウトライン" d="M1.909,15.508V1.467A3.015,3.015,0,0,0,.636,1.074a.709.709,0,0,0-.672.373c-.587.909-.444,4.947.029,8.52h1.5v5.545h.416m1.071,1.07H.42V11.036H-.944S-2.2,2.808-.944.862s3.924,0,3.924,0Z" transform="translate(17.019)" fill="#93C7C3"/>
           <circle id="楕円形_31" data-name="楕円形 31" cx="5.437" cy="5.437" r="5.437" transform="translate(4.964 3.451)" fill="#fff"/>
-          <path id="楕円形_31_-_アウトライン" data-name="楕円形 31 - アウトライン" d="M5.437,1.074A4.364,4.364,0,1,0,9.8,5.437,4.364,4.364,0,0,0,5.437,1.074M5.437,0A5.437,5.437,0,1,1,0,5.437,5.437,5.437,0,0,1,5.437,0Z" transform="translate(4.964 3.451)" fill="#a6a08a"/>
+          <path id="楕円形_31_-_アウトライン" data-name="楕円形 31 - アウトライン" d="M5.437,1.074A4.364,4.364,0,1,0,9.8,5.437,4.364,4.364,0,0,0,5.437,1.074M5.437,0A5.437,5.437,0,1,1,0,5.437,5.437,5.437,0,0,1,5.437,0Z" transform="translate(4.964 3.451)" fill="#93C7C3"/>
           <path id="合体_23" data-name="合体 23" d="M-1504.378,2133.219v-8.583h-.135a1.207,1.207,0,0,1-1.207-1.207v-6.44h5.364v6.44a1.207,1.207,0,0,1-1.207,1.207v8.587Z" transform="translate(1505.72 -2116.544)" fill="#fff"/>
-          <path id="合体_23_-_アウトライン" data-name="合体 23 - アウトライン" d="M-1502.636,2132.146v-8.586h1.074a.134.134,0,0,0,.095-.039.134.134,0,0,0,.039-.1v-5.364h-3.22v5.364c0,.073.06.134.273.134h1.074v8.586h.671m1.074,1.074h-2.818v-8.583h-.135a1.207,1.207,0,0,1-1.207-1.207v-6.44h5.364v6.44a1.207,1.207,0,0,1-1.207,1.207Z" transform="translate(1505.72 -2116.544)" fill="#a6a08a"/>
-          <path id="線_156" data-name="線 156" d="M.32,4.7H-.351V0H.32Z" transform="translate(2.027 1.463)" fill="#a6a08a"/>
-          <path id="線_157" data-name="線 157" d="M.32,4.7H-.351V0H.32Z" transform="translate(3.369 1.463)" fill="#a6a08a"/>
+          <path id="合体_23_-_アウトライン" data-name="合体 23 - アウトライン" d="M-1502.636,2132.146v-8.586h1.074a.134.134,0,0,0,.095-.039.134.134,0,0,0,.039-.1v-5.364h-3.22v5.364c0,.073.06.134.273.134h1.074v8.586h.671m1.074,1.074h-2.818v-8.583h-.135a1.207,1.207,0,0,1-1.207-1.207v-6.44h5.364v6.44a1.207,1.207,0,0,1-1.207,1.207Z" transform="translate(1505.72 -2116.544)" fill="#93C7C3"/>
+          <path id="線_156" data-name="線 156" d="M.32,4.7H-.351V0H.32Z" transform="translate(2.027 1.463)" fill="#93C7C3"/>
+          <path id="線_157" data-name="線 157" d="M.32,4.7H-.351V0H.32Z" transform="translate(3.369 1.463)" fill="#93C7C3"/>
         </g>
       </g>
     </g>

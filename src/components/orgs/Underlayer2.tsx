@@ -6,15 +6,15 @@ import { useMediaQuery } from "../../../libs/useMediaQuery";
 
 type Props = {
   contents: {
-    en: string;
-    ja: string;
+    en?: string;
+    ja?: string;
     description: string;
     image: string;
     spImage: string;
   };
   views: {
-    copy: string;
-    description: string;
+    copy?: string;
+    description?: string;
     image02: string;
     spImage02: string;
     image03: string;

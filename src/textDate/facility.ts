@@ -12,19 +12,18 @@ export const CHAPEL = {
   href: "chapel",
 };
 
-export const ANGLEDEBONHEUR = {
+export const CEREMONY = {
   contents: {
-    en: "Ange de Bonheur",
-    ja: "アンジュドボヌール",
-    description:
-      "輝く未来に導かれるように誓いの扉が開かれると、響きわたるライブメロディ。<br>永遠の誓いを祝福するのは、降りそそぐ光とゲストの笑顔。祝福の拍手がふたりを包み、生涯で最も幸福な時が訪れる。",
+    en: "Ceremony",
+    ja: "セントマリーチャーチ高崎",
+    description: "天井高18m・バージンロード20mでの厳粛な挙式。<br>100年の歴史を誇る英国製ステンドグラスのやさしい光に包まれる挙式は感動的です。",
     image: "/images/facility_ceremony01.jpg",
     spImage: "/images/facility_ceremony01-sp.jpg",
     reserve: false,
   },
   views: {
-    copy: "天使が舞い降り永遠を誓う",
-    description: "煌くクリスタルのバージンロードがふたりを光のもとへ導けばそこには幸せの天使が舞い降ります。降り注ぐ光に包まれながら天使たちに祝福され、誓いの瞬間を。",
+    copy: "あなたは何に想いを馳せますか？",
+    description: "息をのむほどに光輝く美しいステンドグラス。<br>たくさんの想いをのせて歩く神秘的なバージンロード。<br>そこに言葉はなくても、それぞれの想いが重なり合い、受け継がれていく。",
     image02: "/images/facility_ceremony02.jpg",
     spImage02: "/images/facility_ceremony02-sp.jpg",
     image03: "/images/facility_ceremony03.jpg",
@@ -37,18 +36,16 @@ export const ANGLEDEBONHEUR = {
 
 export const GARDEN = {
   contents: {
-    en: "Garden",
-    ja: "庭園",
-    description:
-      "白亜の大聖堂から続く大階段、その先には約150坪の広大なプライベートガーデンが。フラワーシャワーやバルーンリリースにブーケトス、ゲスト皆さまとのフォトタイムなど、思うままの過ごし方を。",
+    en: "AQUA COURT Welcomeparty",
+    ja: "アクアコートウェルカムパーティー",
+    description: "緑などの自然に包まれる中、生演奏を聞きながらゲストと楽しく過ごせるウェルカムパーティー専用会場【アクアコート】",
     image: "/images/facility_garden01.jpg",
     spImage: "/images/facility_garden01-sp.jpg",
     reverse: true,
   },
   views: {
-    copy: "色鮮やかな緑に囲まれて寛ぎのときを",
-    description:
-      "四季折々の花たちが薫る緑豊かなガーデンは福知山駅からすぐと思えないほどの非日常感。澄んだ空気とあふれる緑に包まれて自然にみんながリラックスできるナチュラルガーデンウェディングは、ゲストの記憶にきざまれることでしょう。",
+    copy: "お二人らしくゲストをおもてなし",
+    description: "大聖堂から続く大階段、その先には広大なプライベートガーデンが。フラワーシャワーやブーケトス。ゲスト皆さまをお二人の思うままにおもてなしを。",
     image02: "/images/facility_garden02.jpg",
     spImage02: "/images/facility_garden02-sp.jpg",
     image03: "/images/facility_garden03.jpg",
@@ -59,75 +56,74 @@ export const GARDEN = {
   },
 };
 
-export const BANQUET = {
-  en: "Banquet",
-  ja: "宴会場",
-  href: "banquet",
+export const ORIGINALWEDDING = {
+  en: "Original Wedding",
+  ja: "オリジナルウエディング",
+  href: "originalwedding",
 };
 
-export const FEARIA = {
+export const HAMPTON = {
   contents: {
-    en: "Fearia",
-    ja: "フェアリア",
-    description:
-      "幸せな空間の名をもつ、ラグジュアリーなパーティー会場。主人公が大階段から舞い降りれば、そこは歓喜に包まれた光あふれる明るいバンケット。プロジェクションマッピングの演出やテラスまで自由に使って、ふたりらしいパーティを。",
-    image: "/images/facility_fearia01.jpg",
-    spImage: "/images/facility_fearia01-sp.jpg",
+    en: "Hampton",
+    ja: "ハンプトン",
+    description: "ナチュラルガーデンをテーマにグリーンを取り入れ柔らかい雰囲気へと生まれ変わった【ハンプトン】<br>新たに照明器具を導入しLIVEさながらの演出も。こだわりあるお2人にぴったり。",
+    image: "/images/facility_hampton01.jpg",
+    spImage: "/images/facility_hampton01-sp.jpg",
     reverse: false,
   },
   views: {
     copy: "優美な光が降り注ぐ大人かわいい上質空間",
     description: "光あふれる陽光が降り注ぐ大人かわいい上質なバンケットと、開放的なガーデンのプライベート空間。いつまでも醒めないときを心に刻んで。",
-    image02: "/images/facility_fearia02.jpg",
-    spImage02: "/images/facility_fearia02-sp.jpg",
-    image03: "/images/facility_fearia03.jpg",
-    spImage03: "/images/facility_fearia03-sp.jpg",
-    image04: "/images/facility_fearia04.jpg",
-    spImage04: "/images/facility_fearia04-sp.jpg",
+    image02: "/images/facility_hampton02.jpg",
+    spImage02: "/images/facility_hampton02-sp.jpg",
+    image03: "/images/facility_hampton03.jpg",
+    spImage03: "/images/facility_hampton03-sp.jpg",
+    image04: "/images/facility_hampton04.jpg",
+    spImage04: "/images/facility_hampton04-sp.jpg",
     reverse: false,
   },
 };
 
-export const GROWRIA = {
+export const NORTHVILLA = {
   contents: {
-    en: "GROWRIA",
-    ja: "グロウリア",
-    description: "開放的に吹き抜ける大階段から歩をすすめれば、四方を埋め尽くすスクリーン演出。ガーデンには自然で気取らないナチュラル空間。個性彩る演出と世界にひとつのアイデアで、全ての人を魅了して。",
-    image: "/images/facility_growria01.jpg",
-    spImage: "/images/facility_growria01-sp.jpg",
+    en: "North Villa",
+    ja: "ノースヴィラ",
+    description: "アジアンリゾートをイメージして作られた【ノースヴィラ】<br>シンプルな中にもラグジュアリー感漂うモダンな会場。",
+    image: "/images/facility_northvilla01.jpg",
+    spImage: "/images/facility_northvilla01-sp.jpg",
     reverse: true,
   },
   views: {
-    copy: "開放的な吹き抜けが広がるナチュラル空間",
-    description: "ファッショナブルな大人モダン。ディティールにこだわった洗練された空間は本物を知る人にこそふさわしい。人とはひと味ちがうハイセンスな時間をお楽しみいただけます。",
-    image02: "/images/facility_growria02.jpg",
-    spImage02: "/images/facility_growria02-sp.jpg",
-    image03: "/images/facility_growria03.jpg",
-    spImage03: "/images/facility_growria03-sp.jpg",
-    image04: "/images/facility_growria04.jpg",
-    spImage04: "/images/facility_growria04-sp.jpg",
+    copy: "お二人の別荘でゲストをおもてなし",
+    description: "ワンフロア貸切で開放感のある会場でリゾート感を味わいながらお二人がゲストをおもてなししてみては・・・",
+    image02: "/images/facility_northvilla02.jpg",
+    spImage02: "/images/facility_northvilla02-sp.jpg",
+    image03: "/images/facility_northvilla03.jpg",
+    spImage03: "/images/facility_northvilla03-sp.jpg",
+    image04: "/images/facility_northvilla04.jpg",
+    spImage04: "/images/facility_northvilla04-sp.jpg",
     reverse: true,
   },
 };
 
-export const PLUMERIA = {
+export const JARDINET = {
   contents: {
-    en: "Plumeria",
-    ja: "プルメリア",
-    description: "緑と光に包まれたアジアンリゾート。</br>木のぬくもりと緑に包まれたバリ風の空間はおふたりとゲストを穏やかな空気で包みます。ありのままで楽しめるナチュラルスタイルで最幸のひとときを",
-    image: "/images/facility_plumeria01.jpg",
-    spImage: "/images/facility_plumeria01-sp.jpg",
+    en: "Jardinet",
+    ja: "ジャルディネット",
+    description: "少人数専用会場。アットホームなパーティーにぴったりの会場【ジャルディネット】<br>人数に応じて様々なテーブルレイアウトが楽しめます。",
+    image: "/images/facility_jardinet01.jpg",
+    spImage: "/images/facility_jardinet01-sp.jpg",
     reverse: false,
   },
   views: {
-    copy: "華やかで緑彩るこもれびリゾート",
-    description: "華やかな宴が幕を開けると、親しい人たちと集う理想の空間。祝福の音色が響きわたり、優しい未来へそっと歩き出すふたりを揺らめく景色が癒す。",
-    image02: "/images/facility_plumeria02.jpg",
-    spImage02: "/images/facility_plumeria02-sp.jpg",
-    image03: "/images/facility_plumeria03.jpg",
-    spImage03: "/images/facility_plumeria03-sp.jpg",
-    image04: "/images/facility_plumeria04.jpg",
-    spImage04: "/images/facility_plumeria04-sp.jpg",
+    copy: "大切な方とのひとときを",
+    description: "ご家族様やご親族様のみでも安心の少人数様向けの披露宴会場。普段伝えることのできない感謝の思いをゲスト皆さまへ伝えることが叶う。",
+    image02: "/images/facility_jardinet02.jpg",
+    spImage02: "/images/facility_jardinet02-sp.jpg",
+    image03: "/images/facility_jardinet03.jpg",
+    spImage03: "/images/facility_jardinet03-sp.jpg",
+    image04: "/images/facility_jardinet04.jpg",
+    spImage04: "/images/facility_jardinet04-sp.jpg",
     reverse: false,
   },
 };

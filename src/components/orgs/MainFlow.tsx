@@ -9,14 +9,12 @@ export const MainFlow = () => {
   return (
     <>
       <div className={Styles.main}>
-        {/* <Image className={Styles.image} src="/images/art_logo.svg" alt="" width={170} height={172} /> */}
         <picture>
-          <source srcSet="/images/art_logo.svg" type="image/svg" />
-          <img className={Styles.image} src="/images/art_logo.svg" alt="" width={170} height={172} />
+          <source srcSet="/images/main_copy.svg" type="image/svg" />
+          <img className={Styles.image} src="/images/main_copy.svg" alt="" width={283} height={64} />
         </picture>
         {isPc ? (
           <div className={Styles.scroll}>
-            {/* <Image src="/images/icon_scroll.svg" alt="" width={16} height={33} /> */}
             <picture>
               <source srcSet="/images/icon_scroll.svg" type="image/svg" />
               <img src="/images/icon_scroll.svg" alt="" width={16} height={33} />
@@ -32,29 +30,14 @@ export const MainFlow = () => {
       </div>
       <div className={Styles.flow}>
         <h1 className={Styles.heading}>
-          <span>今日の</span>
-          <span>私たちの</span>
-          <span>ウェディングが</span>
+          <span>北関東最大級の</span>
+          <span>スケールを</span>
+          <span>誇る</span>
           <br />
-          <span>世界中で</span>
-          <span>一番の</span>
-          <span>WONDERLAND に</span>
+          <span>独立型大聖堂が</span>
+          <span>ある結婚式場</span>
         </h1>
-        <p className={Styles.description}>
-          大切にしたいのは、「みんなで楽しむウェディング」。
-          <br />
-          花嫁が着たいドレスを着て、好きなように飾り、
-          <br />
-          自分達らしいウェディングを思いきり、というスタイルはもちろんのこと、
-          <br />
-          家族や友人、ゲスト一人ひとりにとっても最高の一日になる。
-          <br />
-          そんな特別な「HAPPINESS」を叶える場所へ。
-          <br />
-          今日の私達のウェディングが、
-          <br />
-          世界中で1番の「WONDERLAND」になるように。
-        </p>
+        <p className={Styles.description}>コンセプトを伝えるボディーコピーが入ります。端的に想いや特徴を伝える文言をご用意ください。適度な文章量でご指示時ください。</p>
       </div>
     </>
   );

@@ -22,7 +22,7 @@
     content: "";
     width: 24px;
     height: 2px;
-    background-color: #a6a08a;
+    background-color: #93c7c3;
     position: absolute;
     bottom: 0;
     left: 50%;
@@ -46,11 +46,11 @@
   align-items: center;
   font-size: 15px;
   line-height: 1.46;
-  border-top: 1px solid #a6a08a;
+  border-top: 1px solid #93c7c3;
   min-height: 81px;
 
   &:last-child {
-    border-bottom: 1px solid #a6a08a;
+    border-bottom: 1px solid #93c7c3;
   }
 }
 
