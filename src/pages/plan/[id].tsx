@@ -47,7 +47,7 @@ export default function Home(props: Props) {
           const month = eventDate.getMonth();
           const dateNum = eventDate.getDate();
 
-          return selectedWeekend.date === `${month + 1}月${dateNum}日`;
+          return selectedWeekend.date.match(`${month + 1}月${dateNum}日`);
         });
 
         if (find) return true;
