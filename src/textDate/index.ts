@@ -200,21 +200,21 @@ export const BRIDALFAIR = [
 
 export const WEDDINGPLAN = [
   {
-    href: "https://lu-crea.fuwel.wedding/plan/1524/",
+    href: "",
     src: "/images/weddingPlan01.webp",
     title: "人気シーズン先取り♪≪10名72万≫8名～OK！家族と過ごす少人数秋婚が対象のオトクプラン♪",
     price: "722,700",
     description: "先着3組様限定のオトクプラン♪23年9月～11月まで、8名以上の少人数ウェディングがオトクに叶うシーズン限定プラン☆秋の心地よい気候の中、大切な方々と貸切邸宅で過ごす特別な時間が叶う♪",
   },
   {
-    href: "https://lu-crea.fuwel.wedding/plan/1525/",
+    href: "",
     src: "/images/weddingPlan02.webp",
     title: "24年2月末までの実施で早期ご成約特典あり◎≪60名236万≫30名以上×2024冬婚対象プラン！",
     price: "2,365,021",
     description: "23年12月～24年2月末まで、30名～120名の披露宴実施のお申し込みで早期ご成約特典あり！さまざまなテーマのウェディングが叶う冬婚☆お日取り重視派におすすめプランが登場♪",
   },
   {
-    href: "https://lu-crea.fuwel.wedding/plan/1537/",
+    href: "",
     src: "/images/weddingPlan03.webp",
     title: "24年2月末までの実施が対象！≪40名166万≫直近×2024冬婚がオトクに叶うSPプラン♪",
     price: "1,662,590",
