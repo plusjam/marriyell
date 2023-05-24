@@ -122,6 +122,10 @@
       height: 100%;
       opacity: 0;
     }
+
+    &::-webkit-date-and-time-value {
+      text-align: left;
+    }
   }
 }
 

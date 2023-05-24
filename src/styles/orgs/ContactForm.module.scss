@@ -550,6 +550,10 @@ Detail Form End
       height: 100%;
       opacity: 0;
     }
+
+    &[type="time"]::-webkit-date-and-time-value {
+      text-align: left;
+    }
   }
 }
 
