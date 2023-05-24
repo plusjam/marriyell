@@ -11,6 +11,8 @@ import { GetStaticProps } from "next";
 import Head from "next/head";
 import useModalReport from "../../../libs/useModalReport";
 import { ReportContents } from "../api/weddingReport/[id]";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 type Props = {
   reportLists: ReportContents[];
@@ -20,6 +22,19 @@ export default function Home(props: Props) {
   const { reportLists } = props;
 
   const { videoID, openModal, closeModal } = useModalReport();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (router.asPath.match(/#reservation/)) {
+      const target = document.getElementById("reservation");
+      if (target) {
+        target.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    }
+  }, []);
 
   return (
     <>

@@ -49,6 +49,10 @@
 
 .fc .fc-day-past {
   pointer-events: none;
+
+  .fc-daygrid-day-frame {
+    pointer-events: none;
+  }
 }
 
 .fc .fc-day-today,
@@ -90,6 +94,10 @@
   color: #222;
   margin-top: 20px;
   margin-bottom: 10px;
+}
+
+.fc .fc-daygrid-day-bottom {
+  display: none;
 }
 
 .fc-col-header-cell-cushion {
@@ -316,6 +324,47 @@ a {
 }
 
 @media screen and (max-width: 768px) {
+  .isTop .fc {
+    .fc-next-button {
+      position: static;
+      top: revert;
+      right: revert;
+      transform: unset;
+      width: unset;
+      height: unset;
+
+      &:before {
+        content: unset;
+      }
+
+      .fc-icon {
+        display: none;
+      }
+    }
+
+    .fc-prev-button {
+      position: static;
+      top: revert;
+      left: revert;
+      transform: unset;
+      width: unset;
+      height: unset;
+
+      &:before {
+        content: unset;
+      }
+
+      .fc-icon {
+        display: none;
+      }
+    }
+
+    .fc-daygrid-day-events .fc-h-event {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
   .fc .fc-toolbar-title {
     margin-top: 3px;
     margin-bottom: 0;

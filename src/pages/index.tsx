@@ -18,6 +18,7 @@ import { NewsCategory, NewsContents } from "../../typings/news";
 import { META } from "@/textDate/head";
 import { FairList } from "./api/fair";
 import useGetWeekend from "../../libs/useGetWeekend";
+import Calendar from "@/components/atoms/Calendar";
 
 type Props = {
   reportLists: ReportContents[];
@@ -28,10 +29,9 @@ type Props = {
 export default function Home(props: Props) {
   const { reportLists, newsLists, fairLists } = props;
 
-  const [lists, setLists] = React.useState<FairList>([...fairLists]);
   const [weekendLists, setWeekendLists] = React.useState([...fairLists]);
-  const { videoID, openModal, closeModal } = useModalReport();
 
+  const { videoID, openModal, closeModal } = useModalReport();
   const { selected: selectedWeekend, handleSelect: handleWeekendSelect } = useGetWeekend();
 
   useEffect(() => {
@@ -63,6 +63,17 @@ export default function Home(props: Props) {
     setWeekendLists(selectedWeekendLists);
   };
 
+  function removeDuplicates(originalArray: { date: string }[], objKey: keyof { date: string }) {
+    const map = new Map();
+    return originalArray.filter((obj) => {
+      if (!map.has(obj[objKey])) {
+        map.set(obj[objKey], true);
+        return true;
+      }
+      return false;
+    });
+  }
+
   return (
     <>
       <Motion>
@@ -74,7 +85,7 @@ export default function Home(props: Props) {
           <MainVideo />
           <MainFlow />
           <TopOriginalWedding />
-          <TopBridalFair lists={weekendLists} weekend={selectedWeekend} handleSelect={handleWeekendSelect} />
+          <TopBridalFair lists={weekendLists} weekend={selectedWeekend} handleSelect={handleWeekendSelect} events={removeDuplicates([...fairLists].map((list) => list.events).flat(), "date")} />
           <TopWeddingPlan />
           <TopWeddingReport contents={reportLists} openModal={openModal} />
           <TopNewsEvent contents={newsLists.contents} />

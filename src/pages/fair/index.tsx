@@ -2,7 +2,7 @@ import Motion from "@/components/layouts/Motion";
 import UnderlayerHead from "@/components/orgs/UnderlayerHead";
 import { GetStaticProps } from "next";
 import Head from "next/head";
-import React, { useEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import WeekendFair from "@/components/orgs/WeekendFair";
 import SelectFair from "@/components/orgs/SelectFair";
 import BridalFair from "@/components/orgs/BridalFair";
@@ -19,6 +19,7 @@ import axios from "axios";
 import { apricotClient } from "../../../libs/cms";
 import { AppTrigger } from "../_app";
 import { META } from "@/textDate/head";
+import { useRouter } from "next/router";
 
 type Props = {
   reportLists: ReportContents[];
@@ -27,6 +28,8 @@ type Props = {
 
 export default function Home(props: Props) {
   const { reportLists, fairLists } = props;
+
+  const router = useRouter();
   const [lists, setLists] = React.useState([...fairLists]);
   const [weekendLists, setWeekendLists] = React.useState([...fairLists]);
 
@@ -34,7 +37,34 @@ export default function Home(props: Props) {
   const { categories, handleSelect } = useSelectFair();
   const { selected: selectedWeekend, handleSelect: handleWeekendSelect } = useGetWeekend();
 
-  // const { ScrollTrigger } = useAnimation();
+  useEffect(() => {
+    getSelectedWeekendLists();
+  }, [selectedWeekend]);
+
+  // weekendListsをselectedWeekendで絞り込み
+  const getSelectedWeekendLists = async () => {
+    const initLists = [...fairLists];
+
+    const selectedDate = selectedWeekend.filter((weekend) => {
+      return weekend.selected;
+    });
+
+    const selectedWeekendLists = initLists.filter((weekend) => {
+      return weekend.events.some((event) => {
+        const find = selectedDate.find((selectedWeekend) => {
+          const eventDate = new Date(event.date);
+          const month = eventDate.getMonth();
+          const dateNum = eventDate.getDate();
+
+          return selectedWeekend.date === `${month + 1}月${dateNum}日`;
+        });
+
+        if (find) return true;
+      });
+    });
+
+    setWeekendLists(selectedWeekendLists);
+  };
 
   // 選択されたカテゴリーから絞り込み or検索
   const getSelectedLists = async () => {
@@ -71,39 +101,18 @@ export default function Home(props: Props) {
     });
   };
 
-  useEffect(() => {
-    getSelectedWeekendLists();
-  }, [selectedWeekend]);
-
-  // weekendListsをselectedWeekendで絞り込み
-  const getSelectedWeekendLists = async () => {
-    const initLists = [...fairLists];
-
-    const selectedDate = selectedWeekend.filter((weekend) => {
-      return weekend.selected;
-    });
-
-    const selectedWeekendLists = initLists.filter((weekend) => {
-      return weekend.events.some((event) => {
-        const find = selectedDate.find((selectedWeekend) => {
-          const eventDate = new Date(event.date);
-          const month = eventDate.getMonth();
-          const dateNum = eventDate.getDate();
-
-          return selectedWeekend.date === `${month + 1}月${dateNum}日`;
-        });
-
-        if (find) return true;
-      });
-    });
-
-    setWeekendLists(selectedWeekendLists);
-  };
-
   // 日付からlistsを絞り込み検索
-  const getSelectedDateLists = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const target = e.currentTarget;
-    const targetDate = target.value;
+  const getSelectedDateLists = async (e?: React.ChangeEvent<HTMLInputElement>) => {
+    let targetDate: string | undefined | null;
+
+    if (e) {
+      const target = e.currentTarget;
+      targetDate = target.value;
+    } else {
+      const url = new URL(router.asPath, "http://dummy.com");
+      const params = new URLSearchParams(url.hash.split("?")[1]);
+      targetDate = params.get("date");
+    }
 
     if (targetDate) {
       // listsからtargetDateと一致するものを抽出

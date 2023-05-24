@@ -17,7 +17,6 @@ type Props = {
     date: string;
   }[];
   toFairLists?: boolean;
-  isTop?: boolean;
 };
 
 const mouseover = (e: MouseEvent) => {
@@ -38,8 +37,8 @@ const mouseout = (e: MouseEvent) => {
   }
 };
 
-const Calendar = (props: Props) => {
-  const { events, toFairLists = false, isTop = false } = props;
+const CalendarTOP = (props: Props) => {
+  const { events, toFairLists = false } = props;
 
   const router = useRouter();
   const calendarRef = useRef<FullCalendar>(null);
@@ -50,26 +49,6 @@ const Calendar = (props: Props) => {
   const [selectDate, setSelectDate] = useRecoilState<any>(selectFairDate);
 
   useEffect(() => {
-    if (calendarRef.current) {
-      const API: CalendarApi = calendarRef.current.getApi();
-      console.log(isTop);
-      API.changeView(!isPc ? "dayGridMonth" : isTop ? "dayGridMonth" : "dayGridWeek");
-    }
-
-    const adjustCalendarHeight = () => {
-      setTimeout(() => {
-        const fcViewHarness = ref.current?.querySelector(".fc-view-harness") as HTMLElement;
-        const fcScrollgridSyncTable = ref.current?.querySelector(".fc-scrollgrid-sync-table") as HTMLElement;
-
-        if (fcViewHarness && isPc) {
-          fcViewHarness.style.height = "44px";
-          fcScrollgridSyncTable.style.height = "20px";
-        }
-      }, 100);
-    };
-
-    adjustCalendarHeight();
-
     const dayFuture = ref.current?.querySelectorAll(".fc-day-future") as NodeListOf<HTMLElement>;
 
     dayFuture.forEach((day) => {
@@ -81,11 +60,7 @@ const Calendar = (props: Props) => {
       }
     });
 
-    window.addEventListener("resize", adjustCalendarHeight);
-
     return () => {
-      window.removeEventListener("resize", adjustCalendarHeight);
-
       dayFuture.forEach((day) => {
         const fcEvent = day.querySelector(".fc-event") as HTMLElement;
 
@@ -101,10 +76,10 @@ const Calendar = (props: Props) => {
     let prevButton = ref.current?.querySelector(".fc-prev-button");
     let nextButton = ref.current?.querySelector(".fc-next-button");
     if (prevButton) {
-      prevButton.textContent = !isPc ? `< ${date.getMonth() === 0 ? 12 : date.getMonth()}月` : ``;
+      prevButton.textContent = `< ${date.getMonth() === 0 ? 12 : date.getMonth()}月`;
     }
     if (nextButton) {
-      nextButton.textContent = !isPc ? `${date.getMonth() === 11 ? 1 : date.getMonth() + 2}月  >` : ``;
+      nextButton.textContent = `${date.getMonth() === 11 ? 1 : date.getMonth() + 2}月  >`;
     }
   }
 
@@ -132,18 +107,6 @@ const Calendar = (props: Props) => {
     updateCalendarTitle(date); // '/'を'年'に置き換えて'月'を追加
   };
 
-  const pagenation = (className: string) => {
-    const elem = ref.current?.querySelector(className) as HTMLButtonElement;
-    const API: any = calendarRef.current?.getApi() as CalendarApi;
-    const date = new Date(API.currentData.currentDate);
-
-    updateCalendarTitle(date);
-    elem?.click();
-    elem?.click();
-    elem?.click();
-    elem?.click();
-  };
-
   const handleDateClick = (arg: DateClickArg) => {
     const elem = arg.dayEl;
     if (elem.classList.contains("fc-day-past")) return;
@@ -158,7 +121,7 @@ const Calendar = (props: Props) => {
   };
 
   return (
-    <div className={Styles.calendar} ref={ref}>
+    <div className={`${Styles.calendar} isTop`} ref={ref}>
       <div>
         <FullCalendar
           // locale={jaLocale}
@@ -202,15 +165,9 @@ const Calendar = (props: Props) => {
           }}
           dateClick={(e) => handleDateClick(e)}
         ></FullCalendar>
-        <div className={Styles.next} onClick={() => pagenation(".fc-next-button")}>
-          {month === 12 ? 1 : month + 1}月 &gt;
-        </div>
-        <div className={Styles.prev} onClick={() => pagenation(".fc-prev-button")}>
-          &lt; {month === 1 ? 12 : month - 1}月
-        </div>
       </div>
     </div>
   );
 };
 
-export default Calendar;
+export default CalendarTOP;

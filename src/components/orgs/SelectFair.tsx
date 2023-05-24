@@ -1,7 +1,8 @@
 import Image from "next/image";
-import React, { MouseEvent } from "react";
+import React, { MouseEvent, use, useEffect } from "react";
 import Styles from "../../styles/orgs/SelectFair.module.scss";
 import BridalCategoriesSelected from "../mols/BridalCategoriesSelect";
+import { useRouter } from "next/router";
 
 type Props = {
   categories: {
@@ -10,7 +11,7 @@ type Props = {
     slug: string;
   }[];
   handleSelected: (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => void;
-  getSelectedDateLists: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  getSelectedDateLists: (e?: React.ChangeEvent<HTMLInputElement>) => void;
   getSelectedLists: () => void;
 };
 
@@ -23,6 +24,25 @@ const todayDate = year + "-" + month + "-" + day;
 
 const SelectFair = (props: Props) => {
   const { categories, handleSelected, getSelectedLists, getSelectedDateLists } = props;
+
+  const ref = React.useRef<HTMLInputElement | null>(null);
+  const [date, setDate] = React.useState("");
+  const router = useRouter();
+
+  useEffect(() => {
+    setTimeout(() => {
+      const url = new URL(router.asPath, "http://dummy.com");
+      const params = new URLSearchParams(url.hash.split("?")[1]);
+      const targetDate = params.get("date");
+
+      if (targetDate) {
+        setDate(targetDate);
+        getSelectedDateLists();
+      } else {
+        setDate(todayDate);
+      }
+    }, 2500);
+  }, []);
 
   return (
     <section className={Styles.section}>
@@ -52,7 +72,16 @@ const SelectFair = (props: Props) => {
               <span>日付から選択</span>
             </div>
             <div className={Styles.inputWrap}>
-              <input type="date" className={Styles.input} onChange={(e) => getSelectedDateLists(e)} value={todayDate} />
+              <input
+                type="date"
+                className={Styles.input}
+                onChange={(e) => {
+                  getSelectedDateLists(e);
+                  setDate(e.currentTarget.value);
+                }}
+                value={date}
+                ref={ref}
+              />
               <div className={Styles.inputImage}>
                 <Image src="/images/icon_fair_calendar.svg" alt="" width={22} height={20} />
               </div>

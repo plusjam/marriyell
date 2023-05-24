@@ -1,4 +1,4 @@
-import { ContactDataDetailFair } from "@/components/mols/DetailFairFormInput";
+import { ContactDataDetailFair } from "@/components/orgs/DetailFairForm";
 
 export const ReplyToOperation = (body: ContactDataDetailFair) => {
   return {

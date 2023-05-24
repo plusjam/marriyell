@@ -3,9 +3,77 @@
   padding: 0 24px 40px;
 }
 
+.options {
+  display: flex;
+}
+
+.option {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 11.5px;
+  padding-bottom: 20.5px;
+  font-size: 16px;
+  position: relative;
+  color: #e0e0e0;
+  transform: 0.2s;
+
+  &.active {
+    color: #a6a08a;
+  }
+
+  &:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 75%;
+    height: 1px;
+    background-color: #a6a08a;
+    transform: translateX(-50%);
+    transition: transform 0.2s;
+  }
+}
+
 .container {
   max-width: 1280px;
   margin: 80px auto 0;
+}
+
+.main {
+  display: flex;
+  justify-content: space-between;
+}
+
+.weekends {
+  width: 48%;
+}
+
+.weekendsHead {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  color: #707070;
+  text-align: center;
+}
+
+.en {
+  margin-bottom: 16px;
+  font-family: "EB Garamond", serif;
+  font-size: 28px;
+  color: #000;
+}
+
+.ja {
+  font-size: 13px;
+  color: #8c8c8c;
+}
+
+.calendar {
+  width: 48%;
+  border: 1px solid #a6a08a;
 }
 
 .swiper {
@@ -100,7 +168,7 @@
 }
 
 .select {
-  width: 25%;
+  width: 50%;
   font-size: 16px;
   color: #cb5353;
   letter-spacing: 0.04em;
@@ -185,6 +253,23 @@
 @media screen and (max-width: 768px) {
   .section {
     padding: 0;
+  }
+
+  .main {
+    &.week {
+      flex-direction: column;
+      padding: 0 15px;
+    }
+  }
+
+  .weekends {
+    width: 100%;
+    display: none;
+  }
+
+  .calendar {
+    width: 100%;
+    margin-top: 20px;
   }
 
   .link {
