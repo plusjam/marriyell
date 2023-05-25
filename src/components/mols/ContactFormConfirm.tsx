@@ -97,7 +97,7 @@ const ContactFormConfirm = (props: Props) => {
                 メールアドレス
               </label>
               <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                <input disabled className={Styles.input} id="email" {...register("email", {})} placeholder="例　abcd@lucrea" value={contactData.email} />
+                <input disabled className={Styles.input} id="email" {...register("email", {})} placeholder="例　abcd@marriyell" value={contactData.email} />
                 {errors.email && <span className={Styles.error}>{errors.email.message as string}</span>}
               </div>
             </div>

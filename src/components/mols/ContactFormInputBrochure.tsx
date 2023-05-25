@@ -181,7 +181,7 @@ const ContactFormInputBrochure = (props: Props) => {
                         updateContactBrochureData({ ...contactBrochureData, email: e.target.value });
                       },
                     })}
-                    placeholder="例　abcd@lucrea"
+                    placeholder="例　abcd@marriyell"
                     value={contactBrochureData.email}
                   />
                   {errors.email && <span className={Styles.error}>{errors.email.message as string}</span>}
@@ -294,7 +294,7 @@ const ContactFormInputBrochure = (props: Props) => {
                         updateContactBrochureData({ ...contactBrochureData, email: e.target.value });
                       },
                     })}
-                    placeholder="例　abcd@lucrea"
+                    placeholder="例　abcd@marriyell"
                     value={contactBrochureData.email}
                   />
                   {errors.email && <span className={Styles.error}>{errors.email.message as string}</span>}

@@ -147,7 +147,7 @@ const ContactFormReservationInput = (props: Props) => {
                       updateContactReservationData({ ...contactReservationData, email: e.target.value });
                     },
                   })}
-                  placeholder="例　abcd@lucrea"
+                  placeholder="例　abcd@marriyell"
                   value={contactReservationData.email}
                 />
                 {errors.email && <span className={Styles.error}>{errors.email.message as string}</span>}

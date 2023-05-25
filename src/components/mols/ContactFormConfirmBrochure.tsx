@@ -98,7 +98,7 @@ const ContactFormConfirmBrochure = (props: Props) => {
                   メールアドレス
                 </label>
                 <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                  <input disabled className={Styles.input} id="email" {...register("email", {})} placeholder="例　abcd@lucrea" value={contactBrochureData.email} />
+                  <input disabled className={Styles.input} id="email" {...register("email", {})} placeholder="例　abcd@marriyell" value={contactBrochureData.email} />
                   {errors.email && <span className={Styles.error}>{errors.email.message as string}</span>}
                 </div>
               </div>
@@ -158,7 +158,7 @@ const ContactFormConfirmBrochure = (props: Props) => {
                   メールアドレス
                 </label>
                 <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                  <input disabled className={Styles.input} id="email" {...register("email", {})} placeholder="例　abcd@lucrea" value={contactBrochureData.email} />
+                  <input disabled className={Styles.input} id="email" {...register("email", {})} placeholder="例　abcd@marriyell" value={contactBrochureData.email} />
                   {errors.email && <span className={Styles.error}>{errors.email.message as string}</span>}
                 </div>
               </div>
@@ -167,7 +167,7 @@ const ContactFormConfirmBrochure = (props: Props) => {
                   郵便番号
                 </label>
                 <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                  <input disabled className={`${Styles.input} ${Styles.half}`} id="zipcode" {...register("zipcode", {})} placeholder="例　abcd@lucrea" value={contactBrochureData.zipcode} />
+                  <input disabled className={`${Styles.input} ${Styles.half}`} id="zipcode" {...register("zipcode", {})} placeholder="例　abcd@marriyell" value={contactBrochureData.zipcode} />
                   {errors.zipcode && <span className={Styles.error}>{errors.zipcode.message as string}</span>}
                 </div>
               </div>
@@ -176,7 +176,7 @@ const ContactFormConfirmBrochure = (props: Props) => {
                   住所
                 </label>
                 <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                  <input disabled className={Styles.input} id="address" {...register("address", {})} placeholder="例　abcd@lucrea" value={contactBrochureData.address} />
+                  <input disabled className={Styles.input} id="address" {...register("address", {})} placeholder="例　abcd@marriyell" value={contactBrochureData.address} />
                   {errors.address && <span className={Styles.error}>{errors.address.message as string}</span>}
                 </div>
               </div>
