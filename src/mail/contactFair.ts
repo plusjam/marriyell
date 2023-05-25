@@ -2,7 +2,7 @@ import { ContactDataDetailFair } from "@/components/orgs/DetailFairForm";
 
 export const ReplyToOperation = (body: ContactDataDetailFair) => {
   return {
-    from: "welcome@lu-crea.jp",
+    from: "takasaki@marriyellclub.co.jp",
     to: process.env.MAIL_ADDRESS,
     subject: `【フェア予約通知】公式ページよりフェアのご予約がありました。`,
     // text: body.inquiry + " | Sent from: " + body.email,
@@ -43,7 +43,7 @@ export const ReplyToOperation = (body: ContactDataDetailFair) => {
 
 export const ReplyToCustomer = (body: ContactDataDetailFair) => {
   return {
-    from: "welcome@lu-crea.jp",
+    from: "takasaki@marriyellclub.co.jp",
     to: body.email,
     subject: `【マリエール高崎】フェアのご予約ありがとうございました。`,
     // text: body.inquiry + " | Sent from: " + body.email,

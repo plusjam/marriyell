@@ -2,7 +2,7 @@ import { ContactDataDetailPlan } from "@/components/orgs/DetailPlanForm";
 
 export const ReplyToOperation = (body: ContactDataDetailPlan) => {
   return {
-    from: "welcome@lu-crea.jp",
+    from: "takasaki@marriyellclub.co.jp",
     to: process.env.MAIL_ADDRESS,
     subject: `【プラン相談通知】公式ページよりプランのご相談がありました。`,
     // text: body.inquiry + " | Sent from: " + body.email,
@@ -46,7 +46,7 @@ export const ReplyToOperation = (body: ContactDataDetailPlan) => {
 
 export const ReplyToCustomer = (body: ContactDataDetailPlan) => {
   return {
-    from: "welcome@lu-crea.jp",
+    from: "takasaki@marriyellclub.co.jp",
     to: body.email,
     subject: `【マリエール高崎】プランのご相談ありがとうございました。`,
     // text: body.inquiry + " | Sent from: " + body.email,

@@ -2,7 +2,7 @@ import { ContactReservationData } from "@/pages/contact/reservation";
 
 export const ReplyToOperation = (body: ContactReservationData) => {
   return {
-    from: "welcome@lu-crea.jp",
+    from: "takasaki@marriyellclub.co.jp",
     to: process.env.MAIL_ADDRESS,
     subject: `【来館予約通知】公式ページより来場予約がありました。`,
     // text: body.inquiry + " | Sent from: " + body.email,
@@ -39,7 +39,7 @@ export const ReplyToOperation = (body: ContactReservationData) => {
 
 export const ReplyToCustomer = (body: ContactReservationData) => {
   return {
-    from: "welcome@lu-crea.jp",
+    from: "takasaki@marriyellclub.co.jp",
     to: body.email,
     subject: `【マリエール高崎】来館のご予約ありがとうございます。`,
     // text: body.inquiry + " | Sent from: " + body.email,

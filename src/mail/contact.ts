@@ -2,7 +2,7 @@ import { ContactData } from "@/pages/contact";
 
 export const ReplyToOperation = (body: ContactData) => {
   return {
-    from: "welcome@lu-crea.jp",
+    from: "takasaki@marriyellclub.co.jp",
     to: process.env.MAIL_ADDRESS,
     subject: `【問い合わせ通知】公式ページよりお問い合わせがありました。`,
     // text: body.inquiry + " | Sent from: " + body.email,
@@ -36,7 +36,7 @@ export const ReplyToOperation = (body: ContactData) => {
 
 export const ReplyToCustomer = (body: ContactData) => {
   return {
-    from: "welcome@lu-crea.jp",
+    from: "takasaki@marriyellclub.co.jp",
     to: body.email,
     subject: `【マリエール高崎】お問い合わせいただきありがとうございます。`,
     // text: body.inquiry + " | Sent from: " + body.email,

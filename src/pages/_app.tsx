@@ -46,9 +46,9 @@ export default function App({ Component, pageProps, router }: AppProps) {
         <link rel="icon" href="/favicon.ico" />
 
         {/* OG */}
-        <meta property="og:image" content=" https://lu-crea.jp/ogp.png" />
+        <meta property="og:image" content=" https://takasaki.marriyellclub.co.jp/ogp.png" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://lu-crea.jp/" />
+        <meta property="og:url" content="https://takasaki.marriyellclub.co.jp/" />
         <meta property="og:title" content="【公式】マリエール高崎 │群馬 高崎市の結婚式場" />
         <meta property="og:site_name" content="マリエール高崎 │群馬 高崎市の結婚式場" />
         <meta

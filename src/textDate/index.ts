@@ -165,7 +165,7 @@ export const sitemapLinks = [
 
 export const BRIDALFAIR = [
   {
-    href: "https://lu-crea.fuwel.wedding/fair/14036/1320973/",
+    href: "https://takasaki.marriyellclub.co.jp/",
     title: "【GW3day's限定BIG】京都初最新作ドレス展示会×贅沢試食",
     yyyymm: "2023.05",
     date: "03",
@@ -176,7 +176,7 @@ export const BRIDALFAIR = [
       "＼GW3day's限定BIGフェア／花嫁憧れのドレスをGW限定で展示会を開催！京都初！10月後半入荷予定の最新作ドレスをマリエール高崎が独占でご案内★ドレスに憧れのある花嫁様は是非ご参加くださいませ♪",
   },
   {
-    href: "https://lu-crea.fuwel.wedding/fair/11746/1254289/",
+    href: "https://takasaki.marriyellclub.co.jp/",
     title: "【自社人気No.1☆最大100万優待】国産牛3万円試食☆来館1万ギフト",
     yyyymm: "2023.05",
     date: "06",
@@ -187,7 +187,7 @@ export const BRIDALFAIR = [
       "＼国産牛&キャビアなど絶品6品コース仕立て！3万円相当大人気試食フェア◎／1軒目来館で1万円相当ギフト贈呈&30名以上の披露宴ご成約で挙式料全額プレゼント！会場費最大25万円&前撮り衣裳プレゼントなど、フェア限定最大100万円優待♪",
   },
   {
-    href: "https://lu-crea.fuwel.wedding/fair/11748/1302497/",
+    href: "https://takasaki.marriyellclub.co.jp/",
     title: "【1軒目見学限定☆1万円来館GIFT♪】チャペル体験×3万円コース試食",
     yyyymm: "2023.05",
     date: "06",

@@ -2,7 +2,7 @@ import { ContactBrochureData } from "@/pages/contact/brochure";
 
 export const ReplyToOperation = (body: ContactBrochureData) => {
   return {
-    from: "welcome@lu-crea.jp",
+    from: "takasaki@marriyellclub.co.jp",
     to: process.env.MAIL_ADDRESS,
     subject: `【資料請求通知】公式ページより資料請求がありました。`,
     // text: body.inquiry + " | Sent from: " + body.email,
@@ -43,7 +43,7 @@ export const ReplyToOperation = (body: ContactBrochureData) => {
 
 export const ReplyToCustomer = (body: ContactBrochureData) => {
   return {
-    from: "welcome@lu-crea.jp",
+    from: "takasaki@marriyellclub.co.jp",
     to: body.email,
     subject: `【マリエール高崎】資料のご請求ありがとうございました。`,
     // text: body.inquiry + " | Sent from: " + body.email,
@@ -61,7 +61,7 @@ export const ReplyToCustomer = (body: ContactBrochureData) => {
     <p><b>※ 資料のダウンロードをご希望のお客様 ※</b></p>
     <p>ダウンロードは下記のURLからダウンロードすることができます。</p>
     <p>＜ パンフレット＞　※8Mb</p>
-    <p><a href="https://lu-crea.jp/images/pdf/pamphlet.pdf" download>pamphlet.pdf</a></p>
+    <p><a href="https://takasaki.marriyellclub.co.jp/images/pdf/pamphlet.pdf" download>pamphlet.pdf</a></p>
     <p></p>
     <p></p>
     <p><b>※ 資料の郵送をご希望のお客様 ※</b></p>
