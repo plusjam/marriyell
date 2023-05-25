@@ -172,7 +172,8 @@ export const BRIDALFAIR = [
     weekdays: "Wed",
     src: "/images/bridalFair01.webp",
     when: "2023年5月3日(水)~ 5日(金)",
-    description: "＼GW3day's限定BIGフェア／花嫁憧れのドレスをGW限定で展示会を開催！京都初！10月後半入荷予定の最新作ドレスをル・クレアが独占でご案内★ドレスに憧れのある花嫁様は是非ご参加くださいませ♪",
+    description:
+      "＼GW3day's限定BIGフェア／花嫁憧れのドレスをGW限定で展示会を開催！京都初！10月後半入荷予定の最新作ドレスをマリエール高崎が独占でご案内★ドレスに憧れのある花嫁様は是非ご参加くださいませ♪",
   },
   {
     href: "https://lu-crea.fuwel.wedding/fair/11746/1254289/",

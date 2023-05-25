@@ -18,7 +18,7 @@ const HOME = (props: Props) => {
     <>
       <Motion>
         <Head>
-          <title>lu CREA ル・クレア｜News</title>
+          <title>lu CREA マリエール高崎｜News</title>
         </Head>
 
         <main>

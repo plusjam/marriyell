@@ -86,7 +86,7 @@ export default function Home(props: Props) {
     <>
       <Motion>
         <Head>
-          <title>lu CREA ル・クレア｜Wedding Plan</title>
+          <title>lu CREA マリエール高崎｜Wedding Plan</title>
         </Head>
 
         <main>

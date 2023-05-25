@@ -64,7 +64,7 @@ export default function Home(props: Props) {
     <>
       <Motion>
         <Head>
-          <title>lu CREA ル・クレア｜Cuisine</title>
+          <title>lu CREA マリエール高崎｜Cuisine</title>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" href="/favicon.ico" />
         </Head>

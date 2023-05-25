@@ -50,7 +50,7 @@ export default function Home(props: Props) {
     <>
       <Motion>
         <Head>
-          <title>{"フェア名"}｜lu CREA ル・クレア</title>
+          <title>{"フェア名"}｜lu CREA マリエール高崎</title>
         </Head>
 
         <main>
