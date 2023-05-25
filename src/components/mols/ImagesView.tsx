@@ -33,7 +33,7 @@ const ImagesView = (props: Props) => {
         {copy && description && (
           <div className={Styles.contents}>
             <div className={Styles.copy}>{copy}</div>
-            <div className={Styles.description}>{description}</div>
+            <div className={Styles.description} dangerouslySetInnerHTML={{ __html: description }}></div>
           </div>
         )}
       </div>

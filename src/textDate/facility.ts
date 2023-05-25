@@ -72,8 +72,8 @@ export const HAMPTON = {
     reverse: false,
   },
   views: {
-    copy: "優美な光が降り注ぐ大人かわいい上質空間",
-    description: "光あふれる陽光が降り注ぐ大人かわいい上質なバンケットと、開放的なガーデンのプライベート空間。いつまでも醒めないときを心に刻んで。",
+    copy: "上質なおもてなしが叶う",
+    description: "お二人のテーマに合わせて、オリジナルカラーのコーディネートで、個性を楽しめるパーティー会場。遊び心で空間をいっぱいにしよう。",
     image02: "/images/facility_hampton02.jpg",
     spImage02: "/images/facility_hampton02-sp.jpg",
     image03: "/images/facility_hampton03.jpg",

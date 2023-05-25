@@ -3,7 +3,7 @@ export const MAIN = {
   spImage: "/images/dress_main-sp.jpg",
   en: "Dress",
   ja: "ドレス・和装",
-  copy: "プロの美容師による着付け・ヘアメイクで特別な1日をお過ごしください",
+  copy: "誰よりも輝く花嫁になるために・・・数多くの衣裳からお選び頂いた1着<br>プロの美容師による着付け・ヘアメイクで特別な1日をお過ごしください",
 };
 
 export const GRANMANIE = {
@@ -23,8 +23,6 @@ export const NATURE = {
     reserve: false,
   },
   views: {
-    copy: "京都府初の新作ドレスも入荷",
-    description: "特別な1日を彩るドレス。定番のドレスからトレンドのドレスまで専属スタイリストがあなたにぴったりの一着をご提案。",
     image02: "/images/dress_granmanie02.jpg",
     spImage02: "/images/dress_granmanie02-sp.jpg",
     image03: "/images/dress_granmanie03.jpg",
