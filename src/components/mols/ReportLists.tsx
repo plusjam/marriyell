@@ -1,6 +1,5 @@
 import React from "react";
 import Styles from "@/styles/mols/ReportLists.module.scss";
-import { ReportContents } from "@/pages/api/report";
 import { ReportLists as List } from "../../../typings/report";
 
 type Props = {
