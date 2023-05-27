@@ -1,32 +1,41 @@
 import React from "react";
 import Styles from "../../styles/mols/Previlege.module.scss";
+import { FairList } from "../../../typings/fair";
 
 type Props = {
   title: string;
+  visit: FairList["visitPrevileges"];
+  signing: FairList["signingPrevileges"];
 };
 
 const Previlege = (props: Props) => {
-  const { title } = props;
+  const { title, visit, signing } = props;
 
   return (
     <div className={Styles.body}>
       <div className={Styles.title}>{title}</div>
 
       <div className={Styles.contents}>
-        <div className={Styles.block}>
-          <div className={Styles.label}>ご来館特典</div>
-          <div className={Styles.description}>
-            <p>① 国産牛&キャビアなど3万円相当豪華無料試食&1軒目来館で1万円相当来館ギフトプレゼント！</p>
-            <p>② 最大100万円相当優待（時期・人数などで変動</p>
+        {visit && (
+          <div className={Styles.block}>
+            <div className={Styles.label}>ご来館特典</div>
+            <div className={Styles.description}>
+              {visit.values.map((elem, index) => {
+                return <p key={index}>{elem.previlege}</p>;
+              })}
+            </div>
           </div>
-        </div>
-        <div className={Styles.block}>
-          <div className={Styles.label}>ご成約特典</div>
-          <div className={Styles.description}>
-            <p>① 国産牛&キャビアなど3万円相当豪華無料試食&1軒目来館で1万円相当来館ギフトプレゼント！</p>
-            <p>② 最大100万円相当優待（時期・人数などで変動</p>
+        )}
+        {signing && (
+          <div className={Styles.block}>
+            <div className={Styles.label}>ご成約特典</div>
+            <div className={Styles.description}>
+              {signing.values.map((elem, index) => {
+                return <p key={index}>{elem.previlege}</p>;
+              })}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

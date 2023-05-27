@@ -52,7 +52,7 @@ const PlanDetail = (props: Props) => {
           </div>
         </div>
 
-        <Previlege title="プラン相談特典" />
+        {content.visitPrevileges || content.signingPrevileges ? <Previlege title="プラン相談特典" visit={content.visitPrevileges} signing={content.signingPrevileges} /> : ""}
       </div>
     </section>
   );

@@ -76,10 +76,10 @@ export type FairArticle = {
   calendar: Calendar;
   requireTime: number;
   openTime: OpenTime;
-  limited: string;
+  limited: string | null;
   remarks: string;
-  visitPrevileges: Previleges;
-  signingPrevileges: Previleges;
+  visitPrevileges: Previleges | null;
+  signingPrevileges: Previleges | null;
   contents: Content;
 };
 
@@ -107,8 +107,8 @@ export type FairList = {
   openTime: OpenTime;
   limited: string;
   remarks: string;
-  // visitPrevileges: Previleges;
-  // signingPrevileges: Previleges;
+  visitPrevileges: Previleges | null;
+  signingPrevileges: Previleges | null;
   contents: Content;
 };
 

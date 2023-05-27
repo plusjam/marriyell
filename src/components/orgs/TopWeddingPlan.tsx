@@ -34,6 +34,16 @@ const TopWeddingPlan = (props: Props) => {
             }}
           >
             {planLists.map((elem, index) => {
+              // titleの文字数を制限する関数
+              const length = 47;
+              const titleLimit = (title: string) => {
+                if (title.length > length) {
+                  return title.slice(0, length) + "...";
+                } else {
+                  return title;
+                }
+              };
+
               return (
                 <SwiperSlide className={`${Styles.block} fadeinTop`} data-delay={0.2 * index} key={`weddingplan0${index + 1}`}>
                   <Link href={`/plan/${elem.code}`}>
@@ -45,8 +55,8 @@ const TopWeddingPlan = (props: Props) => {
                       </picture>
                     </div>
                     <div className={Styles.contents}>
-                      <div className={Styles.contentsHead}>{elem.title}</div>
-                      <div className={Styles.price}>¥{elem.price}～</div>
+                      <div className={Styles.contentsHead}>{titleLimit(elem.title)}</div>
+                      <div className={Styles.price}>¥{elem.price.toLocaleString()}～</div>
                       <div className={Styles.description} dangerouslySetInnerHTML={{ __html: elem.description }}></div>
                     </div>
                   </Link>

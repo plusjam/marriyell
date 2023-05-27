@@ -73,8 +73,7 @@ const FairDetail = (props: Props) => {
             </div>
           </div>
         </div>
-
-        <Previlege title="ブライダルフェア参加特典" />
+        {fairList.visitPrevileges || fairList.signingPrevileges ? <Previlege title="ブライダルフェア参加特典" visit={fairList.visitPrevileges} signing={fairList.signingPrevileges} /> : ""}
       </div>
     </section>
   );

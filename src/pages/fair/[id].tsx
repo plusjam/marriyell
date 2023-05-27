@@ -125,7 +125,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   });
 
   const fairList: FairList = fairRes.data;
-  // console.log("リスト！！！！！！！！！！！", fairList.contents.articles);
+  // console.log("ですリスト！！！！！！！！！！！", fairList);
 
   /* ===================================================================
   // フェアカテゴリ

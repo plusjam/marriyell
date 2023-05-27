@@ -71,10 +71,10 @@ export type PlanArticle = {
   member: string;
   categories: Category;
   term: string;
-  limited: null;
+  limited: string;
   description: string;
-  visitPrevileges: Previleges;
-  signingPrevileges: Previleges;
+  visitPrevileges: Previleges | null;
+  signingPrevileges: Previleges | null;
   contents: Content;
 };
 
@@ -102,6 +102,8 @@ export type PlanList = {
   term: string;
   limited: string;
   description: string;
+  visitPrevileges: Previleges | null;
+  signingPrevileges: Previleges | null;
   contents: Content;
 };
 
