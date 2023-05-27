@@ -51,7 +51,7 @@ export type Description = {
   values: {
     text?: string;
     image?: ImageObject;
-  }[];
+  };
 };
 
 export type NewsArticle = {
@@ -64,7 +64,7 @@ export type NewsArticle = {
   eyecatch: ImageObject;
   categories: Categories;
   datetime: string;
-  description: Description;
+  description: Description[];
 };
 
 export type NewsLists = {
@@ -86,7 +86,7 @@ export type NewsList = {
   eyecatch: ImageObject;
   categories: Categories;
   datetime: string;
-  description: Description;
+  description: Description[];
 };
 
 //

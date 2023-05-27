@@ -173,8 +173,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
   });
 
   const planList: PlanList = planRes.data;
-  console.log("プランご成約", planList.signingPrevileges);
-  console.log("プラン来館", planList.visitPrevileges);
+  // console.log("プランご成約", planList.signingPrevileges);
+  // console.log("プラン来館", planList.visitPrevileges);
 
   /* ===================================================================
   // プランカテゴリ

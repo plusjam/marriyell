@@ -48,9 +48,9 @@ const NewsLists = (props: Props) => {
           originalLists.articles.map((elem, index) => {
             let formatedDescription: string = "";
 
-            elem.description.values.some((elem) => {
-              if (elem.text) {
-                formatedDescription = elem.text;
+            elem.description.some((elem) => {
+              if (elem.values.text) {
+                formatedDescription = elem.values.text;
                 return true;
               }
             });
