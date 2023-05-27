@@ -53,9 +53,9 @@ export default function Home(props: Props) {
     });
 
     const selectedWeekendLists = [...initLists].filter((weekend) => {
-      return weekend.calendar.values.some((calendar) => {
+      return weekend.calendar.some((calendar) => {
         const find = selectedDate.find((selectedWeekend) => {
-          const eventDate = new Date(calendar.calendar);
+          const eventDate = new Date(calendar.values.calendar);
           const month = eventDate.getMonth();
           const dateNum = eventDate.getDate();
 
@@ -78,15 +78,20 @@ export default function Home(props: Props) {
       return category.selected;
     });
 
-    selectedLists = initLists.filter((list) => {
-      return list.categories.articles.some((category) => {
-        return selectedCategory.some((selected) => {
-          return selected.name === category.name;
+    if (selectedCategory[0].name === "すべて") {
+      setLists(initLists);
+    } else {
+      selectedLists = initLists.filter((list) => {
+        return list.categories.articles.some((category) => {
+          return selectedCategory.some((selected) => {
+            return selected.selected && selected.name === category.name;
+          });
         });
       });
-    });
 
-    setLists(selectedLists.length ? selectedLists : initLists);
+      console.log(selectedLists);
+      setLists(selectedLists);
+    }
 
     setTimeout(() => {
       AppTrigger.refresh();
@@ -120,8 +125,8 @@ export default function Home(props: Props) {
       // listsからtargetDateと一致するものを抽出
       const initLists = [...fairLists.articles];
       const selectedDateLists = initLists.filter((list) => {
-        return list.calendar.values.some((event) => {
-          return targetDate === event.calendar;
+        return list.calendar.some((event) => {
+          return targetDate === event.values.calendar;
         });
       });
 

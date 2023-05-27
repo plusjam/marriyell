@@ -39,7 +39,7 @@ export type Calendar = {
   };
   values: {
     calendar: string;
-  }[];
+  };
 };
 
 export type OpenTime = {
@@ -49,7 +49,7 @@ export type OpenTime = {
   };
   values: {
     timeRange: string;
-  }[];
+  };
 };
 
 export type Previleges = {
@@ -59,7 +59,7 @@ export type Previleges = {
   };
   values: {
     previlege: string;
-  }[];
+  };
 };
 
 export type FairArticle = {
@@ -73,13 +73,13 @@ export type FairArticle = {
   mainSp: ImageObject;
   categories: Category;
   description: string;
-  calendar: Calendar;
+  calendar: Calendar[];
   requireTime: number;
-  openTime: OpenTime;
+  openTime: OpenTime[];
   limited: string | null;
   remarks: string;
-  visitPrevileges: Previleges | null;
-  signingPrevileges: Previleges | null;
+  visitPrevileges: Previleges[] | null;
+  signingPrevileges: Previleges[] | null;
   contents: Content;
 };
 
@@ -102,13 +102,13 @@ export type FairList = {
   mainSp: ImageObject;
   categories: Category;
   description: string;
-  calendar: Calendar;
+  calendar: Calendar[];
   requireTime: number;
-  openTime: OpenTime;
+  openTime: OpenTime[];
   limited: string;
   remarks: string;
-  visitPrevileges: Previleges | null;
-  signingPrevileges: Previleges | null;
+  visitPrevileges: Previleges[] | null;
+  signingPrevileges: Previleges[] | null;
   contents: Content;
 };
 

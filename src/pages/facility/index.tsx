@@ -44,10 +44,10 @@ export default function Home(props: Props) {
       return weekend.selected;
     });
 
-    const selectedWeekendLists = initLists.filter((weekend) => {
-      return weekend.calendar.values.some((event) => {
+    const selectedWeekendLists = [...initLists].filter((weekend) => {
+      return weekend.calendar.some((calendar) => {
         const find = selectedDate.find((selectedWeekend) => {
-          const eventDate = new Date(event.calendar);
+          const eventDate = new Date(calendar.values.calendar);
           const month = eventDate.getMonth();
           const dateNum = eventDate.getDate();
 

@@ -20,8 +20,8 @@ const Previlege = (props: Props) => {
           <div className={Styles.block}>
             <div className={Styles.label}>ご来館特典</div>
             <div className={Styles.description}>
-              {visit.values.map((elem, index) => {
-                return <p key={index}>{elem.previlege}</p>;
+              {visit.map((elem, index) => {
+                return <p key={index}>{elem.values.previlege}</p>;
               })}
             </div>
           </div>
@@ -30,8 +30,8 @@ const Previlege = (props: Props) => {
           <div className={Styles.block}>
             <div className={Styles.label}>ご成約特典</div>
             <div className={Styles.description}>
-              {signing.values.map((elem, index) => {
-                return <p key={index}>{elem.previlege}</p>;
+              {signing.map((elem, index) => {
+                return <p key={index}>{elem.values.previlege}</p>;
               })}
             </div>
           </div>

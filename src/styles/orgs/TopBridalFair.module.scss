@@ -142,19 +142,22 @@
   color: #afafaf;
   margin-bottom: 6px;
   letter-spacing: 0;
+  line-height: 1;
 }
 
-.date {
+.dd {
   font-size: 27px;
   color: #222222;
   letter-spacing: 0;
   margin-bottom: 9px;
+  line-height: 1;
 }
 
 .weekdays {
   font-size: 14px;
   color: #afafaf;
   letter-spacing: 0;
+  line-height: 1;
 }
 
 .contents {
@@ -317,7 +320,7 @@
     margin-bottom: 6px;
   }
 
-  .date {
+  .dd {
     font-size: 19px;
     margin-bottom: 3px;
   }

@@ -35,7 +35,7 @@ export type Content = {
   values: {
     content: { multiple: false; select: string[] };
     text: string;
-  }[];
+  };
 };
 
 export type OpenTime = {
@@ -45,7 +45,7 @@ export type OpenTime = {
   };
   values: {
     timeRange: string;
-  }[];
+  };
 };
 
 export type Previleges = {
@@ -55,7 +55,7 @@ export type Previleges = {
   };
   values: {
     previlege: string;
-  }[];
+  };
 };
 
 export type PlanArticle = {
@@ -73,9 +73,9 @@ export type PlanArticle = {
   term: string;
   limited: string;
   description: string;
-  visitPrevileges: Previleges | null;
-  signingPrevileges: Previleges | null;
-  contents: Content;
+  visitPrevileges: Previleges[] | null;
+  signingPrevileges: Previleges[] | null;
+  contents: Content[];
 };
 
 export type PlanLists = {
@@ -102,9 +102,9 @@ export type PlanList = {
   term: string;
   limited: string;
   description: string;
-  visitPrevileges: Previleges | null;
-  signingPrevileges: Previleges | null;
-  contents: Content;
+  visitPrevileges: Previleges[] | null;
+  signingPrevileges: Previleges[] | null;
+  contents: Content[];
 };
 
 /* ------------------------------ */

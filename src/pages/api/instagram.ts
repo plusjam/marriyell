@@ -19,26 +19,24 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   async function getUserPosts(username: string) {
     const userId = await ig.user.getIdByUsername(username);
-    const userFeed = ig.feed.user(userId);
+    const userFeed = await ig.feed.user(userId);
     const posts = await userFeed.items();
     return posts;
   }
 
   async function displayImages() {
-    try {
-      const username = process.env.IG_USERNAME;
-      const password = process.env.IG_PASSWORD;
+    // try {
+    const username = process.env.IG_USERNAME;
+    const password = process.env.IG_PASSWORD;
 
-      if (!username || !password) throw new Error("Missing IG_USERNAME or IG_PASSWORD env var");
+    if (!username || !password) throw new Error("Missing IG_USERNAME or IG_PASSWORD env var");
 
-      await loginToInstagram(username, password);
-      const posts = await getUserPosts(username);
+    await loginToInstagram(username, password);
+    const posts = await getUserPosts(username);
 
-      res.json(posts.map((post, index) => post.image_versions2.candidates[0].url));
-    } catch (e) {
-      console.log("エラーーーーーー", console.log(e));
-    }
+    // posts.map((post, index) => console.log("記事", post.image_versions2.candidates[0].url));
+    res.json(posts.map((post, index) => post.image_versions2.candidates[0].url));
   }
 
-  displayImages().catch(console.error);
+  await displayImages().catch(console.error);
 }

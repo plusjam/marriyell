@@ -125,6 +125,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
   });
 
   const fairList: FairList = fairRes.data;
+  console.log("ふぇあプラン", fairList.signingPrevileges);
+  console.log("フェアプラン", fairList.visitPrevileges);
   // console.log("ですリスト！！！！！！！！！！！", fairList);
 
   /* ===================================================================

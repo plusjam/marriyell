@@ -69,9 +69,9 @@ export default function Home(props: Props) {
     });
 
     const selectedWeekendLists = [...initLists].filter((weekend) => {
-      return weekend.calendar.values.some((calendar) => {
+      return weekend.calendar.some((calendar) => {
         const find = selectedDate.find((selectedWeekend) => {
-          const eventDate = new Date(calendar.calendar);
+          const eventDate = new Date(calendar.values.calendar);
           const month = eventDate.getMonth();
           const dateNum = eventDate.getDate();
 
@@ -163,7 +163,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   // プラン
   =================================================================== */
   const planUrl = `${process.env.CMS_URL}/api/v1/plan/${code}`;
-  const planRes: { data: any } = await axios.get(planUrl, {
+  const planRes: { data: PlanList } = await axios.get(planUrl, {
     headers: {
       "Content-Type": "application/json",
       "account-access-key": accessKey,
@@ -172,8 +172,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
     },
   });
 
-  const planList: any = planRes.data;
-  // console.log("プラン", planList);
+  const planList: PlanList = planRes.data;
+  console.log("プランご成約", planList.signingPrevileges);
+  console.log("プラン来館", planList.visitPrevileges);
 
   /* ===================================================================
   // プランカテゴリ

@@ -58,6 +58,12 @@ const TopBridalFair = (props: Props) => {
                 }}
               >
                 {lists.map((elem, index) => {
+                  //
+                  const latestDate = new Date(elem.calendar[0].values.calendar);
+                  const yyyymm = latestDate.getFullYear() + "." + ("0" + (latestDate.getMonth() + 1)).slice(-2);
+                  const date = ("0" + latestDate.getDate()).slice(-2);
+                  const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][latestDate.getDay()];
+
                   return (
                     <SwiperSlide className={`${Styles.block} fadeinTop`} data-delay={0.2 * index} key={`bridalfair0${index + 1}`}>
                       <Link href={`/fair/${elem.code}`}>
@@ -66,11 +72,11 @@ const TopBridalFair = (props: Props) => {
                             <source srcSet={elem.mainPc.url} />
                             <img src={elem.mainPc.url} alt="" width={elem.mainPc.attributes.width} height={elem.mainPc.attributes.height} />
                           </picture>
-                          {/* <div className={Styles.tag}>
-                    <div className={Styles.yyyy_mm}>{elem.yyyymm}</div>
-                    <div className={Styles.date}>{elem.date}</div>
-                    <div className={Styles.weekdays}>{elem.weekdays}</div>
-                  </div> */}
+                          <div className={Styles.tag}>
+                            <div className={Styles.yyyy_mm}>{yyyymm}</div>
+                            <div className={Styles.dd}>{date}</div>
+                            <div className={Styles.weekdays}>{weekdays}</div>
+                          </div>
                         </div>
                         <div className={Styles.contents}>
                           {/* <div className={Styles.when}>{elem.when}</div> */}

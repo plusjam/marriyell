@@ -4,11 +4,8 @@ import { MainFlow } from "@/components/orgs/MainFlow";
 import MainVideo from "@/components/orgs/MainVideo";
 import ReportModal from "@/components/orgs/ReportModal";
 import TopBridalFair from "@/components/orgs/TopBridalFair";
-import TopContents from "@/components/orgs/TopContents";
-import TopNewsEvent from "@/components/orgs/TopNewsEvent";
 import TopOriginalWedding from "@/components/orgs/TopOriginalWedding";
 import TopWeddingPlan from "@/components/orgs/TopWeddingPlan";
-import TopWeddingReport from "@/components/orgs/TopWeddingReport";
 import { META } from "@/textDate/head";
 import axios from "axios";
 import { GetStaticProps } from "next";
@@ -22,6 +19,9 @@ import { FairLists } from "../../typings/fair";
 import { NewsCategoriesLists, NewsLists } from "../../typings/news";
 import { PlanLists } from "../../typings/plan";
 import { ReportLists } from "../../typings/report";
+import TopWeddingReport from "@/components/orgs/TopWeddingReport";
+import TopNewsEvent from "@/components/orgs/TopNewsEvent";
+import TopContents from "@/components/orgs/TopContents";
 
 type Props = {
   fairLists: FairLists;
@@ -52,9 +52,9 @@ export default function Home(props: Props) {
     });
 
     const selectedWeekendLists = [...initLists].filter((weekend) => {
-      return weekend.calendar.values.some((calendar) => {
+      return weekend.calendar.some((calendar) => {
         const find = selectedDate.find((selectedWeekend) => {
-          const eventDate = new Date(calendar.calendar);
+          const eventDate = new Date(calendar.values.calendar);
           const month = eventDate.getMonth();
           const dateNum = eventDate.getDate();
 
@@ -81,7 +81,7 @@ export default function Home(props: Props) {
           <TopOriginalWedding />
           <TopBridalFair lists={[...fairLists.articles]} weekendLists={weekendLists} weekend={selectedWeekend} handleSelect={handleWeekendSelect} events={removeDuplicates([...fairLists.articles])} />
           <TopWeddingPlan planLists={[...planLists.articles]} />
-          {/* <TopWeddingReport contents={reportLists.articles} openModal={openModal} /> */}
+          <TopWeddingReport contents={reportLists.articles} openModal={openModal} />
           {/* <TopNewsEvent contents={newsLists.articles} /> */}
           {/* <TopContents /> */}
           <InstagramSection />
@@ -112,7 +112,7 @@ export const getStaticProps: GetStaticProps = async () => {
   });
 
   const fairLists: FairLists = fairRes.data;
-  // console.log("フェア", fairLists.articles[0].calendar);
+  console.log("カレンダー", fairLists.articles[1].calendar[0]);
 
   /* ===================================================================
   // プラン

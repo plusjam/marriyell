@@ -28,8 +28,8 @@ const BridalaFairContent = (props: Props) => {
 
         <div className={Styles.calendar}>
           <Calendar
-            events={content.calendar.values.map((date) => {
-              return { date: date.calendar };
+            events={content.calendar.map((date) => {
+              return { date: date.values.calendar };
             })}
             code={content.code}
           />
