@@ -5,6 +5,7 @@ import Image from "next/image";
 import { FairList } from "@/pages/api/fair";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FairLists } from "../../../typings/fair";
+import Link from "next/link";
 
 type Props = {
   lists: FairLists["articles"];
@@ -55,11 +56,13 @@ const WeekendFair = (props: Props) => {
 
                 return (
                   <SwiperSlide className={`${Styles.content} fadeinTop`} data-delay={0.2 * index} key={`weekendfair${index + 1}`}>
-                    <div className={Styles.image}>
-                      <Image src={content.mainPc.url} alt="" width={content.mainPc.attributes.width} height={content.mainPc.attributes.height} />
-                    </div>
-                    <div className={Styles.date}>{date[0].date}</div>
-                    <div className={Styles.description} dangerouslySetInnerHTML={{ __html: content.description }}></div>
+                    <Link href={`/fair/${content.code}`}>
+                      <div className={Styles.image}>
+                        <Image src={content.mainPc.url} alt="" width={content.mainPc.attributes.width} height={content.mainPc.attributes.height} />
+                      </div>
+                      <div className={Styles.date}>{date[0].date}</div>
+                      <div className={Styles.description} dangerouslySetInnerHTML={{ __html: content.description }}></div>
+                    </Link>
                   </SwiperSlide>
                 );
               })

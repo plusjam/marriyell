@@ -165,6 +165,14 @@ const TopBridalFair = (props: Props) => {
                     });
 
                     if (index > 1) return;
+                    // 文字数制限関数
+                    const textLimit = (text: string, num: number) => {
+                      if (text.length > num) {
+                        return text.slice(0, num) + "...";
+                      } else {
+                        return text;
+                      }
+                    };
 
                     return (
                       <SwiperSlide className={`${Styles.content} fadeinTop`} data-delay={0.2 * index} key={`weekendfair${index + 1}`}>
@@ -172,7 +180,7 @@ const TopBridalFair = (props: Props) => {
                           <img src={content.mainPc.url} alt="" width={content.mainPc.attributes.width} height={content.mainPc.attributes.height} />
                         </div>
                         <div className={Styles.date}>{date[0].date}</div>
-                        <div className={Styles.description}>{content.description}</div>
+                        <div className={Styles.description}>{textLimit(content.description, 50)}</div>
                       </SwiperSlide>
                     );
                   })

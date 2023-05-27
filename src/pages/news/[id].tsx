@@ -1,6 +1,6 @@
 import { GetStaticProps } from "next";
 import React from "react";
-import { NewsCategory, NewsContents, NewsLists } from "../../../typings/news";
+import { NewsCategory, NewsContents, NewsList, NewsLists } from "../../../typings/news";
 import UnderlayerHead from "@/components/orgs/UnderlayerHead";
 import Motion from "@/components/layouts/Motion";
 import Head from "next/head";
@@ -10,11 +10,11 @@ import { apricotClient } from "../../../libs/cms";
 import axios from "axios";
 
 type Props = {
-  newsLists: NewsLists;
+  newsList: NewsList;
 };
 
 const HOME = (props: Props) => {
-  const { newsLists } = props;
+  const { newsList } = props;
 
   return (
     <>
@@ -30,6 +30,9 @@ const HOME = (props: Props) => {
             <section className={Styles.header}>
               <div className={Styles.meta}>
                 <ul className={Styles.categories}>
+                  {/* {
+                    newsLists.
+                  } */}
                   <li className={Styles.category}>お知らせ</li>
                   <li className={Styles.category}>フェア</li>
                 </ul>
@@ -140,29 +143,23 @@ export const getStaticProps: GetStaticProps = async (context) => {
   /* ===================================================================
   // お知らせ
   =================================================================== */
-  // try {
-  //   const newsUrl = `${process.env.CMS_URL}/api/v1/news/${code}`;
-  //   const newsRes: { data: any } = await axios.get(newsUrl, {
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       "account-access-key": accessKey,
-  //       "account-secret-key": secretKey,
-  //       authorization: `Bearer ${token.token}`,
-  //     },
-  //   });
+  const newsUrl = `${process.env.CMS_URL}/api/v1/news/${code}`;
+  const newsRes: { data: NewsList } = await axios.get(newsUrl, {
+    headers: {
+      "Content-Type": "application/json",
+      "account-access-key": accessKey,
+      "account-secret-key": secretKey,
+      authorization: `Bearer ${token.token}`,
+    },
+  });
 
-  //   const newsLists: any = newsRes.data;
-
-  //   console.log(newsLists);
-  // } catch (e) {
-  //   console.log(e);
-  // }
-
-  const newsLists: any = "newsRes.data";
+  const newsList: NewsList = newsRes.data;
+  console.log("リスト", newsList);
+  console.log("コンテンツ", newsList.description);
 
   return {
     props: {
-      newsLists,
+      newsList,
     },
   };
 };
