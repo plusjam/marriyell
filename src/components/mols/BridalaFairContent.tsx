@@ -15,7 +15,7 @@ const BridalaFairContent = (props: Props) => {
 
   return (
     <div className={Styles.content}>
-      <div className={Styles.title}>フェアのタイトルが入ります。文章量の確認のため、適当な文章が入っております。</div>
+      <div className={Styles.title}>{content.title}</div>
 
       <div className={Styles.inner}>
         <div className={Styles.image}>
@@ -31,6 +31,7 @@ const BridalaFairContent = (props: Props) => {
             events={content.calendar.values.map((date) => {
               return { date: date.calendar };
             })}
+            code={content.code}
           />
         </div>
 

@@ -18,6 +18,7 @@ type Props = {
   }[];
   toFairLists?: boolean;
   isTop?: boolean;
+  code?: string;
 };
 
 const mouseover = (e: MouseEvent) => {
@@ -39,7 +40,7 @@ const mouseout = (e: MouseEvent) => {
 };
 
 const Calendar = (props: Props) => {
-  const { events, toFairLists = false, isTop = false } = props;
+  const { events, toFairLists = false, isTop = false, code } = props;
 
   const router = useRouter();
   const calendarRef = useRef<FullCalendar>(null);
@@ -150,7 +151,7 @@ const Calendar = (props: Props) => {
     setSelectDate(date);
 
     if (!toFairLists) {
-      router.push(`/fair/1#reservation`);
+      router.push(`/fair/${code}?id=reservation`);
     } else {
       router.push(`/fair#bridal-fair?date=${date}`);
     }

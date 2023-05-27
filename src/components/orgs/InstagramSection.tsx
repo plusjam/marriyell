@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Styles from "../../styles/orgs/InstagramSection.module.scss";
 import Image from "next/image";
 
 const InstagramSection = () => {
+  useEffect(() => {}, []);
+
   return (
     <section className={Styles.section}>
       <div className={Styles.head}>

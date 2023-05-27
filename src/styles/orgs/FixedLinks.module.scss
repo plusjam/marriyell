@@ -9,7 +9,9 @@
   grid-template-rows: auto auto auto;
   grid-template-columns: 1fr;
   background: #fff;
-  z-index: 10;
+  z-index: 11;
+
+  display: none;
 }
 
 .block {
@@ -133,9 +135,13 @@
     bottom: 0;
     width: 100%;
     transform: unset;
-    grid-template-areas: "reservation line phone fair";
-    grid-template-rows: 1fr;
-    grid-template-columns: 8fr 8fr 8fr 13.5fr;
+    // grid-template-areas: "reservation phone fair"; 初期公開時だけ
+    grid-template-areas: "phone fair";
+    grid-template-rows: 60px;
+    // grid-template-columns: 1fr 1fr 1.75fr;
+    grid-template-columns: 1fr 1fr;
+
+    display: grid;
   }
 
   .block {
@@ -169,6 +175,9 @@
   .reservation {
     background: #fff;
     padding: 10px;
+
+    // 初期公開時だけ↓
+    display: none;
 
     &:before {
       content: "";

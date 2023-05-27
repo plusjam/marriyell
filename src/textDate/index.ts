@@ -19,10 +19,10 @@ export const navList = [
     title: "プラン",
     href: "/plan",
   },
-  {
-    title: "お問い合わせ",
-    href: "/contact",
-  },
+  // {
+  //   title: "お問い合わせ",
+  //   href: "/contact",
+  // },
 ];
 
 export const originalWedding = [
@@ -103,7 +103,7 @@ export const sitemapLinks = [
   },
   {
     title: "― 宴会会場",
-    href: "facility#banquet",
+    href: "facility#originalwedding",
   },
   {
     title: "お料理",
@@ -133,22 +133,22 @@ export const sitemapLinks = [
   //   title: "ご列席の方へ",
   //   href: "/for-guest",
   // },
-  {
-    title: "ウエディングレポート",
-    href: "/report",
-  },
-  {
-    title: "お知らせ・イベント情報",
-    href: "/news",
-  },
-  {
-    title: "来館予約",
-    href: "/contact/reservation/",
-  },
-  {
-    title: "資料請求",
-    href: "/contact/brochure",
-  },
+  // {
+  //   title: "ウエディングレポート",
+  //   href: "/report",
+  // },
+  // {
+  //   title: "お知らせ・イベント情報",
+  //   href: "/news",
+  // },
+  // {
+  //   title: "来館予約",
+  //   href: "/contact/reservation/",
+  // },
+  // {
+  //   title: "資料請求",
+  //   href: "/contact/brochure",
+  // },
   {
     title: "アクセス",
     href: "/access",
@@ -157,10 +157,10 @@ export const sitemapLinks = [
   //   title: "よくある質問",
   //   href: "/faq",
   // },
-  {
-    title: "お問い合わせ",
-    href: "/contact",
-  },
+  // {
+  //   title: "お問い合わせ",
+  //   href: "/contact",
+  // },
 ];
 
 export const BRIDALFAIR = [

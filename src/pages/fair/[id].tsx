@@ -65,7 +65,7 @@ export default function Home(props: Props) {
           <FairContents fairList={fairList} />
           <DetailFairForm title={fairList.title} />
 
-          <Process />
+          {/* <Process /> */}
           <TopWeddingPlan planLists={[...planLists.articles]} />
           <TopWeddingReport contents={reportLists.articles} openModal={openModal} />
 
