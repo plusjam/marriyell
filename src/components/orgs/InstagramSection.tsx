@@ -3,7 +3,18 @@ import Styles from "../../styles/orgs/InstagramSection.module.scss";
 import Image from "next/image";
 
 const InstagramSection = () => {
-  useEffect(() => {}, []);
+  useEffect(() => {
+    // const fetchPosts = async () => {
+    //   try {
+    //     const response = await fetch("/api/instagram");
+    //     const data = await response.json();
+    //     console.log("データ", data);
+    //   } catch (error) {
+    //     console.error("エラー", error);
+    //   }
+    // };
+    // fetchPosts();
+  }, []);
 
   return (
     <section className={Styles.section}>

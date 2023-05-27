@@ -36,7 +36,7 @@ const TopWeddingPlan = (props: Props) => {
             {planLists.map((elem, index) => {
               return (
                 <SwiperSlide className={`${Styles.block} fadeinTop`} data-delay={0.2 * index} key={`weddingplan0${index + 1}`}>
-                  <Link href={`/plan/${elem.id}`}>
+                  <Link href={`/plan/${elem.code}`}>
                     <div className={Styles.image}>
                       <picture>
                         <source srcSet={elem.mainPc.url} media="(min-width: 768px)" />

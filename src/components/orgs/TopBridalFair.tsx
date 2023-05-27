@@ -60,7 +60,7 @@ const TopBridalFair = (props: Props) => {
                 {lists.map((elem, index) => {
                   return (
                     <SwiperSlide className={`${Styles.block} fadeinTop`} data-delay={0.2 * index} key={`bridalfair0${index + 1}`}>
-                      <Link href={`/fair/${elem.id}`}>
+                      <Link href={`/fair/${elem.code}`}>
                         <div className={Styles.image}>
                           <picture>
                             <source srcSet={elem.mainPc.url} />
