@@ -81,9 +81,9 @@ export default function Home(props: Props) {
           <TopOriginalWedding />
           <TopBridalFair lists={[...fairLists.articles]} weekendLists={weekendLists} weekend={selectedWeekend} handleSelect={handleWeekendSelect} events={removeDuplicates([...fairLists.articles])} />
           <TopWeddingPlan planLists={[...planLists.articles]} />
-          <TopWeddingReport contents={reportLists.articles} openModal={openModal} />
-          <TopNewsEvent contents={newsLists.articles} />
-          <TopContents />
+          {/* <TopWeddingReport contents={reportLists.articles} openModal={openModal} /> */}
+          {/* <TopNewsEvent contents={newsLists.articles} /> */}
+          {/* <TopContents /> */}
           <InstagramSection />
         </main>
 

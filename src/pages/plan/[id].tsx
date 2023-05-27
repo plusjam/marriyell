@@ -99,7 +99,7 @@ export default function Home(props: Props) {
 
           {/* <Process /> */}
           <WeekendFair lists={weekendLists} weekend={selectedWeekend} handleSelect={handleWeekendSelect} />
-          <TopWeddingReport contents={reportLists.articles} openModal={openModal} />
+          {/* <TopWeddingReport contents={reportLists.articles} openModal={openModal} /> */}
 
           <InstagramSection />
         </main>

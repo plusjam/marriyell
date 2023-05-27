@@ -156,7 +156,7 @@ export default function Home(props: Props) {
           <BridalFair lists={lists} fairCategoriesLists={fairCategoriesLists.articles} />
 
           <TopWeddingPlan planLists={[...planLists.articles]} />
-          <TopWeddingReport contents={reportLists.articles} openModal={openModal} />
+          {/* <TopWeddingReport contents={reportLists.articles} openModal={openModal} /> */}
 
           <InstagramSection />
         </main>

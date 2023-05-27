@@ -67,7 +67,7 @@ export default function Home(props: Props) {
 
           {/* <Process /> */}
           <TopWeddingPlan planLists={[...planLists.articles]} />
-          <TopWeddingReport contents={reportLists.articles} openModal={openModal} />
+          {/* <TopWeddingReport contents={reportLists.articles} openModal={openModal} /> */}
 
           <InstagramSection />
         </main>
