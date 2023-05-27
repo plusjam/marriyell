@@ -7,20 +7,18 @@ import TopWeddingPlan from "@/components/orgs/TopWeddingPlan";
 import TopWeddingReport from "@/components/orgs/TopWeddingReport";
 import UnderlayerHead from "@/components/orgs/UnderlayerHead";
 import WeekendFair from "@/components/orgs/WeekendFair";
+import { META } from "@/textDate/head";
 import { QA } from "@/textDate/qa";
+import axios from "axios";
 import { GetStaticProps } from "next";
 import Head from "next/head";
 import React, { useEffect } from "react";
+import { apricotClient } from "../../../libs/cms";
 import useGetWeekend from "../../../libs/useGetWeekend";
 import useModalReport from "../../../libs/useModalReport";
-import { QASet, Qa, QaType } from "../../../typings/qa";
-import { FairList } from "../api/fair";
-import { ReportContents } from "../api/report";
-import { META } from "@/textDate/head";
-import { apricotClient } from "../../../libs/cms";
-import axios from "axios";
 import { FairLists } from "../../../typings/fair";
 import { PlanLists } from "../../../typings/plan";
+import { QASet, Qa, QaType } from "../../../typings/qa";
 import { ReportLists } from "../../../typings/report";
 
 type Props = {
