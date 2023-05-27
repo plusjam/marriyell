@@ -3,13 +3,14 @@ import React, { MouseEvent, use, useEffect } from "react";
 import Styles from "../../styles/orgs/SelectFair.module.scss";
 import BridalCategoriesSelected from "../mols/BridalCategoriesSelect";
 import { useRouter } from "next/router";
+import { FairCategoriesLists } from "../../../typings/fair";
+
+export type FairCategoryArticleWithSelected = FairCategoriesLists["articles"][0] & {
+  selected: boolean;
+};
 
 type Props = {
-  categories: {
-    selected: boolean;
-    label: string;
-    slug: string;
-  }[];
+  categories: FairCategoryArticleWithSelected[];
   handleSelected: (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => void;
   getSelectedDateLists: (e?: React.ChangeEvent<HTMLInputElement>) => void;
   getSelectedLists: () => void;

@@ -3,26 +3,15 @@ import Link from "next/link";
 import Styles from "../../styles/mols/BridalFairContent.module.scss";
 import Calendar from "../atoms/Calendar";
 import BridalCategories from "./BridalCategories";
+import { FairCategoriesLists, FairLists } from "../../../typings/fair";
 
 type Props = {
-  content: {
-    id: number;
-    title: string;
-    src: string;
-    categories: {
-      selected: boolean;
-      src: string;
-      label: string;
-      slug: string;
-    }[];
-    events: {
-      date: string;
-    }[];
-  };
+  content: FairLists["articles"][0];
+  fairCategoriesLists: FairCategoriesLists["articles"];
 };
 
 const BridalaFairContent = (props: Props) => {
-  const { content } = props;
+  const { content, fairCategoriesLists } = props;
 
   return (
     <div className={Styles.content}>
@@ -30,22 +19,26 @@ const BridalaFairContent = (props: Props) => {
 
       <div className={Styles.inner}>
         <div className={Styles.image}>
-          <Image src={content.src} alt="" width={560} height={380} />
+          <Image src={content.mainPc.url} alt="" width={content.mainPc.attributes.width} height={content.mainPc.attributes.height} />
         </div>
 
         <div className={Styles.categories}>
-          <BridalCategories categories={content.categories} />
+          <BridalCategories categories={content.categories} fairCategoriesLists={fairCategoriesLists} />
         </div>
 
         <div className={Styles.calendar}>
-          <Calendar events={content.events} />
+          <Calendar
+            events={content.calendar.values.map((date) => {
+              return { date: date.calendar };
+            })}
+          />
         </div>
 
         <div className={Styles.links}>
-          <Link className={Styles.toDetail} href={`/fair/${content.id}`}>
+          <Link className={Styles.toDetail} href={`/fair/${content.code}`}>
             フェア詳細
           </Link>
-          <Link className={Styles.toReservation} href={`/fair/${content.id}?id=reservation`}>
+          <Link className={Styles.toReservation} href={`/fair/${content.code}?id=reservation`}>
             このフェアを予約
           </Link>
         </div>

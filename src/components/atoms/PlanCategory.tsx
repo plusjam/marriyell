@@ -1,24 +1,20 @@
 import React from "react";
 import Styles from "../../styles/atoms/PlanCategory.module.scss";
-import { PlanLists } from "@/pages/api/plan";
+import { PlanCategoriesLists } from "../../../typings/plan";
 
 type Props = {
-  category: PlanLists[0]["categories"][0];
+  category: PlanCategoriesLists["articles"][0];
+  isPicked: boolean;
 };
 
 const PlanCategory = (props: Props) => {
-  const { category } = props;
+  const { category, isPicked } = props;
 
-  const slug = () => {
-    if (category.slug === "many") return Styles.many;
-    if (category.slug === "less") return Styles.less;
-    if (category.slug === "photo") return Styles.photo;
-    if (category.slug === "limited") return Styles.limited;
-  };
   return (
     <>
-      <div className={category.selected ? `${Styles.category} ${slug()} ${Styles.selected}` : `${Styles.category} ${slug()}`}>
-        <div className={Styles.categoryLabel}>{category.label}</div>
+      <div className={isPicked ? `${Styles.category} ${Styles.selected}` : `${Styles.category}`}>
+        <div className={Styles.image}>{isPicked ? <img src={category.iconFocus?.url} alt="" /> : <img src={category.icon?.url} alt="" />}</div>
+        <div className={Styles.categoryLabel}>{category.title}</div>
       </div>
     </>
   );

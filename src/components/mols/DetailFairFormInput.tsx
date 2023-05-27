@@ -189,9 +189,7 @@ const DetailFairFormInput = (props: Props) => {
                   })}
                   className={`${Styles.input} ${Styles.select}`}
                 >
-                  <option value="9:00" selected>
-                    9:00
-                  </option>
+                  <option value="9:00">9:00</option>
                   <option value="9:30">9:30</option>
                   <option value="10:00">10:00</option>
                   <option value="10:30">10:30</option>

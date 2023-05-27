@@ -1,32 +1,24 @@
+import { FairCategoriesLists, FairLists } from "../../../typings/fair";
 import Styles from "../../styles/mols/BridalCategories.module.scss";
 
 type Props = {
-  categories: {
-    selected: boolean;
-    src: string;
-    label: string;
-    slug: string;
-  }[];
+  categories: FairLists["articles"][0]["categories"];
+  fairCategoriesLists: FairCategoriesLists["articles"];
 };
 const BridalCategories = (props: Props) => {
-  const { categories } = props;
+  const { categories, fairCategoriesLists } = props;
 
   return (
     <>
-      {categories.map((category, index) => {
-        const slug = () => {
-          if (category.slug === "new") return Styles.new;
-          if (category.slug === "food") return Styles.food;
-          if (category.slug === "season") return Styles.season;
-          if (category.slug === "ceremony") return Styles.ceremony;
-          if (category.slug === "dress") return Styles.dress;
-          if (category.slug === "weekends") return Styles.weekends;
-          if (category.slug === "weekdays") return Styles.weekdays;
-          if (category.slug === "online") return Styles.online;
-        };
+      {fairCategoriesLists.map((category, index) => {
+        const isCategory = categories.articles.some((article) => {
+          return article.name === category.name;
+        });
+
         return (
-          <div className={category.selected ? `${Styles.category} ${Styles.selected} ${slug()}` : `${Styles.category} ${slug()}`} key={index}>
-            <span>{category.label}</span>
+          <div className={isCategory ? `${Styles.category} ${Styles.selected}` : Styles.category} key={index}>
+            <div className={Styles.image}>{isCategory ? <img src={category.iconFocus.url} alt="" /> : <img src={category.icon.url} alt="" />}</div>
+            <span>{category.name}</span>
           </div>
         );
       })}

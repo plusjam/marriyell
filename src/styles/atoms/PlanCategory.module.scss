@@ -15,33 +15,9 @@
   &.selected {
     background-color: #93c7c3;
     color: #fff;
-
-    &.many {
-      &:before {
-        background-image: url(/images/icon_plan_many-hover.svg);
-      }
-    }
-
-    &.less {
-      &:before {
-        background-image: url(/images/icon_plan_less-hover.svg);
-      }
-    }
-
-    &.photo {
-      &:before {
-        background-image: url(/images/icon_plan_photo-hover.svg);
-      }
-    }
-
-    &.limited {
-      &:before {
-        background-image: url(/images/icon_plan_limited-hover.svg);
-      }
-    }
   }
 
-  &:before {
+  .image {
     position: absolute;
     left: 8px;
     top: 50%;
@@ -52,29 +28,10 @@
     display: inline-block;
     background-size: contain;
     vertical-align: middle;
-  }
 
-  &.many {
-    &:before {
-      background-image: url(/images/icon_plan_many.svg);
-    }
-  }
-
-  &.less {
-    &:before {
-      background-image: url(/images/icon_plan_less.svg);
-    }
-  }
-
-  &.photo {
-    &:before {
-      background-image: url(/images/icon_plan_photo.svg);
-    }
-  }
-
-  &.limited {
-    &:before {
-      background-image: url(/images/icon_plan_limited.svg);
+    img {
+      width: 100%;
+      height: auto;
     }
   }
 }
@@ -90,7 +47,7 @@
     width: calc(33% - 2.25px);
     font-size: 8px;
 
-    &:before {
+    .image {
       left: 4px;
     }
   }

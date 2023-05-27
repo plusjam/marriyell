@@ -4,13 +4,15 @@ import Styles from "../../styles/orgs/PlanDetail.module.scss";
 import PlanCategory from "../atoms/PlanCategory";
 import PlanMeta from "../atoms/PlanMeta";
 import Previlege from "../mols/Previlege";
+import { PlanCategoriesLists, PlanList } from "../../../typings/plan";
 
 type Props = {
-  content: PlanLists[0];
+  content: PlanList;
+  planCategoriesLists: PlanCategoriesLists["articles"];
 };
 
 const PlanDetail = (props: Props) => {
-  const { content } = props;
+  const { content, planCategoriesLists } = props;
 
   return (
     <section className={Styles.section}>
@@ -23,31 +25,30 @@ const PlanDetail = (props: Props) => {
             }}
           ></div>
           <div className={Styles.image}>
-            <Image src={content.src} alt="" width={320} height={320} />
+            <Image src={content.mainPc.url} alt="" width={content.mainPc.attributes.width} height={content.mainPc.attributes.height} />
           </div>
           <div className={Styles.contents}>
-            <PlanMeta content={content} />
+            <PlanMeta price={content.price} member={content.member} />
 
             <div className={Styles.categories}>
-              {content.categories.map((category, index) => {
-                return <PlanCategory category={category} key={`plancategory${index}`} />;
+              {planCategoriesLists.map((category, index) => {
+                const isPicked = content.categories.articles.some((article) => article.title === category.title);
+                return <PlanCategory category={category} key={`plancategory${index}`} isPicked={isPicked} />;
               })}
             </div>
 
             <div className={Styles.terms}>
               <div className={Styles.term}>
                 <div className={Styles.termTag}>適用条件</div>
-                <span>10名よりご利用いただけます　※1名様増減　16,940円</span>
+                <span>{content.term}</span>
               </div>
               <div className={Styles.term}>
                 <div className={Styles.termTag}>適用期間</div>
-                <span>24年12月末迄の結婚式実施</span>
+                <span>{content.limited}</span>
               </div>
             </div>
 
-            <div className={Styles.description}>
-              ＼国産牛&キャビアなど絶品6品コース仕立て！3万円相当大人気試食フェア◎／1軒目来館で1万円相当ギフト贈呈&30名以上の披露宴ご成約で挙式料全額プレゼント！会場費最大25万円&前撮り衣裳プレゼントなど、フェア限定最大100万円優待♪
-            </div>
+            <div className={Styles.description}>{content.description}</div>
           </div>
         </div>
 

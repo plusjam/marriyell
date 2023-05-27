@@ -52,7 +52,6 @@ const Calendar = (props: Props) => {
   useEffect(() => {
     if (calendarRef.current) {
       const API: CalendarApi = calendarRef.current.getApi();
-      console.log(isTop);
       API.changeView(!isPc ? "dayGridMonth" : isTop ? "dayGridMonth" : "dayGridWeek");
     }
 

@@ -17,13 +17,6 @@ const HamburgerMenu = (props: Props) => {
   return (
     <div className={isOpen ? `${Styles.section} ${Styles.open}` : `${Styles.section}`}>
       <div className={Styles.head}>
-        {/* <Link href="/" className={Styles.logo}>
-          <picture>
-            <source srcSet="/images/art_logo_yoko.png" type="image/png" />
-            <img src="/images/art_logo_yoko.png" alt="lu CREA" width={145} height={34} />
-          </picture>
-        </Link> */}
-
         <div className={Styles.main}>
           <Link href="tel:0120-362-241" className={Styles.phone}>
             <span className={Styles.phoneIcon}>

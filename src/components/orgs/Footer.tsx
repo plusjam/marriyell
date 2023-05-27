@@ -16,7 +16,7 @@ const Footer = () => {
           <div className={Styles.logo}>
             <picture>
               <source srcSet="/images/art_logo_tate.png" type="image/png" />
-              <img src="/images/art_logo-nocolor.svg" alt="lu CREA" width={171} height={173} />
+              <img src="/images/art_logo-nocolor.svg" alt="マリエール高崎" width={171} height={173} />
             </picture>
             <div className={Styles.title}>
               <span>マリエール高崎 </span>
@@ -79,7 +79,7 @@ const Footer = () => {
               プライバシポリシー
             </Link>
           </div>
-          <div className={Styles.copy}>{`© 2016-${new Date().getFullYear()} lu CREA`}</div>
+          <div className={Styles.copy}>{`© 2016-${new Date().getFullYear()} マリエール高崎`}</div>
         </div>
       </div>
     </footer>

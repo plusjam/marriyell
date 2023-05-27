@@ -1,12 +1,9 @@
 import { MouseEvent } from "react";
 import Styles from "../../styles/mols/BridalCategoriesSelect.module.scss";
+import { FairCategoryArticleWithSelected } from "../orgs/SelectFair";
 
 type Props = {
-  categories: {
-    selected: boolean;
-    label: string;
-    slug: string;
-  }[];
+  categories: FairCategoryArticleWithSelected[];
   handleSelect: (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => void;
 };
 const BridalCategoriesSelected = (props: Props) => {
@@ -15,25 +12,10 @@ const BridalCategoriesSelected = (props: Props) => {
   return (
     <div className={Styles.categories}>
       {categories.map((category, index) => {
-        const slug = () => {
-          if (category.slug === "all") return Styles.all;
-          if (category.slug === "new") return Styles.new;
-          if (category.slug === "food") return Styles.food;
-          if (category.slug === "season") return Styles.season;
-          if (category.slug === "ceremony") return Styles.ceremony;
-          if (category.slug === "dress") return Styles.dress;
-          if (category.slug === "weekends") return Styles.weekends;
-          if (category.slug === "weekdays") return Styles.weekdays;
-          if (category.slug === "online") return Styles.online;
-        };
         return (
-          <div
-            className={category.selected ? `${Styles.category} ${Styles.selected} ${slug()}` : `${Styles.category} ${slug()}`}
-            key={index}
-            onClick={(e) => handleSelect(e)}
-            data-slug={category.slug}
-          >
-            <span>{category.label}</span>
+          <div className={category.selected ? `${Styles.category} ${Styles.selected}` : `${Styles.category}`} key={index} onClick={(e) => handleSelect(e)} data-name={category.name}>
+            <div className={Styles.image}>{category.selected ? <img src={category.iconFocus.url} alt="" /> : <img src={category.icon.url} alt="" />}</div>
+            <span>{category.name}</span>
           </div>
         );
       })}

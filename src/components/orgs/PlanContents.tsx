@@ -4,8 +4,15 @@ import Image from "next/image";
 import { useMediaQuery } from "../../../libs/useMediaQuery";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from "swiper";
+import { PlanList } from "../../../typings/plan";
 
-const PlanContents = () => {
+type Props = {
+  content: PlanList;
+};
+
+const PlanContents = (props: Props) => {
+  const { content } = props;
+
   const isPc = useMediaQuery(768, "min");
   SwiperCore.use([Navigation]);
 
@@ -15,7 +22,20 @@ const PlanContents = () => {
         <div className={Styles.head}>プラン内容</div>
         {isPc ? (
           <div className={Styles.body}>
-            <div className={Styles.block}>
+            {content.contents.values.map((elem, index) => {
+              return (
+                <div className={Styles.block} key={`plancontent${index}`}>
+                  <div className={Styles.tag}>
+                    <div className={Styles.image}>
+                      <Image src="/images/icon_plan_content_dress.svg" alt="" width={36} height={36} />
+                    </div>
+                    <div className={Styles.label}>{elem.content.select}</div>
+                  </div>
+                  <div className={Styles.description} dangerouslySetInnerHTML={{ __html: elem.text }}></div>
+                </div>
+              );
+            })}
+            {/* <div className={Styles.block}>
               <div className={Styles.tag}>
                 <div className={Styles.image}>
                   <Image src="/images/icon_plan_content_ceremony.svg" alt="" width={36} height={36} />
@@ -133,7 +153,7 @@ const PlanContents = () => {
                 <div className={Styles.label}>その他</div>
               </div>
               <div className={Styles.description}>チャペル式・神前式・人前式からお選びいただけます。</div>
-            </div>
+            </div> */}
           </div>
         ) : (
           <Swiper slidesPerView={1} navigation pagination={{ clickable: true }} className={Styles.swiper}>

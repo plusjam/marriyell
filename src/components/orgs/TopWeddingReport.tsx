@@ -4,9 +4,10 @@ import SectionHead from "../mols/SectionHead";
 import LinkToLists from "../atoms/LinkToLists";
 import ReportLists from "../mols/ReportLists";
 import { ReportContents } from "@/pages/api/weddingReport/[id]";
+import { ReportLists as List } from "../../../typings/report";
 
 type Props = {
-  contents: ReportContents[];
+  contents: List["articles"];
   openModal: (id: string) => void;
 };
 

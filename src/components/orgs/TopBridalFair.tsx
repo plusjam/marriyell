@@ -4,14 +4,15 @@ import LinkToLists from "../atoms/LinkToLists";
 import SectionHead from "../mols/SectionHead";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { BRIDALFAIR } from "../../textDate";
 import Link from "next/link";
 import { FairList } from "@/pages/api/fair";
 import CalendarTOP from "../atoms/CalendarTOP";
 import { useState } from "react";
+import { FairLists } from "../../../typings/fair";
 
 type Props = {
-  lists: FairList;
+  lists: FairLists["articles"];
+  weekendLists: FairLists["articles"];
   weekend: {
     date: string;
     selected: boolean;
@@ -21,7 +22,7 @@ type Props = {
 };
 
 const TopBridalFair = (props: Props) => {
-  const { lists, weekend, handleSelect, events } = props;
+  const { lists, weekendLists, weekend, handleSelect, events } = props;
 
   const [options, setOptions] = useState(true);
 
@@ -56,15 +57,14 @@ const TopBridalFair = (props: Props) => {
                   },
                 }}
               >
-                {BRIDALFAIR.map((elem, index) => {
+                {lists.map((elem, index) => {
                   return (
                     <SwiperSlide className={`${Styles.block} fadeinTop`} data-delay={0.2 * index} key={`bridalfair0${index + 1}`}>
-                      <Link href={elem.href} target="_blank">
+                      <Link href={`/fair/${elem.id}`}>
                         <div className={Styles.image}>
-                          {/* <Image src={elem.src} alt="" width={405} height={295} /> */}
                           <picture>
-                            <source srcSet={elem.src} type="image/webp" />
-                            <img src={elem.src} alt="" width={405} height={295} />
+                            <source srcSet={elem.mainPc.url} />
+                            <img src={elem.mainPc.url} alt="" width={elem.mainPc.attributes.width} height={elem.mainPc.attributes.height} />
                           </picture>
                           {/* <div className={Styles.tag}>
                     <div className={Styles.yyyy_mm}>{elem.yyyymm}</div>
@@ -74,7 +74,7 @@ const TopBridalFair = (props: Props) => {
                         </div>
                         <div className={Styles.contents}>
                           {/* <div className={Styles.when}>{elem.when}</div> */}
-                          <div className={Styles.description}>{elem.description}</div>
+                          <div className={Styles.description} dangerouslySetInnerHTML={{ __html: elem.description }}></div>
                         </div>
                       </Link>
                     </SwiperSlide>
@@ -158,8 +158,8 @@ const TopBridalFair = (props: Props) => {
                   },
                 }}
               >
-                {lists.length ? (
-                  lists.map((content, index) => {
+                {weekendLists.length ? (
+                  weekendLists.map((content, index) => {
                     const date = [...weekend].filter((date, index) => {
                       return date.selected;
                     });
@@ -169,7 +169,7 @@ const TopBridalFair = (props: Props) => {
                     return (
                       <SwiperSlide className={`${Styles.content} fadeinTop`} data-delay={0.2 * index} key={`weekendfair${index + 1}`}>
                         <div className={Styles.image}>
-                          <Image src={content.src} alt="" width={318} height={231} />
+                          <img src={content.mainPc.url} alt="" width={content.mainPc.attributes.width} height={content.mainPc.attributes.height} />
                         </div>
                         <div className={Styles.date}>{date[0].date}</div>
                         <div className={Styles.description}>{content.description}</div>

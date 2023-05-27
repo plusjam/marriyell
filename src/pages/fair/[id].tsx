@@ -7,21 +7,28 @@ import Process from "@/components/orgs/Process";
 import ReportModal from "@/components/orgs/ReportModal";
 import TopWeddingPlan from "@/components/orgs/TopWeddingPlan";
 import TopWeddingReport from "@/components/orgs/TopWeddingReport";
-import { GetStaticProps } from "next";
-import Head from "next/head";
-import useModalReport from "../../../libs/useModalReport";
-import { ReportContents } from "../api/weddingReport/[id]";
-import { useEffect } from "react";
-import { useRouter } from "next/router";
+import axios from "axios";
 import { gsap } from "gsap";
 import ScrollToPlugin from "gsap/dist/ScrollToPlugin";
+import { GetStaticProps } from "next";
+import Head from "next/head";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { apricotClient } from "../../../libs/cms";
+import useModalReport from "../../../libs/useModalReport";
+import { FairCategoriesLists, FairList, FairLists } from "../../../typings/fair";
+import { PlanLists } from "../../../typings/plan";
+import { ReportLists } from "../../../typings/report";
 
 type Props = {
-  reportLists: ReportContents[];
+  fairList: FairList;
+  fairCategoriesLists: FairCategoriesLists;
+  planLists: PlanLists;
+  reportLists: ReportLists;
 };
 
 export default function Home(props: Props) {
-  const { reportLists } = props;
+  const { fairList, fairCategoriesLists, planLists, reportLists } = props;
 
   const { videoID, openModal, closeModal } = useModalReport();
   const router = useRouter();
@@ -50,17 +57,17 @@ export default function Home(props: Props) {
     <>
       <Motion>
         <Head>
-          <title>{"フェア名"}｜lu CREA マリエール高崎</title>
+          <title>{`${fairList.title}｜マリエール高崎`}</title>
         </Head>
 
         <main>
-          <FairDetail />
-          <FairContents />
-          <DetailFairForm title={"フェア名"} />
+          <FairDetail fairList={fairList} fairCategoriesLists={fairCategoriesLists.articles} />
+          <FairContents fairList={fairList} />
+          <DetailFairForm title={fairList.title} />
 
           <Process />
-          <TopWeddingPlan />
-          <TopWeddingReport contents={reportLists} openModal={openModal} />
+          <TopWeddingPlan planLists={[...planLists.articles]} />
+          <TopWeddingReport contents={reportLists.articles} openModal={openModal} />
 
           <InstagramSection />
         </main>
@@ -72,190 +79,104 @@ export default function Home(props: Props) {
 }
 
 export const getStaticPaths = async () => {
-  // ここでパスを生成します。仮に、1から5までのidを生成するとします。
+  const accessKey = process.env.API_KEY;
+  const secretKey = process.env.API_SECRET;
+  const token = await apricotClient(accessKey, secretKey);
+
+  /* ===================================================================
+  // フェア
+  =================================================================== */
+  const fairUrl = `${process.env.CMS_URL}/api/v1/fair`;
+  const fairRes: { data: FairLists } = await axios.get(fairUrl, {
+    headers: {
+      "Content-Type": "application/json",
+      "account-access-key": accessKey,
+      "account-secret-key": secretKey,
+      authorization: `Bearer ${token.token}`,
+    },
+  });
+
+  const paths = fairRes.data.articles.map((fair) => `/fair/${fair.code}`);
 
   return {
-    paths: [{ params: { id: "1" } }],
+    paths,
     fallback: false,
   };
 };
 
-export const getStaticProps: GetStaticProps = async () => {
-  // const accessKey = process.env.API_KEY;
-  // const secretKey = process.env.API_SECRET;
-  // const cmsUrl = process.env.CMS_URL;
-  // const { token } = await apricotClient(accessKey, secretKey);
+export const getStaticProps: GetStaticProps = async (context) => {
+  if (!context.params) return { props: {} };
+  const code = context.params.id;
+  const accessKey = process.env.API_KEY;
+  const secretKey = process.env.API_SECRET;
+  const token = await apricotClient(accessKey, secretKey);
 
-  // const endpoint = "event";
-  // const url = `${cmsUrl}/api/v1/${endpoint}`;
+  /* ===================================================================
+  // フェア
+  =================================================================== */
+  const fairUrl = `${process.env.CMS_URL}/api/v1/fair/${code}`;
+  const fairRes: { data: FairList } = await axios.get(fairUrl, {
+    headers: {
+      "Content-Type": "application/json",
+      "account-access-key": accessKey,
+      "account-secret-key": secretKey,
+      authorization: `Bearer ${token.token}`,
+    },
+  });
 
-  // if (!accessKey || !secretKey || !token) {
-  //   throw new Error("APIキーが設定されていません。");
-  // }
+  const fairList: FairList = fairRes.data;
+  // console.log("リスト！！！！！！！！！！！", fairList.contents.articles);
 
-  // try {
-  //   const res = await axios.get(url, {
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       "account-access-key": accessKey,
-  //       "account-secret-key": secretKey,
-  //       authorization: `Bearer ${token}`,
-  //     },
-  //   });
+  /* ===================================================================
+  // フェアカテゴリ
+  =================================================================== */
+  const fairCategoriesUrl = `${process.env.CMS_URL}/api/v1/fairCategories`;
+  const fairCategoriesRes: { data: FairCategoriesLists } = await axios.get(fairCategoriesUrl, {
+    headers: {
+      "Content-Type": "application/json",
+      "account-access-key": accessKey,
+      "account-secret-key": secretKey,
+      authorization: `Bearer ${token.token}`,
+    },
+  });
 
-  //   console.log("レスすすすすすすす", res);
+  const fairCategoriesLists: FairCategoriesLists = fairCategoriesRes.data;
 
-  //   console.log("デーーーーーーーーた！！！", await res.data);
-  // } catch (e) {
-  //   console.log("エラーだよ！！！", e.response ? e.response : e);
-  // }
+  /* ===================================================================
+  // プラン
+  =================================================================== */
+  const planUrl = `${process.env.CMS_URL}/api/v1/plan`;
+  const planRes: { data: PlanLists } = await axios.get(planUrl, {
+    headers: {
+      "Content-Type": "application/json",
+      "account-access-key": accessKey,
+      "account-secret-key": secretKey,
+      authorization: `Bearer ${token.token}`,
+    },
+  });
 
-  // const reportRes = await fetch(`http://localhost:${process.env.PORT}/api/weddingReport/2`);
-  // const reportLists: ReportContents[] = await reportRes.json();
+  const planLists: PlanLists = planRes.data;
 
-  // const fairRes = await fetch(`http://localhost:${process.env.PORT}/api/fair/1`);
-  // const fairList: FairList[0] = await fairRes.json();
+  /* ===================================================================
+  // レポート
+  =================================================================== */
+  const reportUrl = `${process.env.CMS_URL}/api/v1/report`;
+  const reportRes: { data: ReportLists } = await axios.get(reportUrl, {
+    headers: {
+      "Content-Type": "application/json",
+      "account-access-key": accessKey,
+      "account-secret-key": secretKey,
+      authorization: `Bearer ${token.token}`,
+    },
+  });
 
-  // const planRef = await fetch(`http://localhost:${process.env.PORT}/api/plan/`);
-  // const planLists: PlanLists = await planRef.json();
-
-  const reportLists: ReportContents[] = [
-    {
-      id: "V2Q6aajSyFM",
-      category: "1神前式 × Shikijo",
-      title: "レポートのタイトルが入ります",
-      description:
-        "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
-      member: 98,
-      publishDate: "2021-01-01",
-      createdDate: "2021-01-01",
-      updatedDate: "2021-01-01",
-    },
-    {
-      id: "V2Q6aajSyFM",
-      category: "2神前式 × Shikijo",
-      title: "レポートのタイトルが入ります",
-      description:
-        "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
-      member: 98,
-      publishDate: "2021-01-01",
-      createdDate: "2021-01-01",
-      updatedDate: "2021-01-01",
-    },
-    {
-      id: "V2Q6aajSyFM",
-      category: "3神前式 × Shikijo",
-      title: "レポートのタイトルが入ります",
-      description:
-        "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
-      member: 98,
-      publishDate: "2021-01-01",
-      createdDate: "2021-01-01",
-      updatedDate: "2021-01-01",
-    },
-    {
-      id: "V2Q6aajSyFM",
-      category: "4神前式 × Shikijo",
-      title: "レポートのタイトルが入ります",
-      description:
-        "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
-      member: 98,
-      publishDate: "2021-01-01",
-      createdDate: "2021-01-01",
-      updatedDate: "2021-01-01",
-    },
-    {
-      id: "V2Q6aajSyFM",
-      category: "5神前式 × Shikijo",
-      title: "レポートのタイトルが入ります",
-      description:
-        "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
-      member: 98,
-      publishDate: "2021-01-01",
-      createdDate: "2021-01-01",
-      updatedDate: "2021-01-01",
-    },
-    {
-      id: "V2Q6aajSyFM",
-      category: "6神前式 × Shikijo",
-      title: "レポートのタイトルが入ります",
-      description:
-        "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
-      member: 98,
-      publishDate: "2021-01-01",
-      createdDate: "2021-01-01",
-      updatedDate: "2021-01-01",
-    },
-    {
-      id: "V2Q6aajSyFM",
-      category: "7神前式 × Shikijo",
-      title: "レポートのタイトルが入ります",
-      description:
-        "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
-      member: 98,
-      publishDate: "2021-01-01",
-      createdDate: "2021-01-01",
-      updatedDate: "2021-01-01",
-    },
-    {
-      id: "V2Q6aajSyFM",
-      category: "8神前式 × Shikijo",
-      title: "レポートのタイトルが入ります",
-      description:
-        "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
-      member: 98,
-      publishDate: "2021-01-01",
-      createdDate: "2021-01-01",
-      updatedDate: "2021-01-01",
-    },
-    {
-      id: "V2Q6aajSyFM",
-      category: "8神前式 × Shikijo",
-      title: "レポートのタイトルが入ります",
-      description:
-        "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
-      member: 98,
-      publishDate: "2021-01-01",
-      createdDate: "2021-01-01",
-      updatedDate: "2021-01-01",
-    },
-    {
-      id: "V2Q6aajSyFM",
-      category: "8神前式 × Shikijo",
-      title: "レポートのタイトルが入ります",
-      description:
-        "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
-      member: 98,
-      publishDate: "2021-01-01",
-      createdDate: "2021-01-01",
-      updatedDate: "2021-01-01",
-    },
-    {
-      id: "V2Q6aajSyFM",
-      category: "8神前式 × Shikijo",
-      title: "レポートのタイトルが入ります",
-      description:
-        "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
-      member: 98,
-      publishDate: "2021-01-01",
-      createdDate: "2021-01-01",
-      updatedDate: "2021-01-01",
-    },
-    {
-      id: "V2Q6aajSyFM",
-      category: "8神前式 × Shikijo",
-      title: "レポートのタイトルが入ります",
-      description:
-        "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
-      member: 98,
-      publishDate: "2021-01-01",
-      createdDate: "2021-01-01",
-      updatedDate: "2021-01-01",
-    },
-  ];
+  const reportLists: ReportLists = reportRes.data;
 
   return {
     props: {
+      fairList,
+      fairCategoriesLists,
+      planLists,
       reportLists,
     },
   };

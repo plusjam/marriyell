@@ -3,16 +3,17 @@ import Styles from "../../styles/mols/WeddingPlanContent.module.scss";
 import Image from "next/image";
 import Link from "next/link";
 import PlanCategory from "../atoms/PlanCategory";
-import { PlanLists } from "@/pages/api/plan";
 import { useMediaQuery } from "../../../libs/useMediaQuery";
 import PlanMeta from "../atoms/PlanMeta";
+import { PlanCategoriesLists, PlanLists } from "../../../typings/plan";
 
 type Props = {
-  content: PlanLists[0];
+  content: PlanLists["articles"][0];
+  planCategoriesLists: PlanCategoriesLists["articles"];
 };
 
 const WeddingPlanContent = (props: Props) => {
-  const { content } = props;
+  const { content, planCategoriesLists } = props;
 
   const isPc = useMediaQuery(768, "min");
 
@@ -27,7 +28,7 @@ const WeddingPlanContent = (props: Props) => {
         ></div>
       )}
       <div className={Styles.image}>
-        <Image src={content.src} alt="" width={320} height={320} />
+        <Image src={content.mainPc.url} alt="" width={content.mainPc.attributes.width} height={content.mainPc.attributes.height} />
       </div>
       <div className={Styles.contents}>
         {isPc && (
@@ -39,11 +40,12 @@ const WeddingPlanContent = (props: Props) => {
           ></div>
         )}
 
-        <PlanMeta content={content} />
+        <PlanMeta price={content.price} member={content.member} />
 
         <div className={Styles.categories}>
-          {content.categories.map((category, index) => {
-            return <PlanCategory category={category} key={`plancategory${index}`} />;
+          {planCategoriesLists.map((category, index) => {
+            const isPicked = content.categories.articles.some((article) => article.title === category.title);
+            return <PlanCategory category={category} isPicked={isPicked} key={`plancategory${index}`} />;
           })}
         </div>
 
@@ -55,10 +57,10 @@ const WeddingPlanContent = (props: Props) => {
         </div>
 
         <div className={Styles.links}>
-          <Link className={Styles.toPlan} href={`/plan/${content.id}`}>
+          <Link className={Styles.toPlan} href={`/plan/${content.code}`}>
             プラン詳細を見る
           </Link>
-          <Link className={Styles.toContact} href={`/plan/${content.id}?id=reservation`}>
+          <Link className={Styles.toContact} href={`/plan/${content.code}?id=reservation`}>
             プランの相談をする
           </Link>
         </div>

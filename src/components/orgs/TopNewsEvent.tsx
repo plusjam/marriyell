@@ -2,14 +2,14 @@ import React, { use } from "react";
 import Styles from "../../styles/orgs/TopNewsEvent.module.scss";
 import SectionHead from "../mols/SectionHead";
 import LinkToLists from "../atoms/LinkToLists";
-import { NewsContents } from "../../../typings/news";
+import { NewsContents, NewsLists } from "../../../typings/news";
 import Link from "next/link";
 import { IMAGELINKS } from "@/textDate";
 import Image from "next/image";
 import { useMediaQuery } from "../../../libs/useMediaQuery";
 
 type Props = {
-  contents: NewsContents[];
+  contents: NewsLists["articles"];
 };
 
 const TopNewsEvent = (props: Props) => {
@@ -24,35 +24,39 @@ const TopNewsEvent = (props: Props) => {
 
   return (
     <section className={Styles.section}>
-      <SectionHead en="News & Event" ja="お知らせ・イベント情報" href="news-event" />
+      <SectionHead en="News & Event" ja="お知らせ・イベント" href="news-event" />
       <div className={Styles.container}>
         <div className={Styles.lists}>
           {limitedContents.map((content, index) => {
             // content.updatedDateをyyyy/mm/ddに変換
-            const date = new Date(content.updatedDate);
+            const date = new Date(content.updatedAt);
             const year = date.getFullYear();
             const month = date.getMonth() + 1;
             const day = date.getDate();
             const updatedDate = `${year}/${month}/${day}`;
 
+            // console.log("コンテンツの説明文", content.description);
+            // const test = content.description.forEach((description) => {
+            //   if(description.)
+            // });
             // content.descriptionの文字数制限
-            const description = content.description;
-            const limit = isPc ? 42 : 20;
-            const descriptionLimit = description.length > limit ? description.substring(0, limit) + "..." : description;
+            // const description = content.description[0];
+            // const limit = isPc ? 42 : 20;
+            // const descriptionLimit = description.length > limit ? description.substring(0, limit) + "..." : description;
 
             return (
               <Link href={`/news/${content.id}`} className={Styles.list} key={`news${index}`}>
                 <div className={Styles.image}>
-                  <img src={content.src} alt={content.title} />
+                  <img src={content.eyecatch.url} alt={content.title} />
                 </div>
                 <div className={Styles.content}>
-                  <div className={Styles.description}>{descriptionLimit}</div>
+                  {/* <div className={Styles.description}>{descriptionLimit}</div> */}
                   <div className={Styles.date}>{updatedDate}</div>
                   <div className={Styles.categories}>
-                    {content.category.map((category, index) => {
+                    {content.categories.articles.map((category, index) => {
                       return (
                         <div className={Styles.category} key={`category${index}`}>
-                          {category.label}
+                          {category.title}
                         </div>
                       );
                     })}

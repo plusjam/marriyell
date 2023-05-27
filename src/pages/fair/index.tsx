@@ -1,40 +1,43 @@
 import Motion from "@/components/layouts/Motion";
-import UnderlayerHead from "@/components/orgs/UnderlayerHead";
-import { GetStaticProps } from "next";
-import Head from "next/head";
-import React, { useEffect, useLayoutEffect } from "react";
-import WeekendFair from "@/components/orgs/WeekendFair";
-import SelectFair from "@/components/orgs/SelectFair";
 import BridalFair from "@/components/orgs/BridalFair";
+import InstagramSection from "@/components/orgs/InstagramSection";
+import ReportModal from "@/components/orgs/ReportModal";
+import SelectFair from "@/components/orgs/SelectFair";
 import TopWeddingPlan from "@/components/orgs/TopWeddingPlan";
 import TopWeddingReport from "@/components/orgs/TopWeddingReport";
-import { ReportContents } from "../api/weddingReport/[id]";
-import useModalReport from "../../../libs/useModalReport";
-import ReportModal from "@/components/orgs/ReportModal";
-import InstagramSection from "@/components/orgs/InstagramSection";
-import useSelectFair from "../../../libs/useSelectFair";
-import { FairList } from "../api/fair";
-import useGetWeekend from "../../../libs/useGetWeekend";
-import axios from "axios";
-import { apricotClient } from "../../../libs/cms";
-import { AppTrigger } from "../_app";
+import UnderlayerHead from "@/components/orgs/UnderlayerHead";
+import WeekendFair from "@/components/orgs/WeekendFair";
 import { META } from "@/textDate/head";
+import axios from "axios";
+import { GetStaticProps } from "next";
+import Head from "next/head";
 import { useRouter } from "next/router";
+import React, { useEffect } from "react";
+import { apricotClient } from "../../../libs/cms";
+import useGetWeekend from "../../../libs/useGetWeekend";
+import useModalReport from "../../../libs/useModalReport";
+import useSelectFair from "../../../libs/useSelectFair";
+import { FairCategoriesLists, FairLists } from "../../../typings/fair";
+import { PlanLists } from "../../../typings/plan";
+import { ReportLists } from "../../../typings/report";
+import { AppTrigger } from "../_app";
 
 type Props = {
-  reportLists: ReportContents[];
-  fairLists: FairList;
+  fairLists: FairLists;
+  fairCategoriesLists: FairCategoriesLists;
+  planLists: PlanLists;
+  reportLists: ReportLists;
 };
 
 export default function Home(props: Props) {
-  const { reportLists, fairLists } = props;
+  const { reportLists, fairCategoriesLists, planLists, fairLists } = props;
 
   const router = useRouter();
-  const [lists, setLists] = React.useState([...fairLists]);
-  const [weekendLists, setWeekendLists] = React.useState([...fairLists]);
+  const [lists, setLists] = React.useState([...fairLists.articles]);
+  const [weekendLists, setWeekendLists] = React.useState([...fairLists.articles]);
 
   const { videoID, openModal, closeModal } = useModalReport();
-  const { categories, handleSelect } = useSelectFair();
+  const { categories, handleSelect } = useSelectFair({ init: [...fairCategoriesLists.articles] });
   const { selected: selectedWeekend, handleSelect: handleWeekendSelect } = useGetWeekend();
 
   useEffect(() => {
@@ -43,16 +46,16 @@ export default function Home(props: Props) {
 
   // weekendListsをselectedWeekendで絞り込み
   const getSelectedWeekendLists = async () => {
-    const initLists = [...fairLists];
+    const initLists = [...fairLists.articles];
 
     const selectedDate = selectedWeekend.filter((weekend) => {
       return weekend.selected;
     });
 
-    const selectedWeekendLists = initLists.filter((weekend) => {
-      return weekend.events.some((event) => {
+    const selectedWeekendLists = [...initLists].filter((weekend) => {
+      return weekend.calendar.values.some((calendar) => {
         const find = selectedDate.find((selectedWeekend) => {
-          const eventDate = new Date(event.date);
+          const eventDate = new Date(calendar.calendar);
           const month = eventDate.getMonth();
           const dateNum = eventDate.getDate();
 
@@ -68,24 +71,23 @@ export default function Home(props: Props) {
 
   // 選択されたカテゴリーから絞り込み or検索
   const getSelectedLists = async () => {
-    const initLists = [...fairLists];
+    const initLists = [...fairLists.articles];
     let selectedLists = [];
 
-    const selectedCategory = categories.find((category) => {
+    const selectedCategory = categories.filter((category) => {
       return category.selected;
-    })?.slug;
+    });
 
-    if (selectedCategory !== "all") {
-      selectedLists = initLists.filter((list) => {
-        return list.categories.some((category) => {
-          return category.slug === selectedCategory && category.selected;
+    selectedLists = initLists.filter((list) => {
+      return list.categories.articles.some((category) => {
+        return selectedCategory.some((selected) => {
+          return selected.name === category.name;
         });
       });
-    } else {
-      selectedLists = initLists;
-    }
+    });
 
-    setLists(selectedLists);
+    setLists(selectedLists.length ? selectedLists : initLists);
+
     setTimeout(() => {
       AppTrigger.refresh();
     }, 1000);
@@ -116,16 +118,16 @@ export default function Home(props: Props) {
 
     if (targetDate) {
       // listsからtargetDateと一致するものを抽出
-      const initLists = [...fairLists];
+      const initLists = [...fairLists.articles];
       const selectedDateLists = initLists.filter((list) => {
-        return list.events.some((event) => {
-          return targetDate === event.date;
+        return list.calendar.values.some((event) => {
+          return targetDate === event.calendar;
         });
       });
 
       setLists(selectedDateLists);
     } else {
-      setLists(fairLists);
+      setLists(fairLists.articles);
     }
 
     const bridalFair = document.querySelector("#bridal-fair") as HTMLElement;
@@ -151,10 +153,10 @@ export default function Home(props: Props) {
 
           <WeekendFair lists={weekendLists} weekend={selectedWeekend} handleSelect={handleWeekendSelect} />
           <SelectFair categories={categories} handleSelected={handleSelect} getSelectedLists={getSelectedLists} getSelectedDateLists={getSelectedDateLists} />
-          <BridalFair lists={lists} />
+          <BridalFair lists={lists} fairCategoriesLists={fairCategoriesLists.articles} />
 
-          <TopWeddingPlan />
-          <TopWeddingReport contents={reportLists} openModal={openModal} />
+          <TopWeddingPlan planLists={[...planLists.articles]} />
+          <TopWeddingReport contents={reportLists.articles} openModal={openModal} />
 
           <InstagramSection />
         </main>
@@ -166,1117 +168,76 @@ export default function Home(props: Props) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  // const accessKey = process.env.API_KEY;
-  // const secretKey = process.env.API_SECRET;
-  // const cmsUrl = process.env.CMS_URL;
-  // const { token } = await apricotClient(accessKey, secretKey);
+  const accessKey = process.env.API_KEY;
+  const secretKey = process.env.API_SECRET;
+  const token = await apricotClient(accessKey, secretKey);
 
-  // const endpoint = "event";
-  // const url = `${cmsUrl}/api/v1/${endpoint}`;
+  /* ===================================================================
+  // フェア
+  =================================================================== */
+  const fairUrl = `${process.env.CMS_URL}/api/v1/fair`;
+  const fairRes: { data: FairLists } = await axios.get(fairUrl, {
+    headers: {
+      "Content-Type": "application/json",
+      "account-access-key": accessKey,
+      "account-secret-key": secretKey,
+      authorization: `Bearer ${token.token}`,
+    },
+  });
 
-  // if (!accessKey || !secretKey || !token) {
-  //   throw new Error("APIキーが設定されていません。");
-  // }
+  const fairLists: FairLists = fairRes.data;
 
-  // try {
-  //   const res = await axios.get(url, {
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       "account-access-key": accessKey,
-  //       "account-secret-key": secretKey,
-  //       authorization: `Bearer ${token}`,
-  //     },
-  //   });
+  /* ===================================================================
+  // フェアカテゴリ
+  =================================================================== */
+  const fairCategoriesUrl = `${process.env.CMS_URL}/api/v1/fairCategories`;
+  const fairCategoriesRes: { data: FairCategoriesLists } = await axios.get(fairCategoriesUrl, {
+    headers: {
+      "Content-Type": "application/json",
+      "account-access-key": accessKey,
+      "account-secret-key": secretKey,
+      authorization: `Bearer ${token.token}`,
+    },
+  });
 
-  //   console.log("レスすすすすすすす", res);
+  const fairCategoriesLists: FairCategoriesLists = fairCategoriesRes.data;
 
-  //   console.log("デーーーーーーーーた！！！", await res.data);
-  // } catch (e) {
-  //   console.log("エラーだよ！！！", e.response ? e.response : e);
-  // }
+  /* ===================================================================
+  // プラン
+  =================================================================== */
+  const planUrl = `${process.env.CMS_URL}/api/v1/plan`;
+  const planRes: { data: PlanLists } = await axios.get(planUrl, {
+    headers: {
+      "Content-Type": "application/json",
+      "account-access-key": accessKey,
+      "account-secret-key": secretKey,
+      authorization: `Bearer ${token.token}`,
+    },
+  });
 
-  // const reportRes = await fetch(`http://localhost:${process.env.PORT}/api/weddingReport/2`);
-  // const reportLists: ReportContents[] = await reportRes.json();
+  const planLists: PlanLists = planRes.data;
 
-  // const fairRes = await fetch(`http://localhost:${process.env.PORT}/api/fair`);
-  // const fairLists: FairList = await fairRes.json();
+  /* ===================================================================
+  // レポート
+  =================================================================== */
+  const reportUrl = `${process.env.CMS_URL}/api/v1/report`;
+  const reportRes: { data: ReportLists } = await axios.get(reportUrl, {
+    headers: {
+      "Content-Type": "application/json",
+      "account-access-key": accessKey,
+      "account-secret-key": secretKey,
+      authorization: `Bearer ${token.token}`,
+    },
+  });
 
-  // const reportLists: ReportContents[] = [
-  //   {
-  //     id: "V2Q6aajSyFM",
-  //     category: "1神前式 × Shikijo",
-  //     title: "レポートのタイトルが入ります",
-  //     description:
-  //       "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
-  //     member: 98,
-  //     publishDate: "2021-01-01",
-  //     createdDate: "2021-01-01",
-  //     updatedDate: "2021-01-01",
-  //   },
-  //   {
-  //     id: "V2Q6aajSyFM",
-  //     category: "2神前式 × Shikijo",
-  //     title: "レポートのタイトルが入ります",
-  //     description:
-  //       "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
-  //     member: 98,
-  //     publishDate: "2021-01-01",
-  //     createdDate: "2021-01-01",
-  //     updatedDate: "2021-01-01",
-  //   },
-  //   {
-  //     id: "V2Q6aajSyFM",
-  //     category: "3神前式 × Shikijo",
-  //     title: "レポートのタイトルが入ります",
-  //     description:
-  //       "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
-  //     member: 98,
-  //     publishDate: "2021-01-01",
-  //     createdDate: "2021-01-01",
-  //     updatedDate: "2021-01-01",
-  //   },
-  //   {
-  //     id: "V2Q6aajSyFM",
-  //     category: "4神前式 × Shikijo",
-  //     title: "レポートのタイトルが入ります",
-  //     description:
-  //       "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
-  //     member: 98,
-  //     publishDate: "2021-01-01",
-  //     createdDate: "2021-01-01",
-  //     updatedDate: "2021-01-01",
-  //   },
-  //   {
-  //     id: "V2Q6aajSyFM",
-  //     category: "5神前式 × Shikijo",
-  //     title: "レポートのタイトルが入ります",
-  //     description:
-  //       "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
-  //     member: 98,
-  //     publishDate: "2021-01-01",
-  //     createdDate: "2021-01-01",
-  //     updatedDate: "2021-01-01",
-  //   },
-  //   {
-  //     id: "V2Q6aajSyFM",
-  //     category: "6神前式 × Shikijo",
-  //     title: "レポートのタイトルが入ります",
-  //     description:
-  //       "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
-  //     member: 98,
-  //     publishDate: "2021-01-01",
-  //     createdDate: "2021-01-01",
-  //     updatedDate: "2021-01-01",
-  //   },
-  //   {
-  //     id: "V2Q6aajSyFM",
-  //     category: "7神前式 × Shikijo",
-  //     title: "レポートのタイトルが入ります",
-  //     description:
-  //       "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
-  //     member: 98,
-  //     publishDate: "2021-01-01",
-  //     createdDate: "2021-01-01",
-  //     updatedDate: "2021-01-01",
-  //   },
-  //   {
-  //     id: "V2Q6aajSyFM",
-  //     category: "8神前式 × Shikijo",
-  //     title: "レポートのタイトルが入ります",
-  //     description:
-  //       "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
-  //     member: 98,
-  //     publishDate: "2021-01-01",
-  //     createdDate: "2021-01-01",
-  //     updatedDate: "2021-01-01",
-  //   },
-  //   {
-  //     id: "V2Q6aajSyFM",
-  //     category: "8神前式 × Shikijo",
-  //     title: "レポートのタイトルが入ります",
-  //     description:
-  //       "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
-  //     member: 98,
-  //     publishDate: "2021-01-01",
-  //     createdDate: "2021-01-01",
-  //     updatedDate: "2021-01-01",
-  //   },
-  //   {
-  //     id: "V2Q6aajSyFM",
-  //     category: "8神前式 × Shikijo",
-  //     title: "レポートのタイトルが入ります",
-  //     description:
-  //       "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
-  //     member: 98,
-  //     publishDate: "2021-01-01",
-  //     createdDate: "2021-01-01",
-  //     updatedDate: "2021-01-01",
-  //   },
-  //   {
-  //     id: "V2Q6aajSyFM",
-  //     category: "8神前式 × Shikijo",
-  //     title: "レポートのタイトルが入ります",
-  //     description:
-  //       "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
-  //     member: 98,
-  //     publishDate: "2021-01-01",
-  //     createdDate: "2021-01-01",
-  //     updatedDate: "2021-01-01",
-  //   },
-  //   {
-  //     id: "V2Q6aajSyFM",
-  //     category: "8神前式 × Shikijo",
-  //     title: "レポートのタイトルが入ります",
-  //     description:
-  //       "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
-  //     member: 98,
-  //     publishDate: "2021-01-01",
-  //     createdDate: "2021-01-01",
-  //     updatedDate: "2021-01-01",
-  //   },
-  // ];
-  // const fairLists: FairList = [
-  //   {
-  //     id: 1,
-  //     title: "【新型コロナウイルス感染症対策】",
-  //     src: "/images/bridal_fair02.jpg",
-  //     description: "適当な説明文が入ります。文字数が長い場合は自動で長さ調整を行うように設定します。",
-  //     categories: [
-  //       {
-  //         selected: false,
-  //         src: "/images/icon_fair_new.svg",
-  //         label: "初めての見学",
-  //         slug: "new",
-  //       },
-  //       {
-  //         selected: false,
-  //         src: "/images/icon_fair_food.svg",
-  //         label: "試食会つき",
-  //         slug: "food",
-  //       },
-  //       {
-  //         selected: false,
-  //         src: "/images/icon_fair_season.svg",
-  //         label: "季節・期間限定",
-  //         slug: "season",
-  //       },
-  //       {
-  //         selected: false,
-  //         src: "/images/icon_fair_ceremony.svg",
-  //         label: "挙式体験",
-  //         slug: "ceremony",
-  //       },
-  //       {
-  //         selected: true,
-  //         src: "/images/icon_fair_dress.svg",
-  //         label: "ドレス試着",
-  //         slug: "dress",
-  //       },
-  //       {
-  //         selected: false,
-  //         src: "/images/icon_fair_weekends.svg",
-  //         label: "土日祝開催",
-  //         slug: "weekends",
-  //       },
-  //       {
-  //         selected: true,
-  //         src: "/images/icon_fair_weekdays.svg",
-  //         label: "平日限定開催",
-  //         slug: "weekdays",
-  //       },
-  //       {
-  //         selected: false,
-  //         src: "/images/icon_fair_online.svg",
-  //         label: "オンライン相談会",
-  //         slug: "online",
-  //       },
-  //     ],
-  //     events: [{ date: "2023-05-20" }, { date: "2023-05-21" }, { date: "2023-06-03"}],
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "【春のウェディングフェア】",
-  //     src: "/images/bridal_fair02.jpg",
-  //     description: "適当な説明文が入ります。文字数が長い場合は自動で長さ調整を行うように設定します。",
-  //     categories: [
-  //       {
-  //         selected: false,
-  //         src: "/images/icon_fair_new.svg",
-  //         label: "初めての見学",
-  //         slug: "new",
-  //       },
-  //       {
-  //         selected: false,
-  //         src: "/images/icon_fair_food.svg",
-  //         label: "試食会つき",
-  //         slug: "food",
-  //       },
-  //       {
-  //         selected: false,
-  //         src: "/images/icon_fair_season.svg",
-  //         label: "季節・期間限定",
-  //         slug: "season",
-  //       },
-  //       {
-  //         selected: false,
-  //         src: "/images/icon_fair_ceremony.svg",
-  //         label: "挙式体験",
-  //         slug: "ceremony",
-  //       },
-  //       {
-  //         selected: true,
-  //         src: "/images/icon_fair_dress.svg",
-  //         label: "ドレス試着",
-  //         slug: "dress",
-  //       },
-  //       {
-  //         selected: false,
-  //         src: "/images/icon_fair_weekends.svg",
-  //         label: "土日祝開催",
-  //         slug: "weekends",
-  //       },
-  //       {
-  //         selected: true,
-  //         src: "/images/icon_fair_weekdays.svg",
-  //         label: "平日限定開催",
-  //         slug: "weekdays",
-  //       },
-  //       {
-  //         selected: true,
-  //         src: "/images/icon_fair_online.svg",
-  //         label: "オンライン相談会",
-  //         slug: "online",
-  //       },
-  //     ],
-  //     events: [{ date: "2023-05-03" }, { date: "2023-05-04" }],
-  //   },
-  //   {
-  //     id: 3,
-  //     title: "【オンライン見学会】",
-  //     src: "/images/bridal_fair02.jpg",
-  //     description: "適当な説明文が入ります。文字数が長い場合は自動で長さ調整を行うように設定します。",
-  //     categories: [
-  //       {
-  //         selected: true,
-  //         src: "/images/icon_fair_new.svg",
-  //         label: "初めての見学",
-  //         slug: "new",
-  //       },
-  //       {
-  //         selected: false,
-  //         src: "/images/icon_fair_food.svg",
-  //         label: "試食会つき",
-  //         slug: "food",
-  //       },
-  //       {
-  //         selected: false,
-  //         src: "/images/icon_fair_season.svg",
-  //         label: "季節・期間限定",
-  //         slug: "season",
-  //       },
-  //       {
-  //         selected: false,
-  //         src: "/images/icon_fair_ceremony.svg",
-  //         label: "挙式体験",
-  //         slug: "ceremony",
-  //       },
-  //       {
-  //         selected: true,
-  //         src: "/images/icon_fair_dress.svg",
-  //         label: "ドレス試着",
-  //         slug: "dress",
-  //       },
-  //       {
-  //         selected: false,
-  //         src: "/images/icon_fair_weekends.svg",
-  //         label: "土日祝開催",
-  //         slug: "weekends",
-  //       },
-  //       {
-  //         selected: true,
-  //         src: "/images/icon_fair_weekdays.svg",
-  //         label: "平日限定開催",
-  //         slug: "weekdays",
-  //       },
-  //       {
-  //         selected: true,
-  //         src: "/images/icon_fair_online.svg",
-  //         label: "オンライン相談会",
-  //         slug: "online",
-  //       },
-  //     ],
-  //     events: [{ date: "2023-05-05" }, { date: "2023-05-06" }],
-  //   },
-  //   {
-  //     id: 4,
-  //     title: "【フードフェスティバル】",
-  //     src: "/images/bridal_fair02.jpg",
-  //     description: "適当な説明文が入ります。文字数が長い場合は自動で長さ調整を行うように設定します。",
-  //     categories: [
-  //       {
-  //         selected: true,
-  //         src: "/images/icon_fair_new.svg",
-  //         label: "初めての見学",
-  //         slug: "new",
-  //       },
-  //       {
-  //         selected: false,
-  //         src: "/images/icon_fair_food.svg",
-  //         label: "試食会つき",
-  //         slug: "food",
-  //       },
-  //       {
-  //         selected: false,
-  //         src: "/images/icon_fair_season.svg",
-  //         label: "季節・期間限定",
-  //         slug: "season",
-  //       },
-  //       {
-  //         selected: false,
-  //         src: "/images/icon_fair_ceremony.svg",
-  //         label: "挙式体験",
-  //         slug: "ceremony",
-  //       },
-  //       {
-  //         selected: true,
-  //         src: "/images/icon_fair_dress.svg",
-  //         label: "ドレス試着",
-  //         slug: "dress",
-  //       },
-  //       {
-  //         selected: false,
-  //         src: "/images/icon_fair_weekends.svg",
-  //         label: "土日祝開催",
-  //         slug: "weekends",
-  //       },
-  //       {
-  //         selected: true,
-  //         src: "/images/icon_fair_weekdays.svg",
-  //         label: "平日限定開催",
-  //         slug: "weekdays",
-  //       },
-  //       {
-  //         selected: true,
-  //         src: "/images/icon_fair_online.svg",
-  //         label: "オンライン相談会",
-  //         slug: "online",
-  //       },
-  //     ],
-  //     events: [{ date: "2023-05-07" }, { date: "2023-05-08" }, { date: "2023-06-03"}],
-  //   },
-  //   {
-  //     id: 5,
-  //     title: "【ドレス試着会】",
-  //     src: "/images/bridal_fair02.jpg",
-  //     description: "適当な説明文が入ります。文字数が長い場合は自動で長さ調整を行うように設定します。",
-  //     categories: [
-  //       {
-  //         selected: false,
-  //         src: "/images/icon_fair_new.svg",
-  //         label: "初めての見学",
-  //         slug: "new",
-  //       },
-  //       {
-  //         selected: false,
-  //         src: "/images/icon_fair_food.svg",
-  //         label: "試食会つき",
-  //         slug: "food",
-  //       },
-  //       {
-  //         selected: false,
-  //         src: "/images/icon_fair_season.svg",
-  //         label: "季節・期間限定",
-  //         slug: "season",
-  //       },
-  //       {
-  //         selected: false,
-  //         src: "/images/icon_fair_ceremony.svg",
-  //         label: "挙式体験",
-  //         slug: "ceremony",
-  //       },
-  //       {
-  //         selected: false,
-  //         src: "/images/icon_fair_dress.svg",
-  //         label: "ドレス試着",
-  //         slug: "dress",
-  //       },
-  //       {
-  //         selected: false,
-  //         src: "/images/icon_fair_weekends.svg",
-  //         label: "土日祝開催",
-  //         slug: "weekends",
-  //       },
-  //       {
-  //         selected: true,
-  //         src: "/images/icon_fair_weekdays.svg",
-  //         label: "平日限定開催",
-  //         slug: "weekdays",
-  //       },
-  //       {
-  //         selected: false,
-  //         src: "/images/icon_fair_online.svg",
-  //         label: "オンライン相談会",
-  //         slug: "online",
-  //       },
-  //     ],
-  //     events: [{ date: "2023-05-09" }, { date: "2023-05-10" }],
-  //   },
-  //   {
-  //     id: 6,
-  //     title: "【フードフェスティバル】",
-  //     src: "/images/bridal_fair02.jpg",
-  //     description: "適当な説明文が入ります。文字数が長い場合は自動で長さ調整を行うように設定します。",
-  //     categories: [
-  //       {
-  //         selected: true,
-  //         src: "/images/icon_fair_new.svg",
-  //         label: "初めての見学",
-  //         slug: "new",
-  //       },
-  //       {
-  //         selected: false,
-  //         src: "/images/icon_fair_food.svg",
-  //         label: "試食会つき",
-  //         slug: "food",
-  //       },
-  //       {
-  //         selected: false,
-  //         src: "/images/icon_fair_season.svg",
-  //         label: "季節・期間限定",
-  //         slug: "season",
-  //       },
-  //       {
-  //         selected: false,
-  //         src: "/images/icon_fair_ceremony.svg",
-  //         label: "挙式体験",
-  //         slug: "ceremony",
-  //       },
-  //       {
-  //         selected: true,
-  //         src: "/images/icon_fair_dress.svg",
-  //         label: "ドレス試着",
-  //         slug: "dress",
-  //       },
-  //       {
-  //         selected: false,
-  //         src: "/images/icon_fair_weekends.svg",
-  //         label: "土日祝開催",
-  //         slug: "weekends",
-  //       },
-  //       {
-  //         selected: true,
-  //         src: "/images/icon_fair_weekdays.svg",
-  //         label: "平日限定開催",
-  //         slug: "weekdays",
-  //       },
-  //       {
-  //         selected: true,
-  //         src: "/images/icon_fair_online.svg",
-  //         label: "オンライン相談会",
-  //         slug: "online",
-  //       },
-  //     ],
-  //     events: [{ date: "2023-05-20" }],
-  //   },
-  //   {
-  //     id: 7,
-  //     title: "【ドレス試着会】",
-  //     src: "/images/bridal_fair02.jpg",
-  //     description: "適当な説明文が入ります。文字数が長い場合は自動で長さ調整を行うように設定します。",
-  //     categories: [
-  //       {
-  //         selected: false,
-  //         src: "/images/icon_fair_new.svg",
-  //         label: "初めての見学",
-  //         slug: "new",
-  //       },
-  //       {
-  //         selected: false,
-  //         src: "/images/icon_fair_food.svg",
-  //         label: "試食会つき",
-  //         slug: "food",
-  //       },
-  //       {
-  //         selected: false,
-  //         src: "/images/icon_fair_season.svg",
-  //         label: "季節・期間限定",
-  //         slug: "season",
-  //       },
-  //       {
-  //         selected: false,
-  //         src: "/images/icon_fair_ceremony.svg",
-  //         label: "挙式体験",
-  //         slug: "ceremony",
-  //       },
-  //       {
-  //         selected: false,
-  //         src: "/images/icon_fair_dress.svg",
-  //         label: "ドレス試着",
-  //         slug: "dress",
-  //       },
-  //       {
-  //         selected: false,
-  //         src: "/images/icon_fair_weekends.svg",
-  //         label: "土日祝開催",
-  //         slug: "weekends",
-  //       },
-  //       {
-  //         selected: true,
-  //         src: "/images/icon_fair_weekdays.svg",
-  //         label: "平日限定開催",
-  //         slug: "weekdays",
-  //       },
-  //       {
-  //         selected: false,
-  //         src: "/images/icon_fair_online.svg",
-  //         label: "オンライン相談会",
-  //         slug: "online",
-  //       },
-  //     ],
-  //     events: [{ date: "2023-05-21" }, { date: "2023-05-28" }],
-  //   },
-  // ];
-
-  const reportLists: ReportContents[] = [
-    {
-      id: "V2Q6aajSyFM",
-      category: "1神前式 × Shikijo",
-      title: "レポートのタイトルが入ります",
-      description:
-        "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
-      member: 98,
-      publishDate: "2021-01-01",
-      createdDate: "2021-01-01",
-      updatedDate: "2021-01-01",
-    },
-    {
-      id: "V2Q6aajSyFM",
-      category: "2神前式 × Shikijo",
-      title: "レポートのタイトルが入ります",
-      description:
-        "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
-      member: 98,
-      publishDate: "2021-01-01",
-      createdDate: "2021-01-01",
-      updatedDate: "2021-01-01",
-    },
-    {
-      id: "V2Q6aajSyFM",
-      category: "3神前式 × Shikijo",
-      title: "レポートのタイトルが入ります",
-      description:
-        "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
-      member: 98,
-      publishDate: "2021-01-01",
-      createdDate: "2021-01-01",
-      updatedDate: "2021-01-01",
-    },
-    {
-      id: "V2Q6aajSyFM",
-      category: "4神前式 × Shikijo",
-      title: "レポートのタイトルが入ります",
-      description:
-        "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
-      member: 98,
-      publishDate: "2021-01-01",
-      createdDate: "2021-01-01",
-      updatedDate: "2021-01-01",
-    },
-    {
-      id: "V2Q6aajSyFM",
-      category: "5神前式 × Shikijo",
-      title: "レポートのタイトルが入ります",
-      description:
-        "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
-      member: 98,
-      publishDate: "2021-01-01",
-      createdDate: "2021-01-01",
-      updatedDate: "2021-01-01",
-    },
-    {
-      id: "V2Q6aajSyFM",
-      category: "6神前式 × Shikijo",
-      title: "レポートのタイトルが入ります",
-      description:
-        "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
-      member: 98,
-      publishDate: "2021-01-01",
-      createdDate: "2021-01-01",
-      updatedDate: "2021-01-01",
-    },
-    {
-      id: "V2Q6aajSyFM",
-      category: "7神前式 × Shikijo",
-      title: "レポートのタイトルが入ります",
-      description:
-        "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
-      member: 98,
-      publishDate: "2021-01-01",
-      createdDate: "2021-01-01",
-      updatedDate: "2021-01-01",
-    },
-    {
-      id: "V2Q6aajSyFM",
-      category: "8神前式 × Shikijo",
-      title: "レポートのタイトルが入ります",
-      description:
-        "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
-      member: 98,
-      publishDate: "2021-01-01",
-      createdDate: "2021-01-01",
-      updatedDate: "2021-01-01",
-    },
-    {
-      id: "V2Q6aajSyFM",
-      category: "8神前式 × Shikijo",
-      title: "レポートのタイトルが入ります",
-      description:
-        "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
-      member: 98,
-      publishDate: "2021-01-01",
-      createdDate: "2021-01-01",
-      updatedDate: "2021-01-01",
-    },
-    {
-      id: "V2Q6aajSyFM",
-      category: "8神前式 × Shikijo",
-      title: "レポートのタイトルが入ります",
-      description:
-        "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
-      member: 98,
-      publishDate: "2021-01-01",
-      createdDate: "2021-01-01",
-      updatedDate: "2021-01-01",
-    },
-    {
-      id: "V2Q6aajSyFM",
-      category: "8神前式 × Shikijo",
-      title: "レポートのタイトルが入ります",
-      description:
-        "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
-      member: 98,
-      publishDate: "2021-01-01",
-      createdDate: "2021-01-01",
-      updatedDate: "2021-01-01",
-    },
-    {
-      id: "V2Q6aajSyFM",
-      category: "8神前式 × Shikijo",
-      title: "レポートのタイトルが入ります",
-      description:
-        "結婚式は久しぶりに会う<br>大切な友人がいたり<br>友人同士も久しぶりに会ったりと<br>まるで昔に戻ったような空気になる<br><br>そんな昔にタイムリープして<br>楽しくワイワイと飛び跳ね<br>今までに味わったことのない楽しみ<br>喜びを感じ 跳躍しよう<br><br>これから 楽しいことだけではない",
-      member: 98,
-      publishDate: "2021-01-01",
-      createdDate: "2021-01-01",
-      updatedDate: "2021-01-01",
-    },
-  ];
-  const fairLists: FairList = [
-    {
-      id: 1,
-      title: "【新型コロナウイルス感染症対策】",
-      src: "/images/bridal_fair02.jpg",
-      description: "適当な説明文が入ります。文字数が長い場合は自動で長さ調整を行うように設定します。",
-      categories: [
-        {
-          selected: false,
-          src: "/images/icon_fair_new.svg",
-          label: "初めての見学",
-          slug: "new",
-        },
-        {
-          selected: false,
-          src: "/images/icon_fair_food.svg",
-          label: "試食会つき",
-          slug: "food",
-        },
-        {
-          selected: false,
-          src: "/images/icon_fair_season.svg",
-          label: "季節・期間限定",
-          slug: "season",
-        },
-        {
-          selected: false,
-          src: "/images/icon_fair_ceremony.svg",
-          label: "挙式体験",
-          slug: "ceremony",
-        },
-        {
-          selected: true,
-          src: "/images/icon_fair_dress.svg",
-          label: "ドレス試着",
-          slug: "dress",
-        },
-        {
-          selected: false,
-          src: "/images/icon_fair_weekends.svg",
-          label: "土日祝開催",
-          slug: "weekends",
-        },
-        {
-          selected: true,
-          src: "/images/icon_fair_weekdays.svg",
-          label: "平日限定開催",
-          slug: "weekdays",
-        },
-        {
-          selected: false,
-          src: "/images/icon_fair_online.svg",
-          label: "オンライン相談会",
-          slug: "online",
-        },
-      ],
-      events: [{ date: "2023-05-20" }, { date: "2023-05-21" }, { date: "2023-06-03" }],
-    },
-    {
-      id: 1,
-      title: "【春のウェディングフェア】",
-      src: "/images/bridal_fair02.jpg",
-      description: "適当な説明文が入ります。文字数が長い場合は自動で長さ調整を行うように設定します。",
-      categories: [
-        {
-          selected: false,
-          src: "/images/icon_fair_new.svg",
-          label: "初めての見学",
-          slug: "new",
-        },
-        {
-          selected: false,
-          src: "/images/icon_fair_food.svg",
-          label: "試食会つき",
-          slug: "food",
-        },
-        {
-          selected: false,
-          src: "/images/icon_fair_season.svg",
-          label: "季節・期間限定",
-          slug: "season",
-        },
-        {
-          selected: false,
-          src: "/images/icon_fair_ceremony.svg",
-          label: "挙式体験",
-          slug: "ceremony",
-        },
-        {
-          selected: true,
-          src: "/images/icon_fair_dress.svg",
-          label: "ドレス試着",
-          slug: "dress",
-        },
-        {
-          selected: false,
-          src: "/images/icon_fair_weekends.svg",
-          label: "土日祝開催",
-          slug: "weekends",
-        },
-        {
-          selected: true,
-          src: "/images/icon_fair_weekdays.svg",
-          label: "平日限定開催",
-          slug: "weekdays",
-        },
-        {
-          selected: true,
-          src: "/images/icon_fair_online.svg",
-          label: "オンライン相談会",
-          slug: "online",
-        },
-      ],
-      events: [{ date: "2023-05-03" }, { date: "2023-05-04" }],
-    },
-    {
-      id: 1,
-      title: "【オンライン見学会】",
-      src: "/images/bridal_fair02.jpg",
-      description: "適当な説明文が入ります。文字数が長い場合は自動で長さ調整を行うように設定します。",
-      categories: [
-        {
-          selected: true,
-          src: "/images/icon_fair_new.svg",
-          label: "初めての見学",
-          slug: "new",
-        },
-        {
-          selected: false,
-          src: "/images/icon_fair_food.svg",
-          label: "試食会つき",
-          slug: "food",
-        },
-        {
-          selected: false,
-          src: "/images/icon_fair_season.svg",
-          label: "季節・期間限定",
-          slug: "season",
-        },
-        {
-          selected: false,
-          src: "/images/icon_fair_ceremony.svg",
-          label: "挙式体験",
-          slug: "ceremony",
-        },
-        {
-          selected: true,
-          src: "/images/icon_fair_dress.svg",
-          label: "ドレス試着",
-          slug: "dress",
-        },
-        {
-          selected: false,
-          src: "/images/icon_fair_weekends.svg",
-          label: "土日祝開催",
-          slug: "weekends",
-        },
-        {
-          selected: true,
-          src: "/images/icon_fair_weekdays.svg",
-          label: "平日限定開催",
-          slug: "weekdays",
-        },
-        {
-          selected: true,
-          src: "/images/icon_fair_online.svg",
-          label: "オンライン相談会",
-          slug: "online",
-        },
-      ],
-      events: [{ date: "2023-05-05" }, { date: "2023-05-06" }],
-    },
-    {
-      id: 1,
-      title: "【フードフェスティバル】",
-      src: "/images/bridal_fair02.jpg",
-      description: "適当な説明文が入ります。文字数が長い場合は自動で長さ調整を行うように設定します。",
-      categories: [
-        {
-          selected: true,
-          src: "/images/icon_fair_new.svg",
-          label: "初めての見学",
-          slug: "new",
-        },
-        {
-          selected: false,
-          src: "/images/icon_fair_food.svg",
-          label: "試食会つき",
-          slug: "food",
-        },
-        {
-          selected: false,
-          src: "/images/icon_fair_season.svg",
-          label: "季節・期間限定",
-          slug: "season",
-        },
-        {
-          selected: false,
-          src: "/images/icon_fair_ceremony.svg",
-          label: "挙式体験",
-          slug: "ceremony",
-        },
-        {
-          selected: true,
-          src: "/images/icon_fair_dress.svg",
-          label: "ドレス試着",
-          slug: "dress",
-        },
-        {
-          selected: false,
-          src: "/images/icon_fair_weekends.svg",
-          label: "土日祝開催",
-          slug: "weekends",
-        },
-        {
-          selected: true,
-          src: "/images/icon_fair_weekdays.svg",
-          label: "平日限定開催",
-          slug: "weekdays",
-        },
-        {
-          selected: true,
-          src: "/images/icon_fair_online.svg",
-          label: "オンライン相談会",
-          slug: "online",
-        },
-      ],
-      events: [{ date: "2023-05-07" }, { date: "2023-05-08" }, { date: "2023-06-03" }],
-    },
-    {
-      id: 1,
-      title: "【ドレス試着会】",
-      src: "/images/bridal_fair02.jpg",
-      description: "適当な説明文が入ります。文字数が長い場合は自動で長さ調整を行うように設定します。",
-      categories: [
-        {
-          selected: false,
-          src: "/images/icon_fair_new.svg",
-          label: "初めての見学",
-          slug: "new",
-        },
-        {
-          selected: false,
-          src: "/images/icon_fair_food.svg",
-          label: "試食会つき",
-          slug: "food",
-        },
-        {
-          selected: false,
-          src: "/images/icon_fair_season.svg",
-          label: "季節・期間限定",
-          slug: "season",
-        },
-        {
-          selected: false,
-          src: "/images/icon_fair_ceremony.svg",
-          label: "挙式体験",
-          slug: "ceremony",
-        },
-        {
-          selected: false,
-          src: "/images/icon_fair_dress.svg",
-          label: "ドレス試着",
-          slug: "dress",
-        },
-        {
-          selected: false,
-          src: "/images/icon_fair_weekends.svg",
-          label: "土日祝開催",
-          slug: "weekends",
-        },
-        {
-          selected: true,
-          src: "/images/icon_fair_weekdays.svg",
-          label: "平日限定開催",
-          slug: "weekdays",
-        },
-        {
-          selected: false,
-          src: "/images/icon_fair_online.svg",
-          label: "オンライン相談会",
-          slug: "online",
-        },
-      ],
-      events: [{ date: "2023-05-09" }, { date: "2023-05-10" }],
-    },
-    {
-      id: 1,
-      title: "【フードフェスティバル】",
-      src: "/images/bridal_fair02.jpg",
-      description: "適当な説明文が入ります。文字数が長い場合は自動で長さ調整を行うように設定します。",
-      categories: [
-        {
-          selected: true,
-          src: "/images/icon_fair_new.svg",
-          label: "初めての見学",
-          slug: "new",
-        },
-        {
-          selected: false,
-          src: "/images/icon_fair_food.svg",
-          label: "試食会つき",
-          slug: "food",
-        },
-        {
-          selected: false,
-          src: "/images/icon_fair_season.svg",
-          label: "季節・期間限定",
-          slug: "season",
-        },
-        {
-          selected: false,
-          src: "/images/icon_fair_ceremony.svg",
-          label: "挙式体験",
-          slug: "ceremony",
-        },
-        {
-          selected: true,
-          src: "/images/icon_fair_dress.svg",
-          label: "ドレス試着",
-          slug: "dress",
-        },
-        {
-          selected: false,
-          src: "/images/icon_fair_weekends.svg",
-          label: "土日祝開催",
-          slug: "weekends",
-        },
-        {
-          selected: true,
-          src: "/images/icon_fair_weekdays.svg",
-          label: "平日限定開催",
-          slug: "weekdays",
-        },
-        {
-          selected: true,
-          src: "/images/icon_fair_online.svg",
-          label: "オンライン相談会",
-          slug: "online",
-        },
-      ],
-      events: [{ date: "2023-05-20" }],
-    },
-    {
-      id: 1,
-      title: "【ドレス試着会】",
-      src: "/images/bridal_fair02.jpg",
-      description: "適当な説明文が入ります。文字数が長い場合は自動で長さ調整を行うように設定します。",
-      categories: [
-        {
-          selected: false,
-          src: "/images/icon_fair_new.svg",
-          label: "初めての見学",
-          slug: "new",
-        },
-        {
-          selected: false,
-          src: "/images/icon_fair_food.svg",
-          label: "試食会つき",
-          slug: "food",
-        },
-        {
-          selected: false,
-          src: "/images/icon_fair_season.svg",
-          label: "季節・期間限定",
-          slug: "season",
-        },
-        {
-          selected: false,
-          src: "/images/icon_fair_ceremony.svg",
-          label: "挙式体験",
-          slug: "ceremony",
-        },
-        {
-          selected: false,
-          src: "/images/icon_fair_dress.svg",
-          label: "ドレス試着",
-          slug: "dress",
-        },
-        {
-          selected: false,
-          src: "/images/icon_fair_weekends.svg",
-          label: "土日祝開催",
-          slug: "weekends",
-        },
-        {
-          selected: true,
-          src: "/images/icon_fair_weekdays.svg",
-          label: "平日限定開催",
-          slug: "weekdays",
-        },
-        {
-          selected: false,
-          src: "/images/icon_fair_online.svg",
-          label: "オンライン相談会",
-          slug: "online",
-        },
-      ],
-      events: [{ date: "2023-05-21" }, { date: "2023-05-28" }],
-    },
-  ];
+  const reportLists: ReportLists = reportRes.data;
 
   return {
     props: {
-      reportLists,
       fairLists,
+      fairCategoriesLists,
+      planLists,
+      reportLists,
     },
   };
 };

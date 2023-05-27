@@ -1,67 +1,63 @@
 import React, { MouseEvent } from "react";
-import { set } from "react-hook-form";
+import { FairCategoriesLists } from "../typings/fair";
 
-const init = [
-  {
-    selected: true,
-    label: "すべて",
-    slug: "all",
-  },
-  {
-    selected: false,
-    label: "初めての見学",
-    slug: "new",
-  },
-  {
-    selected: false,
-    label: "試食会つき",
-    slug: "food",
-  },
-  {
-    selected: false,
-    label: "季節・期間限定",
-    slug: "season",
-  },
-  {
-    selected: false,
-    label: "挙式体験",
-    slug: "ceremony",
-  },
-  {
-    selected: false,
-    label: "ドレス試着",
-    slug: "dress",
-  },
-  {
-    selected: false,
-    label: "土日祝開催",
-    slug: "weekends",
-  },
-  {
-    selected: false,
-    label: "平日限定開催",
-    slug: "weekdays",
-  },
-  {
-    selected: false,
-    label: "オンライン相談会",
-    slug: "online",
-  },
-];
+type Props = {
+  init: FairCategoriesLists["articles"];
+};
 
-const useSelectFair = () => {
-  const [categories, setCategories] = React.useState([...init]);
+const first: FairCategoriesLists["articles"][0] & { selected: boolean } = {
+  selected: true,
+  id: 9999999999,
+  code: "aaaaaaaaaaa",
+  createdAt: "aaaaaaaaaaa",
+  updatedAt: "aaaaaaaaaaa",
+  publishedAt: "aaaaaaaaaaa",
+  name: "すべて",
+  icon: {
+    type: "image/svg",
+    url: "/images/icon_fair_all.svg",
+    attributes: {
+      caption: "aaaaaaaaaaa",
+      mimeType: "image/svg",
+      width: 20,
+      height: 20,
+    },
+  },
+  iconFocus: {
+    type: "image/svg",
+    url: "/images/icon_fair_all-hover.svg",
+    attributes: {
+      caption: "aaaaaaaaaaa",
+      mimeType: "image/svg",
+      width: 20,
+      height: 20,
+    },
+  },
+};
+
+const useSelectFair = (props: Props) => {
+  const { init } = props;
+  const original = [first, ...init];
+  const [categories, setCategories] = React.useState(
+    original.map((category, index) => {
+      if (index === 0) {
+        return { ...category, selected: true };
+      } else {
+        return { ...category, selected: false };
+      }
+    })
+  );
 
   const handleSelect = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
     const target = e.currentTarget;
-    const targetSlug = target.dataset.slug;
+    const targetSlug = target.dataset.name;
 
     // 選択された項目がallだった場合initに戻す
-    if (targetSlug === "all") {
-      const newArray = [...init];
+    if (targetSlug === "すべて") {
+      const newArray = [...categories];
       newArray[0].selected = true;
       newArray.map((category) => {
-        if (category.slug !== "all") {
+        if (category.name !== "すべて") {
           category.selected = false;
         }
       });
@@ -72,7 +68,7 @@ const useSelectFair = () => {
       const newArray = [...categories];
       newArray[0].selected = false;
       newArray.map((category) => {
-        if (category.slug === targetSlug) {
+        if (category.name === targetSlug) {
           category.selected = !category.selected;
         }
       });

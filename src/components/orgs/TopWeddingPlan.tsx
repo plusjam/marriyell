@@ -5,8 +5,15 @@ import LinkToLists from "../atoms/LinkToLists";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { WEDDINGPLAN } from "../../textDate";
 import Link from "next/link";
+import { PlanLists } from "../../../typings/plan";
 
-const TopWeddingPlan = () => {
+type Props = {
+  planLists: PlanLists["articles"];
+};
+
+const TopWeddingPlan = (props: Props) => {
+  const { planLists } = props;
+
   return (
     <section className={Styles.section}>
       <SectionHead en="Wedding Plan" ja="ウェディングプラン" href="wedding-plan" />
@@ -26,21 +33,21 @@ const TopWeddingPlan = () => {
               },
             }}
           >
-            {WEDDINGPLAN.map((elem, index) => {
+            {planLists.map((elem, index) => {
               return (
                 <SwiperSlide className={`${Styles.block} fadeinTop`} data-delay={0.2 * index} key={`weddingplan0${index + 1}`}>
-                  <Link href={elem.href} target="_blank">
+                  <Link href={`/plan/${elem.id}`}>
                     <div className={Styles.image}>
                       <picture>
-                        <source srcSet={elem.src} type="image/png" media="(min-width: 768px)" />
-                        <source srcSet={elem.src} type="image/png" />
-                        <img src={elem.src} alt="" width={317} height={540} />
+                        <source srcSet={elem.mainPc.url} media="(min-width: 768px)" />
+                        <source srcSet={elem.mainSp.url} width={elem.mainSp.attributes.width} height={elem.mainSp.attributes.height} />
+                        <img src={elem.mainPc.url} alt="" width={elem.mainPc.attributes.width} height={elem.mainPc.attributes.height} />
                       </picture>
                     </div>
                     <div className={Styles.contents}>
                       <div className={Styles.contentsHead}>{elem.title}</div>
                       <div className={Styles.price}>¥{elem.price}～</div>
-                      <div className={Styles.description}>{elem.description}</div>
+                      <div className={Styles.description} dangerouslySetInnerHTML={{ __html: elem.description }}></div>
                     </div>
                   </Link>
                 </SwiperSlide>

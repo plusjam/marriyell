@@ -20,7 +20,7 @@ export type Recruit = {
 };
 
 export const RECRUIT: Recruit = {
-  title: "lu CREA Members",
+  title: "Members",
   caption: "採用に関するボディコピーが入ります。テキストなど量などを確認するために<br>適当な文章が入っています。採用に関する<br>ボディコピーが入ります。テキストなど量などを確認するために",
   links: [
     { title: "新卒採用", to: "new" },

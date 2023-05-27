@@ -4,9 +4,10 @@ import SectionHead from "../mols/SectionHead";
 import Image from "next/image";
 import { FairList } from "@/pages/api/fair";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { FairLists } from "../../../typings/fair";
 
 type Props = {
-  lists: FairList;
+  lists: FairLists["articles"];
   weekend: {
     date: string;
     selected: boolean;
@@ -55,10 +56,10 @@ const WeekendFair = (props: Props) => {
                 return (
                   <SwiperSlide className={`${Styles.content} fadeinTop`} data-delay={0.2 * index} key={`weekendfair${index + 1}`}>
                     <div className={Styles.image}>
-                      <Image src={content.src} alt="" width={318} height={231} />
+                      <Image src={content.mainPc.url} alt="" width={content.mainPc.attributes.width} height={content.mainPc.attributes.height} />
                     </div>
                     <div className={Styles.date}>{date[0].date}</div>
-                    <div className={Styles.description}>{content.description}</div>
+                    <div className={Styles.description} dangerouslySetInnerHTML={{ __html: content.description }}></div>
                   </SwiperSlide>
                 );
               })

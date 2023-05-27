@@ -1,4 +1,4 @@
-export type NewsCategoryLabel = "すべて" | "お知らせ" | "イベント" | "メディア情報" | "コロナ対策";
+import { ImageObject } from "./global";
 
 export type NewsCategoruSlug<T extends NewsCategoryLabel> = T extends "すべて"
   ? "all"
@@ -27,4 +27,69 @@ export type NewsContents = {
   updatedDate: string;
   title: string;
   description: string;
+};
+
+export type Category = {
+  id: number;
+  code: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  title: string;
+};
+
+export type Categories = {
+  multiple: boolean;
+  articles: Category[];
+};
+
+export type Description = {
+  scheme: {
+    inique_id: string;
+    name: string;
+  };
+  values: {
+    text?: string;
+    image?: ImageObject;
+  }[];
+};
+
+export type NewsArticle = {
+  id: number;
+  code: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  title: string;
+  eyecatch: ImageObject;
+  categories: Categories;
+  datetime: string;
+  description: Description;
+};
+
+export type NewsLists = {
+  articles: NewsArticle[];
+  total: number;
+  count: number;
+};
+
+//
+// お知らせカテゴリ
+//
+
+export type NewsCategoryLabel = "すべて" | "お知らせ" | "イベント" | "メディア情報" | "コロナ対策";
+
+export type NewsCategories = {
+  id: number;
+  code: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  title: NewsCategoryLabel;
+};
+
+export type NewsCategoriesLists = {
+  articles: NewsCategories[];
+  total: number;
+  count: number;
 };

@@ -17,7 +17,7 @@
     color: #fff;
   }
 
-  &:before {
+  .image {
     position: absolute;
     left: 8px;
     top: 50%;
@@ -28,103 +28,10 @@
     display: inline-block;
     background-size: contain;
     vertical-align: middle;
-  }
 
-  &.new {
-    &:before {
-      background-image: url(/images/icon_fair_new.svg);
-    }
-  }
-
-  &.food {
-    &:before {
-      background-image: url(/images/icon_fair_food.svg);
-    }
-  }
-
-  &.season {
-    &:before {
-      background-image: url(/images/icon_fair_season.svg);
-    }
-  }
-
-  &.ceremony {
-    &:before {
-      background-image: url(/images/icon_fair_ceremony.svg);
-    }
-  }
-
-  &.dress {
-    &:before {
-      background-image: url(/images/icon_fair_dress.svg);
-    }
-  }
-
-  &.weekends {
-    &:before {
-      background-image: url(/images/icon_fair_weekends.svg);
-    }
-  }
-
-  &.weekdays {
-    &:before {
-      background-image: url(/images/icon_fair_weekdays.svg);
-    }
-  }
-
-  &.online {
-    &:before {
-      background-image: url(/images/icon_fair_online.svg);
-    }
-  }
-
-  &.selected {
-    &.new {
-      &:before {
-        background-image: url(/images/icon_fair_new-hover.svg);
-      }
-    }
-
-    &.food {
-      &:before {
-        background-image: url(/images/icon_fair_food-hover.svg);
-      }
-    }
-
-    &.season {
-      &:before {
-        background-image: url(/images/icon_fair_season-hover.svg);
-      }
-    }
-
-    &.ceremony {
-      &:before {
-        background-image: url(/images/icon_fair_ceremony-hover.svg);
-      }
-    }
-
-    &.dress {
-      &:before {
-        background-image: url(/images/icon_fair_dress-hover.svg);
-      }
-    }
-
-    &.weekends {
-      &:before {
-        background-image: url(/images/icon_fair_weekends-hover.svg);
-      }
-    }
-
-    &.weekdays {
-      &:before {
-        background-image: url(/images/icon_fair_weekdays-hover.svg);
-      }
-    }
-
-    &.online {
-      &:before {
-        background-image: url(/images/icon_fair_online-hover.svg);
-      }
+    img {
+      width: 100%;
+      height: auto;
     }
   }
 }
@@ -146,7 +53,7 @@
     border-radius: 4px;
     font-size: 8px;
 
-    &:before {
+    .image {
       left: 4px;
     }
   }

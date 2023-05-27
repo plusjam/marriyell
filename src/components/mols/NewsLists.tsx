@@ -1,21 +1,25 @@
 import React, { useEffect, useRef, useState } from "react";
-import { NewsCategory, NewsContents } from "../../../typings/news";
+import { NewsCategoriesLists, NewsCategory, NewsContents, NewsLists } from "../../../typings/news";
 import Styles from "@/styles/mols/NewsLists.module.scss";
 import Link from "next/link";
 import { gsap } from "gsap";
 import ButtonViewMore from "../atoms/ButtonViewMore";
+import { NewsCategoriesListsSelect } from "@/pages/news";
+import Image from "next/image";
 
 type Props = {
-  category: NewsCategory[];
-  lists: NewsContents[];
-  next: number | null;
+  category: NewsCategoriesListsSelect["articles"];
+  originalLists: NewsLists;
   clickViewMore: () => void;
 };
 
 const NewsLists = (props: Props) => {
-  const { category, lists, next, clickViewMore } = props;
+  const { category, originalLists, clickViewMore } = props;
 
   const ref = useRef<HTMLUListElement | null>(null);
+
+  // トータルの記事数とカウント数から次の記事があるかどうかを判定
+  const next = originalLists.total / originalLists.count > 1 ? true : false;
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -40,29 +44,38 @@ const NewsLists = (props: Props) => {
   return (
     <div className={Styles.container}>
       <ul className={Styles.lists} ref={ref}>
-        {lists.length ? (
-          lists.map((elem, index) => {
+        {originalLists.articles.length ? (
+          originalLists.articles.map((elem, index) => {
+            let formatedDescription: string = "";
+
+            elem.description.values.some((elem) => {
+              if (elem.text) {
+                formatedDescription = elem.text;
+                return true;
+              }
+            });
+
             return (
               <li className={Styles.list} key={`newslist${index}`}>
                 <Link href={`/news/${elem.id}`} className={Styles.listInner}>
                   <figure className={Styles.image}>
-                    <img src={elem.src} width={124} height={124} alt="" />
+                    <Image src={elem.eyecatch.url} width={elem.eyecatch.attributes.width} height={elem.eyecatch.attributes.height} alt="" />
                   </figure>
                   <div className={Styles.content}>
                     <div className={Styles.meta}>
                       <ul className={Styles.categories}>
-                        {elem.category.map((elem, index) => {
+                        {elem.categories.articles.map((elem, index) => {
                           return (
                             <li className={Styles.category} key={`category${index}`}>
-                              <span>{elem.label}</span>
+                              <span>{elem.title}</span>
                             </li>
                           );
                         })}
                       </ul>
-                      <p className={Styles.date}>{elem.publishDate}</p>
+                      <p className={Styles.date}>{elem.publishedAt}</p>
                     </div>
                     <h2 className={Styles.title}>{elem.title}</h2>
-                    <div className={Styles.description}>{elem.description}</div>
+                    <div className={Styles.description} dangerouslySetInnerHTML={{ __html: formatedDescription }}></div>
                   </div>
                 </Link>
               </li>
@@ -74,7 +87,7 @@ const NewsLists = (props: Props) => {
       </ul>
 
       {/* more */}
-      {lists.length >= 0 && typeof next === "number" && <ButtonViewMore clickViewMore={clickViewMore} />}
+      {next && <ButtonViewMore clickViewMore={clickViewMore} />}
     </div>
   );
 };

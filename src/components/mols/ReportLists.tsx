@@ -1,9 +1,10 @@
 import React from "react";
 import Styles from "@/styles/mols/ReportLists.module.scss";
 import { ReportContents } from "@/pages/api/weddingReport/[id]";
+import { ReportLists as List } from "../../../typings/report";
 
 type Props = {
-  contents: ReportContents[];
+  contents: List["articles"];
   openModal: (id: string) => void;
   isTop?: boolean;
 };
@@ -42,11 +43,11 @@ const ReportLists = (props: Props) => {
             data-delay={delay}
             data-duration={0.6}
           >
-            <div className={Styles.image} onClick={(e) => openModal(content.id)}>
+            <div className={Styles.image} onClick={() => openModal(content.id)}>
               <img src={`https://img.youtube.com/vi/${content.id}/hqdefault.jpg`} alt="" />
             </div>
             <div className={Styles.meta}>
-              <p className={Styles.category}>{content.category}</p>
+              <p className={Styles.category}>{content.place}</p>
             </div>
             <h2 className={Styles.title}>{content.title}</h2>
             <p className={Styles.description}>{limitText()}</p>
