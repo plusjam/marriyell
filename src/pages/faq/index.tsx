@@ -15,7 +15,7 @@ import useGetWeekend from "../../../libs/useGetWeekend";
 import useModalReport from "../../../libs/useModalReport";
 import { QASet, Qa, QaType } from "../../../typings/qa";
 import { FairList } from "../api/fair";
-import { ReportContents } from "../api/weddingReport/[id]";
+import { ReportContents } from "../api/report";
 import { META } from "@/textDate/head";
 import { apricotClient } from "../../../libs/cms";
 import axios from "axios";
@@ -156,7 +156,7 @@ export const getStaticProps: GetStaticProps = async () => {
   /* ===================================================================
   // レポート
   =================================================================== */
-  const reportUrl = `${process.env.CMS_URL}/api/v1/report`;
+  const reportUrl = `${process.env.CMS_URL}/api/v1/report?limit=12`;
   const reportRes: { data: ReportLists } = await axios.get(reportUrl, {
     headers: {
       "Content-Type": "application/json",

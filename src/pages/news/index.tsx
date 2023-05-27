@@ -166,6 +166,8 @@ export const getStaticProps: GetStaticProps = async () => {
     },
   });
 
+  const newsLists: NewsLists = newsRes.data;
+
   /* ===================================================================
   // お知らせカテゴリ
   =================================================================== */
@@ -180,8 +182,6 @@ export const getStaticProps: GetStaticProps = async () => {
   });
 
   const newsCategoriesLists: NewsCategoriesLists = newsCategoriesRes.data;
-
-  const newsLists: NewsLists = newsRes.data;
 
   return {
     props: {

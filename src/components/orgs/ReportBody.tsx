@@ -1,18 +1,17 @@
-import { ReportContents } from "@/pages/api/weddingReport/[id]";
-import React from "react";
 import Styles from "@/styles/orgs/ReportBody.module.scss";
+import { ReportLists as List } from "../../../typings/report";
 import ButtonViewMore from "../atoms/ButtonViewMore";
 import ReportLists from "../mols/ReportLists";
 
 type Props = {
-  contents: ReportContents[];
+  currentReportLists: List;
   clickViewMore: () => void;
-  next: number | null;
+  next: boolean;
   openModal: (id: string) => void;
 };
 
 const ReportBody = (props: Props) => {
-  const { contents, clickViewMore, next, openModal } = props;
+  const { currentReportLists, clickViewMore, next, openModal } = props;
 
   return (
     <section className={Styles.section}>
@@ -23,10 +22,10 @@ const ReportBody = (props: Props) => {
           パーティの模様を一挙ご紹介
         </p>
 
-        <ReportLists contents={contents} openModal={openModal} />
+        <ReportLists contents={currentReportLists.articles} openModal={openModal} />
 
         {/* more */}
-        {contents.length >= 0 && typeof next === "number" && <ButtonViewMore clickViewMore={clickViewMore} />}
+        {next && <ButtonViewMore clickViewMore={clickViewMore} />}
       </div>
     </section>
   );

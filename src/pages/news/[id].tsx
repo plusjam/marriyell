@@ -1,24 +1,26 @@
 import { GetStaticProps } from "next";
 import React from "react";
-import { NewsCategory, NewsContents } from "../../../typings/news";
+import { NewsCategory, NewsContents, NewsLists } from "../../../typings/news";
 import UnderlayerHead from "@/components/orgs/UnderlayerHead";
 import Motion from "@/components/layouts/Motion";
 import Head from "next/head";
 import Styles from "@/styles/pages/News.module.scss";
 import Link from "next/link";
+import { apricotClient } from "../../../libs/cms";
+import axios from "axios";
 
 type Props = {
-  post: NewsContents[];
+  newsLists: NewsLists;
 };
 
 const HOME = (props: Props) => {
-  const { post } = props;
+  const { newsLists } = props;
 
   return (
     <>
       <Motion>
         <Head>
-          <title>{``}</title>
+          <title>{`記事タイトル｜マリエール高崎`}</title>
         </Head>
 
         <main>
@@ -84,7 +86,7 @@ const HOME = (props: Props) => {
               <Link href="" className={Styles.prev}>
                 前へ
               </Link>
-              <Link href="" className={Styles.toLists}>
+              <Link href="/news" className={Styles.toLists}>
                 一覧に戻る
               </Link>
               <Link href="" className={Styles.next}>
@@ -103,18 +105,64 @@ const HOME = (props: Props) => {
 export default HOME;
 
 export const getStaticPaths = async () => {
-  // ここでパスを生成します。仮に、1から5までのidを生成するとします。
+  const accessKey = process.env.API_KEY;
+  const secretKey = process.env.API_SECRET;
+  const token = await apricotClient(accessKey, secretKey);
+
+  /* ===================================================================
+  // お知らせ
+  =================================================================== */
+  const newsUrl = `${process.env.CMS_URL}/api/v1/news`;
+  const newsRes: { data: NewsLists } = await axios.get(newsUrl, {
+    headers: {
+      "Content-Type": "application/json",
+      "account-access-key": accessKey,
+      "account-secret-key": secretKey,
+      authorization: `Bearer ${token.token}`,
+    },
+  });
+
+  const paths = newsRes.data.articles.map((news) => `/news/${news.code}`);
 
   return {
-    paths: [{ params: { id: "1" } }],
+    paths,
     fallback: false,
   };
 };
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async (context) => {
+  if (!context.params) return { props: {} };
+  const code = context.params.id;
+  const accessKey = process.env.API_KEY;
+  const secretKey = process.env.API_SECRET;
+  const token = await apricotClient(accessKey, secretKey);
+
+  /* ===================================================================
+  // お知らせ
+  =================================================================== */
+  // try {
+  //   const newsUrl = `${process.env.CMS_URL}/api/v1/news/${code}`;
+  //   const newsRes: { data: any } = await axios.get(newsUrl, {
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       "account-access-key": accessKey,
+  //       "account-secret-key": secretKey,
+  //       authorization: `Bearer ${token.token}`,
+  //     },
+  //   });
+
+  //   const newsLists: any = newsRes.data;
+
+  //   console.log(newsLists);
+  // } catch (e) {
+  //   console.log(e);
+  // }
+
+  const newsLists: any = "newsRes.data";
+
   return {
     props: {
-      post: [],
+      newsLists,
     },
   };
 };

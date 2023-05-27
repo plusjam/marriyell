@@ -73,6 +73,22 @@ export type NewsLists = {
   count: number;
 };
 
+export type NewsList = {
+  id: number;
+  code: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  articles: NewsArticle[];
+  prevCode: string | null;
+  nextCode: string | null;
+  title: string;
+  eyecatch: ImageObject;
+  categories: Categories;
+  datetime: string;
+  description: Description;
+};
+
 //
 // お知らせカテゴリ
 //

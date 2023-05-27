@@ -11,7 +11,7 @@ import React, { useEffect } from "react";
 import useGetWeekend from "../../../libs/useGetWeekend";
 import useModalReport from "../../../libs/useModalReport";
 import { FairList } from "../api/fair";
-import { ReportContents } from "../api/weddingReport/[id]";
+import { ReportContents } from "../api/report";
 import axios from "axios";
 import { apricotClient } from "../../../libs/cms";
 import FirstScroll from "@/components/orgs/FirstScroll";
@@ -134,7 +134,7 @@ export const getStaticProps: GetStaticProps = async () => {
   /* ===================================================================
   // レポート
   =================================================================== */
-  const reportUrl = `${process.env.CMS_URL}/api/v1/report`;
+  const reportUrl = `${process.env.CMS_URL}/api/v1/report?limit=12`;
   const reportRes: { data: ReportLists } = await axios.get(reportUrl, {
     headers: {
       "Content-Type": "application/json",

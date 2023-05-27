@@ -57,7 +57,7 @@ const NewsLists = (props: Props) => {
 
             return (
               <li className={Styles.list} key={`newslist${index}`}>
-                <Link href={`/news/${elem.id}`} className={Styles.listInner}>
+                <Link href={`/news/${elem.code}`} className={Styles.listInner}>
                   <figure className={Styles.image}>
                     <Image src={elem.eyecatch.url} width={elem.eyecatch.attributes.width} height={elem.eyecatch.attributes.height} alt="" />
                   </figure>
