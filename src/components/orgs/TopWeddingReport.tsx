@@ -3,7 +3,6 @@ import Styles from "../../styles/orgs/TopWeddingReport.module.scss";
 import SectionHead from "../mols/SectionHead";
 import LinkToLists from "../atoms/LinkToLists";
 import ReportLists from "../mols/ReportLists";
-import { ReportContents } from "@/pages/api/report";
 import { ReportLists as List } from "../../../typings/report";
 
 type Props = {
