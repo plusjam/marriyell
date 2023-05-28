@@ -19,47 +19,47 @@ const nextConfig = {
       {
         source: "/news",
         destination: "/404",
-        permanent: true,
+        permanent: false,
       },
       {
         source: "/report",
         destination: "/404",
-        permanent: true,
+        permanent: false,
       },
       {
         source: "/contact",
         destination: "/404",
-        permanent: true,
+        permanent: false,
       },
       {
         source: "/contact/brochure",
         destination: "/404",
-        permanent: true,
+        permanent: false,
       },
       {
         source: "/contact/reservation",
         destination: "/404",
-        permanent: true,
+        permanent: false,
       },
       {
         source: "/first",
         destination: "/404",
-        permanent: true,
+        permanent: false,
       },
       {
         source: "/for-brides",
         destination: "/404",
-        permanent: true,
+        permanent: false,
       },
       {
         source: "/for-gueat",
         destination: "/404",
-        permanent: true,
+        permanent: false,
       },
       {
         source: "/faq",
         destination: "/404",
-        permanent: true,
+        permanent: false,
       },
     ];
   },

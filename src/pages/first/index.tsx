@@ -29,45 +29,45 @@ type Props = {
 };
 
 export default function Home(props: Props) {
-  const { fairLists, planLists, reportLists } = props;
-  const [weekendLists, setWeekendLists] = React.useState([...fairLists.articles]);
+  // const { fairLists, planLists, reportLists } = props;
+  // const [weekendLists, setWeekendLists] = React.useState([...fairLists.articles]);
 
-  const { videoID, openModal, closeModal } = useModalReport();
-  const { selected: selectedWeekend, handleSelect: handleWeekendSelect } = useGetWeekend();
+  // const { videoID, openModal, closeModal } = useModalReport();
+  // const { selected: selectedWeekend, handleSelect: handleWeekendSelect } = useGetWeekend();
 
-  useEffect(() => {
-    getSelectedWeekendLists();
-  }, [selectedWeekend]);
+  // useEffect(() => {
+  //   getSelectedWeekendLists();
+  // }, [selectedWeekend]);
 
-  // weekendListsをselectedWeekendで絞り込み
-  const getSelectedWeekendLists = async () => {
-    const initLists = [...fairLists.articles];
+  // // weekendListsをselectedWeekendで絞り込み
+  // const getSelectedWeekendLists = async () => {
+  //   const initLists = [...fairLists.articles];
 
-    const selectedDate = selectedWeekend.filter((weekend) => {
-      return weekend.selected;
-    });
+  //   const selectedDate = selectedWeekend.filter((weekend) => {
+  //     return weekend.selected;
+  //   });
 
-    const selectedWeekendLists = [...initLists].filter((weekend) => {
-      return weekend.calendar.some((calendar) => {
-        const find = selectedDate.find((selectedWeekend) => {
-          const eventDate = new Date(calendar.values.calendar);
-          const month = eventDate.getMonth();
-          const dateNum = eventDate.getDate();
+  //   const selectedWeekendLists = [...initLists].filter((weekend) => {
+  //     return weekend.calendar.some((calendar) => {
+  //       const find = selectedDate.find((selectedWeekend) => {
+  //         const eventDate = new Date(calendar.values.calendar);
+  //         const month = eventDate.getMonth();
+  //         const dateNum = eventDate.getDate();
 
-          return selectedWeekend.date.match(`${month + 1}月${dateNum}日`);
-        });
+  //         return selectedWeekend.date.match(`${month + 1}月${dateNum}日`);
+  //       });
 
-        if (find) return true;
-      });
-    });
+  //       if (find) return true;
+  //     });
+  //   });
 
-    setWeekendLists(selectedWeekendLists);
-  };
+  //   setWeekendLists(selectedWeekendLists);
+  // };
 
   return (
     <>
       <Motion>
-        <Head>
+        {/* <Head>
           <title>{META.first.title}</title>
         </Head>
 
@@ -85,68 +85,68 @@ export default function Home(props: Props) {
           <InstagramSection />
         </main>
 
-        <ReportModal videoID={videoID} closeModal={closeModal} />
+        <ReportModal videoID={videoID} closeModal={closeModal} /> */}
       </Motion>
     </>
   );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-  const accessKey = process.env.API_KEY;
-  const secretKey = process.env.API_SECRET;
-  const token = await apricotClient(accessKey, secretKey);
+// export const getStaticProps: GetStaticProps = async () => {
+//   const accessKey = process.env.API_KEY;
+//   const secretKey = process.env.API_SECRET;
+//   const token = await apricotClient(accessKey, secretKey);
 
-  /* ===================================================================
-  // フェア
-  =================================================================== */
-  const fairUrl = `${process.env.CMS_URL}/api/v1/fair`;
-  const fairRes: { data: FairLists } = await axios.get(fairUrl, {
-    headers: {
-      "Content-Type": "application/json",
-      "account-access-key": accessKey,
-      "account-secret-key": secretKey,
-      authorization: `Bearer ${token.token}`,
-    },
-  });
+//   /* ===================================================================
+//   // フェア
+//   =================================================================== */
+//   const fairUrl = `${process.env.CMS_URL}/api/v1/fair`;
+//   const fairRes: { data: FairLists } = await axios.get(fairUrl, {
+//     headers: {
+//       "Content-Type": "application/json",
+//       "account-access-key": accessKey,
+//       "account-secret-key": secretKey,
+//       authorization: `Bearer ${token.token}`,
+//     },
+//   });
 
-  const fairLists: FairLists = fairRes.data;
-  // console.log("フェア", fairLists.articles[0].calendar);
+//   const fairLists: FairLists = fairRes.data;
+//   // console.log("フェア", fairLists.articles[0].calendar);
 
-  /* ===================================================================
-  // プラン
-  =================================================================== */
-  const planUrl = `${process.env.CMS_URL}/api/v1/plan`;
-  const planRes: { data: PlanLists } = await axios.get(planUrl, {
-    headers: {
-      "Content-Type": "application/json",
-      "account-access-key": accessKey,
-      "account-secret-key": secretKey,
-      authorization: `Bearer ${token.token}`,
-    },
-  });
+//   /* ===================================================================
+//   // プラン
+//   =================================================================== */
+//   const planUrl = `${process.env.CMS_URL}/api/v1/plan`;
+//   const planRes: { data: PlanLists } = await axios.get(planUrl, {
+//     headers: {
+//       "Content-Type": "application/json",
+//       "account-access-key": accessKey,
+//       "account-secret-key": secretKey,
+//       authorization: `Bearer ${token.token}`,
+//     },
+//   });
 
-  const planLists: PlanLists = planRes.data;
+//   const planLists: PlanLists = planRes.data;
 
-  /* ===================================================================
-  // レポート
-  =================================================================== */
-  const reportUrl = `${process.env.CMS_URL}/api/v1/report?limit=12`;
-  const reportRes: { data: ReportLists } = await axios.get(reportUrl, {
-    headers: {
-      "Content-Type": "application/json",
-      "account-access-key": accessKey,
-      "account-secret-key": secretKey,
-      authorization: `Bearer ${token.token}`,
-    },
-  });
+//   /* ===================================================================
+//   // レポート
+//   =================================================================== */
+//   const reportUrl = `${process.env.CMS_URL}/api/v1/report?limit=12`;
+//   const reportRes: { data: ReportLists } = await axios.get(reportUrl, {
+//     headers: {
+//       "Content-Type": "application/json",
+//       "account-access-key": accessKey,
+//       "account-secret-key": secretKey,
+//       authorization: `Bearer ${token.token}`,
+//     },
+//   });
 
-  const reportLists: ReportLists = reportRes.data;
+//   const reportLists: ReportLists = reportRes.data;
 
-  return {
-    props: {
-      fairLists,
-      planLists,
-      reportLists,
-    },
-  };
-};
+//   return {
+//     props: {
+//       fairLists,
+//       planLists,
+//       reportLists,
+//     },
+//   };
+// };
