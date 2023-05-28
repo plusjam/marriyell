@@ -55,12 +55,14 @@
   letter-spacing: 0.04em;
   line-height: 1.5;
   color: #707070;
+  min-height: 72px;
 }
 
 .date {
   font-size: 16px;
   letter-spacing: 0.04em;
   color: #c9b7a5;
+  margin: 10px 0 9px;
 }
 
 .categories {
@@ -125,6 +127,7 @@
 
   .description {
     font-size: 14px;
+    min-height: 32px;
   }
 
   .date {
@@ -162,5 +165,9 @@
     padding: 0;
     max-width: 281px;
     margin: 0 auto;
+  }
+
+  .date {
+    margin: 0;
   }
 }

@@ -32,7 +32,7 @@ export default function Home(props: Props) {
 
   // 対象のページのデータを取得
   const getReportData = async (offset: number) => {
-    const url = `/api/report/`;
+    const url = `/api/report`;
     const res: { data: ReportLists } = await axios.post(url, {
       offset: offset,
     });

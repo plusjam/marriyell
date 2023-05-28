@@ -35,25 +35,33 @@ const TopNewsEvent = (props: Props) => {
             const day = date.getDate();
             const updatedDate = `${year}/${month}/${day}`;
 
-            // console.log("コンテンツの説明文", content.description);
-            // const test = content.description.forEach((description) => {
-            //   if(description.)
-            // });
-            // content.descriptionの文字数制限
-            // const description = content.description[0];
-            // const limit = isPc ? 42 : 20;
-            // const descriptionLimit = description.length > limit ? description.substring(0, limit) + "..." : description;
+            // descriptionから最初のtextを取得して文字数制限
+            let firstText = "";
+            content.description.some((elem) => {
+              if (elem.values.text) {
+                firstText = elem.values.text;
+                return true;
+              }
+            });
+
+            // descriptionの文字数制限
+            const limit = isPc ? 45 : 20;
+            const descriptionLimit = firstText.length > limit ? firstText.slice(0, limit) + "..." : firstText;
+            const titleLimit = content.title.length > limit ? content.title.slice(0, limit) + "..." : content.title;
 
             return (
-              <Link href={`/news/${content.id}`} className={Styles.list} key={`news${index}`}>
+              <Link href={`/news/${content.code}`} className={Styles.list} key={`news${index}`}>
                 <div className={Styles.image}>
                   <img src={content.eyecatch.url} alt={content.title} />
                 </div>
                 <div className={Styles.content}>
-                  {/* <div className={Styles.description}>{descriptionLimit}</div> */}
+                  <div className={Styles.description}>{titleLimit}</div>
                   <div className={Styles.date}>{updatedDate}</div>
                   <div className={Styles.categories}>
                     {content.categories.articles.map((category, index) => {
+                      if (!isPc && index > 0) return;
+                      if (isPc && index > 1) return;
+
                       return (
                         <div className={Styles.category} key={`category${index}`}>
                           {category.title}
