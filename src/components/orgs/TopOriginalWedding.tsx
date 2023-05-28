@@ -15,9 +15,9 @@ const TopOriginalWedding = () => {
       <section className={Styles.section}>
         <SectionHead en="Original Wedding" ja="オリジナルウェディング" href="original-wedding" />
         <div className={Styles.sectionCopy}>
-          特徴を伝えるボディーコピーが入ります。端的に伝える文言をご用意ください。
+          お2人のスタイルに合わせて選べる披露宴会場と緑豊かなガーデンを兼ね備えております。
           <br />
-          適度な文章量でご指示時ください。
+          ワンフロア貸切でゲストと最高の1日を過ごすことが出来るプライベート空間でお2人の理想の結婚式を叶えます
         </div>
         {/* <div className={Styles.container}>
           {originalWedding.map((item, index) => {

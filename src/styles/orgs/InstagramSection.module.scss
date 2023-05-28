@@ -1,6 +1,6 @@
 .section {
   background: #fff;
-  padding-bottom: 80px;
+  padding: 0 24px 80px;
 }
 
 .head {
@@ -25,9 +25,34 @@
   max-width: 1000px;
   margin: 0 auto;
   text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 29px;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.post {
+  width: calc(16.66666% - 24.2px);
+  aspect-ratio: 1/1;
+
+  a {
+    width: 100%;
+    height: 100%;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 
 @media screen and (max-width: 768px) {
+  .section {
+    padding: 0 15px 80px;
+  }
+
   .head {
     gap: 10px;
   }
@@ -47,5 +72,13 @@
       height: 1px;
       background-color: #93c7c3;
     }
+  }
+
+  .container {
+    gap: 15.8px;
+  }
+
+  .post {
+    width: calc(33.33% - 10.6px);
   }
 }

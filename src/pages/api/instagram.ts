@@ -1,42 +1,21 @@
+import axios from "axios";
 import { IgApiClient } from "instagram-private-api";
 import { NextApiRequest, NextApiResponse } from "next";
 
 const ig = new IgApiClient();
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  async function loginToInstagram(username: string, password: string) {
-    console.log("1!!!!!!!!!!!!!!!!!");
-    ig.state.generateDevice(username);
-    console.log("2!!!!!!!!!!!!!!!!!");
-    process.nextTick(async () => await ig.simulate.postLoginFlow());
-    console.log("3!!!!!!!!!!!!!!!!!");
-    const loggedInUser = await ig.account.login(username, password);
-    console.log("4!!!!!!!!!!!!!!!!!");
-    process.nextTick(async () => await ig.simulate.postLoginFlow());
-    console.log("5!!!!!!!!!!!!!!!!!");
-    return loggedInUser;
+  try {
+    const igMediaId = process.env.IG_MEDIA_ID;
+    const igToken = process.env.IG_TOKEN;
+    const version = `17.0`;
+    const url = `https://graph.facebook.com/v${version}/${igMediaId}/?fields=id,followers_count,media_count,ig_id,media.limit(6){caption,media_url,thumbnail_url,permalink,media_type,like_count,comments_count,timestamp,id}&access_token=${igToken}`;
+
+    const reportRes = await axios.get(url);
+    const data = reportRes.data;
+
+    res.status(200).json(data.media.data);
+  } catch (e) {
+    res.status(500).json({ statusCode: 500, message: "e.message" });
   }
-
-  async function getUserPosts(username: string) {
-    const userId = await ig.user.getIdByUsername(username);
-    const userFeed = await ig.feed.user(userId);
-    const posts = await userFeed.items();
-    return posts;
-  }
-
-  async function displayImages() {
-    // try {
-    const username = process.env.IG_USERNAME;
-    const password = process.env.IG_PASSWORD;
-
-    if (!username || !password) throw new Error("Missing IG_USERNAME or IG_PASSWORD env var");
-
-    await loginToInstagram(username, password);
-    const posts = await getUserPosts(username);
-
-    // posts.map((post, index) => console.log("記事", post.image_versions2.candidates[0].url));
-    res.json(posts.map((post, index) => post.image_versions2.candidates[0].url));
-  }
-
-  await displayImages().catch(console.error);
 }

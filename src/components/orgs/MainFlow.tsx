@@ -37,7 +37,11 @@ export const MainFlow = () => {
           <span>独立型大聖堂が</span>
           <span>ある結婚式場</span>
         </h1>
-        <p className={Styles.description}>コンセプトを伝えるボディーコピーが入ります。端的に想いや特徴を伝える文言をご用意ください。適度な文章量でご指示時ください。</p>
+        <p className={Styles.description}>
+          天井高18m・バージンロード20mでの厳粛な挙式。
+          <br />
+          100年の歴史を誇る英国製ステンドグラスのやさしい光に包まれる挙式は感動的です。
+        </p>
       </div>
     </>
   );
