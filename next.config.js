@@ -14,6 +14,7 @@ const nextConfig = {
       },
     ],
   },
+  staticPageGenerationTimeout: 200,
   async redirects() {
     return [
       {
