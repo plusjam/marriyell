@@ -154,8 +154,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
   });
 
   const newsList: NewsList = newsRes.data;
-  console.log("リスト", newsList);
-  console.log("コンテンツ", newsList.description);
 
   return {
     props: {

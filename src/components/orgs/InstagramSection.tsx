@@ -22,7 +22,6 @@ const InstagramSection = () => {
         const response = await fetch("/api/instagram");
         const data = await response.json();
         setPosts(data);
-        console.log("データ", data);
         setIsLoading(false);
       } catch (error) {
         console.error("エラー", error);

@@ -1,12 +1,11 @@
 import { useState } from "react";
-import Styles from "../../styles/orgs/DetailForm.module.scss";
-import DetailPlanFormInput from "../mols/DetailPlanFormInput";
-import ThanksForm from "../mols/ThanksForm";
 import useApi from "../../../libs/useApi";
-import LoadingForm from "../mols/LoadingForm";
-import Error from "next/error";
-import ErrorForm from "../mols/ErrorForm";
+import Styles from "../../styles/orgs/DetailForm.module.scss";
 import DetailPlanFormConfirmInput from "../mols/DetailPlanFormConfirmInput";
+import DetailPlanFormInput from "../mols/DetailPlanFormInput";
+import ErrorForm from "../mols/ErrorForm";
+import LoadingForm from "../mols/LoadingForm";
+import ThanksForm from "../mols/ThanksForm";
 
 type Props = {
   title: string;
@@ -35,7 +34,7 @@ const DetailPlanForm = (props: Props) => {
   const [data, setData] = useState<ContactDataDetailPlan>({
     title: title.replaceAll("<br>", " "),
     name: "",
-    type: "",
+    type: "direct",
     furigana: "",
     phone: "",
     email: "",

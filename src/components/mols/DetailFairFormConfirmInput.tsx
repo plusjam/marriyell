@@ -43,6 +43,16 @@ const DetailFairFormConfirmInput = (props: Props) => {
     }
   };
 
+  const handleBack = () => {
+    handleStatus("idle");
+    // トップからreservationまでの高さを取得
+    const reservationTopPosition = document.getElementById("reservation") as HTMLElement;
+    const reservationTop = reservationTopPosition?.getBoundingClientRect().top + window.pageYOffset;
+
+    // reservationTopの位置までスクロール
+    window.scrollTo({ top: reservationTop - 100, behavior: "smooth" });
+  };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={`${Styles.detailForm} ${Styles.confirm}`}>
       <div className={Styles.inputs}>
@@ -92,9 +102,7 @@ const DetailFairFormConfirmInput = (props: Props) => {
               ご来館希望日
             </label>
             <div className={Styles.inputBlockWrap}>
-              <div className={`${Styles.inputBlock} ${Styles.triangle}`}>
-                <input className={`${Styles.input} ${Styles.date}`} id="date" type="date" value={data.date} readOnly />
-              </div>
+              <input className={`${Styles.input} ${Styles.date}`} id="date" type="date" value={data.date} readOnly />
             </div>
           </div>
 
@@ -103,9 +111,7 @@ const DetailFairFormConfirmInput = (props: Props) => {
               ご希望時間
             </label>
             <div className={Styles.inputBlockWrap}>
-              <div className={`${Styles.inputBlock} ${Styles.triangle}`}>
-                <input className={`${Styles.input} ${Styles.time}`} id="time" type="time" value={data.time} readOnly />
-              </div>
+              <input className={`${Styles.input} ${Styles.time}`} id="time" type="text" value={data.time} readOnly />
             </div>
           </div>
         </div>
@@ -120,6 +126,9 @@ const DetailFairFormConfirmInput = (props: Props) => {
       </div>
 
       <div className={Styles.button}>
+        <div className={Styles.submit} onClick={() => handleBack()}>
+          入力画面に戻る
+        </div>
         <button className={Styles.submit} type="submit">
           この内容で送信する
         </button>

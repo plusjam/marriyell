@@ -72,19 +72,48 @@ const DetailPlanFormInput = (props: Props) => {
             <Controller
               control={control}
               name="type"
-              rules={{ required: rules.required }}
-              render={({ field: { onChange, value } }) => (
+              render={({ field: { onChange } }) => (
                 <div className={Styles.radioBlock}>
                   <label className={Styles.radioLabel} htmlFor="direct">
-                    <input className={Styles.radioInput} checked={value === "direct"} id="direct" type="radio" value="direct" onChange={onChange} />
+                    <input
+                      className={Styles.radioInput}
+                      checked={data.type === "direct"}
+                      id="direct"
+                      type="radio"
+                      value="direct"
+                      onChange={() => {
+                        handleData({ ...data, type: "direct" });
+                        onChange();
+                      }}
+                    />
                     <div className={Styles.labelText}>来館して直接相談する</div>
                   </label>
                   <label className={Styles.radioLabel} htmlFor="online">
-                    <input className={Styles.radioInput} checked={value === "online"} id="online" type="radio" value="online" onChange={onChange} />
+                    <input
+                      className={Styles.radioInput}
+                      checked={data.type === "online"}
+                      id="online"
+                      type="radio"
+                      value="online"
+                      onChange={() => {
+                        handleData({ ...data, type: "online" });
+                        onChange();
+                      }}
+                    />
                     <div className={Styles.labelText}>オンラインで相談する</div>
                   </label>
                   <label className={Styles.radioLabel} htmlFor="other">
-                    <input className={Styles.radioInput} checked={value === "other"} id="other" type="radio" value="other" onChange={onChange} />
+                    <input
+                      className={Styles.radioInput}
+                      checked={data.type === "other"}
+                      id="other"
+                      type="radio"
+                      value="other"
+                      onChange={() => {
+                        handleData({ ...data, type: "other" });
+                        onChange();
+                      }}
+                    />
                     <div className={Styles.labelText}>その他（電話、メールなど）</div>
                   </label>
                 </div>
@@ -174,7 +203,7 @@ const DetailPlanFormInput = (props: Props) => {
                   handleData({ ...data, email: e.target.value });
                 },
               })}
-              placeholder="例　abcd@marriyell"
+              placeholder="例　abcd@lucrea"
               value={data.email}
             />
             {errors.email && <span className={Styles.error}>{errors.email.message as string}</span>}
@@ -218,7 +247,11 @@ const DetailPlanFormInput = (props: Props) => {
                     },
                   })}
                   className={`${Styles.input} ${Styles.select}`}
+                  value={data.time}
                 >
+                  <option value="" hidden selected>
+                    選択してください。
+                  </option>
                   <option value="9:00">9:00</option>
                   <option value="9:30">9:30</option>
                   <option value="10:00">10:00</option>
