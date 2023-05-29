@@ -1,4 +1,4 @@
-import { use, useEffect, useState } from "react";
+import { useState } from "react";
 import useApi from "../../../libs/useApi";
 import Styles from "../../styles/orgs/DetailForm.module.scss";
 import DetailFairFormConfirmInput from "../mols/DetailFairFormConfirmInput";
@@ -47,7 +47,7 @@ const DetailFairForm = (props: Props) => {
     phone: "",
     email: "",
     date: selectDate !== "" ? selectDate : todayDate,
-    time: "",
+    time: time[0].values.timeRange,
     inquiry: "",
   });
 

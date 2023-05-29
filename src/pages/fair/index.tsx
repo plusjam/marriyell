@@ -21,6 +21,8 @@ import { FairCategoriesLists, FairLists } from "../../../typings/fair";
 import { PlanLists } from "../../../typings/plan";
 import { ReportLists } from "../../../typings/report";
 import { AppTrigger } from "../_app";
+import { gsap } from "gsap";
+import ScrollToPlugin from "gsap/dist/ScrollToPlugin";
 
 type Props = {
   fairLists: FairLists;
@@ -39,6 +41,8 @@ export default function Home(props: Props) {
   const { videoID, openModal, closeModal } = useModalReport();
   const { categories, handleSelect } = useSelectFair({ init: [...fairCategoriesLists.articles] });
   const { selected: selectedWeekend, handleSelect: handleWeekendSelect } = useGetWeekend();
+
+  gsap.registerPlugin(ScrollToPlugin);
 
   useEffect(() => {
     getSelectedWeekendLists();
@@ -89,7 +93,6 @@ export default function Home(props: Props) {
         });
       });
 
-      console.log(selectedLists);
       setLists(selectedLists);
     }
 
@@ -97,14 +100,12 @@ export default function Home(props: Props) {
       AppTrigger.refresh();
     }, 1000);
 
-    const bridalFair = document.querySelector("#bridal-fair") as HTMLElement;
-    // targetのページトップからの距離を取得
-    const rect = bridalFair.getBoundingClientRect();
-    const top = rect.top + window.pageYOffset;
-    // スクロール
-    window.scrollTo({
-      top,
-      behavior: "smooth",
+    gsap.to(window, {
+      duration: 1,
+      scrollTo: {
+        y: `#bridal-fair`,
+        autoKill: false,
+      },
     });
   };
 
@@ -135,14 +136,12 @@ export default function Home(props: Props) {
       setLists(fairLists.articles);
     }
 
-    const bridalFair = document.querySelector("#bridal-fair") as HTMLElement;
-    // targetのページトップからの距離を取得
-    const rect = bridalFair.getBoundingClientRect();
-    const top = rect.top + window.pageYOffset;
-    // スクロール
-    window.scrollTo({
-      top,
-      behavior: "smooth",
+    gsap.to(window, {
+      duration: 1,
+      scrollTo: {
+        y: `#bridal-fair`,
+        autoKill: false,
+      },
     });
   };
 
@@ -161,7 +160,7 @@ export default function Home(props: Props) {
           <BridalFair lists={lists} fairCategoriesLists={fairCategoriesLists.articles} />
 
           <TopWeddingPlan planLists={[...planLists.articles]} />
-          {/* <TopWeddingReport contents={reportLists.articles} openModal={openModal} /> */}
+          <TopWeddingReport contents={reportLists.articles} openModal={openModal} />
 
           <InstagramSection />
         </main>
