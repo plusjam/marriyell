@@ -36,11 +36,49 @@ const PlanContents = (props: Props) => {
         {isPc ? (
           <div className={Styles.body}>
             {content.contents.map((elem, index) => {
+              const src = () => {
+                if (elem.values.content.select[0] === "挙式") {
+                  return "/images/icon_plan_content_ceremony.svg";
+                }
+                if (elem.values.content.select[0] === "衣装") {
+                  return "/images/icon_plan_content_dress.svg";
+                }
+                if (elem.values.content.select[0] === "披露宴会場") {
+                  return "/images/icon_plan_content_hall.svg";
+                }
+                if (elem.values.content.select[0] === "料理/飲物") {
+                  return "/images/icon_plan_content_food.svg";
+                }
+                if (elem.values.content.select[0] === "美容/着付") {
+                  return "/images/icon_plan_content_beauty.svg";
+                }
+                if (elem.values.content.select[0] === "サポート") {
+                  return "/images/icon_plan_content_support.svg";
+                }
+                if (elem.values.content.select[0] === "装花") {
+                  return "/images/icon_plan_content_flower.svg";
+                }
+                if (elem.values.content.select[0] === "設備") {
+                  return "/images/icon_plan_content_facility.svg";
+                }
+                if (elem.values.content.select[0] === "写真/動画") {
+                  return "/images/icon_plan_content_photo.svg";
+                }
+                if (elem.values.content.select[0] === "印刷物") {
+                  return "/images/icon_plan_content_printing.svg";
+                }
+                if (elem.values.content.select[0] === "引き出物") {
+                  return "/images/icon_plan_content_gift.svg";
+                }
+                if (elem.values.content.select[0] === "その他") {
+                  return "/images/icon_plan_content_other.svg";
+                }
+              };
               return (
                 <div className={Styles.block} key={`plancontent${index}`}>
                   <div className={Styles.tag}>
                     <div className={Styles.image}>
-                      <Image src="/images/icon_plan_content_dress.svg" alt="" width={36} height={36} />
+                      <Image src={src()!} alt="" width={36} height={36} />
                     </div>
                     <div className={Styles.label}>{elem.values.content.select}</div>
                   </div>
@@ -55,11 +93,49 @@ const PlanContents = (props: Props) => {
               return (
                 <SwiperSlide className={Styles.slide} key={`fairswiper${index}`}>
                   {contents.map((elem, index) => {
+                    const src = () => {
+                      if (elem.values.content.select[0] === "挙式") {
+                        return "/images/icon_plan_content_ceremony.svg";
+                      }
+                      if (elem.values.content.select[0] === "衣装") {
+                        return "/images/icon_plan_content_dress.svg";
+                      }
+                      if (elem.values.content.select[0] === "披露宴会場") {
+                        return "/images/icon_plan_content_hall.svg";
+                      }
+                      if (elem.values.content.select[0] === "料理/飲物") {
+                        return "/images/icon_plan_content_food.svg";
+                      }
+                      if (elem.values.content.select[0] === "美容/着付") {
+                        return "/images/icon_plan_content_beauty.svg";
+                      }
+                      if (elem.values.content.select[0] === "サポート") {
+                        return "/images/icon_plan_content_support.svg";
+                      }
+                      if (elem.values.content.select[0] === "装花") {
+                        return "/images/icon_plan_content_flower.svg";
+                      }
+                      if (elem.values.content.select[0] === "設備") {
+                        return "/images/icon_plan_content_facility.svg";
+                      }
+                      if (elem.values.content.select[0] === "写真/動画") {
+                        return "/images/icon_plan_content_photo.svg";
+                      }
+                      if (elem.values.content.select[0] === "印刷物") {
+                        return "/images/icon_plan_content_printing.svg";
+                      }
+                      if (elem.values.content.select[0] === "引き出物") {
+                        return "/images/icon_plan_content_gift.svg";
+                      }
+                      if (elem.values.content.select[0] === "その他") {
+                        return "/images/icon_plan_content_other.svg";
+                      }
+                    };
                     return (
                       <div className={Styles.block} key={`plancontent${index}`}>
                         <div className={Styles.tag}>
                           <div className={Styles.image}>
-                            <Image src="/images/icon_plan_content_dress.svg" alt="" width={36} height={36} />
+                            <Image src={src()!} alt="" width={36} height={36} />
                           </div>
                           <div className={Styles.label}>{elem.values.content.select}</div>
                         </div>
