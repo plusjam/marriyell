@@ -112,7 +112,7 @@ export const getStaticProps: GetStaticProps = async () => {
   });
 
   const fairLists: FairLists = fairRes.data;
-  // console.log("カレンダー", fairLists.articles[1].calendar[0]);
+  console.log("フェア取得", fairLists);
 
   /* ===================================================================
   // プラン

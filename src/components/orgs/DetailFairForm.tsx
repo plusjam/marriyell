@@ -1,14 +1,11 @@
-import { useState } from "react";
 import useApi from "../../../libs/useApi";
+import { FairList } from "../../../typings/fair";
 import Styles from "../../styles/orgs/DetailForm.module.scss";
 import DetailFairFormConfirmInput from "../mols/DetailFairFormConfirmInput";
 import DetailFairFormInput from "../mols/DetailFairFormInput";
 import ErrorForm from "../mols/ErrorForm";
 import LoadingForm from "../mols/LoadingForm";
 import ThanksForm from "../mols/ThanksForm";
-import { selectFairDate } from "@/pages/_app";
-import { useRecoilState } from "recoil";
-import { FairList } from "../../../typings/fair";
 
 export type ContactDataDetailFair = {
   title: string;
@@ -22,38 +19,16 @@ export type ContactDataDetailFair = {
 };
 
 type Props = {
-  title: string;
   time: FairList["openTime"];
   date: FairList["calendar"];
+  handleData: (data: ContactDataDetailFair) => void;
+  data: ContactDataDetailFair;
 };
 
 const DetailFairForm = (props: Props) => {
-  const { title, time, date } = props;
+  const { time, date, data, handleData } = props;
 
   const { status, handleStatus } = useApi();
-  const [selectDate, setSelectDate] = useRecoilState<any>(selectFairDate);
-
-  // 今日の日付を取得
-  const today = new Date();
-  const year = today.getFullYear();
-  const month = ("0" + (today.getMonth() + 1)).slice(-2);
-  const day = ("0" + today.getDate()).slice(-2);
-  const todayDate = year + "-" + month + "-" + day;
-
-  const [data, setData] = useState<ContactDataDetailFair>({
-    title: title.replaceAll("<br>", " "),
-    name: "",
-    furigana: "",
-    phone: "",
-    email: "",
-    date: selectDate !== "" ? selectDate : todayDate,
-    time: time[0].values.timeRange,
-    inquiry: "",
-  });
-
-  const handleData = (data: ContactDataDetailFair) => {
-    setData(data);
-  };
 
   return (
     <section className={Styles.section} id="reservation">

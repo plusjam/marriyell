@@ -13,6 +13,7 @@ import { useRecoilState } from "recoil";
 import { selectFairDate } from "@/pages/_app";
 import { gsap } from "gsap";
 import ScrollToPlugin from "gsap/dist/ScrollToPlugin";
+import { ContactDataDetailFair } from "../orgs/DetailFairForm";
 
 type Props = {
   events: {
@@ -22,6 +23,8 @@ type Props = {
   isTop?: boolean;
   code?: string;
   isDetail?: boolean;
+  handleData?: (data: ContactDataDetailFair) => void;
+  data?: ContactDataDetailFair;
 };
 
 const mouseover = (e: MouseEvent) => {
@@ -43,7 +46,7 @@ const mouseout = (e: MouseEvent) => {
 };
 
 const Calendar = (props: Props) => {
-  const { events, toFairLists = false, isTop = false, code, isDetail = false } = props;
+  const { events, toFairLists = false, isTop = false, code, isDetail = false, handleData, data } = props;
 
   gsap.registerPlugin(ScrollToPlugin);
 
@@ -156,6 +159,7 @@ const Calendar = (props: Props) => {
     if (harness === null) return;
     const date = arg.dateStr;
     setSelectDate(date);
+    if (handleData && data) handleData({ ...data, date: date });
 
     if (isDetail) {
       // フェア詳細ページからページ内遷移

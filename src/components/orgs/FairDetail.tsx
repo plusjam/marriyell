@@ -6,14 +6,17 @@ import Calendar from "../atoms/Calendar";
 import BridalCategories from "../mols/BridalCategories";
 import { useMediaQuery } from "../../../libs/useMediaQuery";
 import { FairCategoriesLists, FairList } from "../../../typings/fair";
+import { ContactDataDetailFair } from "./DetailFairForm";
 
 type Props = {
   fairList: FairList;
   fairCategoriesLists: FairCategoriesLists["articles"];
+  handleData: (data: ContactDataDetailFair) => void;
+  data: ContactDataDetailFair;
 };
 
 const FairDetail = (props: Props) => {
-  const { fairList, fairCategoriesLists } = props;
+  const { fairList, fairCategoriesLists, handleData, data } = props;
 
   const isPc = useMediaQuery(768, "max");
 
@@ -44,7 +47,7 @@ const FairDetail = (props: Props) => {
 
           <div className={Styles.info}>
             <div className={Styles.calendar}>
-              <Calendar events={events} code={fairList.code} isDetail />
+              <Calendar events={events} code={fairList.code} isDetail handleData={handleData} data={data} />
             </div>
 
             {isPc && <div className={Styles.description}>{fairList.description}</div>}

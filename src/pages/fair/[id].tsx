@@ -1,5 +1,5 @@
 import Motion from "@/components/layouts/Motion";
-import DetailFairForm from "@/components/orgs/DetailFairForm";
+import DetailFairForm, { ContactDataDetailFair } from "@/components/orgs/DetailFairForm";
 import FairContents from "@/components/orgs/FairContents";
 import FairDetail from "@/components/orgs/FairDetail";
 import InstagramSection from "@/components/orgs/InstagramSection";
@@ -13,12 +13,14 @@ import ScrollToPlugin from "gsap/dist/ScrollToPlugin";
 import { GetStaticProps } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { apricotClient } from "../../../libs/cms";
 import useModalReport from "../../../libs/useModalReport";
 import { FairCategoriesLists, FairList, FairLists } from "../../../typings/fair";
 import { PlanLists } from "../../../typings/plan";
 import { ReportLists } from "../../../typings/report";
+import { useRecoilState } from "recoil";
+import { selectFairDate } from "../_app";
 
 type Props = {
   fairList: FairList;
@@ -32,6 +34,7 @@ export default function Home(props: Props) {
 
   const { videoID, openModal, closeModal } = useModalReport();
   const router = useRouter();
+  const [selectDate, setSelectDate] = useRecoilState<any>(selectFairDate);
 
   gsap.registerPlugin(ScrollToPlugin);
 
@@ -53,6 +56,28 @@ export default function Home(props: Props) {
     }, 2500);
   }, []);
 
+  // 今日の日付を取得
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = ("0" + (today.getMonth() + 1)).slice(-2);
+  const day = ("0" + today.getDate()).slice(-2);
+  const todayDate = year + "-" + month + "-" + day;
+
+  const [data, setData] = useState<ContactDataDetailFair>({
+    title: fairList.title.replaceAll("<br>", " "),
+    name: "",
+    furigana: "",
+    phone: "",
+    email: "",
+    date: selectDate !== "" ? selectDate : todayDate,
+    time: fairList.openTime[0].values.timeRange,
+    inquiry: "",
+  });
+
+  const handleData = (data: ContactDataDetailFair) => {
+    setData(data);
+  };
+
   return (
     <>
       <Motion>
@@ -61,9 +86,9 @@ export default function Home(props: Props) {
         </Head>
 
         <main>
-          <FairDetail fairList={fairList} fairCategoriesLists={fairCategoriesLists.articles} />
+          <FairDetail fairList={fairList} fairCategoriesLists={fairCategoriesLists.articles} data={data} handleData={handleData} />
           <FairContents fairList={fairList} />
-          <DetailFairForm title={fairList.title} date={fairList.calendar} time={fairList.openTime} />
+          <DetailFairForm data={data} handleData={handleData} date={fairList.calendar} time={fairList.openTime} />
 
           {/* <Process /> */}
           <TopWeddingPlan planLists={[...planLists.articles]} />
