@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { use, useEffect, useState } from "react";
 import useApi from "../../../libs/useApi";
 import Styles from "../../styles/orgs/DetailForm.module.scss";
 import DetailFairFormConfirmInput from "../mols/DetailFairFormConfirmInput";
@@ -8,6 +8,7 @@ import LoadingForm from "../mols/LoadingForm";
 import ThanksForm from "../mols/ThanksForm";
 import { selectFairDate } from "@/pages/_app";
 import { useRecoilState } from "recoil";
+import { FairList } from "../../../typings/fair";
 
 export type ContactDataDetailFair = {
   title: string;
@@ -22,10 +23,12 @@ export type ContactDataDetailFair = {
 
 type Props = {
   title: string;
+  time: FairList["openTime"];
+  date: FairList["calendar"];
 };
 
 const DetailFairForm = (props: Props) => {
-  const { title } = props;
+  const { title, time, date } = props;
 
   const { status, handleStatus } = useApi();
   const [selectDate, setSelectDate] = useRecoilState<any>(selectFairDate);
@@ -79,7 +82,7 @@ const DetailFairForm = (props: Props) => {
         </div>
 
         <div className={Styles.body}>
-          {status === "idle" && <DetailFairFormInput handleStatus={handleStatus} data={data} handleData={handleData} />}
+          {status === "idle" && <DetailFairFormInput handleStatus={handleStatus} data={data} handleData={handleData} time={time} date={date} />}
           {status === "confirm" && <DetailFairFormConfirmInput handleStatus={handleStatus} data={data} />}
           {status === "loading" && <LoadingForm />}
           {status === "success" && <ThanksForm description="この度はお問い合わせいただき誠にありがとうございました。" />}

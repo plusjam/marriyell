@@ -1,10 +1,11 @@
+import { PlanLists } from "@/pages/api/plan";
 import Image from "next/image";
-import { useMediaQuery } from "../../../libs/useMediaQuery";
-import { FairCategoriesLists, FairList } from "../../../typings/fair";
 import Styles from "../../styles/orgs/FairDetail.module.scss";
+import Previlege from "../mols/Previlege";
 import Calendar from "../atoms/Calendar";
 import BridalCategories from "../mols/BridalCategories";
-import Previlege from "../mols/Previlege";
+import { useMediaQuery } from "../../../libs/useMediaQuery";
+import { FairCategoriesLists, FairList } from "../../../typings/fair";
 
 type Props = {
   fairList: FairList;
@@ -43,7 +44,7 @@ const FairDetail = (props: Props) => {
 
           <div className={Styles.info}>
             <div className={Styles.calendar}>
-              <Calendar events={events} code={fairList.code} />
+              <Calendar events={events} code={fairList.code} isDetail />
             </div>
 
             {isPc && <div className={Styles.description}>{fairList.description}</div>}
@@ -57,7 +58,11 @@ const FairDetail = (props: Props) => {
                 <div className={Styles.termTag}>開催時間</div>
                 <div>
                   {fairList.openTime.map((elem, index) => {
-                    return <span key={index}>{elem.values.timeRange} ｜ </span>;
+                    return (
+                      <span className={Styles.openTime} key={index}>
+                        {elem.values.timeRange} ｜{" "}
+                      </span>
+                    );
                   })}
                 </div>
               </div>

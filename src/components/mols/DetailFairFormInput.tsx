@@ -3,15 +3,22 @@ import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Status } from "../../../libs/useApi";
 import { ContactDataDetailFair } from "../orgs/DetailFairForm";
+import { FairList } from "../../../typings/fair";
+import { useRecoilState } from "recoil";
+import { selectFairDate } from "@/pages/_app";
 
 type Props = {
   handleStatus: (status: Status) => void;
   data: ContactDataDetailFair;
   handleData: (data: ContactDataDetailFair) => void;
+  time: FairList["openTime"];
+  date: FairList["calendar"];
 };
 
 const DetailFairFormInput = (props: Props) => {
-  const { handleStatus, data, handleData } = props;
+  const { handleStatus, data, handleData, time, date } = props;
+
+  const [selectDate, setSelectDate] = useRecoilState<any>(selectFairDate);
 
   const {
     register,
@@ -157,18 +164,27 @@ const DetailFairFormInput = (props: Props) => {
             </label>
             <div className={Styles.inputBlockWrap}>
               <div className={`${Styles.inputBlock} ${Styles.triangle}`}>
-                <input
-                  className={`${Styles.input} ${Styles.date}`}
-                  id="date"
+                <select
                   {...register("date", {
                     required: rules.required,
                     onChange: (e) => {
                       handleData({ ...data, date: e.target.value });
                     },
                   })}
-                  type="date"
-                  value={data.date}
-                />
+                  className={`${Styles.input} ${Styles.select}`}
+                >
+                  {date.map((option, index) => {
+                    // 今日の日付よりも前の日付の場合はreturn
+                    const today = new Date();
+                    const optionDate = new Date(option.values.calendar);
+                    if (optionDate < today) return;
+                    return (
+                      <option value={option.values.calendar} key={`${index}`} selected={selectDate === option.values.calendar}>
+                        {option.values.calendar}
+                      </option>
+                    );
+                  })}
+                </select>
                 {errors.date && <span className={Styles.error}>{errors.date.message as string}</span>}
               </div>
             </div>
@@ -189,29 +205,13 @@ const DetailFairFormInput = (props: Props) => {
                   })}
                   className={`${Styles.input} ${Styles.select}`}
                 >
-                  <option value="9:00">9:00</option>
-                  <option value="9:30">9:30</option>
-                  <option value="10:00">10:00</option>
-                  <option value="10:30">10:30</option>
-                  <option value="11:00">11:00</option>
-                  <option value="11:30">11:30</option>
-                  <option value="12:00">12:00</option>
-                  <option value="12:30">12:30</option>
-                  <option value="13:00">13:00</option>
-                  <option value="13:30">13:30</option>
-                  <option value="14:00">14:00</option>
-                  <option value="14:30">14:30</option>
-                  <option value="15:00">15:00</option>
-                  <option value="15:30">15:30</option>
-                  <option value="16:00">16:00</option>
-                  <option value="16:30">16:30</option>
-                  <option value="17:00">17:00</option>
-                  <option value="17:30">17:30</option>
-                  <option value="18:00">18:00</option>
-                  <option value="18:30">18:30</option>
-                  <option value="19:00">19:00</option>
-                  <option value="19:30">19:30</option>
-                  <option value="20:00">20:00</option>
+                  {time.map((option, index) => {
+                    return (
+                      <option value={option.values.timeRange} key={`${index}`}>
+                        {option.values.timeRange}
+                      </option>
+                    );
+                  })}
                 </select>
 
                 {errors.time && <span className={Styles.error}>{errors.time.message as string}</span>}

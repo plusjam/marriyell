@@ -11,6 +11,8 @@ import jaLocale from "@fullcalendar/core/locales/ja";
 import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
 import { selectFairDate } from "@/pages/_app";
+import { gsap } from "gsap";
+import ScrollToPlugin from "gsap/dist/ScrollToPlugin";
 
 type Props = {
   events: {
@@ -19,6 +21,7 @@ type Props = {
   toFairLists?: boolean;
   isTop?: boolean;
   code?: string;
+  isDetail?: boolean;
 };
 
 const mouseover = (e: MouseEvent) => {
@@ -40,7 +43,9 @@ const mouseout = (e: MouseEvent) => {
 };
 
 const Calendar = (props: Props) => {
-  const { events, toFairLists = false, isTop = false, code } = props;
+  const { events, toFairLists = false, isTop = false, code, isDetail = false } = props;
+
+  gsap.registerPlugin(ScrollToPlugin);
 
   const router = useRouter();
   const calendarRef = useRef<FullCalendar>(null);
@@ -147,12 +152,25 @@ const Calendar = (props: Props) => {
   const handleDateClick = (arg: DateClickArg) => {
     const elem = arg.dayEl;
     if (elem.classList.contains("fc-day-past")) return;
+    const harness = elem.querySelector(".fc-daygrid-event-harness") as HTMLElement;
+    if (harness === null) return;
     const date = arg.dateStr;
     setSelectDate(date);
 
-    if (!toFairLists) {
+    if (isDetail) {
+      // フェア詳細ページからページ内遷移
+      gsap.to(window, {
+        duration: 1,
+        scrollTo: {
+          y: `#reservation`,
+          autoKill: false,
+        },
+      });
+    } else if (!toFairLists) {
+      // 詳細ページへ遷移
       router.push(`/fair/${code}?id=reservation`);
     } else {
+      // フェア一覧へ遷移
       router.push(`/fair#bridal-fair?date=${date}`);
     }
   };

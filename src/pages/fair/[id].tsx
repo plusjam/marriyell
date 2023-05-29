@@ -63,7 +63,7 @@ export default function Home(props: Props) {
         <main>
           <FairDetail fairList={fairList} fairCategoriesLists={fairCategoriesLists.articles} />
           <FairContents fairList={fairList} />
-          <DetailFairForm title={fairList.title} />
+          <DetailFairForm title={fairList.title} date={fairList.calendar} time={fairList.openTime} />
 
           {/* <Process /> */}
           <TopWeddingPlan planLists={[...planLists.articles]} />
@@ -125,9 +125,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
   });
 
   const fairList: FairList = fairRes.data;
-  // console.log("ふぇあプラン", fairList.signingPrevileges);
-  // console.log("フェアプラン", fairList.visitPrevileges);
-  // console.log("ですリスト！！！！！！！！！！！", fairList);
 
   /* ===================================================================
   // フェアカテゴリ
