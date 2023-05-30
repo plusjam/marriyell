@@ -94,7 +94,7 @@ export default function Home(props: Props) {
       setCategory(newCategorytitle);
 
       const data: NewsLists = await getNewsData(0, `{"categories.contentAt":{"title":"${title}"}}`);
-      console.log("絞り込み", data);
+      // console.log("絞り込み", data);
 
       setOriginalLists({ ...data });
       handleStatus("success");
