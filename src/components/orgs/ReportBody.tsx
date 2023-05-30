@@ -2,16 +2,18 @@ import Styles from "@/styles/orgs/ReportBody.module.scss";
 import { ReportLists as List } from "../../../typings/report";
 import ButtonViewMore from "../atoms/ButtonViewMore";
 import ReportLists from "../mols/ReportLists";
+import { Status } from "../../../libs/useApi";
 
 type Props = {
   currentReportLists: List;
   clickViewMore: () => void;
   next: boolean;
   openModal: (id: string) => void;
+  status: Status;
 };
 
 const ReportBody = (props: Props) => {
-  const { currentReportLists, clickViewMore, next, openModal } = props;
+  const { currentReportLists, clickViewMore, next, openModal, status } = props;
 
   return (
     <section className={Styles.section}>
@@ -25,7 +27,7 @@ const ReportBody = (props: Props) => {
         <ReportLists contents={currentReportLists.articles} openModal={openModal} />
 
         {/* more */}
-        {next && <ButtonViewMore clickViewMore={clickViewMore} />}
+        {next && <ButtonViewMore clickViewMore={clickViewMore} status={status} />}
       </div>
     </section>
   );

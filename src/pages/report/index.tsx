@@ -16,6 +16,7 @@ import useModalReport from "../../../libs/useModalReport";
 import { FairLists } from "../../../typings/fair";
 import { PlanLists } from "../../../typings/plan";
 import { ReportLists } from "../../../typings/report";
+import useApi from "../../../libs/useApi";
 
 type Props = {
   fairLists: FairLists;
@@ -29,6 +30,7 @@ export default function Home(props: Props) {
   const [currentReportLists, setCurrentReportLists] = React.useState({ ...reportLists });
   const { videoID, openModal, closeModal } = useModalReport();
   const [isNext, setIsNext] = React.useState<boolean>(reportLists.total / currentReportLists.articles.length > 1);
+  const { status, handleStatus } = useApi();
 
   // 対象のページのデータを取得
   const getReportData = async (offset: number) => {
@@ -42,17 +44,22 @@ export default function Home(props: Props) {
 
   // 次ページ読み込み
   const clickViewMore = async () => {
-    const data = await getReportData(currentReportLists.articles.length);
+    try {
+      handleStatus("loading");
+      const data = await getReportData(currentReportLists.articles.length);
 
-    if (!data) return;
+      if (!data) return;
 
-    setCurrentReportLists({
-      articles: [...currentReportLists.articles, ...data.articles],
-      total: data.total,
-      count: data.count,
-    });
+      setCurrentReportLists({
+        articles: [...currentReportLists.articles, ...data.articles],
+        total: data.total,
+        count: data.count,
+      });
 
-    setIsNext(data.total / [...currentReportLists.articles, ...data.articles].length > 1);
+      setIsNext(data.total / [...currentReportLists.articles, ...data.articles].length > 1);
+    } catch (err) {
+      handleStatus("error");
+    }
   };
 
   const [weekendLists, setWeekendLists] = React.useState([...fairLists.articles]);
@@ -97,12 +104,12 @@ export default function Home(props: Props) {
         <main>
           <UnderlayerHead en="Wedding Report" ja="ウェディングレポート" image="/images/report_main.jpg" spImage="/images/report_main-sp.jpg" />
 
-          <ReportBody currentReportLists={currentReportLists} next={isNext} clickViewMore={clickViewMore} openModal={openModal} />
+          <ReportBody currentReportLists={currentReportLists} next={isNext} clickViewMore={clickViewMore} openModal={openModal} status={status} />
 
           <WeekendFair lists={weekendLists} weekend={selectedWeekend} handleSelect={handleWeekendSelect} />
           <TopWeddingPlan planLists={[...planLists.articles]} />
 
-          <TopContents />
+          {/* <TopContents /> */}
         </main>
 
         <ReportModal videoID={videoID} closeModal={closeModal} />
