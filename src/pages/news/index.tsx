@@ -12,6 +12,7 @@ import { PlanLists } from "../../../typings/plan";
 import axios from "axios";
 import { NewsCategoriesLists } from "../../../typings/news";
 import { META } from "@/textDate/head";
+import useApi from "../../../libs/useApi";
 
 type NewsCategoriesSelect = NewsCategoriesLists["articles"][0] & { selected: boolean };
 export type NewsCategoriesListsSelect = {
@@ -48,7 +49,8 @@ export default function Home(props: Props) {
   const [originalLists, setOriginalLists] = React.useState({ ...newsLists });
   const [category, setCategory] = React.useState([...newsCategoriesListsSelect]);
   const [title, settitle] = React.useState("all");
-  const [page, setPage] = React.useState<number | null>(1);
+  const { status, handleStatus } = useApi();
+  const { status: ButtonStatus, handleStatus: handleButtonStatus } = useApi();
 
   // 対象のページのデータを取得
   const getNewsData = async (offset: number, q: string) => {
@@ -64,53 +66,53 @@ export default function Home(props: Props) {
 
   // 絞り込み機能
   const clickCategory = async (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
-    const initLists = { ...newsLists };
-    const target = e.target as HTMLElement;
-    const title = target.getAttribute("data-title") as string;
+    try {
+      const initLists = { ...newsLists };
+      const target = e.target as HTMLElement;
+      const title = target.getAttribute("data-title") as string;
 
-    const resetPage = 1;
+      handleStatus("loading");
 
-    settitle(title!);
-    setPage(resetPage);
+      settitle(title!);
 
-    if (title === "すべて") {
-      setOriginalLists({ ...initLists });
-      setCategory([...newsCategoriesListsSelect]);
+      if (title === "すべて") {
+        setOriginalLists({ ...initLists });
+        setCategory([...newsCategoriesListsSelect]);
+        handleStatus("success");
 
-      return;
-    }
-
-    // const data = await getNewsData(3, `{"categories.articles.title.exists":${title}}`);
-
-    const newCategorytitle = [...newsCategoriesListsSelect].map((elem) => {
-      if (elem.title === title) {
-        return { ...elem, selected: true };
-      } else {
-        return { ...elem, selected: false };
+        return;
       }
-    });
 
-    setCategory(newCategorytitle);
-
-    const newContents = [...initLists.articles].filter((elem) => {
-      return elem.categories.articles.some((elem) => {
-        return elem.title === title;
+      const newCategorytitle = [...newsCategoriesListsSelect].map((elem) => {
+        if (elem.title === title) {
+          return { ...elem, selected: true };
+        } else {
+          return { ...elem, selected: false };
+        }
       });
-    });
 
-    setOriginalLists({ ...initLists, articles: newContents });
+      setCategory(newCategorytitle);
+
+      const data: NewsLists = await getNewsData(0, `{"categories.contentAt":{"title":"${title}"}}`);
+      console.log("絞り込み", data);
+
+      setOriginalLists({ ...data });
+      handleStatus("success");
+      // setOriginalLists({ ...initLists, articles: newContents });
+    } catch (error) {
+      handleStatus("error");
+    }
   };
 
   // 次ページ読み込み
   const clickViewMore = async () => {
-    const nextPage = page ? page + 1 : 1;
-    setPage(nextPage);
-
-    const data = await getNewsData(2, "{categories.articles.title.exists: “news”}");
+    handleButtonStatus("loading");
+    const data: NewsLists = await getNewsData(originalLists.articles.length, `{"categories.contentAt":{"title":"${title}"}}`);
 
     if (!data) return;
 
-    setOriginalLists({ ...originalLists, articles: [...originalLists.articles, ...data] });
+    setOriginalLists({ articles: [...originalLists.articles, ...data.articles], total: data.total, count: data.count });
+    handleButtonStatus("success");
   };
 
   return (
@@ -121,12 +123,12 @@ export default function Home(props: Props) {
         </Head>
 
         <main>
-          <UnderlayerHead en="News ＆ Event" ja="お知らせ・イベント情報" image="" spImage="" />
-          <NewsBody originalLists={originalLists} clickCategory={clickCategory} clickViewMore={clickViewMore} category={category} />
+          <UnderlayerHead en="News ＆ Event" ja="お知らせ・イベント情報" image="/images/news_main.jpg" spImage="" />
+          <NewsBody originalLists={originalLists} clickCategory={clickCategory} clickViewMore={clickViewMore} category={category} status={status} buttonStatus={ButtonStatus} />
 
           <TopWeddingPlan planLists={[...planLists.articles]} />
 
-          {/* <InstagramSection /> */}
+          <InstagramSection />
         </main>
       </Motion>
     </>

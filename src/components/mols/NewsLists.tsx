@@ -6,15 +6,17 @@ import { gsap } from "gsap";
 import ButtonViewMore from "../atoms/ButtonViewMore";
 import { NewsCategoriesListsSelect } from "@/pages/news";
 import Image from "next/image";
+import { Status } from "../../../libs/useApi";
 
 type Props = {
   category: NewsCategoriesListsSelect["articles"];
   originalLists: NewsLists;
   clickViewMore: () => void;
+  status: Status;
 };
 
 const NewsLists = (props: Props) => {
-  const { category, originalLists, clickViewMore } = props;
+  const { category, originalLists, clickViewMore, status } = props;
 
   const ref = useRef<HTMLUListElement | null>(null);
 
@@ -87,7 +89,7 @@ const NewsLists = (props: Props) => {
       </ul>
 
       {/* more */}
-      {next && <ButtonViewMore clickViewMore={clickViewMore} />}
+      {next && <ButtonViewMore clickViewMore={clickViewMore} status={status} />}
     </div>
   );
 };
