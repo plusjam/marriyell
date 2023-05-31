@@ -50,7 +50,7 @@ const Footer = () => {
               </span>
               0120-362-241
             </Link>
-            <div className={Styles.info}>営業時間 平日：11:00~19:00／土日祝：09:30~20:00 (火曜定休)</div>
+            <div className={Styles.info}>営業時間 平日：11:00~19:00／土日祝：09:30~20:00 (火曜・水曜定休)</div>
             <div className={Styles.infoLinks}>
               <ButtonSns />
               {/* <LinkToRecruit /> */}
