@@ -104,7 +104,7 @@ export default function Home(props: Props) {
           <QaContents qaSet={qaSet} />
           <WeekendFair lists={weekendLists} weekend={selectedWeekend} handleSelect={handleWeekendSelect} />
           <TopWeddingPlan planLists={[...planLists.articles]} />
-          <TopWeddingReport contents={reportLists.articles} openModal={openModal} />
+          {/* <TopWeddingReport contents={reportLists.articles} openModal={openModal} /> */}
 
           <InstagramSection />
         </main>
@@ -154,17 +154,22 @@ export const getStaticProps: GetStaticProps = async () => {
   /* ===================================================================
   // レポート
   =================================================================== */
-  const reportUrl = `${process.env.CMS_URL}/api/v1/report?limit=12`;
-  const reportRes: { data: ReportLists } = await axios.get(reportUrl, {
-    headers: {
-      "Content-Type": "application/json",
-      "account-access-key": accessKey,
-      "account-secret-key": secretKey,
-      authorization: `Bearer ${token.token}`,
-    },
-  });
+  // const reportUrl = `${process.env.CMS_URL}/api/v1/report?limit=12`;
+  // const reportRes: { data: ReportLists } = await axios.get(reportUrl, {
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //     "account-access-key": accessKey,
+  //     "account-secret-key": secretKey,
+  //     authorization: `Bearer ${token.token}`,
+  //   },
+  // });
 
-  const reportLists: ReportLists = reportRes.data;
+  // const reportLists: ReportLists = reportRes.data;
+  const reportLists: ReportLists = {
+    articles: [],
+    total: 0,
+    count: 0,
+  };
 
   return {
     props: {

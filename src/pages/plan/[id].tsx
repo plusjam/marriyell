@@ -194,17 +194,22 @@ export const getStaticProps: GetStaticProps = async (context) => {
   /* ===================================================================
   // レポート
   =================================================================== */
-  const reportUrl = `${process.env.CMS_URL}/api/v1/report?limit=12`;
-  const reportRes: { data: ReportLists } = await axios.get(reportUrl, {
-    headers: {
-      "Content-Type": "application/json",
-      "account-access-key": accessKey,
-      "account-secret-key": secretKey,
-      authorization: `Bearer ${token.token}`,
-    },
-  });
+  // const reportUrl = `${process.env.CMS_URL}/api/v1/report?limit=12`;
+  // const reportRes: { data: ReportLists } = await axios.get(reportUrl, {
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //     "account-access-key": accessKey,
+  //     "account-secret-key": secretKey,
+  //     authorization: `Bearer ${token.token}`,
+  //   },
+  // });
 
-  const reportLists: ReportLists = reportRes.data;
+  // const reportLists: ReportLists = reportRes.data;
+  const reportLists: ReportLists = {
+    articles: [],
+    total: 0,
+    count: 0,
+  };
 
   return {
     props: {
