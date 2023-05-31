@@ -15,7 +15,7 @@ const MainVideo = () => {
       )}
       {isPc && (
         <video className={Styles.video} loop autoPlay muted playsInline controlsList="nodownload" preload="metadata">
-          <source src="/videos/tate2.mp4" type="video/mp4" />
+          <source src="/videos/tate.mp4" type="video/mp4" />
         </video>
       )}
     </div>
