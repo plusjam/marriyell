@@ -7,6 +7,7 @@ import ButtonViewMore from "../atoms/ButtonViewMore";
 import { NewsCategoriesListsSelect } from "@/pages/news";
 import Image from "next/image";
 import { Status } from "../../../libs/useApi";
+import { useMediaQuery } from "../../../libs/useMediaQuery";
 
 type Props = {
   category: NewsCategoriesListsSelect["articles"];
@@ -19,6 +20,7 @@ const NewsLists = (props: Props) => {
   const { category, originalLists, clickViewMore, status } = props;
 
   const ref = useRef<HTMLUListElement | null>(null);
+  const isPc = useMediaQuery(768, "min");
 
   // トータルの記事数とカウント数から次の記事があるかどうかを判定
   const next = originalLists.total / originalLists.count > 1 ? true : false;
@@ -43,6 +45,16 @@ const NewsLists = (props: Props) => {
     };
   }, [category]);
 
+  // publishedAtをyyyy.mm.ddに変換
+  const formatDate = (date: string) => {
+    const d = new Date(date);
+    const year = d.getFullYear();
+    const month = d.getMonth() + 1;
+    const day = d.getDate();
+
+    return `${year}.${month}.${day}`;
+  };
+
   return (
     <div className={Styles.container}>
       <ul className={Styles.lists} ref={ref}>
@@ -53,6 +65,14 @@ const NewsLists = (props: Props) => {
             elem.description.some((elem) => {
               if (elem.values.text) {
                 formatedDescription = elem.values.text;
+
+                const limit = isPc ? 130 : 50;
+
+                // 文字数制限
+                if (formatedDescription.length > limit) {
+                  formatedDescription = formatedDescription.slice(0, limit) + "...";
+                }
+
                 return true;
               }
             });
@@ -74,7 +94,7 @@ const NewsLists = (props: Props) => {
                           );
                         })}
                       </ul>
-                      <p className={Styles.date}>{elem.publishedAt}</p>
+                      <p className={Styles.date}>{formatDate(elem.publishedAt)}</p>
                     </div>
                     <h2 className={Styles.title}>{elem.title}</h2>
                     <div className={Styles.description} dangerouslySetInnerHTML={{ __html: formatedDescription }}></div>

@@ -143,6 +143,11 @@
     transform: rotate(-45deg);
     margin-right: 10px;
   }
+
+  &.none {
+    visibility: hidden;
+    pointer-events: none;
+  }
 }
 
 .next {
@@ -163,6 +168,11 @@
     -webkit-transform: rotate(45deg);
     transform: rotate(45deg);
     margin-left: 10px;
+  }
+
+  &.none {
+    visibility: hidden;
+    pointer-events: none;
   }
 }
 
