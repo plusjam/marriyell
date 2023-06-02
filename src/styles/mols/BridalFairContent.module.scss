@@ -109,7 +109,9 @@
   }
 
   .image {
-    margin-bottom: 20px;
+    max-width: 480px;
+    width: 100%;
+    margin: 0 auto 20px;
   }
 
   .categories {
