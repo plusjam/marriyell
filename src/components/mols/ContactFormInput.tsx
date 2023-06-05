@@ -1,20 +1,19 @@
-import { ContactData } from "@/pages/contact";
+import { ContactData, contactData } from "@/pages/contact";
 import Styles from "@/styles/orgs/ContactForm.module.scss";
 import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Step } from "../orgs/ContactForm";
 import ContactPolicy from "../atoms/ContactPolicy";
+import { useRecoilState } from "recoil";
+import { Status } from "../../../libs/useApi";
 
 type Props = {
-  step1: boolean;
-  handleStep: (step: Step) => void;
-  contactData: ContactData;
-  updateContactData: (data: ContactData) => void;
+  handleStatus: (status: Status) => void;
 };
 
 const ContactFormInput = (props: Props) => {
-  const { step1, handleStep, contactData, updateContactData } = props;
+  const { handleStatus } = props;
 
+  const [R_contactData, setR_ContactData] = useRecoilState<ContactData>(contactData);
   const {
     register,
     handleSubmit,
@@ -44,8 +43,8 @@ const ContactFormInput = (props: Props) => {
   };
 
   const onSubmit: SubmitHandler<ContactData> = (data) => {
-    updateContactData(data);
-    handleStep({ step1: false, step2: true, step3: false });
+    setR_ContactData(data);
+    handleStatus("confirm");
 
     // ページトップにスムーズにスクロール
     window.scrollTo({
@@ -55,7 +54,7 @@ const ContactFormInput = (props: Props) => {
   };
 
   return (
-    <section className={step1 ? `${Styles.section} ${Styles.on}` : Styles.section}>
+    <section className={Styles.section}>
       <div className={Styles.container}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={Styles.head}>
@@ -77,11 +76,11 @@ const ContactFormInput = (props: Props) => {
                     required: rules.required,
                     maxLength: rules.maxLength,
                     onChange: (e) => {
-                      updateContactData({ ...contactData, name: e.target.value });
+                      setR_ContactData({ ...R_contactData, name: e.target.value });
                     },
                   })}
                   placeholder="例　山田　花子"
-                  value={contactData.name}
+                  value={R_contactData.name}
                 />
                 {errors.name && <span className={Styles.error}>{errors.name.message as string}</span>}
               </div>
@@ -99,11 +98,11 @@ const ContactFormInput = (props: Props) => {
                     maxLength: rules.maxLength,
                     pattern: rules.furiganaPattern,
                     onChange: (e) => {
-                      updateContactData({ ...contactData, furigana: e.target.value });
+                      setR_ContactData({ ...R_contactData, furigana: e.target.value });
                     },
                   })}
                   placeholder="例　ヤマダ　ハナコ"
-                  value={contactData.furigana}
+                  value={R_contactData.furigana}
                 />
                 {errors.furigana && <span className={Styles.error}>{errors.furigana.message as string}</span>}
               </div>
@@ -122,11 +121,11 @@ const ContactFormInput = (props: Props) => {
                       return validatePhone(value) || rules.phone;
                     },
                     onChange: (e) => {
-                      updateContactData({ ...contactData, phone: e.target.value });
+                      setR_ContactData({ ...R_contactData, phone: e.target.value });
                     },
                   })}
                   placeholder="例　09012345678"
-                  value={contactData.phone}
+                  value={R_contactData.phone}
                 />
                 {errors.phone && <span className={Styles.error}>{errors.phone.message as string}</span>}
               </div>
@@ -143,11 +142,11 @@ const ContactFormInput = (props: Props) => {
                     required: rules.required,
                     pattern: rules.emailPattern,
                     onChange: (e) => {
-                      updateContactData({ ...contactData, email: e.target.value });
+                      setR_ContactData({ ...R_contactData, email: e.target.value });
                     },
                   })}
-                  placeholder="例　abcd@marriyell"
-                  value={contactData.email}
+                  placeholder="例　abcd@lucrea"
+                  value={R_contactData.email}
                 />
                 {errors.email && <span className={Styles.error}>{errors.email.message as string}</span>}
               </div>
@@ -163,13 +162,13 @@ const ContactFormInput = (props: Props) => {
                   {...register("inquiry", {
                     required: rules.required,
                     onChange: (e) => {
-                      updateContactData({ ...contactData, inquiry: e.target.value });
+                      setR_ContactData({ ...R_contactData, inquiry: e.target.value });
                     },
                   })}
                   placeholder="お問い合わせ内容をご記載ください。"
                   cols={50}
                   rows={5}
-                  value={contactData.inquiry}
+                  value={R_contactData.inquiry}
                 ></textarea>
                 {errors.inquiry && <span className={Styles.error}>{errors.inquiry.message as string}</span>}
               </div>

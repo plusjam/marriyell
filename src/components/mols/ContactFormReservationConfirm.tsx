@@ -1,31 +1,30 @@
-import { ContactReservationData } from "@/pages/contact/reservation";
+import { ContactReservationData, contactReservationData } from "@/pages/contact/reservation";
 import Styles from "@/styles/orgs/ContactForm.module.scss";
+import { useRouter } from "next/router";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useRecoilState } from "recoil";
 import { Status } from "../../../libs/useApi";
 import ContactPolicy from "../atoms/ContactPolicy";
-import { Step } from "../orgs/ContactForm";
 
 type Props = {
-  step2: boolean;
-  handleStep: (step: Step) => void;
-  contactReservationData: ContactReservationData;
   handleStatus: (status: Status) => void;
 };
 
 const ContactFormReservationConfirm = (props: Props) => {
-  const { step2, handleStep, contactReservationData, handleStatus } = props;
+  const { handleStatus } = props;
 
+  const router = useRouter();
+  const [R_contactFormReservationData, setR_contactFormReservationData] = useRecoilState<ContactReservationData>(contactReservationData);
   const { register, handleSubmit } = useForm<ContactReservationData>({
     mode: "onChange",
   });
 
   // 2023-05-18 の形をyyyy年MM月dd日に変換
-  const date = contactReservationData.date.split("-");
+  const date = R_contactFormReservationData.date.split("-");
   const dateStr = `${date[0]}年${date[1]}月${date[2]}日`;
 
   const onSubmit: SubmitHandler<ContactReservationData> = async () => {
     try {
-      handleStep({ step1: false, step2: false, step3: true });
       handleStatus("loading");
       window.scrollTo({
         top: 0,
@@ -37,18 +36,18 @@ const ContactFormReservationConfirm = (props: Props) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(contactReservationData),
+        body: JSON.stringify(R_contactFormReservationData),
       });
       const json = await res.json();
 
-      handleStatus("success");
+      router.push("/contact/reservation/thanks");
     } catch (error) {
       console.log(error);
     }
   };
 
   const onBack = () => {
-    handleStep({ step1: true, step2: false, step3: false });
+    handleStatus("idle");
 
     // ページトップにスムーズにスクロール
     window.scrollTo({
@@ -58,7 +57,7 @@ const ContactFormReservationConfirm = (props: Props) => {
   };
 
   return (
-    <section className={step2 ? `${Styles.section} ${Styles.on}` : Styles.section}>
+    <section className={Styles.section}>
       <div className={Styles.container}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={Styles.head}>
@@ -70,7 +69,7 @@ const ContactFormReservationConfirm = (props: Props) => {
                 お名前
               </label>
               <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                <input disabled className={Styles.input} id="name" {...register("name", {})} value={contactReservationData.name} />
+                <input disabled className={Styles.input} id="name" {...register("name", {})} value={R_contactFormReservationData.name} />
               </div>
             </div>
             <div className={Styles.inputBody}>
@@ -78,7 +77,7 @@ const ContactFormReservationConfirm = (props: Props) => {
                 お名前（フリガナ）
               </label>
               <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                <input disabled className={Styles.input} id="furigana" {...register("furigana", {})} value={contactReservationData.furigana} />
+                <input disabled className={Styles.input} id="furigana" {...register("furigana", {})} value={R_contactFormReservationData.furigana} />
               </div>
             </div>
             <div className={Styles.inputBody}>
@@ -86,7 +85,7 @@ const ContactFormReservationConfirm = (props: Props) => {
                 電話番号
               </label>
               <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                <input disabled className={Styles.input} id="phone" {...register("phone", {})} value={contactReservationData.phone} />
+                <input disabled className={Styles.input} id="phone" {...register("phone", {})} value={R_contactFormReservationData.phone} />
               </div>
             </div>
             <div className={Styles.inputBody}>
@@ -94,7 +93,7 @@ const ContactFormReservationConfirm = (props: Props) => {
                 メールアドレス
               </label>
               <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                <input disabled className={Styles.input} id="email" {...register("email", {})} value={contactReservationData.email} />
+                <input disabled className={Styles.input} id="email" {...register("email", {})} value={R_contactFormReservationData.email} />
               </div>
             </div>
             <div className={`${Styles.inputBlockGrid} ${Styles.confirm}`}>
@@ -116,7 +115,7 @@ const ContactFormReservationConfirm = (props: Props) => {
                 <div className={Styles.inputBlockFlex}>
                   <div className={Styles.inputBlockWrap}>
                     <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                      <input disabled className={Styles.input} id="time" {...register("hh", {})} value={`${contactReservationData.hh}時${contactReservationData.mm}分`} />
+                      <input disabled className={Styles.input} id="time" {...register("hh", {})} value={`${R_contactFormReservationData.hh}時${R_contactFormReservationData.mm}分`} />
                     </div>
                   </div>
                 </div>
@@ -136,7 +135,7 @@ const ContactFormReservationConfirm = (props: Props) => {
                 ご希望・ご質問など
               </label>
               <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                <textarea className={`${Styles.input} ${Styles.inputInquiry}`} id="inquiry" {...register("inquiry", {})} disabled value={contactReservationData.inquiry}></textarea>
+                <textarea className={`${Styles.input} ${Styles.inputInquiry}`} id="inquiry" {...register("inquiry", {})} disabled value={R_contactFormReservationData.inquiry}></textarea>
               </div>
             </div>
           </div>

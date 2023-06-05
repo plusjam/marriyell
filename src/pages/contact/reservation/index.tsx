@@ -2,7 +2,7 @@ import Motion from "@/components/layouts/Motion";
 import ContactFormReservation from "@/components/orgs/ContactFormReservation";
 import { META } from "@/textDate/head";
 import Head from "next/head";
-import { useState } from "react";
+import { atom } from "recoil";
 
 export type ContactReservationData = {
   name: string;
@@ -22,8 +22,9 @@ const month = ("0" + (today.getMonth() + 1)).slice(-2);
 const day = ("0" + today.getDate()).slice(-2);
 const todayDate = year + "-" + month + "-" + day;
 
-export default function Home() {
-  const [contactReservationData, setContactReservationData] = useState<ContactReservationData>({
+export const contactReservationData = atom<ContactReservationData>({
+  key: "contactReservationData",
+  default: {
     name: "",
     furigana: "",
     phone: "",
@@ -32,12 +33,10 @@ export default function Home() {
     hh: "",
     mm: "",
     inquiry: "",
-  });
+  },
+});
 
-  const updateContactReservationData = (data: ContactReservationData) => {
-    setContactReservationData(data);
-  };
-
+export default function Home() {
   return (
     <>
       <Motion>
@@ -46,7 +45,7 @@ export default function Home() {
         </Head>
 
         <main>
-          <ContactFormReservation contactReservationData={contactReservationData} updateContactReservationData={updateContactReservationData} />
+          <ContactFormReservation />
         </main>
       </Motion>
     </>
