@@ -1,11 +1,9 @@
-import React from "react";
-import Styles from "../../styles/orgs/TopWeddingPlan.module.scss";
-import SectionHead from "../mols/SectionHead";
-import LinkToLists from "../atoms/LinkToLists";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { WEDDINGPLAN } from "../../textDate";
 import Link from "next/link";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { PlanLists } from "../../../typings/plan";
+import Styles from "../../styles/orgs/TopWeddingPlan.module.scss";
+import LinkToLists from "../atoms/LinkToLists";
+import SectionHead from "../mols/SectionHead";
 
 type Props = {
   planLists: PlanLists["articles"];
@@ -27,23 +25,14 @@ const TopWeddingPlan = (props: Props) => {
             initialSlide={1}
             breakpoints={{
               768: {
-                slidesPerView: 3,
-                centeredSlides: false,
-                spaceBetween: 80,
+                slidesPerView: 4.2,
+                centeredSlides: true,
+                spaceBetween: 32,
+                initialSlide: 2,
               },
             }}
           >
             {planLists.map((elem, index) => {
-              // titleの文字数を制限する関数
-              const length = 47;
-              const titleLimit = (title: string) => {
-                if (title.length > length) {
-                  return title.slice(0, length) + "...";
-                } else {
-                  return title;
-                }
-              };
-
               return (
                 <SwiperSlide className={`${Styles.block} fadeinTop`} data-delay={0.2 * index} key={`weddingplan0${index + 1}`}>
                   <Link href={`/plan/${elem.code}`}>
@@ -55,7 +44,7 @@ const TopWeddingPlan = (props: Props) => {
                       </picture>
                     </div>
                     <div className={Styles.contents}>
-                      <div className={Styles.contentsHead}>{titleLimit(elem.title)}</div>
+                      <div className={Styles.contentsHead}>{elem.title}</div>
                       <div className={Styles.price}>¥{elem.price.toLocaleString()}～</div>
                       <div className={Styles.description} dangerouslySetInnerHTML={{ __html: elem.description }}></div>
                     </div>
