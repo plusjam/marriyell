@@ -28,7 +28,7 @@ const TopWeddingPlan = (props: Props) => {
                 slidesPerView: 4.2,
                 centeredSlides: true,
                 spaceBetween: 32,
-                initialSlide: 2,
+                initialSlide: planLists.length <= 3 ? 1 : 2,
               },
             }}
           >
