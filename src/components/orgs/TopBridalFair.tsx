@@ -26,6 +26,33 @@ const TopBridalFair = (props: Props) => {
 
   const [options, setOptions] = useState(true);
 
+  // 今日以降のcalendarを一つでも持っているものだけを抽出
+  const today = new Date();
+  const includingTodayLists = [...lists].filter((elem) => {
+    return elem.calendar.some((calendar) => {
+      const latestDate = new Date(calendar.values.calendar);
+      return today <= latestDate;
+    });
+  });
+
+  // includingTodayListsの構造は変更せず、今日以前の日付を除外
+  const filteredLists = [...includingTodayLists].map((elem) => {
+    return {
+      ...elem,
+      calendar: [...elem.calendar].filter((calendar) => {
+        const latestDate = new Date(calendar.values.calendar);
+        return today <= latestDate;
+      }),
+    };
+  });
+
+  // filteredListssを日付順に並び替え
+  filteredLists.sort((a, b) => {
+    const latestDateA = new Date(a.calendar[0].values.calendar);
+    const latestDateB = new Date(b.calendar[0].values.calendar);
+    return latestDateA.getTime() - latestDateB.getTime();
+  });
+
   return (
     <section className={Styles.section}>
       <SectionHead en="Bridal Fair" ja="ブライダルフェア" href="bridal-fair" />
@@ -49,6 +76,7 @@ const TopBridalFair = (props: Props) => {
                 slidesPerView={1.31}
                 centeredSlides={true}
                 initialSlide={1}
+                mousewheel={{ invert: false }}
                 breakpoints={{
                   768: {
                     slidesPerView: 3,
@@ -57,12 +85,22 @@ const TopBridalFair = (props: Props) => {
                   },
                 }}
               >
-                {lists.map((elem, index) => {
+                {filteredLists.map((elem, index) => {
                   //
                   const latestDate = new Date(elem.calendar[0].values.calendar);
                   const yyyymm = latestDate.getFullYear() + "." + ("0" + (latestDate.getMonth() + 1)).slice(-2);
                   const date = ("0" + latestDate.getDate()).slice(-2);
                   const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][latestDate.getDay()];
+
+                  // yyyy年mm月dd日（曜日）の形式で表示
+                  const yyyy = latestDate.getFullYear();
+                  const mm = latestDate.getMonth() + 1;
+                  const weekdaysKanji = ["日", "月", "火", "水", "木", "金", "土"][latestDate.getDay()];
+                  const when = `${yyyy}年${mm}月${date}日 (${weekdaysKanji})`;
+
+                  // titleの文字数を制限
+                  const limit = 36;
+                  const title = elem.title.length > limit ? elem.title.slice(0, limit) + "..." : elem.title;
 
                   return (
                     <SwiperSlide className={`${Styles.block} fadeinTop`} data-delay={0.2 * index} key={`bridalfair0${index + 1}`}>
@@ -79,55 +117,13 @@ const TopBridalFair = (props: Props) => {
                           </div>
                         </div>
                         <div className={Styles.contents}>
-                          {/* <div className={Styles.when}>{elem.when}</div> */}
-                          <div className={Styles.description} dangerouslySetInnerHTML={{ __html: elem.description }}></div>
+                          <div className={Styles.when}>{when}</div>
+                          <div className={Styles.description} dangerouslySetInnerHTML={{ __html: title }}></div>
                         </div>
                       </Link>
                     </SwiperSlide>
                   );
                 })}
-                {/* <SwiperSlide className={`${Styles.block} fadeinTop`} data-delay={0.2 * 0}>
-          <div className={Styles.image}>
-            <Image src="/images/bridal_fair01.jpg" alt="" width={405} height={295} />
-            <div className={Styles.tag}>
-              <div className={Styles.yyyy_mm}>2023.00</div>
-              <div className={Styles.date}>04</div>
-              <div className={Styles.weekdays}>Thu</div>
-            </div>
-          </div>
-          <div className={Styles.contents}>
-            <div className={Styles.when}>2023年00月00日（土）</div>
-            <div className={Styles.description}>ブライダルフェアのタイトルが入ります。ブライダルフェアのタイトルが入ります。</div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide className={`${Styles.block} fadeinTop`} data-delay={0.2 * 1}>
-          <div className={Styles.image}>
-            <Image src="/images/bridal_fair02.jpg" alt="" width={405} height={295} />
-            <div className={Styles.tag}>
-              <div className={Styles.yyyy_mm}>2023.00</div>
-              <div className={Styles.date}>04</div>
-              <div className={Styles.weekdays}>Thu</div>
-            </div>
-          </div>
-          <div className={Styles.contents}>
-            <div className={Styles.when}>2023年00月00日（土）</div>
-            <div className={Styles.description}>ブライダルフェアのタイトルが入ります。ブライダルフェアのタイトルが入ります。</div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide className={`${Styles.block} fadeinTop`} data-delay={0.2 * 2}>
-          <div className={Styles.image}>
-            <Image src="/images/bridal_fair03.jpg" alt="" width={405} height={295} />
-            <div className={Styles.tag}>
-              <div className={Styles.yyyy_mm}>2023.00</div>
-              <div className={Styles.date}>04</div>
-              <div className={Styles.weekdays}>Thu</div>
-            </div>
-          </div>
-          <div className={Styles.contents}>
-            <div className={Styles.when}>2023年00月00日（土）</div>
-            <div className={Styles.description}>ブライダルフェアのタイトルが入ります。ブライダルフェアのタイトルが入ります。</div>
-          </div>
-        </SwiperSlide> */}
               </Swiper>
             </div>
           </>
