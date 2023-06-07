@@ -28,7 +28,7 @@ export const MainFlow = () => {
           </div>
         )}
       </div>
-      <div className={Styles.flow}>
+      <div className={Styles.flow} id="mainflow">
         <h1 className={Styles.heading}>
           <span>北関東最大級の</span>
           <span>スケールを</span>
