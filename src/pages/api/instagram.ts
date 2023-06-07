@@ -1,8 +1,5 @@
 import axios from "axios";
-import { IgApiClient } from "instagram-private-api";
 import { NextApiRequest, NextApiResponse } from "next";
-
-const ig = new IgApiClient();
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
