@@ -262,7 +262,7 @@
 
 @media screen and (max-width: 768px) {
   .footer {
-    padding: 40px 15px 70px;
+    padding: 40px 15px 0;
   }
 
   .pc {
@@ -358,7 +358,7 @@
   .foot {
     flex-direction: column;
     align-items: center;
-    padding: 12px 0 0;
+    padding: 12px 0 34px;
     gap: 12px;
   }
 }
