@@ -66,9 +66,6 @@ const FixedLinks = () => {
 
   return (
     <div className={Styles.fixed} ref={ref}>
-      <Link className={`${Styles.block} ${Styles.line}`} href={FIXEDLINKS.line.href}>
-        <div className={Styles.label}>{FIXEDLINKS.line.label}</div>
-      </Link>
       <Link className={`${Styles.block} ${Styles.reservation}`} href={FIXEDLINKS.reservation.href}>
         <div className={Styles.label}>{FIXEDLINKS.reservation.label}</div>
       </Link>
