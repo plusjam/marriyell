@@ -63,13 +63,22 @@ export default function Home(props: Props) {
   const day = ("0" + today.getDate()).slice(-2);
   const todayDate = year + "-" + month + "-" + day;
 
+  // 今日以降で一番近いfairList.calendar[n].values.calendarを取得
+  const todayDateList = fairList.calendar.filter((item) => item.values.calendar >= todayDate);
+  const todayDateListSort = todayDateList.sort((a, b) => {
+    if (a.values.calendar > b.values.calendar) return 1;
+    if (a.values.calendar < b.values.calendar) return -1;
+    return 0;
+  });
+  const todayDateListSortFirst = todayDateListSort[0].values.calendar;
+
   const [data, setData] = useState<ContactDataDetailFair>({
     title: fairList.title.replaceAll("<br>", " "),
     name: "",
     furigana: "",
     phone: "",
     email: "",
-    date: selectDate !== "" ? selectDate : todayDate,
+    date: selectDate !== "" ? selectDate : todayDateListSortFirst,
     time: fairList.openTime[0].values.timeRange,
     inquiry: "",
   });

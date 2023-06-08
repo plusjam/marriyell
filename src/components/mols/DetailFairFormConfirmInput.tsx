@@ -1,9 +1,9 @@
-import React, { useState } from "react";
 import Styles from "@/styles/orgs/ContactForm.module.scss";
-import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import Link from "next/link";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { Status } from "../../../libs/useApi";
 import { ContactDataDetailFair } from "../orgs/DetailFairForm";
+import { useRouter } from "next/router";
 
 type Props = {
   handleStatus: (status: Status) => void;
@@ -13,6 +13,7 @@ type Props = {
 const DetailFairFormConfirmInput = (props: Props) => {
   const { handleStatus, data } = props;
 
+  const router = useRouter();
   const { register, handleSubmit } = useForm<ContactDataDetailFair>({
     mode: "onChange",
   });
@@ -37,9 +38,10 @@ const DetailFairFormConfirmInput = (props: Props) => {
       });
       const json = await res.json();
 
-      if (handleStatus) handleStatus("success");
+      router.push("/fair/thanks");
     } catch (error) {
       console.log(error);
+      if (handleStatus) handleStatus("error");
     }
   };
 

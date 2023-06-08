@@ -1,11 +1,12 @@
 import { useState } from "react";
-import useApi from "../../../libs/useApi";
 import Styles from "../../styles/orgs/DetailForm.module.scss";
-import DetailPlanFormConfirmInput from "../mols/DetailPlanFormConfirmInput";
 import DetailPlanFormInput from "../mols/DetailPlanFormInput";
-import ErrorForm from "../mols/ErrorForm";
-import LoadingForm from "../mols/LoadingForm";
 import ThanksForm from "../mols/ThanksForm";
+import useApi from "../../../libs/useApi";
+import LoadingForm from "../mols/LoadingForm";
+import Error from "next/error";
+import ErrorForm from "../mols/ErrorForm";
+import DetailPlanFormConfirmInput from "../mols/DetailPlanFormConfirmInput";
 
 type Props = {
   title: string;
@@ -77,7 +78,6 @@ const DetailPlanForm = (props: Props) => {
           {status === "idle" && <DetailPlanFormInput title={title} handleStatus={handleStatus} data={data} handleData={handleData} />}
           {status === "confirm" && <DetailPlanFormConfirmInput title={title} handleStatus={handleStatus} data={data} />}
           {status === "loading" && <LoadingForm />}
-          {status === "success" && <ThanksForm description="この度はお問い合わせいただき誠にありがとうございました。" />}
           {status === "error" && <ErrorForm />}
         </div>
       </div>
