@@ -38,9 +38,9 @@ const Animation = (props: Props) => {
               // markers: true,
             },
             ease: "none",
-            onComplete: () => {
-              AppTrigger.refresh();
-            },
+            // onComplete: () => {
+            //   AppTrigger.refresh();
+            // },
           }
         );
       });
@@ -69,9 +69,9 @@ const Animation = (props: Props) => {
               // markers: true,
             },
             ease: "none",
-            onComplete: () => {
-              AppTrigger.refresh();
-            },
+            // onComplete: () => {
+            //   AppTrigger.refresh();
+            // },
           }
         );
       });
@@ -100,9 +100,9 @@ const Animation = (props: Props) => {
               // markers: true,
             },
             ease: "none",
-            onComplete: () => {
-              AppTrigger.refresh();
-            },
+            // onComplete: () => {
+            //   AppTrigger.refresh();
+            // },
           }
         );
       });
@@ -130,9 +130,9 @@ const Animation = (props: Props) => {
               start: start ? start : "top bottom-=15%",
             },
             ease: "none",
-            onComplete: () => {
-              AppTrigger.refresh();
-            },
+            // onComplete: () => {
+            //   AppTrigger.refresh();
+            // },
           }
         );
       });
@@ -160,9 +160,9 @@ const Animation = (props: Props) => {
               start: start ? start : "top bottom-=15%",
             },
             ease: "none",
-            onComplete: () => {
-              AppTrigger.refresh();
-            },
+            // onComplete: () => {
+            //   AppTrigger.refresh();
+            // },
           }
         );
       });
