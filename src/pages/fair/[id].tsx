@@ -65,12 +65,14 @@ export default function Home(props: Props) {
 
   // 今日以降で一番近いfairList.calendar[n].values.calendarを取得
   const todayDateList = fairList.calendar.filter((item) => item.values.calendar >= todayDate);
-  const todayDateListSort = todayDateList.sort((a, b) => {
+
+  const todayDateListSort = todayDateList?.sort((a, b) => {
     if (a.values.calendar > b.values.calendar) return 1;
     if (a.values.calendar < b.values.calendar) return -1;
     return 0;
   });
-  const todayDateListSortFirst = todayDateListSort[0].values.calendar;
+
+  const todayDateListSortFirst = todayDateList.length > 0 ? todayDateListSort[0].values.calendar : todayDate;
 
   const [data, setData] = useState<ContactDataDetailFair>({
     title: fairList.title.replaceAll("<br>", " "),
@@ -97,7 +99,7 @@ export default function Home(props: Props) {
         <main>
           <FairDetail fairList={fairList} fairCategoriesLists={fairCategoriesLists.articles} data={data} handleData={handleData} />
           <FairContents fairList={fairList} />
-          <DetailFairForm data={data} handleData={handleData} date={fairList.calendar} time={fairList.openTime} />
+          {todayDateList.length > 0 && <DetailFairForm data={data} handleData={handleData} date={fairList.calendar} time={fairList.openTime} />}
 
           {/* <Process /> */}
           <TopWeddingPlan planLists={[...planLists.articles]} />
