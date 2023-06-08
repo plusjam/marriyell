@@ -2,10 +2,8 @@ import Styles from "@/styles/orgs/ContactForm.module.scss";
 import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Status } from "../../../libs/useApi";
-import { ContactDataDetailFair } from "../orgs/DetailFairForm";
 import { FairList } from "../../../typings/fair";
-import { useRecoilState } from "recoil";
-import { selectFairDate } from "@/pages/_app";
+import { ContactDataDetailFair } from "../orgs/DetailFairForm";
 
 type Props = {
   handleStatus: (status: Status) => void;
@@ -17,8 +15,6 @@ type Props = {
 
 const DetailFairFormInput = (props: Props) => {
   const { handleStatus, data, handleData, time, date } = props;
-
-  const [selectDate, setSelectDate] = useRecoilState<any>(selectFairDate);
 
   const {
     register,
@@ -179,7 +175,7 @@ const DetailFairFormInput = (props: Props) => {
                     const optionDate = new Date(option.values.calendar);
                     if (optionDate < today) return;
                     return (
-                      <option value={option.values.calendar} key={`${index}`} selected={selectDate === option.values.calendar}>
+                      <option value={option.values.calendar} key={`${index}`} selected={data.date === option.values.calendar}>
                         {option.values.calendar}
                       </option>
                     );

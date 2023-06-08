@@ -4,6 +4,7 @@ import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import Link from "next/link";
 import { Status } from "../../../libs/useApi";
 import { ContactDataDetailPlan } from "../orgs/DetailPlanForm";
+import { useRouter } from "next/router";
 
 type Props = {
   title: string;
@@ -14,6 +15,7 @@ type Props = {
 const DetailPlanFormConfirmInput = (props: Props) => {
   const { handleStatus, data } = props;
 
+  const router = useRouter();
   const { register, handleSubmit } = useForm<ContactDataDetailPlan>({
     mode: "onChange",
   });
@@ -38,9 +40,10 @@ const DetailPlanFormConfirmInput = (props: Props) => {
       });
       const json = await res.json();
 
-      if (handleStatus) handleStatus("success");
+      router.push("/plan/thanks");
     } catch (error) {
       console.log(error);
+      if (handleStatus) handleStatus("error");
     }
   };
 

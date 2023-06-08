@@ -2,7 +2,7 @@ import Motion from "@/components/layouts/Motion";
 import ContactFormBrochure from "@/components/orgs/ContactFormBrochure";
 import { META } from "@/textDate/head";
 import Head from "next/head";
-import { useState } from "react";
+import { atom } from "recoil";
 
 export type ContactBrochureData = {
   type: "download" | "post";
@@ -15,8 +15,9 @@ export type ContactBrochureData = {
   inquiry: string;
 };
 
-export default function Home() {
-  const [contactBrochureData, setContactBrochureData] = useState<ContactBrochureData>({
+export const contactBrochureData = atom<ContactBrochureData>({
+  key: "contactBrochureData",
+  default: {
     type: "download",
     name: "",
     furigana: "",
@@ -25,12 +26,10 @@ export default function Home() {
     zipcode: "",
     address: "",
     inquiry: "",
-  });
+  },
+});
 
-  const updateContactBrochureData = (data: ContactBrochureData) => {
-    setContactBrochureData(data);
-  };
-
+export default function Home() {
   return (
     <>
       <Motion>
@@ -39,7 +38,7 @@ export default function Home() {
         </Head>
 
         <main>
-          <ContactFormBrochure contactBrochureData={contactBrochureData} updateContactBrochureData={updateContactBrochureData} />
+          <ContactFormBrochure />
         </main>
       </Motion>
     </>
