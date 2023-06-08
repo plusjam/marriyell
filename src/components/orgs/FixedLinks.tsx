@@ -3,7 +3,7 @@ import Styles from "@/styles/orgs/FixedLinks.module.scss";
 import { FIXEDLINKS } from "@/textDate";
 import { gsap } from "gsap";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 const FixedLinks = () => {
   const ref = useRef<HTMLDivElement>(null);
