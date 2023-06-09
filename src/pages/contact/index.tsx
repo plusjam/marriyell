@@ -2,7 +2,7 @@ import Motion from "@/components/layouts/Motion";
 import ContactForm from "@/components/orgs/ContactForm";
 import { META } from "@/textDate/head";
 import Head from "next/head";
-import { useState } from "react";
+import { atom } from "recoil";
 
 export type ContactData = {
   name: string;
@@ -12,19 +12,18 @@ export type ContactData = {
   inquiry: string;
 };
 
-export default function Home() {
-  const [contactData, setContactData] = useState<ContactData>({
+export const contactData = atom<ContactData>({
+  key: "contactData",
+  default: {
     name: "",
     furigana: "",
     phone: "",
     email: "",
     inquiry: "",
-  });
+  },
+});
 
-  const updateContactData = (data: ContactData) => {
-    setContactData(data);
-  };
-
+export default function Home() {
   return (
     <>
       <Motion>
@@ -33,7 +32,7 @@ export default function Home() {
         </Head>
 
         <main>
-          <ContactForm contactData={contactData} updateContactData={updateContactData} />
+          <ContactForm />
         </main>
       </Motion>
     </>

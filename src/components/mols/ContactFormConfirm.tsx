@@ -1,20 +1,21 @@
-import { ContactData } from "@/pages/contact";
+import { ContactData, contactData } from "@/pages/contact";
 import Styles from "@/styles/orgs/ContactForm.module.scss";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Status } from "../../../libs/useApi";
 import ContactPolicy from "../atoms/ContactPolicy";
-import { Step } from "../orgs/ContactForm";
+import { useRouter } from "next/router";
+import { useRecoilState } from "recoil";
 
 type Props = {
-  step2: boolean;
-  handleStep: (step: Step) => void;
-  contactData: ContactData;
   handleStatus: (status: Status) => void;
 };
 
 const ContactFormConfirm = (props: Props) => {
-  const { step2, handleStep, contactData, handleStatus } = props;
+  const { handleStatus } = props;
 
+  const [R_contactData, setR_ContactData] = useRecoilState<ContactData>(contactData);
+
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -25,7 +26,6 @@ const ContactFormConfirm = (props: Props) => {
 
   const onSubmit: SubmitHandler<ContactData> = async () => {
     try {
-      handleStep({ step1: false, step2: false, step3: true });
       handleStatus("loading");
       window.scrollTo({
         top: 0,
@@ -37,18 +37,19 @@ const ContactFormConfirm = (props: Props) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(contactData),
+        body: JSON.stringify(R_contactData),
       });
       const json = await res.json();
 
-      handleStatus("success");
+      router.push("/contact/thanks");
     } catch (error) {
+      handleStatus("error");
       console.log(error);
     }
   };
 
   const onBack = () => {
-    handleStep({ step1: true, step2: false, step3: false });
+    handleStatus("idle");
 
     // ページトップにスムーズにスクロール
     window.scrollTo({
@@ -58,7 +59,7 @@ const ContactFormConfirm = (props: Props) => {
   };
 
   return (
-    <section className={step2 ? `${Styles.section} ${Styles.on}` : Styles.section}>
+    <section className={Styles.section}>
       <div className={Styles.container}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={Styles.head}>
@@ -70,7 +71,7 @@ const ContactFormConfirm = (props: Props) => {
                 お名前
               </label>
               <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                <input disabled className={Styles.input} id="name" {...register("name", {})} placeholder="例　山田　花子" value={contactData.name} />
+                <input disabled className={Styles.input} id="name" {...register("name", {})} placeholder="例　山田　花子" value={R_contactData.name} />
                 {errors.name && <span className={Styles.error}>{errors.name.message as string}</span>}
               </div>
             </div>
@@ -79,7 +80,7 @@ const ContactFormConfirm = (props: Props) => {
                 お名前（フリガナ）
               </label>
               <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                <input disabled className={Styles.input} id="furigana" {...register("furigana", {})} placeholder="例　ヤマダ　ハナコ" value={contactData.furigana} />
+                <input disabled className={Styles.input} id="furigana" {...register("furigana", {})} placeholder="例　ヤマダ　ハナコ" value={R_contactData.furigana} />
                 {errors.furigana && <span className={Styles.error}>{errors.furigana.message as string}</span>}
               </div>
             </div>
@@ -88,7 +89,7 @@ const ContactFormConfirm = (props: Props) => {
                 電話番号
               </label>
               <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                <input disabled className={Styles.input} id="phone" {...register("phone", {})} placeholder="例　09012345678" value={contactData.phone} />
+                <input disabled className={Styles.input} id="phone" {...register("phone", {})} placeholder="例　09012345678" value={R_contactData.phone} />
                 {errors.phone && <span className={Styles.error}>{errors.phone.message as string}</span>}
               </div>
             </div>
@@ -97,7 +98,7 @@ const ContactFormConfirm = (props: Props) => {
                 メールアドレス
               </label>
               <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                <input disabled className={Styles.input} id="email" {...register("email", {})} placeholder="例　abcd@marriyell" value={contactData.email} />
+                <input disabled className={Styles.input} id="email" {...register("email", {})} placeholder="例　abcd@marriyell" value={R_contactData.email} />
                 {errors.email && <span className={Styles.error}>{errors.email.message as string}</span>}
               </div>
             </div>
@@ -114,7 +115,7 @@ const ContactFormConfirm = (props: Props) => {
                   cols={50}
                   rows={5}
                   disabled
-                  value={contactData.inquiry}
+                  value={R_contactData.inquiry}
                 ></textarea>
                 {errors.inquiry && <span className={Styles.error}>{errors.inquiry.message as string}</span>}
               </div>

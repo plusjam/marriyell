@@ -60,7 +60,6 @@ const DetailFairForm = (props: Props) => {
           {status === "idle" && <DetailFairFormInput handleStatus={handleStatus} data={data} handleData={handleData} time={time} date={date} />}
           {status === "confirm" && <DetailFairFormConfirmInput handleStatus={handleStatus} data={data} />}
           {status === "loading" && <LoadingForm />}
-          {status === "success" && <ThanksForm description="この度はお問い合わせいただき誠にありがとうございました。" />}
           {status === "error" && <ErrorForm />}
         </div>
       </div>
