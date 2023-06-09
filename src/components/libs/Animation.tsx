@@ -168,9 +168,9 @@ const Animation = (props: Props) => {
       });
     }, ref);
 
-    setTimeout(() => {
-      AppTrigger.refresh();
-    }, 400);
+    // setTimeout(() => {
+    //   AppTrigger.refresh();
+    // }, 400);
 
     return () => {
       ctx.revert();
