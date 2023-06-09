@@ -27,32 +27,36 @@ const FixedLinks = () => {
     const mainFlow = document.querySelector("#mainflow");
 
     const ctx = gsap.context((self) => {
-      gsap.fromTo(
-        ref.current,
-        {
-          alpha: 0,
-        },
-        {
-          scrollTrigger: {
-            trigger: mainFlow,
-            start: "bottom bottom",
-            // markers: true,
-            onEnter: () => {
-              // 要素が画面内に入ったときに実行されるコード
-              window.addEventListener("scroll", showOrHide);
-              gsap.to(ref.current, { autoAlpha: 1 });
-            },
-            onLeaveBack: () => {
-              // 要素が再び画面から出たときに実行されるコード
-              window.removeEventListener("scroll", showOrHide);
-              gsap.to(ref.current, { autoAlpha: 0 });
-            },
+      if (mainFlow === null) {
+        window.addEventListener("scroll", showOrHide);
+      } else {
+        gsap.fromTo(
+          ref.current,
+          {
+            alpha: 0,
           },
-          onComplete: () => {
-            AppTrigger.refresh();
-          },
-        }
-      );
+          {
+            scrollTrigger: {
+              trigger: mainFlow,
+              start: "bottom bottom",
+              // markers: true,
+              onEnter: () => {
+                // 要素が画面内に入ったときに実行されるコード
+                window.addEventListener("scroll", showOrHide);
+                gsap.to(ref.current, { autoAlpha: 1 });
+              },
+              onLeaveBack: () => {
+                // 要素が再び画面から出たときに実行されるコード
+                window.removeEventListener("scroll", showOrHide);
+                gsap.to(ref.current, { autoAlpha: 0 });
+              },
+            },
+            onComplete: () => {
+              AppTrigger.refresh();
+            },
+          }
+        );
+      }
     }, ref);
 
     setTimeout(() => {
