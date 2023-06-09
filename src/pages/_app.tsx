@@ -37,8 +37,8 @@ export default function App({ Component, pageProps, router }: AppProps) {
 
   return (
     <RecoilRoot>
+      <GtmHead />
       <Head>
-        <GtmHead />
         <meta name="description" content="群馬県高崎市の結婚式場「マリエール高崎」。県内初の挙式・​ウェルカムパーティー・披露宴の3つのイベントを1日で行える特別なウェディングスタイルをご用意。" />
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0" />
 
