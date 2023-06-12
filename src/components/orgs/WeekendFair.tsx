@@ -61,7 +61,7 @@ const WeekendFair = (props: Props) => {
                         <Image src={content.mainPc.url} alt="" width={content.mainPc.attributes.width} height={content.mainPc.attributes.height} />
                       </div>
                       <div className={Styles.date}>{date[0].date}</div>
-                      <div className={Styles.description} dangerouslySetInnerHTML={{ __html: content.description }}></div>
+                      <div className={Styles.description} dangerouslySetInnerHTML={{ __html: content.title }}></div>
                     </Link>
                   </SwiperSlide>
                 );
