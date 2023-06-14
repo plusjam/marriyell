@@ -4,8 +4,8 @@ export const removeDuplicates = (fairLists: FairLists["articles"]) => {
   let filterd: string[] = [];
 
   fairLists.forEach((article) => {
-    article.calendar.forEach((calendarItem) => {
-      filterd.push(calendarItem.values.calendar);
+    article.calendarMulti?.values.forEach((calendarItem) => {
+      filterd.push(calendarItem);
     });
   });
 

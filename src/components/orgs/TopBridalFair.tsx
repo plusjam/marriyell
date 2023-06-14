@@ -29,8 +29,9 @@ const TopBridalFair = (props: Props) => {
   // 今日以降のcalendarを一つでも持っているものだけを抽出
   const today = new Date();
   const includingTodayLists = [...lists].filter((elem) => {
-    return elem.calendar.some((calendar) => {
-      const latestDate = new Date(calendar.values.calendar);
+    if (!elem.calendarMulti) return;
+    return elem.calendarMulti?.values.some((calendar) => {
+      const latestDate = new Date(calendar);
       return today <= latestDate;
     });
   });
@@ -39,18 +40,24 @@ const TopBridalFair = (props: Props) => {
   const filteredLists = [...includingTodayLists].map((elem) => {
     return {
       ...elem,
-      calendar: [...elem.calendar].filter((calendar) => {
-        const latestDate = new Date(calendar.values.calendar);
-        return today <= latestDate;
-      }),
+      calendarMulti: {
+        multiple: elem.calendarMulti ? elem.calendarMulti.multiple : false,
+        values: elem.calendarMulti
+          ? [...elem.calendarMulti.values].filter((calendar) => {
+              const latestDate = new Date(calendar);
+              return today <= latestDate;
+            })
+          : [],
+      },
     };
   });
 
   // filteredListssを日付順に並び替え
   filteredLists.sort((a, b) => {
-    const latestDateA = new Date(a.calendar[0].values.calendar);
-    const latestDateB = new Date(b.calendar[0].values.calendar);
-    return latestDateA.getTime() - latestDateB.getTime();
+    if (!a.calendarMulti || !b.calendarMulti) return 0;
+    const latestDateA = new Date(a.calendarMulti.values[a.calendarMulti.values.length - 1]);
+    const latestDateB = new Date(b.calendarMulti.values[b.calendarMulti.values.length - 1]);
+    return latestDateA < latestDateB ? -1 : 1;
   });
 
   return (
