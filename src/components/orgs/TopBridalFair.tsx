@@ -94,7 +94,7 @@ const TopBridalFair = (props: Props) => {
               >
                 {filteredLists.map((elem, index) => {
                   //
-                  const latestDate = new Date(elem.calendar[0].values.calendar);
+                  const latestDate = new Date(elem.calendarMulti.values[0]);
                   const yyyymm = latestDate.getFullYear() + "." + ("0" + (latestDate.getMonth() + 1)).slice(-2);
                   const date = ("0" + latestDate.getDate()).slice(-2);
                   const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][latestDate.getDay()];
