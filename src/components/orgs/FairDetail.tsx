@@ -20,9 +20,11 @@ const FairDetail = (props: Props) => {
 
   const isPc = useMediaQuery(768, "max");
 
-  const events = fairList.calendar.map((date) => {
-    return { date: date.values.calendar };
-  });
+  const events = fairList.calendarMulti
+    ? fairList.calendarMulti?.values.map((date) => {
+        return { date: date };
+      })
+    : [];
 
   return (
     <section className={Styles.section}>
