@@ -52,9 +52,9 @@ export default function Home(props: Props) {
     });
 
     const selectedWeekendLists = [...initLists].filter((weekend) => {
-      return weekend.calendar.some((calendar) => {
+      return weekend.calendarMulti?.values.some((calendar) => {
         const find = selectedDate.find((selectedWeekend) => {
-          const eventDate = new Date(calendar.values.calendar);
+          const eventDate = new Date(calendar);
           const month = eventDate.getMonth();
           const dateNum = eventDate.getDate();
 
