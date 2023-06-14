@@ -20,7 +20,7 @@ export type ContactDataDetailFair = {
 
 type Props = {
   time: FairList["openTime"];
-  date: FairList["calendar"];
+  date: FairList["calendarMulti"];
   handleData: (data: ContactDataDetailFair) => void;
   data: ContactDataDetailFair;
 };

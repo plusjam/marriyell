@@ -10,7 +10,7 @@ type Props = {
   data: ContactDataDetailFair;
   handleData: (data: ContactDataDetailFair) => void;
   time: FairList["openTime"];
-  date: FairList["calendar"];
+  date: FairList["calendarMulti"];
 };
 
 const DetailFairFormInput = (props: Props) => {
@@ -169,17 +169,19 @@ const DetailFairFormInput = (props: Props) => {
                   })}
                   className={`${Styles.input} ${Styles.select}`}
                 >
-                  {date.map((option, index) => {
-                    // 今日の日付よりも前の日付の場合はreturn
-                    const today = new Date();
-                    const optionDate = new Date(option.values.calendar);
-                    if (optionDate < today) return;
-                    return (
-                      <option value={option.values.calendar} key={`${index}`} selected={data.date === option.values.calendar}>
-                        {option.values.calendar}
-                      </option>
-                    );
-                  })}
+                  {data
+                    ? date?.values.map((option, index) => {
+                        // 今日の日付よりも前の日付の場合はreturn
+                        const today = new Date();
+                        const optionDate = new Date(option);
+                        if (optionDate < today) return;
+                        return (
+                          <option value={option} key={`${index}`} selected={data.date === option}>
+                            {option}
+                          </option>
+                        );
+                      })
+                    : null}
                 </select>
                 {errors.date && <span className={Styles.error}>{errors.date.message as string}</span>}
               </div>

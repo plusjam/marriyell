@@ -32,9 +32,13 @@ const BridalaFairContent = (props: Props) => {
 
         <div className={Styles.calendar}>
           <Calendar
-            events={content.calendar.map((date) => {
-              return { date: date.values.calendar };
-            })}
+            events={
+              content.calendarMulti
+                ? content.calendarMulti?.values.map((date) => {
+                    return { date: date };
+                  })
+                : []
+            }
             code={content.code}
           />
         </div>

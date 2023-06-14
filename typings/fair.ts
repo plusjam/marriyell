@@ -42,6 +42,11 @@ export type Calendar = {
   };
 };
 
+export type CalendarMulti = {
+  multiple: boolean;
+  values: string[];
+};
+
 export type OpenTime = {
   scheme: {
     inique_id: string;
@@ -74,6 +79,7 @@ export type FairArticle = {
   categories: Category;
   description: string;
   calendar: Calendar[];
+  calendarMulti: CalendarMulti | null;
   requireTime: number;
   openTime: OpenTime[];
   limited: string | null;
@@ -103,6 +109,7 @@ export type FairList = {
   categories: Category;
   description: string;
   calendar: Calendar[];
+  calendarMulti: CalendarMulti | null;
   requireTime: number;
   openTime: OpenTime[];
   limited: string;

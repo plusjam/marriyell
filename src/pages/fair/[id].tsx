@@ -99,7 +99,7 @@ export default function Home(props: Props) {
         <main>
           <FairDetail fairList={fairList} fairCategoriesLists={fairCategoriesLists.articles} data={data} handleData={handleData} />
           <FairContents fairList={fairList} />
-          {todayDateList.length > 0 && <DetailFairForm data={data} handleData={handleData} date={fairList.calendar} time={fairList.openTime} />}
+          {todayDateList.length > 0 && <DetailFairForm data={data} handleData={handleData} date={fairList.calendarMulti} time={fairList.openTime} />}
 
           {/* <Process /> */}
           <TopWeddingPlan planLists={[...planLists.articles]} />
