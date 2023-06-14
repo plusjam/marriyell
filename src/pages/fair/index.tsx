@@ -126,8 +126,8 @@ export default function Home(props: Props) {
       // listsからtargetDateと一致するものを抽出
       const initLists = [...fairLists.articles];
       const selectedDateLists = initLists.filter((list) => {
-        return list.calendar.some((event) => {
-          return targetDate === event.values.calendar;
+        return list.calendarMulti?.values.some((event) => {
+          return targetDate === event;
         });
       });
 
