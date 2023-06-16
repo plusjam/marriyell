@@ -95,15 +95,15 @@ export const infoLinks = [
 export const sitemapLinks = [
   {
     title: "施設紹介",
-    href: "facility",
+    href: "/facility",
   },
   {
     title: "― 挙式会場",
-    href: "facility#chapel",
+    href: "/facility#chapel",
   },
   {
     title: "― 宴会会場",
-    href: "facility#originalwedding",
+    href: "/facility#originalwedding",
   },
   {
     title: "お料理",
@@ -111,7 +111,7 @@ export const sitemapLinks = [
   },
   {
     title: "ドレス・和装",
-    href: "dress",
+    href: "/dress",
   },
   {
     title: "フェア",
