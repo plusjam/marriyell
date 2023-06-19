@@ -89,6 +89,7 @@ const TopBridalFair = (props: Props) => {
                     slidesPerView: 3,
                     centeredSlides: false,
                     spaceBetween: 32,
+                    initialSlide: 0,
                   },
                 }}
               >

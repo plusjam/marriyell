@@ -41,10 +41,11 @@ const WeekendFair = (props: Props) => {
             centeredSlides={true}
             initialSlide={1}
             breakpoints={{
-              769: {
+              768: {
                 slidesPerView: 3,
                 centeredSlides: false,
                 spaceBetween: 25,
+                initialSlide: 0,
               },
             }}
           >

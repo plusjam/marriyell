@@ -130,7 +130,7 @@ export default function Home(props: Props) {
 //   /* ===================================================================
 //   // レポート
 //   =================================================================== */
-//   const reportUrl = `${process.env.CMS_URL}/api/v1/report?limit=12`;
+//   const reportUrl = `${process.env.CMS_URL}/api/v1/report?limit=4`;
 //   const reportRes: { data: ReportLists } = await axios.get(reportUrl, {
 //     headers: {
 //       "Content-Type": "application/json",
