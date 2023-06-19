@@ -42,14 +42,18 @@ const PlanDetail = (props: Props) => {
             </div>
 
             <div className={Styles.terms}>
-              <div className={Styles.term}>
-                <div className={Styles.termTag}>適用条件</div>
-                <span>{content.term}</span>
-              </div>
-              <div className={Styles.term}>
-                <div className={Styles.termTag}>適用期間</div>
-                <span>{content.limited}</span>
-              </div>
+              {content.term && (
+                <div className={Styles.term}>
+                  <div className={Styles.termTag}>適用条件</div>
+                  <span>{content.term}</span>
+                </div>
+              )}
+              {content.limited && (
+                <div className={Styles.term}>
+                  <div className={Styles.termTag}>適用期間</div>
+                  <span>{content.limited}</span>
+                </div>
+              )}
             </div>
 
             <div className={Styles.description}>{content.description}</div>

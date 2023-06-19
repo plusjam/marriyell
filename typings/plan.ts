@@ -70,8 +70,8 @@ export type PlanArticle = {
   price: number;
   member: string;
   categories: Category;
-  term: string;
-  limited: string;
+  term: string | null;
+  limited: string | null;
   description: string;
   visitPrevileges: Previleges[] | null;
   signingPrevileges: Previleges[] | null;
@@ -99,8 +99,8 @@ export type PlanList = {
   price: number;
   member: string;
   categories: Category;
-  term: string;
-  limited: string;
+  term: string | null;
+  limited: string | null;
   description: string;
   visitPrevileges: Previleges[] | null;
   signingPrevileges: Previleges[] | null;
