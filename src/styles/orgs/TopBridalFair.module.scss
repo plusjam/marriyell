@@ -117,10 +117,16 @@
   margin-bottom: 21px;
   transition: 0.2s;
   line-height: 0;
+  aspect-ratio: 560 / 380;
+  margin-bottom: 16px;
+  background-color: #f4f4f4;
 
-  img {
+  img,
+  picture,
+  source {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
   }
 }
 
@@ -249,17 +255,6 @@
   color: #707070;
   margin-top: 40px;
   width: 100%;
-}
-
-.image {
-  margin-bottom: 16px;
-  background-color: #f4f4f4;
-
-  img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-  }
 }
 
 .date {
