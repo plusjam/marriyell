@@ -83,7 +83,7 @@ export default function Home(props: Props) {
     phone: "",
     email: "",
     date: selectDate !== "" ? selectDate : todayDateListSortFirst,
-    time: fairList.openTime[0].values.timeRange,
+    time: fairList.openTime ? fairList.openTime[0].values.timeRange : "",
     inquiry: "",
   });
 

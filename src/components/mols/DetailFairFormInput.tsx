@@ -203,13 +203,15 @@ const DetailFairFormInput = (props: Props) => {
                   })}
                   className={`${Styles.input} ${Styles.select}`}
                 >
-                  {time.map((option, index) => {
-                    return (
-                      <option value={option.values.timeRange} key={`${index}`}>
-                        {option.values.timeRange}
-                      </option>
-                    );
-                  })}
+                  {time
+                    ? time.map((option, index) => {
+                        return (
+                          <option value={option.values.timeRange} key={`${index}`}>
+                            {option.values.timeRange}
+                          </option>
+                        );
+                      })
+                    : null}
                 </select>
 
                 {errors.time && <span className={Styles.error}>{errors.time.message as string}</span>}

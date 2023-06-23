@@ -1,11 +1,9 @@
-import { PlanLists } from "@/pages/api/plan";
-import Image from "next/image";
-import Styles from "../../styles/orgs/FairDetail.module.scss";
-import Previlege from "../mols/Previlege";
-import Calendar from "../atoms/Calendar";
-import BridalCategories from "../mols/BridalCategories";
 import { useMediaQuery } from "../../../libs/useMediaQuery";
 import { FairCategoriesLists, FairList } from "../../../typings/fair";
+import Styles from "../../styles/orgs/FairDetail.module.scss";
+import Calendar from "../atoms/Calendar";
+import BridalCategories from "../mols/BridalCategories";
+import Previlege from "../mols/Previlege";
 import { ContactDataDetailFair } from "./DetailFairForm";
 
 type Props = {
@@ -59,30 +57,38 @@ const FairDetail = (props: Props) => {
             {isPc && <div className={Styles.description}>{fairList.description}</div>}
 
             <div className={Styles.terms}>
-              <div className={Styles.term}>
-                <div className={Styles.termTag}>所要時間</div>
-                <span>{fairList.requireTime}分</span>
-              </div>
-              <div className={Styles.term}>
-                <div className={Styles.termTag}>開催時間</div>
-                <div>
-                  {fairList.openTime.map((elem, index) => {
-                    return (
-                      <span className={Styles.openTime} key={index}>
-                        {elem.values.timeRange} ｜{" "}
-                      </span>
-                    );
-                  })}
+              {fairList.requireTime && (
+                <div className={Styles.term}>
+                  <div className={Styles.termTag}>所要時間</div>
+                  <span>{fairList.requireTime}分</span>
                 </div>
-              </div>
-              <div className={Styles.term}>
-                <div className={Styles.termTag}>適用期間</div>
-                <span>{fairList.limited}</span>
-              </div>
-              <div className={Styles.term}>
-                <div className={Styles.termTag}>備考</div>
-                <span>{fairList.remarks}</span>
-              </div>
+              )}
+              {fairList.openTime && (
+                <div className={Styles.term}>
+                  <div className={Styles.termTag}>開催時間</div>
+                  <div>
+                    {fairList.openTime.map((elem, index) => {
+                      return (
+                        <span className={Styles.openTime} key={index}>
+                          {elem.values.timeRange} ｜{" "}
+                        </span>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+              {fairList.limited && (
+                <div className={Styles.term}>
+                  <div className={Styles.termTag}>適用期間</div>
+                  <span>{fairList.limited}</span>
+                </div>
+              )}
+              {fairList.remarks && (
+                <div className={Styles.term}>
+                  <div className={Styles.termTag}>備考</div>
+                  <span>{fairList.remarks}</span>
+                </div>
+              )}
             </div>
           </div>
         </div>

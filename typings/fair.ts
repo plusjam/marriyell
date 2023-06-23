@@ -80,10 +80,10 @@ export type FairArticle = {
   description: string;
   calendar: Calendar[];
   calendarMulti: CalendarMulti | null;
-  requireTime: number;
-  openTime: OpenTime[];
+  requireTime: number | null;
+  openTime: OpenTime[] | null;
   limited: string | null;
-  remarks: string;
+  remarks: string | null;
   visitPrevileges: Previleges[] | null;
   signingPrevileges: Previleges[] | null;
   contents: Content;
@@ -110,10 +110,10 @@ export type FairList = {
   description: string;
   calendar: Calendar[];
   calendarMulti: CalendarMulti | null;
-  requireTime: number;
-  openTime: OpenTime[];
-  limited: string;
-  remarks: string;
+  requireTime: number | null;
+  openTime: OpenTime[] | null;
+  limited: string | null;
+  remarks: string | null;
   visitPrevileges: Previleges[] | null;
   signingPrevileges: Previleges[] | null;
   contents: Content;

@@ -54,10 +54,12 @@ const WeddingPlanContent = (props: Props) => {
         </div>
 
         <div className={Styles.terms}>
-          <div className={Styles.term}>
-            <div className={Styles.termTag}>適用条件</div>
-            <span>10名よりご利用いただけます　※1名様増減　16,940円</span>
-          </div>
+          {content.term && (
+            <div className={Styles.term}>
+              <div className={Styles.termTag}>適用条件</div>
+              <span>{content.term}</span>
+            </div>
+          )}
         </div>
 
         <div className={Styles.links}>
