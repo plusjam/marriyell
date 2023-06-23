@@ -24,7 +24,7 @@ const TopNewsEvent = (props: Props) => {
 
   return (
     <section className={Styles.section}>
-      <SectionHead en="News & Event" ja="お知らせ・イベント" href="news-event" />
+      <SectionHead en="News & Event" ja="お知らせ・イベント" href="news-event" isShort />
       <div className={Styles.container}>
         <div className={Styles.lists}>
           {limitedContents.map((content, index) => {
