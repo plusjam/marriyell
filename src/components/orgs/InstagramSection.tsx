@@ -48,10 +48,10 @@ const InstagramSection = () => {
           "読み込み中"
         ) : posts.length > 0 ? (
           <>
-            {posts.map((post, index) => (
+            {posts.map((post: any, index) => (
               <div className={Styles.post} key={`instagrampost${index}`}>
                 <Link href={post.permalink} target="_blank">
-                  <img src={post.media_url} alt="" />
+                  {post.media_type === "VIDEO" ? <img src={post.thumbnail_url} alt="" /> : <img src={post.media_url} alt="" />}
                 </Link>
               </div>
             ))}
