@@ -86,10 +86,10 @@ const TopBridalFair = (props: Props) => {
                 mousewheel={{ invert: false }}
                 breakpoints={{
                   768: {
-                    slidesPerView: 3,
-                    centeredSlides: false,
+                    slidesPerView: filteredLists.length < 3 ? filteredLists.length : 3,
                     spaceBetween: 32,
-                    initialSlide: 0,
+                    centeredSlides: false,
+                    initialSlide: filteredLists.length < 3 ? 1 : 0,
                   },
                 }}
               >
