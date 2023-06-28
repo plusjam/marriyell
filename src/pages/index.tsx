@@ -153,7 +153,7 @@ export const getStaticProps: GetStaticProps = async () => {
   /* ===================================================================
   // お知らせ
   =================================================================== */
-  const newsUrl = `${process.env.CMS_URL}/api/v1/news`;
+  const newsUrl = `${process.env.CMS_URL}/api/v1/news?limit=4`;
   const newsRes: { data: NewsLists } = await axios.get(newsUrl, {
     headers: {
       "Content-Type": "application/json",
@@ -180,7 +180,6 @@ export const getStaticProps: GetStaticProps = async () => {
   });
 
   const newsCategoriesLists: NewsCategoriesLists = newsCategoriesRes.data;
-  // console.log("お知らせカテゴリリスト", newsCategoriesLists);
 
   return {
     props: {
