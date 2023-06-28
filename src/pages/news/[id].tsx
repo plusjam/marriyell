@@ -1,5 +1,5 @@
 import { GetStaticProps } from "next";
-import React from "react";
+import React, { useState } from "react";
 import { NewsCategory, NewsContents, NewsList, NewsLists } from "../../../typings/news";
 import UnderlayerHead from "@/components/orgs/UnderlayerHead";
 import Motion from "@/components/layouts/Motion";
@@ -8,97 +8,149 @@ import Styles from "@/styles/pages/News.module.scss";
 import Link from "next/link";
 import { apricotClient } from "../../../libs/cms";
 import axios from "axios";
+import InstagramSection from "@/components/orgs/InstagramSection";
 
 type Props = {
   newsList: NewsList;
 };
 
+export type ContactDataNews = {
+  title: string;
+  name: string;
+  furigana: string;
+  phone: string;
+  email: string;
+  date?: string;
+  time?: string;
+  inquiry?: string;
+};
+
 const HOME = (props: Props) => {
   const { newsList } = props;
+
+  const [data, setData] = useState<ContactDataNews>({
+    title: newsList.title.replaceAll("<br>", " "),
+    name: "",
+    furigana: "",
+    phone: "",
+    email: "",
+    date: "",
+    time: "",
+    inquiry: "",
+  });
+
+  const handleData = (data: ContactDataNews) => {
+    setData(data);
+  };
+
+  const publishDate = new Date(newsList.publishedAt);
+  const year = publishDate.getFullYear();
+  const month = publishDate.getMonth() + 1;
+  const date = publishDate.getDate();
+  const formatedDate = `${year}.${month}.${date}`;
+
+  const pattern01 = (image: NewsList["description"][0]["values"]["image"], text: string) => {
+    return (
+      <div className={`${Styles.pattern} ${Styles.pattern01}`}>
+        {/* 左にテキスト、右に画像 */}
+        <div className={Styles.text}>
+          <p className={Styles.p} dangerouslySetInnerHTML={{ __html: text.replaceAll("\n", "<br/>") }}></p>
+        </div>
+
+        <div className={Styles.image}>
+          <img src={image?.url} alt="" width={image?.attributes.width} height={image?.attributes.height} />
+        </div>
+      </div>
+    );
+  };
+
+  const pattern02 = (image: NewsList["description"][0]["values"]["image"], text: string) => {
+    return (
+      <div className={`${Styles.pattern} ${Styles.pattern02}`}>
+        {/* 左に画像、右にテキスト */}
+        <div className={Styles.image}>
+          <img src={image?.url} alt="" width={image?.attributes.width} height={image?.attributes.height} />
+        </div>
+
+        <div className={Styles.text}>
+          <p className={Styles.p} dangerouslySetInnerHTML={{ __html: text.replaceAll("\n", "<br/>") }}></p>
+        </div>
+      </div>
+    );
+  };
+
+  const pattern03 = (text: string) => {
+    return (
+      <div className={`${Styles.pattern} ${Styles.pattern03}`}>
+        {/* テキストのみ */}
+        <div className={Styles.text}>
+          <p className={Styles.p} dangerouslySetInnerHTML={{ __html: text.replaceAll("\n", "<br/>") }}></p>
+        </div>
+      </div>
+    );
+  };
+
+  const pattern04 = (image: NewsList["description"][0]["values"]["image"]) => {
+    return (
+      <div className={`${Styles.pattern} ${Styles.pattern04}`}>
+        {/* 画像のみ */}
+        <div className={Styles.image}>
+          <img src={image?.url} alt="" width={image?.attributes.width} height={image?.attributes.height} />
+        </div>
+      </div>
+    );
+  };
+
+  const contents = (content: NewsList["articles"][0]["description"][0], index: number) => {
+    let pattern = <></>;
+    if (content.scheme.unique_id === "field1") pattern = pattern01(content.values.image!, content.values.text!);
+    if (content.scheme.unique_id === "field2") pattern = pattern02(content.values.image!, content.values.text!);
+    if (content.scheme.unique_id === "field3") pattern = pattern03(content.values.text!);
+    if (content.scheme.unique_id === "field4") pattern = pattern04(content.values.image!);
+    return <React.Fragment key={`field${index}`}>{pattern} </React.Fragment>;
+  };
 
   return (
     <>
       <Motion>
         <Head>
-          <title>{`記事タイトル｜マリエール高崎`}</title>
+          <title>{`${newsList.title}｜マリエール高崎`}</title>
         </Head>
 
         <main>
-          <UnderlayerHead en="News ＆ Event" ja="お知らせ・イベント情報" image="" spImage="" />
+          <UnderlayerHead en="News ＆ Event" ja="お知らせ・イベント情報" image="/images/news_main.jpg" spImage="/images/news_main-sp.jpg" />
 
           <div className={Styles.container}>
             <section className={Styles.header}>
               <div className={Styles.meta}>
                 <ul className={Styles.categories}>
-                  {/* {
-                    newsLists.
-                  } */}
-                  <li className={Styles.category}>お知らせ</li>
-                  <li className={Styles.category}>フェア</li>
+                  {newsList.categories.articles.map((category, index) => (
+                    <li className={Styles.category} key={`newscategory${index}`}>
+                      {category.title}
+                    </li>
+                  ))}
                 </ul>
-                <p className={Styles.date}>2022/12/31</p>
+                <p className={Styles.date}>{formatedDate}</p>
               </div>
-              <h2 className={Styles.title}>フォトマルシェ　2023年5月28開催予約スタート</h2>
+              <h2 className={Styles.title}>{newsList.title}</h2>
             </section>
 
-            <section className={Styles.contents}>
-              <div className={`${Styles.pattern} ${Styles.pattern01}`}>
-                {/* テキストのみ */}
-                <div className={Styles.text}>
-                  <p className={Styles.p}>テキストのみのセクションテキストのみのセクションテキストのみのセクションテキストのみのセクションテキストのみのセクションテキストのみのセクション。</p>
-                  <p className={Styles.p}>テキストのみのセクションテキストのみのセクション</p>
-                  <p className={Styles.p}>下は画像のみのセクション</p>
-                </div>
-              </div>
-
-              <div className={`${Styles.pattern} ${Styles.pattern02}`}>
-                {/* 画像のみ */}
-                <div className={Styles.image}>
-                  <img src="/images/sample01.png" alt="" width={840} height={300} />
-                </div>
-              </div>
-
-              <div className={`${Styles.pattern} ${Styles.pattern03}`}>
-                {/* 左に画像、右にテキスト */}
-                <div className={Styles.image}>
-                  <img src="/images/sample02.png" alt="" width={620} height={250} />
-                </div>
-
-                <div className={Styles.text}>
-                  <p className={Styles.p}>
-                    左に画像、右にテキスト左に画像、右にテキスト左に画像、右にテキスト左に画像、右にテキスト左に画像、右にテキスト左に画像、右にテキスト左に画像、右にテキスト。左に画像、右にテキスト左に画像、右にテキスト
-                  </p>
-                  <p className={Styles.p}>左に画像、右にテキスト左に画像、右にテキスト</p>
-                </div>
-              </div>
-
-              <div className={`${Styles.pattern} ${Styles.pattern04}`}>
-                {/* 左にテキスト、右に画像 */}
-                <div className={Styles.image}>
-                  <img src="/images/sample03.png" alt="" width={300} height={300} />
-                </div>
-
-                <div className={Styles.text}>
-                  <p className={Styles.p}>左にテキスト、右に画像左にテキスト、右に画像左にテキスト、右に画像左にテキスト、右に画像左にテキスト、右に画像</p>
-                  <p className={Styles.p}>左にテキスト、右に画像左にテキスト、右に画像左にテキスト、右に画像</p>
-                </div>
-              </div>
-            </section>
+            <section className={Styles.contents}>{newsList.description.map((content, index) => contents(content, index))}</section>
 
             <section className={Styles.actions}>
-              <Link href="" className={Styles.prev}>
+              <Link href={`/news/${newsList.prevCode}`} className={newsList.prevCode ? Styles.prev : `${Styles.prev} ${Styles.none}`}>
                 前へ
               </Link>
               <Link href="/news" className={Styles.toLists}>
                 一覧に戻る
               </Link>
-              <Link href="" className={Styles.next}>
+              <Link href={`/news/${newsList.nextCode}`} className={newsList.nextCode ? Styles.next : `${Styles.next} ${Styles.none}`}>
                 次へ
               </Link>
             </section>
           </div>
 
-          {/* <InstagramSection /> */}
+          <InstagramSection />
         </main>
       </Motion>
     </>
