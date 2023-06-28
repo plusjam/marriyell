@@ -56,10 +56,10 @@ export const GARDEN = {
   },
 };
 
-export const ORIGINALWEDDING = {
-  en: "Original Wedding",
-  ja: "オリジナルウエディング",
-  href: "originalwedding",
+export const BANQUET = {
+  en: "Banquet",
+  ja: "バンケット",
+  href: "banquet",
 };
 
 export const HAMPTON = {

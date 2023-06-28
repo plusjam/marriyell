@@ -102,8 +102,8 @@ export const sitemapLinks = [
     href: "/facility#chapel",
   },
   {
-    title: "― 宴会会場",
-    href: "/facility#originalwedding",
+    title: "― バンケット",
+    href: "/facility#banquet",
   },
   {
     title: "お料理",

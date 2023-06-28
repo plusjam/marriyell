@@ -7,13 +7,15 @@ import Link from "next/link";
 import { IMAGELINKS } from "@/textDate";
 import Image from "next/image";
 import { useMediaQuery } from "../../../libs/useMediaQuery";
+import { BannerLists } from "../../../typings/banner";
 
 type Props = {
   contents: NewsLists["articles"];
+  bannerLists: BannerLists["articles"];
 };
 
 const TopNewsEvent = (props: Props) => {
-  const { contents } = props;
+  const { contents, bannerLists } = props;
 
   // contentsの要素数を4つに制限
   const limitedContents = contents.filter((content, index) => {
@@ -23,73 +25,77 @@ const TopNewsEvent = (props: Props) => {
   const isPc = useMediaQuery(768, "min");
 
   return (
-    <section className={Styles.section}>
-      <SectionHead en="News & Event" ja="お知らせ・イベント" href="news-event" isShort />
-      <div className={Styles.container}>
-        <div className={Styles.lists}>
-          {limitedContents.map((content, index) => {
-            // content.updatedDateをyyyy/mm/ddに変換
-            const date = new Date(content.updatedAt);
-            const year = date.getFullYear();
-            const month = date.getMonth() + 1;
-            const day = date.getDate();
-            const updatedDate = `${year}/${month}/${day}`;
-
-            // descriptionから最初のtextを取得して文字数制限
-            let firstText = "";
-            content.description.some((elem) => {
-              if (elem.values.text) {
-                firstText = elem.values.text;
-                return true;
-              }
-            });
-
-            // descriptionの文字数制限
-            const limit = isPc ? 45 : 20;
-            const descriptionLimit = firstText.length > limit ? firstText.slice(0, limit) + "..." : firstText;
-            const titleLimit = content.title.length > limit ? content.title.slice(0, limit) + "..." : content.title;
-
-            return (
-              <Link href={`/news/${content.code}`} className={Styles.list} key={`news${index}`}>
-                <div className={Styles.image}>
-                  <img src={content.eyecatch.url} alt={content.title} />
-                </div>
-                <div className={Styles.content}>
-                  <div className={Styles.description}>{titleLimit}</div>
-                  <div className={Styles.date}>{updatedDate}</div>
-                  <div className={Styles.categories}>
-                    {content.categories.articles.map((category, index) => {
-                      if (!isPc && index > 0) return;
-                      if (isPc && index > 1) return;
-
-                      return (
-                        <div className={Styles.category} key={`category${index}`}>
-                          {category.title}
-                        </div>
-                      );
-                    })}
+    <>
+      {bannerLists.length > 0 && (
+        <section className={Styles.section}>
+          {/* <SectionHead en="News & Event" ja="お知らせ・イベント" href="news-event" isShort /> */}
+          <div className={Styles.container}>
+            {/* <div className={Styles.lists}>
+            {limitedContents.map((content, index) => {
+              // content.updatedDateをyyyy/mm/ddに変換
+              const date = new Date(content.updatedAt);
+              const year = date.getFullYear();
+              const month = date.getMonth() + 1;
+              const day = date.getDate();
+              const updatedDate = `${year}/${month}/${day}`;
+  
+              // descriptionから最初のtextを取得して文字数制限
+              let firstText = "";
+              content.description.some((elem) => {
+                if (elem.values.text) {
+                  firstText = elem.values.text;
+                  return true;
+                }
+              });
+  
+              // descriptionの文字数制限
+              const limit = isPc ? 45 : 20;
+              const descriptionLimit = firstText.length > limit ? firstText.slice(0, limit) + "..." : firstText;
+              const titleLimit = content.title.length > limit ? content.title.slice(0, limit) + "..." : content.title;
+  
+              return (
+                <Link href={`/news/${content.code}`} className={Styles.list} key={`news${index}`}>
+                  <div className={Styles.image}>
+                    <img src={content.eyecatch.url} alt={content.title} />
                   </div>
-                </div>
-              </Link>
-            );
-          })}
-        </div>
+                  <div className={Styles.content}>
+                    <div className={Styles.description}>{titleLimit}</div>
+                    <div className={Styles.date}>{updatedDate}</div>
+                    <div className={Styles.categories}>
+                      {content.categories.articles.map((category, index) => {
+                        if (!isPc && index > 0) return;
+                        if (isPc && index > 1) return;
+  
+                        return (
+                          <div className={Styles.category} key={`category${index}`}>
+                            {category.title}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+  
+          <div className={Styles.link}>
+            <LinkToLists href="/news" text="お知らせ一覧を見る" />
+          </div> */}
 
-        <div className={Styles.link}>
-          <LinkToLists href="/news" text="お知らせ一覧を見る" />
-        </div>
-
-        <div className={Styles.imageLinks}>
-          {IMAGELINKS.map((imageLink, index) => {
-            return (
-              <Link href={imageLink.href} key={`imageLink${index}`} className={Styles.imageLink}>
-                <Image src={imageLink.src} alt="" width={320} height={116} />
-              </Link>
-            );
-          })}
-        </div>
-      </div>
-    </section>
+            <div className={Styles.imageLinks}>
+              {bannerLists.map((banner, index) => {
+                return (
+                  <Link href={banner.href} key={`banner${index}`} className={Styles.imageLink}>
+                    <Image src={banner.image.url} alt="" width={banner.image.attributes.width} height={banner.image.attributes.height} />
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
+    </>
   );
 };
 

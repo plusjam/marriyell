@@ -19,9 +19,8 @@ import { FairLists } from "../../typings/fair";
 import { NewsCategoriesLists, NewsLists } from "../../typings/news";
 import { PlanLists } from "../../typings/plan";
 import { ReportLists } from "../../typings/report";
-import TopWeddingReport from "@/components/orgs/TopWeddingReport";
 import TopNewsEvent from "@/components/orgs/TopNewsEvent";
-import TopContents from "@/components/orgs/TopContents";
+import { BannerLists } from "../../typings/banner";
 
 type Props = {
   fairLists: FairLists;
@@ -29,10 +28,11 @@ type Props = {
   reportLists: ReportLists;
   newsLists: NewsLists;
   newsCategoriesLists: NewsCategoriesLists;
+  bannerLists: BannerLists;
 };
 
 export default function Home(props: Props) {
-  const { fairLists, planLists, reportLists, newsLists, newsCategoriesLists } = props;
+  const { fairLists, planLists, reportLists, newsLists, newsCategoriesLists, bannerLists } = props;
 
   const [weekendLists, setWeekendLists] = React.useState([...fairLists.articles]);
 
@@ -82,7 +82,7 @@ export default function Home(props: Props) {
           <TopBridalFair lists={[...fairLists.articles]} weekendLists={weekendLists} weekend={selectedWeekend} handleSelect={handleWeekendSelect} events={removeDuplicates([...fairLists.articles])} />
           <TopWeddingPlan planLists={[...planLists.articles]} />
           {/* <TopWeddingReport contents={reportLists.articles} openModal={openModal} /> */}
-          {/* <TopNewsEvent contents={newsLists.articles} /> */}
+          <TopNewsEvent contents={newsLists.articles} bannerLists={bannerLists.articles} />
           {/* <TopContents /> */}
           <InstagramSection />
         </main>
@@ -182,6 +182,21 @@ export const getStaticProps: GetStaticProps = async () => {
   const newsCategoriesLists: NewsCategoriesLists = newsCategoriesRes.data;
   // console.log("お知らせカテゴリリスト", newsCategoriesLists);
 
+  /* ===================================================================
+  // バナー
+  =================================================================== */
+  const bannerUrl = `${process.env.CMS_URL}/api/v1/banner`;
+  const bannerRes: { data: BannerLists } = await axios.get(bannerUrl, {
+    headers: {
+      "Content-Type": "application/json",
+      "account-access-key": accessKey,
+      "account-secret-key": secretKey,
+      authorization: `Bearer ${token.token}`,
+    },
+  });
+
+  const bannerLists: BannerLists = bannerRes.data;
+
   return {
     props: {
       fairLists,
@@ -189,6 +204,7 @@ export const getStaticProps: GetStaticProps = async () => {
       reportLists,
       newsLists,
       newsCategoriesLists,
+      bannerLists,
     },
   };
 };

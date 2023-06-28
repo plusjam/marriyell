@@ -17,7 +17,7 @@ import useGetWeekend from "../../../libs/useGetWeekend";
 import useModalReport from "../../../libs/useModalReport";
 import { FairLists } from "../../../typings/fair";
 import { ReportLists } from "../../../typings/report";
-import { CEREMONY, CHAPEL, GARDEN, HAMPTON, JARDINET, MAIN, NORTHVILLA, ORIGINALWEDDING } from "../../textDate/facility";
+import { CEREMONY, CHAPEL, GARDEN, HAMPTON, JARDINET, MAIN, NORTHVILLA, BANQUET } from "../../textDate/facility";
 
 type Props = {
   fairLists: FairLists;
@@ -82,7 +82,7 @@ export default function Home(props: Props) {
           </section>
 
           <section>
-            <SectionHead {...ORIGINALWEDDING} />
+            <SectionHead {...BANQUET} />
             <div>
               <Underlayer2 {...HAMPTON} />
               <Underlayer2 {...NORTHVILLA} />
