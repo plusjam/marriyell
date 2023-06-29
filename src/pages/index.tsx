@@ -164,7 +164,6 @@ export const getStaticProps: GetStaticProps = async () => {
   });
 
   const newsLists: NewsLists = newsRes.data;
-  // console.log("お知らせ", newsLists.articles[0]);
 
   /* ===================================================================
   // お知らせカテゴリ
