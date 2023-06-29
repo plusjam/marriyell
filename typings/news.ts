@@ -54,6 +54,33 @@ export type Description = {
   };
 };
 
+export type Form = {
+  multiple: boolean;
+  select: string[];
+};
+
+export type Date = {
+  multiple: boolean;
+  values: string[];
+};
+
+export type Time = {
+  scheme: {
+    unique_id: string;
+    name: string;
+  };
+  values: {
+    hour: {
+      multiple: boolean;
+      select: string[];
+    };
+    minutes: {
+      multiple: boolean;
+      select: string[];
+    };
+  };
+};
+
 export type NewsArticle = {
   id: number;
   code: string;
@@ -65,6 +92,9 @@ export type NewsArticle = {
   categories: Categories;
   datetime: string;
   description: Description[];
+  form: Form;
+  date?: Date | null;
+  time?: Time | null;
 };
 
 export type NewsLists = {
@@ -87,6 +117,9 @@ export type NewsList = {
   categories: Categories;
   datetime: string;
   description: Description[];
+  form: Form;
+  date?: Date | null;
+  time?: Time | null;
 };
 
 //
