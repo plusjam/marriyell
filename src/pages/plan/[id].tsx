@@ -118,7 +118,7 @@ export const getStaticPaths = async () => {
   /* ===================================================================
   // プラン
   =================================================================== */
-  const planUrl = `${process.env.CMS_URL}/api/v1/plan`;
+  const planUrl = `${process.env.CMS_URL}/api/v1/plan?limit=100`;
   const planRes: { data: PlanLists } = await axios.get(planUrl, {
     headers: {
       "Content-Type": "application/json",
@@ -179,7 +179,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   /* ===================================================================
   // プランカテゴリ
   =================================================================== */
-  const planCategoriesUrl = `${process.env.CMS_URL}/api/v1/planCategories`;
+  const planCategoriesUrl = `${process.env.CMS_URL}/api/v1/planCategories?limit=100`;
   const planCategoriesRes: { data: PlanCategoriesLists } = await axios.get(planCategoriesUrl, {
     headers: {
       "Content-Type": "application/json",

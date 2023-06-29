@@ -29,7 +29,7 @@ export type ContentArticle = {
 
 export type Content = {
   scheme: {
-    inique_id: string;
+    unique_id: string;
     name: string;
   };
   values: {
@@ -40,7 +40,7 @@ export type Content = {
 
 export type OpenTime = {
   scheme: {
-    inique_id: string;
+    unique_id: string;
     name: string;
   };
   values: {
@@ -50,7 +50,7 @@ export type OpenTime = {
 
 export type Previleges = {
   scheme: {
-    inique_id: string;
+    unique_id: string;
     name: string;
   };
   values: {

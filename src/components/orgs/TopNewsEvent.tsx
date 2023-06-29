@@ -26,11 +26,10 @@ const TopNewsEvent = (props: Props) => {
 
   return (
     <>
-      {bannerLists.length > 0 && (
-        <section className={Styles.section}>
-          {/* <SectionHead en="News & Event" ja="お知らせ・イベント" href="news-event" isShort /> */}
-          <div className={Styles.container}>
-            {/* <div className={Styles.lists}>
+      <section className={Styles.section}>
+        <SectionHead en="News & Event" ja="お知らせ・イベント" href="news-event" isShort />
+        <div className={Styles.container}>
+          <div className={Styles.lists}>
             {limitedContents.map((content, index) => {
               // content.updatedDateをyyyy/mm/ddに変換
               const date = new Date(content.updatedAt);
@@ -38,7 +37,7 @@ const TopNewsEvent = (props: Props) => {
               const month = date.getMonth() + 1;
               const day = date.getDate();
               const updatedDate = `${year}/${month}/${day}`;
-  
+
               // descriptionから最初のtextを取得して文字数制限
               let firstText = "";
               content.description.some((elem) => {
@@ -47,12 +46,12 @@ const TopNewsEvent = (props: Props) => {
                   return true;
                 }
               });
-  
+
               // descriptionの文字数制限
               const limit = isPc ? 45 : 20;
               const descriptionLimit = firstText.length > limit ? firstText.slice(0, limit) + "..." : firstText;
               const titleLimit = content.title.length > limit ? content.title.slice(0, limit) + "..." : content.title;
-  
+
               return (
                 <Link href={`/news/${content.code}`} className={Styles.list} key={`news${index}`}>
                   <div className={Styles.image}>
@@ -65,7 +64,7 @@ const TopNewsEvent = (props: Props) => {
                       {content.categories.articles.map((category, index) => {
                         if (!isPc && index > 0) return;
                         if (isPc && index > 1) return;
-  
+
                         return (
                           <div className={Styles.category} key={`category${index}`}>
                             {category.title}
@@ -78,23 +77,22 @@ const TopNewsEvent = (props: Props) => {
               );
             })}
           </div>
-  
+
           <div className={Styles.link}>
             <LinkToLists href="/news" text="お知らせ一覧を見る" />
-          </div> */}
-
-            <div className={Styles.imageLinks}>
-              {bannerLists.map((banner, index) => {
-                return (
-                  <Link href={banner.href} key={`banner${index}`} className={Styles.imageLink}>
-                    <Image src={banner.image.url} alt="" width={banner.image.attributes.width} height={banner.image.attributes.height} />
-                  </Link>
-                );
-              })}
-            </div>
           </div>
-        </section>
-      )}
+
+          <div className={Styles.imageLinks}>
+            {bannerLists.map((banner, index) => {
+              return (
+                <Link href={banner.href} key={`banner${index}`} className={Styles.imageLink}>
+                  <Image src={banner.image.url} alt="" width={banner.image.attributes.width} height={banner.image.attributes.height} />
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </section>
     </>
   );
 };
