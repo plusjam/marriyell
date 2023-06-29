@@ -40,7 +40,11 @@ const ContactFormConfirmBrochure = (props: Props) => {
       });
       const json = await res.json();
 
-      router.push("/contact/brochure/thanks");
+      if (json.status === 200) {
+        router.push("/contact/brochure/thanks");
+      } else {
+        handleStatus("error");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -63,142 +67,81 @@ const ContactFormConfirmBrochure = (props: Props) => {
           <div className={Styles.head}>
             <p className={Styles.description}>こちらの内容でよろしければ送信ボタンを押してください。</p>
           </div>
-          {R_contactBrochureData.type === "download" && (
-            <div className={Styles.inputs}>
-              <div className={Styles.inputBody}>
-                <label className={`${Styles.label} ${Styles.require}`} htmlFor="name">
-                  お名前
-                </label>
-                <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                  <input disabled className={Styles.input} id="name" {...register("name", {})} placeholder="例　山田　花子" value={R_contactBrochureData.name} />
-                  {errors.name && <span className={Styles.error}>{errors.name.message as string}</span>}
-                </div>
-              </div>
-              <div className={Styles.inputBody}>
-                <label className={`${Styles.label} ${Styles.require}`} htmlFor="furigana">
-                  お名前（フリガナ）
-                </label>
-                <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                  <input disabled className={Styles.input} id="furigana" {...register("furigana", {})} placeholder="例　ヤマダ　ハナコ" value={R_contactBrochureData.furigana} />
-                  {errors.furigana && <span className={Styles.error}>{errors.furigana.message as string}</span>}
-                </div>
-              </div>
-              <div className={Styles.inputBody}>
-                <label className={`${Styles.label} ${Styles.require}`} htmlFor="phone">
-                  電話番号
-                </label>
-                <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                  <input disabled className={Styles.input} id="phone" {...register("phone", {})} placeholder="例　09012345678" value={R_contactBrochureData.phone} />
-                  {errors.phone && <span className={Styles.error}>{errors.phone.message as string}</span>}
-                </div>
-              </div>
-              <div className={Styles.inputBody}>
-                <label className={`${Styles.label} ${Styles.require}`} htmlFor="email">
-                  メールアドレス
-                </label>
-                <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                  <input disabled className={Styles.input} id="email" {...register("email", {})} placeholder="例　abcd@lucrea" value={R_contactBrochureData.email} />
-                  {errors.email && <span className={Styles.error}>{errors.email.message as string}</span>}
-                </div>
-              </div>
-              <div className={`${Styles.inputBody}`}>
-                <label className={`${Styles.label}`} htmlFor="inquiry">
-                  ご希望・ご質問など
-                </label>
-                <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                  <textarea
-                    className={`${Styles.input} ${Styles.inputInquiry}`}
-                    id="inquiry"
-                    {...register("inquiry", {})}
-                    placeholder="お問い合わせ内容をご記載ください。"
-                    cols={50}
-                    rows={5}
-                    disabled
-                    value={R_contactBrochureData.inquiry}
-                  ></textarea>
-                  {errors.inquiry && <span className={Styles.error}>{errors.inquiry.message as string}</span>}
-                </div>
-              </div>
-            </div>
-          )}
 
-          {/*  */}
-          {R_contactBrochureData.type === "post" && (
-            <div className={Styles.inputs}>
-              <div className={Styles.inputBody}>
-                <label className={`${Styles.label} ${Styles.require}`} htmlFor="name">
-                  お名前
-                </label>
-                <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                  <input disabled className={Styles.input} id="name" {...register("name", {})} placeholder="例　山田　花子" value={R_contactBrochureData.name} />
-                  {errors.name && <span className={Styles.error}>{errors.name.message as string}</span>}
-                </div>
-              </div>
-              <div className={Styles.inputBody}>
-                <label className={`${Styles.label} ${Styles.require}`} htmlFor="furigana">
-                  お名前（フリガナ）
-                </label>
-                <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                  <input disabled className={Styles.input} id="furigana" {...register("furigana", {})} placeholder="例　ヤマダ　ハナコ" value={R_contactBrochureData.furigana} />
-                  {errors.furigana && <span className={Styles.error}>{errors.furigana.message as string}</span>}
-                </div>
-              </div>
-              <div className={Styles.inputBody}>
-                <label className={`${Styles.label} ${Styles.require}`} htmlFor="phone">
-                  電話番号
-                </label>
-                <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                  <input disabled className={Styles.input} id="phone" {...register("phone", {})} placeholder="例　09012345678" value={R_contactBrochureData.phone} />
-                  {errors.phone && <span className={Styles.error}>{errors.phone.message as string}</span>}
-                </div>
-              </div>
-              <div className={Styles.inputBody}>
-                <label className={`${Styles.label} ${Styles.require}`} htmlFor="email">
-                  メールアドレス
-                </label>
-                <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                  <input disabled className={Styles.input} id="email" {...register("email", {})} placeholder="例　abcd@lucrea" value={R_contactBrochureData.email} />
-                  {errors.email && <span className={Styles.error}>{errors.email.message as string}</span>}
-                </div>
-              </div>
-              <div className={Styles.inputBody}>
-                <label className={`${Styles.label} ${Styles.require}`} htmlFor="email">
-                  郵便番号
-                </label>
-                <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                  <input disabled className={`${Styles.input} ${Styles.half}`} id="zipcode" {...register("zipcode", {})} placeholder="例　abcd@lucrea" value={R_contactBrochureData.zipcode} />
-                  {errors.zipcode && <span className={Styles.error}>{errors.zipcode.message as string}</span>}
-                </div>
-              </div>
-              <div className={Styles.inputBody}>
-                <label className={`${Styles.label} ${Styles.require}`} htmlFor="address">
-                  住所
-                </label>
-                <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                  <input disabled className={Styles.input} id="address" {...register("address", {})} placeholder="例　abcd@lucrea" value={R_contactBrochureData.address} />
-                  {errors.address && <span className={Styles.error}>{errors.address.message as string}</span>}
-                </div>
-              </div>
-              <div className={`${Styles.inputBody}`}>
-                <label className={`${Styles.label}`} htmlFor="inquiry">
-                  ご希望・ご質問など
-                </label>
-                <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                  <textarea
-                    className={`${Styles.input} ${Styles.inputInquiry}`}
-                    id="inquiry"
-                    {...register("inquiry", {})}
-                    placeholder="お問い合わせ内容をご記載ください。"
-                    cols={50}
-                    rows={5}
-                    disabled
-                    value={R_contactBrochureData.inquiry}
-                  ></textarea>
-                  {errors.inquiry && <span className={Styles.error}>{errors.inquiry.message as string}</span>}
-                </div>
+          <div className={Styles.inputs}>
+            <div className={Styles.inputBody}>
+              <label className={`${Styles.label} ${Styles.require}`} htmlFor="name">
+                お名前
+              </label>
+              <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
+                <input disabled className={Styles.input} id="name" {...register("name", {})} placeholder="例　山田　花子" value={R_contactBrochureData.name} />
+                {errors.name && <span className={Styles.error}>{errors.name.message as string}</span>}
               </div>
             </div>
-          )}
+            <div className={Styles.inputBody}>
+              <label className={`${Styles.label} ${Styles.require}`} htmlFor="furigana">
+                お名前（フリガナ）
+              </label>
+              <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
+                <input disabled className={Styles.input} id="furigana" {...register("furigana", {})} placeholder="例　ヤマダ　ハナコ" value={R_contactBrochureData.furigana} />
+                {errors.furigana && <span className={Styles.error}>{errors.furigana.message as string}</span>}
+              </div>
+            </div>
+            <div className={Styles.inputBody}>
+              <label className={`${Styles.label} ${Styles.require}`} htmlFor="phone">
+                電話番号
+              </label>
+              <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
+                <input disabled className={Styles.input} id="phone" {...register("phone", {})} placeholder="例　09012345678" value={R_contactBrochureData.phone} />
+                {errors.phone && <span className={Styles.error}>{errors.phone.message as string}</span>}
+              </div>
+            </div>
+            <div className={Styles.inputBody}>
+              <label className={`${Styles.label} ${Styles.require}`} htmlFor="email">
+                メールアドレス
+              </label>
+              <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
+                <input disabled className={Styles.input} id="email" {...register("email", {})} placeholder="例　abcd@lucrea" value={R_contactBrochureData.email} />
+                {errors.email && <span className={Styles.error}>{errors.email.message as string}</span>}
+              </div>
+            </div>
+            <div className={Styles.inputBody}>
+              <label className={`${Styles.label} ${Styles.require}`} htmlFor="email">
+                郵便番号
+              </label>
+              <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
+                <input disabled className={`${Styles.input} ${Styles.half}`} id="zipcode" {...register("zipcode", {})} placeholder="例　abcd@lucrea" value={R_contactBrochureData.zipcode} />
+                {errors.zipcode && <span className={Styles.error}>{errors.zipcode.message as string}</span>}
+              </div>
+            </div>
+            <div className={Styles.inputBody}>
+              <label className={`${Styles.label} ${Styles.require}`} htmlFor="address">
+                住所
+              </label>
+              <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
+                <input disabled className={Styles.input} id="address" {...register("address", {})} placeholder="例　abcd@lucrea" value={R_contactBrochureData.address} />
+                {errors.address && <span className={Styles.error}>{errors.address.message as string}</span>}
+              </div>
+            </div>
+            <div className={`${Styles.inputBody}`}>
+              <label className={`${Styles.label}`} htmlFor="inquiry">
+                ご希望・ご質問など
+              </label>
+              <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
+                <textarea
+                  className={`${Styles.input} ${Styles.inputInquiry}`}
+                  id="inquiry"
+                  {...register("inquiry", {})}
+                  placeholder="お問い合わせ内容をご記載ください。"
+                  cols={50}
+                  rows={5}
+                  disabled
+                  value={R_contactBrochureData.inquiry}
+                ></textarea>
+                {errors.inquiry && <span className={Styles.error}>{errors.inquiry.message as string}</span>}
+              </div>
+            </div>
+          </div>
 
           <ContactPolicy />
 

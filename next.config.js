@@ -33,11 +33,6 @@ const nextConfig = {
         permanent: false,
       },
       {
-        source: "/contact/brochure",
-        destination: "/404",
-        permanent: false,
-      },
-      {
         source: "/contact/reservation",
         destination: "/404",
         permanent: false,

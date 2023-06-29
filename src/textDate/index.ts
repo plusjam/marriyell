@@ -145,10 +145,10 @@ export const sitemapLinks = [
   //   title: "来館予約",
   //   href: "/contact/reservation/",
   // },
-  // {
-  //   title: "資料請求",
-  //   href: "/contact/brochure",
-  // },
+  {
+    title: "資料請求",
+    href: "/contact/brochure",
+  },
   {
     title: "アクセス",
     href: "/access",

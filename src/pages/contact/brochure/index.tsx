@@ -5,7 +5,6 @@ import Head from "next/head";
 import { atom } from "recoil";
 
 export type ContactBrochureData = {
-  type: "download" | "post";
   name: string;
   furigana: string;
   phone: string;
@@ -18,7 +17,6 @@ export type ContactBrochureData = {
 export const contactBrochureData = atom<ContactBrochureData>({
   key: "contactBrochureData",
   default: {
-    type: "download",
     name: "",
     furigana: "",
     phone: "",
