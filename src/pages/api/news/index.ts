@@ -11,7 +11,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const secretKey = process.env.API_SECRET;
   const token = await apricotClient(accessKey, secretKey);
 
-  if (!token) return res.status(500).json({ statusCode: 500, message: "トークン取得エラー" });
+  if (!token) return res.status(500).json({ status: 500, message: "トークン取得エラー" });
 
   try {
     const newsUrl = `${process.env.CMS_URL}/api/v1/news?offset=${offset}&limit=5&q=${encodeURI(q)}`;
@@ -26,6 +26,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     res.status(200).json(newsRes.data);
   } catch (e) {
-    res.status(500).json({ statusCode: 500, message: e });
+    res.status(500).json({ status: 500, message: e });
   }
 }

@@ -56,7 +56,7 @@ export type Description = {
 
 export type Form = {
   multiple: boolean;
-  select: string[];
+  select: ["フォームなし"] | ["フォームあり 日付け[無]"] | ["フォームあり 日付け[有]"];
 };
 
 export type Date = {
@@ -70,14 +70,8 @@ export type Time = {
     name: string;
   };
   values: {
-    hour: {
-      multiple: boolean;
-      select: string[];
-    };
-    minutes: {
-      multiple: boolean;
-      select: string[];
-    };
+    hour: string;
+    minutes: string;
   };
 };
 
@@ -94,7 +88,7 @@ export type NewsArticle = {
   description: Description[];
   form: Form;
   date?: Date | null;
-  time?: Time | null;
+  time?: Time[] | null;
 };
 
 export type NewsLists = {
@@ -119,7 +113,7 @@ export type NewsList = {
   description: Description[];
   form: Form;
   date?: Date | null;
-  time?: Time | null;
+  time?: Time[] | null;
 };
 
 //

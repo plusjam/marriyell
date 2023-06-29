@@ -176,6 +176,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
     res.status(200).json(NEWS);
   } catch (e) {
-    res.status(500).json({ statusCode: 500, message: "e.message" });
+    res.status(500).json({ status: 500, message: e });
   }
 }

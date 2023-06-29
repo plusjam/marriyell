@@ -1,0 +1,63 @@
+.section {
+  margin-top: -80px;
+  padding: 160px 24px 40px;
+  color: #707070;
+}
+
+.container {
+  width: 100%;
+  max-width: 776px;
+  padding-top: 80px;
+  margin: 80px auto 0;
+  border-top: 1px solid #d6d6d6;
+}
+
+.head {
+  margin-bottom: 73px;
+}
+
+.title {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 40px;
+  color: #1f261f;
+}
+
+.description {
+  text-align: center;
+  font-size: 14px;
+  line-height: 2;
+  color: #1f261f;
+}
+
+.note {
+}
+
+.links {
+}
+
+.toLists {
+}
+
+.toDetail {
+}
+
+@media screen and (max-width: 768px) {
+  .section {
+    padding: 160px 15px 80px;
+  }
+
+  .head {
+    margin-bottom: 42px;
+    padding: 0 32px;
+  }
+
+  .title {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+
+  .description {
+    font-size: 12px;
+  }
+}

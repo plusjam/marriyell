@@ -9,10 +9,40 @@ import Link from "next/link";
 import { apricotClient } from "../../../libs/cms";
 import axios from "axios";
 import InstagramSection from "@/components/orgs/InstagramSection";
+import NewsForm from "@/components/orgs/NewsForm";
+import { s } from "@fullcalendar/core/internal-common";
 
 type Props = {
   newsList: NewsList;
 };
+
+const DATE: NewsList["date"] = {
+  multiple: true,
+  values: ["2023-06-29", "2023-06-30", "2023-07-01"],
+};
+
+const TIME: NewsList["time"] = [
+  {
+    scheme: {
+      unique_id: "time",
+      name: "時間",
+    },
+    values: {
+      hour: "12",
+      minutes: "00",
+    },
+  },
+  {
+    scheme: {
+      unique_id: "time",
+      name: "時間",
+    },
+    values: {
+      hour: "12",
+      minutes: "30",
+    },
+  },
+];
 
 export type ContactDataNews = {
   title: string;
@@ -28,14 +58,37 @@ export type ContactDataNews = {
 const HOME = (props: Props) => {
   const { newsList } = props;
 
+  // フォームタイプ
+  const formType: NewsList["form"]["select"][0] = newsList.form.select[0];
+
+  // 今日の日付を取得
+  const today = new Date();
+  const c_year = today.getFullYear();
+  const c_month = ("0" + (today.getMonth() + 1)).slice(-2);
+  const day = ("0" + today.getDate()).slice(-2);
+  const todayDate = c_year + "-" + c_month + "-" + day;
+
+  // 明日以降で一番近いnewsList.date取得
+  const todayDateList = DATE ? DATE.values.filter((date) => date > todayDate) : [];
+
+  const todayDateListSort = todayDateList
+    ? todayDateList?.sort((a, b) => {
+        if (a > b) return 1;
+        if (a < b) return -1;
+        return 0;
+      })
+    : [];
+
+  const todayDateListSortFirst = todayDateList.length > 0 ? todayDateListSort[0] : "";
+
   const [data, setData] = useState<ContactDataNews>({
     title: newsList.title.replaceAll("<br>", " "),
     name: "",
     furigana: "",
     phone: "",
     email: "",
-    date: "",
-    time: "",
+    date: formType === "フォームあり 日付け[有]" ? todayDateListSortFirst : undefined,
+    time: formType === "フォームあり 日付け[有]" ? (TIME ? TIME[0].values.hour + ":" + TIME[0].values.minutes : "") : undefined,
     inquiry: "",
   });
 
@@ -136,6 +189,9 @@ const HOME = (props: Props) => {
             </section>
 
             <section className={Styles.contents}>{newsList.description.map((content, index) => contents(content, index))}</section>
+
+            {/* {newsList.time && newsList.date && <NewsForm data={data} handleData={handleData} date={newsList.date} time={newsList.time} />} */}
+            {formType !== "フォームなし" && <NewsForm data={data} handleData={handleData} date={DATE} time={TIME} formType={formType} />}
 
             <section className={Styles.actions}>
               <Link href={`/news/${newsList.prevCode}`} className={newsList.prevCode ? Styles.prev : `${Styles.prev} ${Styles.none}`}>
