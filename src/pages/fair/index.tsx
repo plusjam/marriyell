@@ -34,9 +34,18 @@ type Props = {
 export default function Home(props: Props) {
   const { reportLists, fairCategoriesLists, planLists, fairLists } = props;
 
+  // 今日以降のcalendarMulti.valuesを持つフェアのみを抽出
+  const filterdLists = [...fairLists.articles].filter((fair) => {
+    return fair.calendarMulti?.values.some((calendar) => {
+      const eventDate = new Date(calendar);
+      const today = new Date();
+      return eventDate >= today;
+    });
+  });
+
   const router = useRouter();
-  const [lists, setLists] = React.useState([...fairLists.articles]);
-  const [weekendLists, setWeekendLists] = React.useState([...fairLists.articles]);
+  const [lists, setLists] = React.useState([...filterdLists]);
+  const [weekendLists, setWeekendLists] = React.useState([...filterdLists]);
 
   const { videoID, openModal, closeModal } = useModalReport();
   const { categories, handleSelect } = useSelectFair({ init: [...fairCategoriesLists.articles] });
@@ -50,7 +59,7 @@ export default function Home(props: Props) {
 
   // weekendListsをselectedWeekendで絞り込み
   const getSelectedWeekendLists = async () => {
-    const initLists = [...fairLists.articles];
+    const initLists = [...filterdLists];
 
     const selectedDate = selectedWeekend.filter((weekend) => {
       return weekend.selected;
@@ -75,7 +84,7 @@ export default function Home(props: Props) {
 
   // 選択されたカテゴリーから絞り込み or検索
   const getSelectedLists = async () => {
-    const initLists = [...fairLists.articles];
+    const initLists = [...filterdLists];
     let selectedLists = [];
 
     const selectedCategory = categories.filter((category) => {
@@ -124,7 +133,7 @@ export default function Home(props: Props) {
 
     if (targetDate) {
       // listsからtargetDateと一致するものを抽出
-      const initLists = [...fairLists.articles];
+      const initLists = [...filterdLists];
       const selectedDateLists = initLists.filter((list) => {
         return list.calendarMulti?.values.some((event) => {
           return targetDate === event;
@@ -133,7 +142,7 @@ export default function Home(props: Props) {
 
       setLists(selectedDateLists);
     } else {
-      setLists(fairLists.articles);
+      setLists(filterdLists);
     }
 
     gsap.to(window, {
