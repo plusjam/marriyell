@@ -32,16 +32,6 @@ export type Content = {
   articles: ContentArticle[];
 };
 
-export type Calendar = {
-  scheme: {
-    inique_id: string;
-    name: string;
-  };
-  values: {
-    calendar: string;
-  };
-};
-
 export type CalendarMulti = {
   multiple: boolean;
   values: string[];
@@ -49,7 +39,7 @@ export type CalendarMulti = {
 
 export type OpenTime = {
   scheme: {
-    inique_id: string;
+    unique_id: string;
     name: string;
   };
   values: {
@@ -59,7 +49,7 @@ export type OpenTime = {
 
 export type Previleges = {
   scheme: {
-    inique_id: string;
+    unique_id: string;
     name: string;
   };
   values: {
@@ -78,7 +68,6 @@ export type FairArticle = {
   mainSp: ImageObject;
   categories: Category;
   description: string;
-  calendar: Calendar[];
   calendarMulti: CalendarMulti | null;
   requireTime: number | null;
   openTime: OpenTime[] | null;
@@ -108,7 +97,6 @@ export type FairList = {
   mainSp: ImageObject;
   categories: Category;
   description: string;
-  calendar: Calendar[];
   calendarMulti: CalendarMulti | null;
   requireTime: number | null;
   openTime: OpenTime[] | null;

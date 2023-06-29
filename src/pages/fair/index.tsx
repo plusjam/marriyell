@@ -179,7 +179,7 @@ export const getStaticProps: GetStaticProps = async () => {
   /* ===================================================================
   // フェア
   =================================================================== */
-  const fairUrl = `${process.env.CMS_URL}/api/v1/fair`;
+  const fairUrl = `${process.env.CMS_URL}/api/v1/fair?limit=100`;
   const fairRes: { data: FairLists } = await axios.get(fairUrl, {
     headers: {
       "Content-Type": "application/json",
@@ -194,7 +194,7 @@ export const getStaticProps: GetStaticProps = async () => {
   /* ===================================================================
   // フェアカテゴリ
   =================================================================== */
-  const fairCategoriesUrl = `${process.env.CMS_URL}/api/v1/fairCategories`;
+  const fairCategoriesUrl = `${process.env.CMS_URL}/api/v1/fairCategories?limit=100`;
   const fairCategoriesRes: { data: FairCategoriesLists } = await axios.get(fairCategoriesUrl, {
     headers: {
       "Content-Type": "application/json",
