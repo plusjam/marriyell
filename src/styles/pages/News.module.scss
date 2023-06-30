@@ -85,12 +85,6 @@
   margin-bottom: 36px;
 
   &01 {
-  }
-
-  &02 {
-  }
-
-  &03 {
     display: flex;
     gap: 24px;
 
@@ -103,9 +97,8 @@
     }
   }
 
-  &04 {
+  &02 {
     display: flex;
-    flex-direction: row-reverse;
     gap: 24px;
 
     .image {
@@ -221,7 +214,7 @@
   }
 
   .pattern {
-    &03 {
+    &01 {
       flex-direction: column;
       gap: 36px;
 
@@ -234,7 +227,7 @@
       }
     }
 
-    &04 {
+    &02 {
       flex-direction: column;
       gap: 36px;
 

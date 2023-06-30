@@ -137,10 +137,10 @@ export const sitemapLinks = [
   //   title: "ウエディングレポート",
   //   href: "/report",
   // },
-  // {
-  //   title: "お知らせ・イベント情報",
-  //   href: "/news",
-  // },
+  {
+    title: "お知らせ・イベント情報",
+    href: "/news",
+  },
   // {
   //   title: "来館予約",
   //   href: "/contact/reservation/",
