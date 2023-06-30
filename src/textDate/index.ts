@@ -102,7 +102,7 @@ export const sitemapLinks = [
     href: "/facility#chapel",
   },
   {
-    title: "― バンケット",
+    title: "― 披露宴会場",
     href: "/facility#banquet",
   },
   {

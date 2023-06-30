@@ -45,7 +45,7 @@ const TopWeddingPlan = (props: Props) => {
                     </div>
                     <div className={Styles.contents}>
                       <div className={Styles.contentsHead}>{elem.title}</div>
-                      <div className={Styles.price}>¥{elem.price.toLocaleString()}～</div>
+                      <div className={Styles.price}>¥{Number(elem.price).toLocaleString()}～</div>
                       <div className={Styles.description} dangerouslySetInnerHTML={{ __html: elem.description }}></div>
                     </div>
                   </Link>
