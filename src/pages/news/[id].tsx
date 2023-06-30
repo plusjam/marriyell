@@ -10,39 +10,10 @@ import { apricotClient } from "../../../libs/cms";
 import axios from "axios";
 import InstagramSection from "@/components/orgs/InstagramSection";
 import NewsForm from "@/components/orgs/NewsForm";
-import { s } from "@fullcalendar/core/internal-common";
 
 type Props = {
   newsList: NewsList;
 };
-
-const DATE: NewsList["date"] = {
-  multiple: true,
-  values: ["2023-06-29", "2023-06-30", "2023-07-01"],
-};
-
-const TIME: NewsList["time"] = [
-  {
-    scheme: {
-      unique_id: "time",
-      name: "時間",
-    },
-    values: {
-      hour: "12",
-      minutes: "00",
-    },
-  },
-  {
-    scheme: {
-      unique_id: "time",
-      name: "時間",
-    },
-    values: {
-      hour: "12",
-      minutes: "30",
-    },
-  },
-];
 
 export type ContactDataNews = {
   title: string;
@@ -69,7 +40,7 @@ const HOME = (props: Props) => {
   const todayDate = c_year + "-" + c_month + "-" + day;
 
   // 明日以降で一番近いnewsList.date取得
-  const todayDateList = DATE ? DATE.values.filter((date) => date > todayDate) : [];
+  const todayDateList = newsList.date ? newsList.date.values.filter((date) => date > todayDate) : [];
 
   const todayDateListSort = todayDateList
     ? todayDateList?.sort((a, b) => {
@@ -88,7 +59,12 @@ const HOME = (props: Props) => {
     phone: "",
     email: "",
     date: formType === "フォームあり 日付け[有]" ? todayDateListSortFirst : undefined,
-    time: formType === "フォームあり 日付け[有]" ? (TIME ? TIME[0].values.hour + ":" + TIME[0].values.minutes : "") : undefined,
+    time:
+      formType === "フォームあり 日付け[有]"
+        ? newsList.time
+          ? `${newsList.time[0].values.startHour.select[0]}:${newsList.time[0].values.startMinutes.select[0]}~${newsList.time[0].values.endHour.select[0]}:${newsList.time[0].values.endMinutes.select[0]}`
+          : ""
+        : undefined,
     inquiry: "",
   });
 
@@ -191,7 +167,7 @@ const HOME = (props: Props) => {
             <section className={Styles.contents}>{newsList.description.map((content, index) => contents(content, index))}</section>
 
             {/* {newsList.time && newsList.date && <NewsForm data={data} handleData={handleData} date={newsList.date} time={newsList.time} />} */}
-            {formType !== "フォームなし" && <NewsForm data={data} handleData={handleData} date={DATE} time={TIME} formType={formType} />}
+            {formType !== "フォームなし" && <NewsForm data={data} handleData={handleData} date={newsList.date} time={newsList.time} formType={formType} />}
 
             <section className={Styles.actions}>
               <Link href={`/news/${newsList.prevCode}`} className={newsList.prevCode ? Styles.prev : `${Styles.prev} ${Styles.none}`}>
@@ -262,6 +238,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
   });
 
   const newsList: NewsList = newsRes.data;
+  console.log(newsList.date);
+  console.log(newsList.time);
 
   return {
     props: {

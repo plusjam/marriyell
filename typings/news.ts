@@ -70,8 +70,22 @@ export type Time = {
     name: string;
   };
   values: {
-    hour: string;
-    minutes: string;
+    startHour: {
+      multiple: boolean;
+      select: string[];
+    };
+    startMinutes: {
+      multiple: boolean;
+      select: string[];
+    };
+    endHour: {
+      multiple: boolean;
+      select: string[];
+    };
+    endMinutes: {
+      multiple: boolean;
+      select: string[];
+    };
   };
 };
 

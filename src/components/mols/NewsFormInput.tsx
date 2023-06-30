@@ -208,9 +208,13 @@ const NewsFormInput = (props: Props) => {
                   >
                     {time
                       ? time.map((option, index) => {
+                          console.log("これ", option.values.startHour);
                           return (
-                            <option value={`${option.values.hour}:${option.values.minutes}`} key={`${index}`}>
-                              {`${option.values.hour}:${option.values.minutes}`}
+                            <option
+                              value={`${option.values.startHour.select[0]}:${option.values.startMinutes.select[0]}~${option.values.endHour.select[0]}:${option.values.endMinutes.select[0]}`}
+                              key={`${index}`}
+                            >
+                              {`${option.values.startHour.select[0]}:${option.values.startMinutes.select[0]}~${option.values.endHour.select[0]}:${option.values.endMinutes.select[0]}`}
                             </option>
                           );
                         })

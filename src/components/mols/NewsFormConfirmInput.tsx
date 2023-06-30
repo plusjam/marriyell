@@ -61,6 +61,8 @@ const NewsFormConfirmInput = (props: Props) => {
     window.scrollTo({ top: reservationTop - 80, behavior: "smooth" });
   };
 
+  console.log(data);
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={`${Styles.detailForm} ${Styles.confirm}`}>
       <div className={Styles.inputs}>
