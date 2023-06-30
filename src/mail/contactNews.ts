@@ -29,13 +29,13 @@ export const ReplyToOperation = (body: ContactDataNews) => {
       <p>　${body.email}</p>
       <p></p>
       ${
-        body.date &&
-        body.time &&
-        `
+        body.date && body.time
+          ? `
           <p><b>【ご来場希望日】</b></p>
           <p>　${body.date}　${body.time}</p>
           <p></p>
-          `
+        `
+          : ""
       }
       <p><b>【ご質問・ご要望】</b></p>
       <p>　${body.inquiry}</p>
@@ -70,13 +70,13 @@ export const ReplyToCustomer = (body: ContactDataNews) => {
     <p>　${body.title}</p>
     <p></p>
     ${
-      body.date &&
-      body.time &&
+      body.date && body.time
+        ? `
+        <p><b>【ご来場希望日】</b></p>
+        <p>　${body.date}　${body.time}</p>
+        <p></p>
       `
-          <p><b>【ご来場希望日】</b></p>
-          <p>　${body.date}　${body.time}</p>
-          <p></p>
-        `
+        : ""
     }
     <p><b>【ご質問・ご要望】</b></p>
     <p>　${body.inquiry}</p>

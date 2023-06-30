@@ -238,8 +238,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
   });
 
   const newsList: NewsList = newsRes.data;
-  console.log(newsList.date);
-  console.log(newsList.time);
 
   return {
     props: {
