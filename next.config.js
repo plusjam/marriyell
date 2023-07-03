@@ -17,41 +17,41 @@ const nextConfig = {
   staticPageGenerationTimeout: 200,
   async redirects() {
     return [
-      {
-        source: "/report",
-        destination: "/404",
-        permanent: false,
-      },
-      {
-        source: "/contact",
-        destination: "/404",
-        permanent: false,
-      },
-      {
-        source: "/contact/reservation",
-        destination: "/404",
-        permanent: false,
-      },
-      {
-        source: "/first",
-        destination: "/404",
-        permanent: false,
-      },
-      {
-        source: "/for-brides",
-        destination: "/404",
-        permanent: false,
-      },
-      {
-        source: "/for-gueat",
-        destination: "/404",
-        permanent: false,
-      },
-      {
-        source: "/faq",
-        destination: "/404",
-        permanent: false,
-      },
+      // {
+      //   source: "/report",
+      //   destination: "/404",
+      //   permanent: false,
+      // },
+      // {
+      //   source: "/contact",
+      //   destination: "/404",
+      //   permanent: false,
+      // },
+      // {
+      //   source: "/contact/reservation",
+      //   destination: "/404",
+      //   permanent: false,
+      // },
+      // {
+      //   source: "/first",
+      //   destination: "/404",
+      //   permanent: false,
+      // },
+      // {
+      //   source: "/for-brides",
+      //   destination: "/404",
+      //   permanent: false,
+      // },
+      // {
+      //   source: "/for-gueat",
+      //   destination: "/404",
+      //   permanent: false,
+      // },
+      // {
+      //   source: "/faq",
+      //   destination: "/404",
+      //   permanent: false,
+      // },
     ];
   },
 };

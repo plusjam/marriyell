@@ -19,10 +19,10 @@ export const navList = [
     title: "プラン",
     href: "/plan",
   },
-  // {
-  //   title: "お問い合わせ",
-  //   href: "/contact",
-  // },
+  {
+    title: "お問い合わせ",
+    href: "/contact",
+  },
 ];
 
 export const originalWedding = [
@@ -121,30 +121,30 @@ export const sitemapLinks = [
     title: "プラン",
     href: "/plan",
   },
-  // {
-  //   title: "はじめての方へ",
-  //   href: "/first",
-  // },
-  // {
-  //   title: "ご成約の方へ",
-  //   href: "/for-brides",
-  // },
-  // {
-  //   title: "ご列席の方へ",
-  //   href: "/for-guest",
-  // },
-  // {
-  //   title: "ウエディングレポート",
-  //   href: "/report",
-  // },
+  {
+    title: "はじめての方へ",
+    href: "/first",
+  },
+  {
+    title: "ご成約の方へ",
+    href: "/for-brides",
+  },
+  {
+    title: "ご列席の方へ",
+    href: "/for-guest",
+  },
+  {
+    title: "ウエディングレポート",
+    href: "/report",
+  },
   {
     title: "お知らせ・イベント情報",
     href: "/news",
   },
-  // {
-  //   title: "来館予約",
-  //   href: "/contact/reservation/",
-  // },
+  {
+    title: "来館予約",
+    href: "/contact/reservation/",
+  },
   {
     title: "資料請求",
     href: "/contact/brochure",
@@ -153,92 +153,13 @@ export const sitemapLinks = [
     title: "アクセス",
     href: "/access",
   },
-  // {
-  //   title: "よくある質問",
-  //   href: "/faq",
-  // },
-  // {
-  //   title: "お問い合わせ",
-  //   href: "/contact",
-  // },
-];
-
-export const BRIDALFAIR = [
   {
-    href: "https://takasaki.marriyellclub.co.jp/",
-    title: "【GW3day's限定BIG】京都初最新作ドレス展示会×贅沢試食",
-    yyyymm: "2023.05",
-    date: "03",
-    weekdays: "Wed",
-    src: "/images/bridalFair01.webp",
-    when: "2023年5月3日(水)~ 5日(金)",
-    description:
-      "＼GW3day's限定BIGフェア／花嫁憧れのドレスをGW限定で展示会を開催！京都初！10月後半入荷予定の最新作ドレスをマリエール高崎が独占でご案内★ドレスに憧れのある花嫁様は是非ご参加くださいませ♪",
+    title: "よくある質問",
+    href: "/faq",
   },
   {
-    href: "https://takasaki.marriyellclub.co.jp/",
-    title: "【自社人気No.1☆最大100万優待】国産牛3万円試食☆来館1万ギフト",
-    yyyymm: "2023.05",
-    date: "06",
-    weekdays: "Sat",
-    src: "/images/bridalFair02.webp",
-    when: "毎週土曜日 2023年5月6日(土)~",
-    description:
-      "＼国産牛&キャビアなど絶品6品コース仕立て！3万円相当大人気試食フェア◎／1軒目来館で1万円相当ギフト贈呈&30名以上の披露宴ご成約で挙式料全額プレゼント！会場費最大25万円&前撮り衣裳プレゼントなど、フェア限定最大100万円優待♪",
-  },
-  {
-    href: "https://takasaki.marriyellclub.co.jp/",
-    title: "【1軒目見学限定☆1万円来館GIFT♪】チャペル体験×3万円コース試食",
-    yyyymm: "2023.05",
-    date: "06",
-    weekdays: "Sat",
-    src: "/images/bridalFair03.webp",
-    when: "2023年5月6日(土), 14日(日), 28日(日)",
-    description:
-      "【来館特典】国産牛&キャビアなど絶品6品3万円相当試食×1軒目来館で1万円相当ギフト【成約特典】最大100万円優待☆フェア限定ご成約特典あり◎北近畿最大級のチャペル入場体験&専属ドレスサロンで1日1組限定試着体験♪邸宅会場演出体験も！",
-  },
-];
-
-export const WEDDINGPLAN = [
-  {
-    href: "",
-    src: "/images/weddingPlan01.webp",
-    title: "人気シーズン先取り♪≪10名72万≫8名～OK！家族と過ごす少人数秋婚が対象のオトクプラン♪",
-    price: "722,700",
-    description: "先着3組様限定のオトクプラン♪23年9月～11月まで、8名以上の少人数ウェディングがオトクに叶うシーズン限定プラン☆秋の心地よい気候の中、大切な方々と貸切邸宅で過ごす特別な時間が叶う♪",
-  },
-  {
-    href: "",
-    src: "/images/weddingPlan02.webp",
-    title: "24年2月末までの実施で早期ご成約特典あり◎≪60名236万≫30名以上×2024冬婚対象プラン！",
-    price: "2,365,021",
-    description: "23年12月～24年2月末まで、30名～120名の披露宴実施のお申し込みで早期ご成約特典あり！さまざまなテーマのウェディングが叶う冬婚☆お日取り重視派におすすめプランが登場♪",
-  },
-  {
-    href: "",
-    src: "/images/weddingPlan03.webp",
-    title: "24年2月末までの実施が対象！≪40名166万≫直近×2024冬婚がオトクに叶うSPプラン♪",
-    price: "1,662,590",
-    description:
-      "22年内空きわずかにつき対象期間延長！生演奏・マッピング演出で盛り上げる、天井高10mの大聖堂挙式プレゼント！ウェディングドレス・タキシード30万円分特典☆新婦様2点目衣裳も含まれた内容充実プラン♪",
-  },
-];
-
-export const IMAGELINKS = [
-  {
-    src: "/images/top_news_line.png",
-    href: "https://page.line.me/kbm7305t",
-    target: "_blank",
-  },
-  {
-    src: "/images/top_news_contents01.jpg",
-    href: "",
-    target: "",
-  },
-  {
-    src: "/images/top_news_contents02.jpg",
-    href: "",
-    target: "",
+    title: "お問い合わせ",
+    href: "/contact",
   },
 ];
 
