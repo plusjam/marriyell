@@ -83,7 +83,9 @@ export default function Home(props: Props) {
     phone: "",
     email: "",
     date: selectDate !== "" ? selectDate : todayDateListSortFirst,
-    time: fairList.openTime ? fairList.openTime[0].values.timeRange : "",
+    time: fairList.openTimePulldown
+      ? `${fairList.openTimePulldown[0].values.startHour.select[0]}:${fairList.openTimePulldown[0].values.startMinutes.select[0]}~${fairList.openTimePulldown[0].values.endHour.select[0]}:${fairList.openTimePulldown[0].values.endMinutes.select[0]}`
+      : "",
     inquiry: "",
   });
 
@@ -101,7 +103,7 @@ export default function Home(props: Props) {
         <main>
           <FairDetail fairList={fairList} fairCategoriesLists={fairCategoriesLists.articles} data={data} handleData={handleData} />
           <FairContents fairList={fairList} />
-          {todayDateList.length > 0 && <DetailFairForm data={data} handleData={handleData} date={fairList.calendarMulti} time={fairList.openTime} />}
+          {todayDateList.length > 0 && <DetailFairForm data={data} handleData={handleData} date={fairList.calendarMulti} time={fairList.openTimePulldown} />}
 
           {/* <Process /> */}
           <TopWeddingPlan planLists={[...planLists.articles]} />

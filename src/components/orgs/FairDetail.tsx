@@ -63,14 +63,14 @@ const FairDetail = (props: Props) => {
                   <span>{fairList.requireTime}分</span>
                 </div>
               )}
-              {fairList.openTime && (
+              {fairList.openTimePulldown && (
                 <div className={Styles.term}>
                   <div className={Styles.termTag}>開催時間</div>
                   <div>
-                    {fairList.openTime.map((elem, index) => {
+                    {fairList.openTimePulldown.map((elem, index) => {
                       return (
                         <span className={Styles.openTime} key={index}>
-                          {elem.values.timeRange} ｜{" "}
+                          {`${elem.values.startHour.select[0]}:${elem.values.startMinutes.select[0]}~${elem.values.endHour.select[0]}:${elem.values.endMinutes.select[0]}`} ｜{" "}
                         </span>
                       );
                     })}

@@ -9,7 +9,7 @@ type Props = {
   handleStatus: (status: Status) => void;
   data: ContactDataDetailFair;
   handleData: (data: ContactDataDetailFair) => void;
-  time: FairList["openTime"];
+  time: FairList["openTimePulldown"];
   date: FairList["calendarMulti"];
 };
 
@@ -206,8 +206,11 @@ const DetailFairFormInput = (props: Props) => {
                   {time
                     ? time.map((option, index) => {
                         return (
-                          <option value={option.values.timeRange} key={`${index}`}>
-                            {option.values.timeRange}
+                          <option
+                            value={`${option.values.startHour.select[0]}:${option.values.startMinutes.select[0]}~${option.values.endHour.select[0]}:${option.values.endMinutes.select[0]}`}
+                            key={`${index}`}
+                          >
+                            {option.values.startHour.select[0]}:{option.values.startMinutes.select[0]}~{option.values.endHour.select[0]}:{option.values.endMinutes.select[0]}
                           </option>
                         );
                       })

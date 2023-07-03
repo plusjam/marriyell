@@ -47,6 +47,19 @@ export type OpenTime = {
   };
 };
 
+export type OpenTimePulldown = {
+  scheme: {
+    unique_id: string;
+    name: string;
+  };
+  values: {
+    startHour: { multiple: boolean; select: string[] };
+    startMinutes: { multiple: boolean; select: string[] };
+    endHour: { multiple: boolean; select: string[] };
+    endMinutes: { multiple: boolean; select: string[] };
+  };
+};
+
 export type Previleges = {
   scheme: {
     unique_id: string;
@@ -70,12 +83,12 @@ export type FairArticle = {
   description: string;
   calendarMulti: CalendarMulti | null;
   requireTime: number | null;
-  openTime: OpenTime[] | null;
   limited: string | null;
   remarks: string | null;
   visitPrevileges: Previleges[] | null;
   signingPrevileges: Previleges[] | null;
   contents: Content;
+  openTimePulldown: OpenTimePulldown[] | null;
 };
 
 export type FairLists = {
@@ -99,12 +112,12 @@ export type FairList = {
   description: string;
   calendarMulti: CalendarMulti | null;
   requireTime: number | null;
-  openTime: OpenTime[] | null;
   limited: string | null;
   remarks: string | null;
   visitPrevileges: Previleges[] | null;
   signingPrevileges: Previleges[] | null;
   contents: Content;
+  openTimePulldown: OpenTimePulldown[] | null;
 };
 
 /* =====================
