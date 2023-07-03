@@ -18,7 +18,7 @@ const PlanMeta = (props: Props) => {
         <div className={Styles.number}>人数：{member}名</div>
       </div>
       <div className={Styles.price}>
-        {price.toLocaleString()}
+        {Number(price).toLocaleString()}
         <span>円〜</span>
       </div>
     </div>

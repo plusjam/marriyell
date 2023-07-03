@@ -19,7 +19,7 @@ const PriceTable = (props: Props) => {
       <div className={Styles.table}>
         {prices.map((content, index) => {
           //content.priceを３桁区切りにする
-          const formatedPrice = content.price.toLocaleString();
+          const formatedPrice = Number(content.price).toLocaleString();
 
           return (
             <div className={Styles.row} key={`pricetable${content.price}${index}`}>
