@@ -107,9 +107,9 @@ export default function Home(props: Props) {
           <PlanContents content={planList} />
           <DetailPlanForm title={planList.title} />
 
-          {/* <Process /> */}
+          <Process />
           <WeekendFair lists={weekendLists} weekend={selectedWeekend} handleSelect={handleWeekendSelect} />
-          {/* <TopWeddingReport contents={reportLists.articles} openModal={openModal} /> */}
+          <TopWeddingReport contents={reportLists.articles} openModal={openModal} />
 
           <InstagramSection />
         </main>
@@ -182,8 +182,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
   });
 
   const planList: PlanList = planRes.data;
-  // console.log("プランご成約", planList.signingPrevileges);
-  // console.log("プラン来館", planList.visitPrevileges);
 
   /* ===================================================================
   // プランカテゴリ
@@ -203,22 +201,17 @@ export const getStaticProps: GetStaticProps = async (context) => {
   /* ===================================================================
   // レポート
   =================================================================== */
-  // const reportUrl = `${process.env.CMS_URL}/api/v1/report?limit=4`;
-  // const reportRes: { data: ReportLists } = await axios.get(reportUrl, {
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //     "account-access-key": accessKey,
-  //     "account-secret-key": secretKey,
-  //     authorization: `Bearer ${token.token}`,
-  //   },
-  // });
+  const reportUrl = `${process.env.CMS_URL}/api/v1/report?limit=4`;
+  const reportRes: { data: ReportLists } = await axios.get(reportUrl, {
+    headers: {
+      "Content-Type": "application/json",
+      "account-access-key": accessKey,
+      "account-secret-key": secretKey,
+      authorization: `Bearer ${token.token}`,
+    },
+  });
 
-  // const reportLists: ReportLists = reportRes.data;
-  const reportLists: ReportLists = {
-    articles: [],
-    total: 0,
-    count: 0,
-  };
+  const reportLists: ReportLists = reportRes.data;
 
   return {
     props: {

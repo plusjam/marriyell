@@ -133,11 +133,11 @@
     bottom: 0;
     width: 100%;
     transform: unset;
-    // grid-template-areas: "reservation phone fair"; 初期公開時だけ
-    grid-template-areas: "phone fair";
+    grid-template-areas: "reservation phone fair";
+    // grid-template-areas: "phone fair"; 初期公開時
     grid-template-rows: 60px;
-    // grid-template-columns: 1fr 1fr 1.75fr;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1.75fr;
+    // grid-template-columns: 1fr 1fr;　初期公開時
 
     display: grid;
   }
@@ -173,9 +173,6 @@
   .reservation {
     background: #fff;
     padding: 10px;
-
-    // 初期公開時だけ↓
-    display: none;
 
     &:before {
       content: "";

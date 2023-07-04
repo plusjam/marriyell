@@ -105,9 +105,9 @@ export default function Home(props: Props) {
           <FairContents fairList={fairList} />
           {todayDateList.length > 0 && <DetailFairForm data={data} handleData={handleData} date={fairList.calendarMulti} time={fairList.openTimePulldown} />}
 
-          {/* <Process /> */}
+          <Process />
           <TopWeddingPlan planLists={[...planLists.articles]} />
-          {/* <TopWeddingReport contents={reportLists.articles} openModal={openModal} /> */}
+          <TopWeddingReport contents={reportLists.articles} openModal={openModal} />
 
           <InstagramSection />
         </main>
@@ -199,21 +199,17 @@ export const getStaticProps: GetStaticProps = async (context) => {
   /* ===================================================================
   // レポート
   =================================================================== */
-  // const reportUrl = `${process.env.CMS_URL}/api/v1/report?limit=4`;
-  // const reportRes: { data: ReportLists } = await axios.get(reportUrl, {
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //     "account-access-key": accessKey,
-  //     "account-secret-key": secretKey,
-  //     authorization: `Bearer ${token.token}`,
-  //   },
-  // });
+  const reportUrl = `${process.env.CMS_URL}/api/v1/report?limit=4`;
+  const reportRes: { data: ReportLists } = await axios.get(reportUrl, {
+    headers: {
+      "Content-Type": "application/json",
+      "account-access-key": accessKey,
+      "account-secret-key": secretKey,
+      authorization: `Bearer ${token.token}`,
+    },
+  });
 
-  const reportLists: ReportLists = {
-    articles: [],
-    total: 0,
-    count: 0,
-  };
+  const reportLists: ReportLists = reportRes.data;
 
   return {
     props: {

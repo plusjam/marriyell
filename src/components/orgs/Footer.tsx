@@ -9,14 +9,16 @@ import ButtonSns from "../atoms/ButtonSns";
 import LinkToRecruit from "../atoms/LinkToRecruit";
 
 const Footer = () => {
+  const isPc = useMediaQuery(768, "min");
   return (
     <footer className={Styles.footer}>
       <div className={Styles.container}>
         <div className={Styles.body}>
           <div className={Styles.logo}>
             <picture>
-              <source srcSet="/images/art_logo_tate.png" type="image/png" />
-              <img src="/images/art_logo-nocolor.svg" alt="マリエール高崎" width={171} height={173} />
+              <source srcSet="/images/art_logo_tate.png" type="image/png" media="(min-width: 768px)" />
+              <source srcSet="/images/art_logo_yoko.png" type="image/png" width={282} height={76} />
+              <img src="/images/art_logo_tate.png" alt="マリエール高崎" width={171} height={173} />
             </picture>
             <div className={Styles.title}>
               <span>マリエール高崎 </span>
@@ -50,7 +52,13 @@ const Footer = () => {
               </span>
               0120-362-241
             </Link>
-            <div className={Styles.info}>営業時間 平日：11:00~19:00／土日祝：09:30~20:00 (火曜・水曜定休)</div>
+            {isPc && <div className={Styles.info}>営業時間 平日：11:00~19:00／土日祝：09:30~20:00 (火曜・水曜定休)</div>}
+            {!isPc && (
+              <div>
+                <div className={Styles.info}>営業時間 平日：11:00~19:00(火曜・水曜定休)</div>
+                <div className={Styles.info}>　　　　 土日祝：09:30~20:00</div>
+              </div>
+            )}
             <div className={Styles.infoLinks}>
               <ButtonSns />
               {/* <LinkToRecruit /> */}

@@ -2,30 +2,23 @@ import Link from "next/link";
 import React from "react";
 import Atoms from "../../styles/atoms/Atoms.module.scss";
 import Image from "next/image";
+import { useMediaQuery } from "../../../libs/useMediaQuery";
 
 const ButtonSns = () => {
+  const isPc = useMediaQuery(768, "min");
+
   return (
     <div className={Atoms.buttons}>
       <Link className={Atoms.button} href="https://www.facebook.com/marriyell.takasaki" target="_blank">
-        {/* <Image src="/images/button_facebook.svg" alt="Facebook" width={40} height={40} /> */}
         <picture>
-          <source srcSet="/images/art_logo.svg" type="image/svg" />
-          <img src="/images/button_facebook.svg" alt="Facebook" width={40} height={40} />
+          <img src={isPc ? "/images/button_facebook.svg" : "/images/button_facebook-dark.svg"} alt="Facebook" width={40} height={40} />
         </picture>
       </Link>
       <Link className={Atoms.button} href="https://www.instagram.com/marriyell.takasaki/" target="_blank">
-        {/* <Image src="/images/button_instagram.svg" alt="Instagram" width={40} height={40} /> */}
         <picture>
-          <source srcSet="/images/art_logo.svg" type="image/svg" />
-          <img src="/images/button_instagram.svg" alt="Instagram" width={40} height={40} />
+          <img src={isPc ? "/images/button_instagram.svg" : "/images/button_instagram-dark.svg"} alt="Instagram" width={40} height={40} />
         </picture>
       </Link>
-      {/* <Link className={Atoms.button} href="https://page.line.me/kbm7305t" target="_blank">
-        <picture>
-          <source srcSet="/images/art_logo.svg" type="image/svg" />
-          <img src="/images/button_line.svg" alt="LINE" width={40} height={40} />
-        </picture>
-      </Link> */}
     </div>
   );
 };

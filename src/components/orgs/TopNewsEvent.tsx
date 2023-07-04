@@ -4,7 +4,6 @@ import SectionHead from "../mols/SectionHead";
 import LinkToLists from "../atoms/LinkToLists";
 import { NewsContents, NewsLists } from "../../../typings/news";
 import Link from "next/link";
-import { IMAGELINKS } from "@/textDate";
 import Image from "next/image";
 import { useMediaQuery } from "../../../libs/useMediaQuery";
 import { BannerLists } from "../../../typings/banner";
