@@ -34,7 +34,7 @@ export type Content = {
 
 export type Calendar = {
   scheme: {
-    inique_id: string;
+    unique_id: string;
     name: string;
   };
   values: {
@@ -49,7 +49,7 @@ export type CalendarMulti = {
 
 export type OpenTime = {
   scheme: {
-    inique_id: string;
+    unique_id: string;
     name: string;
   };
   values: {
@@ -59,7 +59,7 @@ export type OpenTime = {
 
 export type Previleges = {
   scheme: {
-    inique_id: string;
+    unique_id: string;
     name: string;
   };
   values: {

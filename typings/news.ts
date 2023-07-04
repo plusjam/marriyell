@@ -45,7 +45,7 @@ export type Categories = {
 
 export type Description = {
   scheme: {
-    inique_id: string;
+    unique_id: string;
     name: string;
   };
   values: {
