@@ -1,19 +1,19 @@
-import { ContactDataDetailFair } from "@/components/orgs/DetailFairForm";
+import { ContactDataNews } from "@/pages/news/[id]";
 
-export const ReplyToOperation = (body: ContactDataDetailFair) => {
+export const ReplyToOperation = (body: ContactDataNews) => {
   return {
     from: "takasaki@marriyellclub.co.jp",
     to: process.env.MAIL_ADDRESS,
-    subject: `【フェア予約通知】公式ページよりフェアのご予約がありました。`,
+    subject: `【イベント予約通知】公式ページよりイベントのご予約がありました。`,
     // text: body.inquiry + " | Sent from: " + body.email,
     html: `
       <p>ご担当者様</p>
       <p></p>
-      <p>公式ページよりフェアのご予約がありました。</p>
+      <p>公式ページよりイベントのご予約がありました。</p>
       <p>ご対応の程よろしくお願いいたします。</p>
       <p>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</p>
       <p></p>
-      <p><b>【フェア名】</b></p>
+      <p><b>【イベント名】</b></p>
       <p>　${body.title}</p>
       <p></p>
       <p><b>【お名前】</b></p>
@@ -28,29 +28,35 @@ export const ReplyToOperation = (body: ContactDataDetailFair) => {
       <p><b>【メールアドレス】</b></p>
       <p>　${body.email}</p>
       <p></p>
-      <p><b>【ご来場希望日】</b></p>
-      <p>　${body.date}　${body.time}</p>
-      <p></p>
-      <p><b>【ご希望・ご質問など】</b></p>
+      ${
+        body.date && body.time
+          ? `
+          <p><b>【ご来場希望日】</b></p>
+          <p>　${body.date}　${body.time}</p>
+          <p></p>
+        `
+          : ""
+      }
+      <p><b>【ご質問・ご要望】</b></p>
       <p>　${body.inquiry}</p>
       <p></p>
       <p>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</p>
       <p></p>
-      <p>※本メールは、公式ホームページよりフェアのご予約があった際の自動配信メールです。</p>
+      <p>※本メールは、公式ホームページよりイベントのご予約があった際の自動配信メールです。</p>
     `,
   };
 };
 
-export const ReplyToCustomer = (body: ContactDataDetailFair) => {
+export const ReplyToCustomer = (body: ContactDataNews) => {
   return {
     from: "takasaki@marriyellclub.co.jp",
     to: body.email,
-    subject: `【マリエール高崎】フェアのご予約ありがとうございました。`,
+    subject: `【マリエール高崎】イベントのご予約ありがとうございました。`,
     // text: body.inquiry + " | Sent from: " + body.email,
     html: `
     <p>${body.name}　様</p>
     <p></p>
-    <p>この度は、マリエール高崎ブライダルフェアのご予約、</p>
+    <p>この度は、マリエール高崎ブライダルイベントのご予約、</p>
     <p>誠にありがとうございます。</p>
     <p></p>
     <p>このメールは自動送信をさせていただいております。</p>
@@ -60,13 +66,19 @@ export const ReplyToCustomer = (body: ContactDataDetailFair) => {
     <p>下記の内容にて承りました。ご確認下さい。</p>
     <p>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</p>
     <p></p>
-    <p><b>【フェア名】</b></p>
+    <p><b>【イベント名】</b></p>
     <p>　${body.title}</p>
     <p></p>
-    <p><b>【ご来場希望日】</b></p>
-    <p>　${body.date}　${body.time}</p>
-    <p></p>
-    <p><b>【ご希望・ご質問など】</b></p>
+    ${
+      body.date && body.time
+        ? `
+        <p><b>【ご来場希望日】</b></p>
+        <p>　${body.date}　${body.time}</p>
+        <p></p>
+      `
+        : ""
+    }
+    <p><b>【ご質問・ご要望】</b></p>
     <p>　${body.inquiry}</p>
     <p></p>
     <p>------------------------------</p>
@@ -98,7 +110,7 @@ export const ReplyToCustomer = (body: ContactDataDetailFair) => {
     <p>群馬県高崎市飯塚町1361</p>
     <p>TEL：0120-362-241</p>
     <p>mail：takasaki@marriyellclub.co.jp</p>
-    <p>URL：https://takasaki.marriyellclub.co.jp/</p>
+    <p>URL：https://www.marriyellclub.co.jp/takasaki/</p>
     <p>ーーーーーーーーーーーーーーーーーーーーーーー</p>
     `,
   };

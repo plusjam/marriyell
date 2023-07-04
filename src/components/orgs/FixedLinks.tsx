@@ -51,17 +51,17 @@ const FixedLinks = () => {
                 gsap.to(ref.current, { autoAlpha: 0 });
               },
             },
-            onComplete: () => {
-              AppTrigger.refresh();
-            },
+            // onComplete: () => {
+            //   AppTrigger.refresh();
+            // },
           }
         );
       }
     }, ref);
 
-    setTimeout(() => {
-      AppTrigger.refresh();
-    }, 400);
+    // setTimeout(() => {
+    //   AppTrigger.refresh();
+    // }, 400);
 
     return () => {
       ctx.revert();
@@ -70,9 +70,9 @@ const FixedLinks = () => {
 
   return (
     <div className={Styles.fixed} ref={ref}>
-      <Link className={`${Styles.block} ${Styles.reservation}`} href={FIXEDLINKS.reservation.href}>
+      {/* <Link className={`${Styles.block} ${Styles.reservation}`} href={FIXEDLINKS.reservation.href}>
         <div className={Styles.label}>{FIXEDLINKS.reservation.label}</div>
-      </Link>
+      </Link> */}
       <Link className={`${Styles.block} ${Styles.document}`} href={FIXEDLINKS.document.href}>
         <div className={Styles.label}>{FIXEDLINKS.document.label}</div>
       </Link>

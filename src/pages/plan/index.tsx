@@ -26,7 +26,17 @@ type Props = {
 
 export default function Home(props: Props) {
   const { fairLists, planLists, planCategoriesLists, reportLists } = props;
-  const [weekendLists, setWeekendLists] = React.useState([...fairLists.articles]);
+
+  // 今日以降のcalendarMulti.valuesを持つフェアのみを抽出
+  const filterdLists = [...fairLists.articles].filter((fair) => {
+    return fair.calendarMulti?.values.some((calendar) => {
+      const eventDate = new Date(calendar);
+      const today = new Date();
+      return eventDate >= today;
+    });
+  });
+
+  const [weekendLists, setWeekendLists] = React.useState([...filterdLists]);
 
   const { videoID, openModal, closeModal } = useModalReport();
   const { selected: selectedWeekend, handleSelect: handleWeekendSelect } = useGetWeekend();
@@ -37,7 +47,7 @@ export default function Home(props: Props) {
 
   // weekendListsをselectedWeekendで絞り込み
   const getSelectedWeekendLists = async () => {
-    const initLists = [...fairLists.articles];
+    const initLists = [...filterdLists];
 
     const selectedDate = selectedWeekend.filter((weekend) => {
       return weekend.selected;
@@ -106,7 +116,7 @@ export const getStaticProps: GetStaticProps = async () => {
   /* ===================================================================
   // プラン
   =================================================================== */
-  const planUrl = `${process.env.CMS_URL}/api/v1/plan`;
+  const planUrl = `${process.env.CMS_URL}/api/v1/plan?limit=100`;
   const planRes: { data: PlanLists } = await axios.get(planUrl, {
     headers: {
       "Content-Type": "application/json",
@@ -121,7 +131,7 @@ export const getStaticProps: GetStaticProps = async () => {
   /* ===================================================================
   // プランカテゴリ
   =================================================================== */
-  const planCategoriesUrl = `${process.env.CMS_URL}/api/v1/planCategories`;
+  const planCategoriesUrl = `${process.env.CMS_URL}/api/v1/planCategories?limit=100`;
   const planCategoriesRes: { data: PlanCategoriesLists } = await axios.get(planCategoriesUrl, {
     headers: {
       "Content-Type": "application/json",

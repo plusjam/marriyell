@@ -24,7 +24,7 @@ export default function Document() {
           }}
         />
 
-        <meta name="google-site-verification" content="yk0YyROxg9O6j8IG25bhkdsw8wTy4--jJmM1n9U8aMI" />
+        <meta name="facebook-domain-verification" content="wk8jsl1gz9mkj0k75yy12os2wg5kl3" />
       </Head>
       <body>
         <GtmBody />

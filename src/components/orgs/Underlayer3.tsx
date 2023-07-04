@@ -26,7 +26,7 @@ const Underlayer3 = () => {
               </Scroll>
               <Scroll className={`${Styles.link} ${Styles.inner} ${Styles.h3}`} to="banquet" smooth={true} duration={500} offset={-80}>
                 <div className={Styles.en}>Banquet</div>
-                <div className={Styles.ja}>バンケット</div>
+                <div className={Styles.ja}>披露宴会場</div>
               </Scroll>
             </>
           ) : (
@@ -37,7 +37,7 @@ const Underlayer3 = () => {
               </Link>
               <Link className={Styles.link} href="/facility#banquet">
                 <div className={Styles.en}>Banquet</div>
-                <div className={Styles.ja}>バンケット</div>
+                <div className={Styles.ja}>披露宴会場</div>
               </Link>
             </>
           )}

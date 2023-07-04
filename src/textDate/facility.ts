@@ -58,7 +58,7 @@ export const GARDEN = {
 
 export const BANQUET = {
   en: "Banquet",
-  ja: "バンケット",
+  ja: "披露宴会場",
   href: "banquet",
 };
 

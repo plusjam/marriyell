@@ -45,12 +45,47 @@ export type Categories = {
 
 export type Description = {
   scheme: {
-    unique_id: string;
+    unique_id: "field1" | "field2" | "field3" | "field4";
     name: string;
   };
   values: {
     text?: string;
     image?: ImageObject;
+  };
+};
+
+export type Form = {
+  multiple: boolean;
+  select: ["フォームなし"] | ["フォームあり 日付け[無]"] | ["フォームあり 日付け[有]"];
+};
+
+export type Date = {
+  multiple: boolean;
+  values: string[];
+};
+
+export type Time = {
+  scheme: {
+    unique_id: string;
+    name: string;
+  };
+  values: {
+    startHour: {
+      multiple: boolean;
+      select: string[];
+    };
+    startMinutes: {
+      multiple: boolean;
+      select: string[];
+    };
+    endHour: {
+      multiple: boolean;
+      select: string[];
+    };
+    endMinutes: {
+      multiple: boolean;
+      select: string[];
+    };
   };
 };
 
@@ -65,6 +100,9 @@ export type NewsArticle = {
   categories: Categories;
   datetime: string;
   description: Description[];
+  form: Form;
+  date?: Date | null;
+  time?: Time[] | null;
 };
 
 export type NewsLists = {
@@ -87,6 +125,9 @@ export type NewsList = {
   categories: Categories;
   datetime: string;
   description: Description[];
+  form: Form;
+  date?: Date | null;
+  time?: Time[] | null;
 };
 
 //

@@ -102,7 +102,7 @@ export const sitemapLinks = [
     href: "/facility#chapel",
   },
   {
-    title: "― バンケット",
+    title: "― 披露宴会場",
     href: "/facility#banquet",
   },
   {
@@ -137,18 +137,18 @@ export const sitemapLinks = [
   //   title: "ウエディングレポート",
   //   href: "/report",
   // },
-  // {
-  //   title: "お知らせ・イベント情報",
-  //   href: "/news",
-  // },
+  {
+    title: "お知らせ・イベント情報",
+    href: "/news",
+  },
   // {
   //   title: "来館予約",
   //   href: "/contact/reservation/",
   // },
-  // {
-  //   title: "資料請求",
-  //   href: "/contact/brochure",
-  // },
+  {
+    title: "資料請求",
+    href: "/contact/brochure",
+  },
   {
     title: "アクセス",
     href: "/access",

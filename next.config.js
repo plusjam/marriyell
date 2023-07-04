@@ -18,22 +18,12 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: "/news",
-        destination: "/404",
-        permanent: false,
-      },
-      {
         source: "/report",
         destination: "/404",
         permanent: false,
       },
       {
         source: "/contact",
-        destination: "/404",
-        permanent: false,
-      },
-      {
-        source: "/contact/brochure",
         destination: "/404",
         permanent: false,
       },

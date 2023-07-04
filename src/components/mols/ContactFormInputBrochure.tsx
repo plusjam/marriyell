@@ -63,305 +63,165 @@ const ContactFormInputBrochure = (props: Props) => {
               <br className={Styles.sp} />
               無料でご提供しております。
             </p>
-            <div className={Styles.document}>
-              <figure className={Styles.figure}>
-                <img src="/images/brochure_image.jpg" alt="scene's-pamphlet" loading="lazy" />
-              </figure>
-            </div>
             <p className={Styles.description}>
               各項目をご入力後、「確認画面に進む」ボタンを押してください。
               <br /> 「<span className={Styles.color}>※</span>」の項目は必須事項です。
             </p>
-          </div>
-          <div className={Styles.option}>
-            <dl className={Styles.optionInner}>
-              <dt className={`${Styles.label} ${Styles.require}`}>資料請求方法</dt>
-              <dd className={Styles.radio}>
-                <label className={Styles.radioLabel} onClick={() => setR_contactBrochureData({ ...R_contactBrochureData, type: "download" })}>
-                  <input className={Styles.radioInput} type="radio" name="option" checked={R_contactBrochureData.type === "download"} />
-                  <span className={Styles.radioText}>ダウンロード</span>
-                </label>
-                <label className={Styles.radioLabel} onClick={() => setR_contactBrochureData({ ...R_contactBrochureData, type: "post" })}>
-                  <input className={Styles.radioInput} type="radio" name="option" checked={R_contactBrochureData.type === "post"} />
-                  <span className={Styles.radioText}>郵送</span>
-                </label>
-              </dd>
-            </dl>
-            <p className={Styles.radionote}>
-              ※「ダウンロード」をお選び頂いた方は、入力完了画面にて資料をダウンロード頂けます。
-              <br /> また、あわせてメールアドレス宛にダウンロードURLをお送りいたします。
-              <br /> ※「郵送」をお選びいただいた方には、下記にてご記入いただいた住所にパンフレットをお送りいたします。
-            </p>
+            <p className={Styles.description}>下記にてご記入いただいた住所にパンフレットをお送りいたします。</p>
           </div>
 
-          {/* option ===  true*/}
-          {R_contactBrochureData.type === "download" && (
-            <div className={Styles.inputs}>
-              <div className={Styles.inputBody}>
-                <label className={`${Styles.label} ${Styles.require}`} htmlFor="name">
-                  お名前
-                </label>
-                <div className={Styles.inputBlock}>
-                  <input
-                    className={Styles.input}
-                    id="name"
-                    {...register("name", {
-                      required: rules.required,
-                      maxLength: rules.maxLength,
-                      onChange: (e) => {
-                        setR_contactBrochureData({ ...R_contactBrochureData, name: e.target.value });
-                      },
-                    })}
-                    placeholder="例　山田　花子"
-                    value={R_contactBrochureData.name}
-                  />
-                  {errors.name && <span className={Styles.error}>{errors.name.message as string}</span>}
-                </div>
-              </div>
-              <div className={Styles.inputBody}>
-                <label className={`${Styles.label} ${Styles.require}`} htmlFor="furigana">
-                  お名前（フリガナ）
-                </label>
-                <div className={Styles.inputBlock}>
-                  <input
-                    className={Styles.input}
-                    id="furigana"
-                    {...register("furigana", {
-                      required: rules.required,
-                      maxLength: rules.maxLength,
-                      pattern: rules.furiganaPattern,
-                      onChange: (e) => {
-                        setR_contactBrochureData({ ...R_contactBrochureData, furigana: e.target.value });
-                      },
-                    })}
-                    placeholder="例　ヤマダ　ハナコ"
-                    value={R_contactBrochureData.furigana}
-                  />
-                  {errors.furigana && <span className={Styles.error}>{errors.furigana.message as string}</span>}
-                </div>
-              </div>
-              <div className={Styles.inputBody}>
-                <label className={`${Styles.label} ${Styles.require}`} htmlFor="phone">
-                  電話番号
-                </label>
-                <div className={Styles.inputBlock}>
-                  <input
-                    className={Styles.input}
-                    id="phone"
-                    {...register("phone", {
-                      required: rules.required,
-                      validate: (value) => {
-                        return validatePhone(value) || rules.phone;
-                      },
-                      onChange: (e) => {
-                        setR_contactBrochureData({ ...R_contactBrochureData, phone: e.target.value });
-                      },
-                    })}
-                    placeholder="例　09012345678"
-                    value={R_contactBrochureData.phone}
-                  />
-                  {errors.phone && <span className={Styles.error}>{errors.phone.message as string}</span>}
-                </div>
-              </div>
-              <div className={Styles.inputBody}>
-                <label className={`${Styles.label} ${Styles.require}`} htmlFor="email">
-                  メールアドレス
-                </label>
-                <div className={Styles.inputBlock}>
-                  <input
-                    className={Styles.input}
-                    id="email"
-                    {...register("email", {
-                      required: rules.required,
-                      pattern: rules.emailPattern,
-                      onChange: (e) => {
-                        setR_contactBrochureData({ ...R_contactBrochureData, email: e.target.value });
-                      },
-                    })}
-                    placeholder="例　abcd@lucrea"
-                    value={R_contactBrochureData.email}
-                  />
-                  {errors.email && <span className={Styles.error}>{errors.email.message as string}</span>}
-                </div>
-              </div>
-              <div className={`${Styles.inputBody}`}>
-                <label className={`${Styles.label}`} htmlFor="inquiry">
-                  ご希望・ご質問など
-                </label>
-                <div className={Styles.inputBlock}>
-                  <textarea
-                    className={`${Styles.input} ${Styles.inputInquiry}`}
-                    id="inquiry"
-                    {...register("inquiry", {
-                      onChange: (e) => {
-                        setR_contactBrochureData({ ...R_contactBrochureData, inquiry: e.target.value });
-                      },
-                    })}
-                    placeholder="ご希望・ご質問などをご記載ください。"
-                    cols={50}
-                    rows={5}
-                    value={R_contactBrochureData.inquiry}
-                  ></textarea>
-                  {errors.inquiry && <span className={Styles.error}>{errors.inquiry.message as string}</span>}
-                </div>
+          <div className={Styles.inputs}>
+            <div className={Styles.inputBody}>
+              <label className={`${Styles.label} ${Styles.require}`} htmlFor="name">
+                お名前
+              </label>
+              <div className={Styles.inputBlock}>
+                <input
+                  className={Styles.input}
+                  id="name"
+                  {...register("name", {
+                    required: rules.required,
+                    maxLength: rules.maxLength,
+                    onChange: (e) => {
+                      setR_contactBrochureData({ ...R_contactBrochureData, name: e.target.value });
+                    },
+                  })}
+                  placeholder="例　山田　花子"
+                  value={R_contactBrochureData.name}
+                />
+                {errors.name && <span className={Styles.error}>{errors.name.message as string}</span>}
               </div>
             </div>
-          )}
-          {/* option === false */}
-          {R_contactBrochureData.type === "post" && (
-            <div className={Styles.inputs}>
-              <div className={Styles.inputBody}>
-                <label className={`${Styles.label} ${Styles.require}`} htmlFor="name">
-                  お名前
-                </label>
-                <div className={Styles.inputBlock}>
-                  <input
-                    className={Styles.input}
-                    id="name"
-                    {...register("name", {
-                      required: rules.required,
-                      maxLength: rules.maxLength,
-                      onChange: (e) => {
-                        setR_contactBrochureData({ ...R_contactBrochureData, name: e.target.value });
-                      },
-                    })}
-                    placeholder="例　山田　花子"
-                    value={R_contactBrochureData.name}
-                  />
-                  {errors.name && <span className={Styles.error}>{errors.name.message as string}</span>}
-                </div>
-              </div>
-              <div className={Styles.inputBody}>
-                <label className={`${Styles.label} ${Styles.require}`} htmlFor="furigana">
-                  お名前（フリガナ）
-                </label>
-                <div className={Styles.inputBlock}>
-                  <input
-                    className={Styles.input}
-                    id="furigana"
-                    {...register("furigana", {
-                      required: rules.required,
-                      maxLength: rules.maxLength,
-                      pattern: rules.furiganaPattern,
-                      onChange: (e) => {
-                        setR_contactBrochureData({ ...R_contactBrochureData, furigana: e.target.value });
-                      },
-                    })}
-                    placeholder="例　ヤマダ　ハナコ"
-                    value={R_contactBrochureData.furigana}
-                  />
-                  {errors.furigana && <span className={Styles.error}>{errors.furigana.message as string}</span>}
-                </div>
-              </div>
-              <div className={Styles.inputBody}>
-                <label className={`${Styles.label} ${Styles.require}`} htmlFor="phone">
-                  電話番号
-                </label>
-                <div className={Styles.inputBlock}>
-                  <input
-                    className={Styles.input}
-                    id="phone"
-                    {...register("phone", {
-                      required: rules.required,
-                      validate: (value) => {
-                        return validatePhone(value) || rules.phone;
-                      },
-                      onChange: (e) => {
-                        setR_contactBrochureData({ ...R_contactBrochureData, phone: e.target.value });
-                      },
-                    })}
-                    placeholder="例　09012345678"
-                    value={R_contactBrochureData.phone}
-                  />
-                  {errors.phone && <span className={Styles.error}>{errors.phone.message as string}</span>}
-                </div>
-              </div>
-              <div className={Styles.inputBody}>
-                <label className={`${Styles.label} ${Styles.require}`} htmlFor="email">
-                  メールアドレス
-                </label>
-                <div className={Styles.inputBlock}>
-                  <input
-                    className={Styles.input}
-                    id="email"
-                    {...register("email", {
-                      required: rules.required,
-                      pattern: rules.emailPattern,
-                      onChange: (e) => {
-                        setR_contactBrochureData({ ...R_contactBrochureData, email: e.target.value });
-                      },
-                    })}
-                    placeholder="例　abcd@lucrea"
-                    value={R_contactBrochureData.email}
-                  />
-                  {errors.email && <span className={Styles.error}>{errors.email.message as string}</span>}
-                </div>
-              </div>
-              <div className={Styles.inputBody}>
-                <label className={`${Styles.label} ${Styles.require}`} htmlFor="zipcode">
-                  郵便番号
-                </label>
-                <div className={Styles.inputBlock}>
-                  <input
-                    className={`${Styles.input} ${Styles.half}`}
-                    id="zipcode"
-                    {...register("zipcode", {
-                      required: rules.required,
-                      pattern: rules.zipcodePattern,
-                      onChange: (e) => {
-                        setR_contactBrochureData({ ...R_contactBrochureData, zipcode: e.target.value });
-                      },
-                    })}
-                    placeholder="例　123-4567"
-                    value={R_contactBrochureData.zipcode}
-                  />
-                  {errors.zipcode && <span className={Styles.error}>{errors.zipcode.message as string}</span>}
-                </div>
-              </div>
-              <div className={Styles.inputBody}>
-                <label className={`${Styles.label} ${Styles.require}`} htmlFor="address">
-                  ご住所
-                </label>
-                <div className={Styles.inputBlock}>
-                  <input
-                    className={Styles.input}
-                    id="address"
-                    {...register("address", {
-                      required: rules.required,
-                      maxLength: rules.maxLength,
-                      onChange: (e) => {
-                        setR_contactBrochureData({ ...R_contactBrochureData, address: e.target.value });
-                      },
-                    })}
-                    placeholder="東京都千代田区千代田1-1"
-                    value={R_contactBrochureData.address}
-                  />
-                  {errors.address && <span className={Styles.error}>{errors.address.message as string}</span>}
-                </div>
-              </div>
-              <div className={`${Styles.inputBody}`}>
-                <label className={`${Styles.label}`} htmlFor="inquiry">
-                  ご希望・ご質問など
-                </label>
-                <div className={Styles.inputBlock}>
-                  <textarea
-                    className={`${Styles.input} ${Styles.inputInquiry}`}
-                    id="inquiry"
-                    {...register("inquiry", {
-                      onChange: (e) => {
-                        setR_contactBrochureData({ ...R_contactBrochureData, inquiry: e.target.value });
-                      },
-                    })}
-                    placeholder="ご希望・ご質問などをご記載ください。"
-                    cols={50}
-                    rows={5}
-                    value={R_contactBrochureData.inquiry}
-                  ></textarea>
-                  {errors.inquiry && <span className={Styles.error}>{errors.inquiry.message as string}</span>}
-                </div>
+            <div className={Styles.inputBody}>
+              <label className={`${Styles.label} ${Styles.require}`} htmlFor="furigana">
+                お名前（フリガナ）
+              </label>
+              <div className={Styles.inputBlock}>
+                <input
+                  className={Styles.input}
+                  id="furigana"
+                  {...register("furigana", {
+                    required: rules.required,
+                    maxLength: rules.maxLength,
+                    pattern: rules.furiganaPattern,
+                    onChange: (e) => {
+                      setR_contactBrochureData({ ...R_contactBrochureData, furigana: e.target.value });
+                    },
+                  })}
+                  placeholder="例　ヤマダ　ハナコ"
+                  value={R_contactBrochureData.furigana}
+                />
+                {errors.furigana && <span className={Styles.error}>{errors.furigana.message as string}</span>}
               </div>
             </div>
-          )}
+            <div className={Styles.inputBody}>
+              <label className={`${Styles.label} ${Styles.require}`} htmlFor="phone">
+                電話番号
+              </label>
+              <div className={Styles.inputBlock}>
+                <input
+                  className={Styles.input}
+                  id="phone"
+                  {...register("phone", {
+                    required: rules.required,
+                    validate: (value) => {
+                      return validatePhone(value) || rules.phone;
+                    },
+                    onChange: (e) => {
+                      setR_contactBrochureData({ ...R_contactBrochureData, phone: e.target.value });
+                    },
+                  })}
+                  placeholder="例　09012345678"
+                  value={R_contactBrochureData.phone}
+                />
+                {errors.phone && <span className={Styles.error}>{errors.phone.message as string}</span>}
+              </div>
+            </div>
+            <div className={Styles.inputBody}>
+              <label className={`${Styles.label} ${Styles.require}`} htmlFor="email">
+                メールアドレス
+              </label>
+              <div className={Styles.inputBlock}>
+                <input
+                  className={Styles.input}
+                  id="email"
+                  {...register("email", {
+                    required: rules.required,
+                    pattern: rules.emailPattern,
+                    onChange: (e) => {
+                      setR_contactBrochureData({ ...R_contactBrochureData, email: e.target.value });
+                    },
+                  })}
+                  placeholder="例　abcd@lucrea"
+                  value={R_contactBrochureData.email}
+                />
+                {errors.email && <span className={Styles.error}>{errors.email.message as string}</span>}
+              </div>
+            </div>
+            <div className={Styles.inputBody}>
+              <label className={`${Styles.label} ${Styles.require}`} htmlFor="zipcode">
+                郵便番号
+              </label>
+              <div className={Styles.inputBlock}>
+                <input
+                  className={`${Styles.input} ${Styles.half}`}
+                  id="zipcode"
+                  {...register("zipcode", {
+                    required: rules.required,
+                    pattern: rules.zipcodePattern,
+                    onChange: (e) => {
+                      setR_contactBrochureData({ ...R_contactBrochureData, zipcode: e.target.value });
+                    },
+                  })}
+                  placeholder="例　123-4567"
+                  value={R_contactBrochureData.zipcode}
+                />
+                {errors.zipcode && <span className={Styles.error}>{errors.zipcode.message as string}</span>}
+              </div>
+            </div>
+            <div className={Styles.inputBody}>
+              <label className={`${Styles.label} ${Styles.require}`} htmlFor="address">
+                ご住所
+              </label>
+              <div className={Styles.inputBlock}>
+                <input
+                  className={Styles.input}
+                  id="address"
+                  {...register("address", {
+                    required: rules.required,
+                    maxLength: rules.maxLength,
+                    onChange: (e) => {
+                      setR_contactBrochureData({ ...R_contactBrochureData, address: e.target.value });
+                    },
+                  })}
+                  placeholder="例　東京都千代田区千代田1-1"
+                  value={R_contactBrochureData.address}
+                />
+                {errors.address && <span className={Styles.error}>{errors.address.message as string}</span>}
+              </div>
+            </div>
+            <div className={`${Styles.inputBody}`}>
+              <label className={`${Styles.label}`} htmlFor="inquiry">
+                ご希望・ご質問など
+              </label>
+              <div className={Styles.inputBlock}>
+                <textarea
+                  className={`${Styles.input} ${Styles.inputInquiry}`}
+                  id="inquiry"
+                  {...register("inquiry", {
+                    onChange: (e) => {
+                      setR_contactBrochureData({ ...R_contactBrochureData, inquiry: e.target.value });
+                    },
+                  })}
+                  placeholder="ご希望・ご質問などをご記載ください。"
+                  cols={50}
+                  rows={5}
+                  value={R_contactBrochureData.inquiry}
+                ></textarea>
+                {errors.inquiry && <span className={Styles.error}>{errors.inquiry.message as string}</span>}
+              </div>
+            </div>
+          </div>
 
           <ContactPolicy />
 

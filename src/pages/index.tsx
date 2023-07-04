@@ -34,7 +34,16 @@ type Props = {
 export default function Home(props: Props) {
   const { fairLists, planLists, reportLists, newsLists, newsCategoriesLists, bannerLists } = props;
 
-  const [weekendLists, setWeekendLists] = React.useState([...fairLists.articles]);
+  // 今日以降のcalendarMulti.valuesを持つフェアのみを抽出
+  const filterdLists = [...fairLists.articles].filter((fair) => {
+    return fair.calendarMulti?.values.some((calendar) => {
+      const eventDate = new Date(calendar);
+      const today = new Date();
+      return eventDate >= today;
+    });
+  });
+
+  const [weekendLists, setWeekendLists] = React.useState([...filterdLists]);
 
   const { videoID, openModal, closeModal } = useModalReport();
   const { selected: selectedWeekend, handleSelect: handleWeekendSelect } = useGetWeekend();
@@ -45,7 +54,7 @@ export default function Home(props: Props) {
 
   // weekendListsをselectedWeekendで絞り込み
   const getSelectedWeekendLists = () => {
-    const initLists = [...fairLists.articles];
+    const initLists = [...filterdLists];
 
     const selectedDate = selectedWeekend.filter((weekend) => {
       return weekend.selected;
@@ -79,7 +88,7 @@ export default function Home(props: Props) {
           <MainVideo />
           <MainFlow />
           <TopOriginalWedding />
-          <TopBridalFair lists={[...fairLists.articles]} weekendLists={weekendLists} weekend={selectedWeekend} handleSelect={handleWeekendSelect} events={removeDuplicates([...fairLists.articles])} />
+          <TopBridalFair lists={[...filterdLists]} weekendLists={weekendLists} weekend={selectedWeekend} handleSelect={handleWeekendSelect} events={removeDuplicates([...filterdLists])} />
           <TopWeddingPlan planLists={[...planLists.articles]} />
           {/* <TopWeddingReport contents={reportLists.articles} openModal={openModal} /> */}
           <TopNewsEvent contents={newsLists.articles} bannerLists={bannerLists.articles} />
@@ -153,7 +162,7 @@ export const getStaticProps: GetStaticProps = async () => {
   /* ===================================================================
   // お知らせ
   =================================================================== */
-  const newsUrl = `${process.env.CMS_URL}/api/v1/news`;
+  const newsUrl = `${process.env.CMS_URL}/api/v1/news?limit=4`;
   const newsRes: { data: NewsLists } = await axios.get(newsUrl, {
     headers: {
       "Content-Type": "application/json",
@@ -164,7 +173,6 @@ export const getStaticProps: GetStaticProps = async () => {
   });
 
   const newsLists: NewsLists = newsRes.data;
-  // console.log("お知らせ", newsLists.articles[0]);
 
   /* ===================================================================
   // お知らせカテゴリ
@@ -180,7 +188,6 @@ export const getStaticProps: GetStaticProps = async () => {
   });
 
   const newsCategoriesLists: NewsCategoriesLists = newsCategoriesRes.data;
-  // console.log("お知らせカテゴリリスト", newsCategoriesLists);
 
   /* ===================================================================
   // バナー

@@ -29,7 +29,17 @@ type Props = {
 
 export default function Home(props: Props) {
   const { fairLists, planLists, reportLists } = props;
-  const [weekendLists, setWeekendLists] = React.useState([...fairLists.articles]);
+
+  // 今日以降のcalendarMulti.valuesを持つフェアのみを抽出
+  const filterdLists = [...fairLists.articles].filter((fair) => {
+    return fair.calendarMulti?.values.some((calendar) => {
+      const eventDate = new Date(calendar);
+      const today = new Date();
+      return eventDate >= today;
+    });
+  });
+
+  const [weekendLists, setWeekendLists] = React.useState([...filterdLists]);
   const [selectedFaqType, setSelectedFaqType] = React.useState<Qa>(QA.map((v) => ({ ...v })));
   const [qaSet, setQaSet] = React.useState<QASet>({ ...QA[0] });
 
@@ -46,7 +56,7 @@ export default function Home(props: Props) {
 
   // weekendListsをselectedWeekendで絞り込み
   const getSelectedWeekendLists = async () => {
-    const initLists = [...fairLists.articles];
+    const initLists = [...filterdLists];
 
     const selectedDate = selectedWeekend.filter((weekend) => {
       return weekend.selected;
@@ -134,7 +144,6 @@ export const getStaticProps: GetStaticProps = async () => {
   });
 
   const fairLists: FairLists = fairRes.data;
-  // console.log("フェア", fairLists.articles[0].calendar);
 
   /* ===================================================================
   // プラン

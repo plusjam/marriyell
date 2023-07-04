@@ -87,7 +87,7 @@ export const ReplyToCustomer = (body: ContactReservationData) => {
     <p>群馬県高崎市飯塚町1361</p>
     <p>TEL：0120-362-241</p>
     <p>mail：takasaki@marriyellclub.co.jp</p>
-    <p>URL：https://www.marriyellclub.co.jp/takasaki/</p>
+    <p>URL：https://takasaki.marriyellclub.co.jp/</p>
     <p>ーーーーーーーーーーーーーーーーーーーーーーー</p>
     `,
   };

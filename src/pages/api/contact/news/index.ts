@@ -1,4 +1,4 @@
-import { ReplyToCustomer, ReplyToOperation } from "@/mail/contact";
+import { ReplyToCustomer, ReplyToOperation } from "@/mail/contactNews";
 import { transporter } from "@/mail/transporter";
 import { NextApiRequest, NextApiResponse } from "next";
 
