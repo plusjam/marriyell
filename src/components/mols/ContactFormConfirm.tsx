@@ -41,7 +41,11 @@ const ContactFormConfirm = (props: Props) => {
       });
       const json = await res.json();
 
-      router.push("/contact/thanks");
+      if (json.status === 200) {
+        router.push("/contact/thanks");
+      } else {
+        handleStatus("error");
+      }
     } catch (error) {
       handleStatus("error");
       console.log(error);

@@ -9,6 +9,7 @@ export type Content = {
       price: number;
       just: boolean;
     }[];
+    isIrregular?: boolean;
   }[];
   src: string;
   banners: string[];
@@ -17,34 +18,34 @@ export type Content = {
 export const DRESS: Content = {
   title: "レンタル衣装",
   contentTitle: "衣裳のレンタルはコスチュームサロンにて<br>承っております",
-  caption: "衣裳のレンタルは当館にございますコスチュームサロンにて<br>承っております<br>親御様の留袖やモーニングをはじめご親族やお子様の衣裳<br>ご列席の方のドレスなど 幅広く取り揃えております",
+  caption: "衣裳のレンタルは当館にございます<br>コスチュームサロンにて承っております<br>親御様の留袖やモーニングをはじめ<br>ご親族やお子様の衣裳など 幅広く取り揃えております",
   table: [
     {
       title: "内容",
       prices: [
         {
-          title: "留袖",
-          price: 16500,
+          title: "江戸褄",
+          price: 22000,
           just: false,
         },
         {
           title: "モーニング",
-          price: 16500,
+          price: 22000,
           just: true,
         },
         {
           title: "お父様紋服",
-          price: 33000,
+          price: 44000,
           just: false,
         },
         {
           title: "ゲスト中振袖",
-          price: 55000,
+          price: 66000,
           just: false,
         },
         {
           title: "お子様衣装",
-          price: 11000,
+          price: 5500,
           just: true,
         },
       ],
@@ -57,34 +58,34 @@ export const DRESS: Content = {
 export const HAIR: Content = {
   title: "着付け・ヘアメイク",
   contentTitle: "ご列席される方の着付けやヘアセットは<br>ご予約にて承っております",
-  caption: "挙式披露宴の3週間前までにお申し込みください<br>なお、小物の販売品もございます<br>※予約状況により人数制限をさせていただく場合がございます",
+  caption: "挙式披露宴の3週間前までにお申し込みください<br>なお、小物のレンタルもございます<br>※予約状況により人数制限をさせていただく場合がございます",
   table: [
     {
       title: "着付料金",
       prices: [
         {
-          title: "留袖",
+          title: "江戸褄（マリエール衣装）",
           price: 6600,
           just: true,
         },
         {
-          title: "ゲスト中振袖",
-          price: 8800,
-          just: true,
-        },
-        {
-          title: "付け下げ",
-          price: 6600,
+          title: "江戸褄（持込衣装）",
+          price: 7700,
           just: true,
         },
         {
           title: "訪問着",
-          price: 6600,
+          price: 7700,
+          just: false,
+        },
+        {
+          title: "振袖",
+          price: 16500,
           just: true,
         },
         {
-          title: "紋付",
-          price: 6600,
+          title: "男性袴",
+          price: 11000,
           just: true,
         },
       ],
@@ -93,30 +94,46 @@ export const HAIR: Content = {
       title: "ヘアメイク",
       prices: [
         {
-          title: "ショート<br>（ブロー）",
+          title: "アップスタイル",
           price: 4950,
           just: true,
         },
         {
-          title: "ロング<br>（アップ）",
-          price: 4950,
+          title: "ハーフアップ",
+          price: 4400,
           just: true,
+        },
+        {
+          title: "ショート・ブロー",
+          price: 3850,
+          just: true,
+        },
+        {
+          title: "お子様ヘア<br>（未就学・小学生）",
+          price: 2200,
+          just: true,
+        },
+        {
+          title: "髪飾りレンタル",
+          price: 4950,
+          just: false,
         },
         {
           title: "フルメイク",
-          price: 3850,
+          price: 3300,
           just: true,
         },
         {
           title: "ポイントメイク",
-          price: 3850,
-          just: true,
+          price: 2200,
+          just: false,
         },
       ],
+      isIrregular: true,
     },
   ],
   src: "/images/guest_hair.jpg",
-  banners: ["/images/banner_brides.jpg", "/images/banner_brides_contact.png"],
+  banners: ["/images/banner_salon.jpg", "/images/banner_salon_contact.png"],
 };
 
 export const CONTENT = {
@@ -144,7 +161,7 @@ export const CONTENT = {
       },
       {
         title: "駐車場",
-        caption: "40台の専用駐車場がございます<br>大勢のゲストをお招きいただくおふたりも安心です",
+        caption: "200台の専用駐車場がございます<br>大勢のゲストをお招きいただくおふたりも安心です",
         src: "/images/icon_guest_parking.svg",
       },
       {

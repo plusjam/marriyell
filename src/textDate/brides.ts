@@ -9,7 +9,7 @@ export type ContentBrides = {
 };
 
 export const STEP1: ContentBrides = {
-  title: "結婚式当日<span>4-5</span>ヶ月前",
+  title: "結婚式当日<span>5~6</span>ヶ月前",
   contentTitle: "おふたりの結婚式への想いや期待<br>悩み・不安をお聞かせください",
   caption: "最初のお打ち合わせから結婚式当日まで、専任のウエディング<br>プランナーがおふたりをサポートさせていただきます。",
   flow: ["おふたりやゲストについてヒアリング", "結婚式のコンセプトや方向性のご相談", "衣裳のご検討・ご試着"],
@@ -17,7 +17,7 @@ export const STEP1: ContentBrides = {
 };
 
 export const STEP2: ContentBrides = {
-  title: "結婚式当日<span>3-4</span>ヶ月前",
+  title: "結婚式当日<span>4~5</span>ヶ月前",
   contentTitle: "挙式披露宴のアウトフレームを創り<br>招待状を準備しましょう",
   caption: "打ち合わせで伺った内容をもとに ウエディングプランナーがおふたりの思い描く結婚式のカタチを具現化<br>し 挙式披露宴のイメージをお話させていただきます",
   textAlignment: true,
@@ -26,7 +26,7 @@ export const STEP2: ContentBrides = {
 };
 
 export const STEP3: ContentBrides = {
-  title: "結婚式当日<span>2-3</span>ヶ月前",
+  title: "結婚式当日<span>2-4</span>ヶ月前",
   contentTitle: "ゲストの顔を思い浮かべながら</br>料理を決めていきます",
   caption: "専属シェフも参加して 参列ゲストにふるまう料理を決めていきます<br>ゲストの顔ぶれや年齢層に合わせてコースを選んだり アレルギーがある方やご年配の方への気遣いを考えたりします",
   textAlignment: true,

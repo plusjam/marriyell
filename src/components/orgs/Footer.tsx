@@ -72,14 +72,14 @@ const Footer = () => {
 
         <div className={Styles.foot}>
           <div className={Styles.about}>
-            <Link href="" target="_blank">
+            <Link href="https://marriyellclub.co.jp/company/index.html" target="_blank">
               会社概要
             </Link>
-            <Link href="" target="_blank">
+            <Link href="https://marriyellclub.co.jp/company/privacypolicy.html" target="_blank">
               プライバシポリシー
             </Link>
           </div>
-          <div className={Styles.copy}>{`© 2016-${new Date().getFullYear()} マリエール高崎`}</div>
+          <div className={Styles.copy}>{`© 2016 MARRIYELL TAKASAKI.`}</div>
         </div>
       </div>
     </footer>

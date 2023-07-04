@@ -8,15 +8,16 @@ type Props = {
     price: number;
     just: boolean;
   }[];
+  isIrregular?: boolean;
 };
 
 const PriceTable = (props: Props) => {
-  const { title, prices } = props;
+  const { title, prices, isIrregular = false } = props;
 
   return (
     <div className={Styles.block}>
       <div className={Styles.title} dangerouslySetInnerHTML={{ __html: title }}></div>
-      <div className={Styles.table}>
+      <div className={isIrregular ? `${Styles.table} ${Styles.irregular}` : Styles.table}>
         {prices.map((content, index) => {
           //content.priceを３桁区切りにする
           const formatedPrice = Number(content.price).toLocaleString();

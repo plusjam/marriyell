@@ -101,7 +101,7 @@ const ContactFormConfirmBrochure = (props: Props) => {
                 メールアドレス
               </label>
               <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                <input disabled className={Styles.input} id="email" {...register("email", {})} placeholder="例　abcd@lucrea" value={R_contactBrochureData.email} />
+                <input disabled className={Styles.input} id="email" {...register("email", {})} placeholder="例　example@marriyellclub.co.jp" value={R_contactBrochureData.email} />
                 {errors.email && <span className={Styles.error}>{errors.email.message as string}</span>}
               </div>
             </div>
@@ -110,7 +110,7 @@ const ContactFormConfirmBrochure = (props: Props) => {
                 郵便番号
               </label>
               <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                <input disabled className={`${Styles.input} ${Styles.half}`} id="zipcode" {...register("zipcode", {})} placeholder="例　abcd@lucrea" value={R_contactBrochureData.zipcode} />
+                <input disabled className={`${Styles.input} ${Styles.half}`} id="zipcode" {...register("zipcode", {})} placeholder="例　123-4567" value={R_contactBrochureData.zipcode} />
                 {errors.zipcode && <span className={Styles.error}>{errors.zipcode.message as string}</span>}
               </div>
             </div>
@@ -119,7 +119,7 @@ const ContactFormConfirmBrochure = (props: Props) => {
                 住所
               </label>
               <div className={`${Styles.inputBlock} ${Styles.confirm}`}>
-                <input disabled className={Styles.input} id="address" {...register("address", {})} placeholder="例　abcd@lucrea" value={R_contactBrochureData.address} />
+                <input disabled className={Styles.input} id="address" {...register("address", {})} placeholder="例　群馬県高崎市飯塚町1361" value={R_contactBrochureData.address} />
                 {errors.address && <span className={Styles.error}>{errors.address.message as string}</span>}
               </div>
             </div>

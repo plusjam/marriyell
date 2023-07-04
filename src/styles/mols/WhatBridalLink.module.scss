@@ -7,14 +7,14 @@
 .note {
   height: 96px;
   border: 1px solid #93c7c3;
-  background-color: #f1ebd8;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 15px;
   line-height: 1.73;
-  color: #707070;
+  color: #93c7c3;
   margin-bottom: 48px;
+  text-align: center;
 }
 
 .link {
@@ -24,15 +24,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #93c7c3;
+  background-color: #7694be;
   font-size: 16px;
   color: #fff;
   transition: 0.2s;
-  border: #93c7c3 solid 1px;
+  border: #7694be solid 1px;
 
   &:hover {
     background-color: #fff;
-    color: #93c7c3;
+    color: #7694be;
   }
 }
 

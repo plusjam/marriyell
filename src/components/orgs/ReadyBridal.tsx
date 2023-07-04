@@ -24,8 +24,8 @@ const ReadyBridal = () => {
             </div>
 
             <div className={Styles.blockContent}>
-              <div className={Styles.woman}>
-                <Image src="/images/first_woman.svg" alt="" width={151} height={180} />
+              <div className={Styles.man}>
+                <Image src="/images/first_man.png" alt="" width={102} height={160} />
               </div>
 
               <div className={Styles.points}>
@@ -51,8 +51,8 @@ const ReadyBridal = () => {
                 </div>
               </div>
 
-              <div className={Styles.man}>
-                <Image src="/images/first_man.svg" alt="" width={35} height={180} />
+              <div className={Styles.woman}>
+                <Image src="/images/first_woman.png" alt="" width={81} height={186} />
               </div>
             </div>
             <div className={Styles.note}>おふたりで「理想の結婚式」についてよく話合っていただき、イメージを膨らませてください。上記のポイントを押さえておくと、スムーズに進みます。</div>

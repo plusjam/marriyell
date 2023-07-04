@@ -152,7 +152,7 @@ const ContactFormInputBrochure = (props: Props) => {
                       setR_contactBrochureData({ ...R_contactBrochureData, email: e.target.value });
                     },
                   })}
-                  placeholder="例　abcd@lucrea"
+                  placeholder="例　example@marriyellclub.co.jp"
                   value={R_contactBrochureData.email}
                 />
                 {errors.email && <span className={Styles.error}>{errors.email.message as string}</span>}
@@ -194,7 +194,7 @@ const ContactFormInputBrochure = (props: Props) => {
                       setR_contactBrochureData({ ...R_contactBrochureData, address: e.target.value });
                     },
                   })}
-                  placeholder="例　東京都千代田区千代田1-1"
+                  placeholder="例　群馬県高崎市飯塚町1361"
                   value={R_contactBrochureData.address}
                 />
                 {errors.address && <span className={Styles.error}>{errors.address.message as string}</span>}

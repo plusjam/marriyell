@@ -12,7 +12,7 @@
   font-size: 18px;
   text-align: center;
   padding-bottom: 23px;
-  border-bottom: 1px solid #93c7c3;
+  border-bottom: 1px solid #a6a08a;
   margin-bottom: 40px;
   font-weight: normal;
   padding-top: 64px;
@@ -32,15 +32,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #93c7c3;
+  background-color: #7694be;
   font-size: 16px;
   color: #fff;
   transition: 0.2s;
-  border: #93c7c3 solid 1px;
+  border: #7694be solid 1px;
 
   &:hover {
     background-color: #fff;
-    color: #93c7c3;
+    color: #7694be;
   }
 }
 

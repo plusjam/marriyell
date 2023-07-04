@@ -30,7 +30,7 @@ const StaticLayout = (props: Props) => {
             <StaticSubHead title={contents.contentTitle} caption={contents.caption} />
             <div className={Styles.content}>
               {contents.table.map((content, index) => {
-                return <PriceTable title={content.title} prices={content.prices} key={`pricetable${index}`} />;
+                return <PriceTable title={content.title} prices={content.prices} key={`pricetable${index}`} isIrregular={content.isIrregular} />;
               })}
             </div>
 

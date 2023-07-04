@@ -145,7 +145,7 @@ const ContactFormInput = (props: Props) => {
                       setR_ContactData({ ...R_contactData, email: e.target.value });
                     },
                   })}
-                  placeholder="例　abcd@lucrea"
+                  placeholder="例　example@marriyellclub.co.jp"
                   value={R_contactData.email}
                 />
                 {errors.email && <span className={Styles.error}>{errors.email.message as string}</span>}

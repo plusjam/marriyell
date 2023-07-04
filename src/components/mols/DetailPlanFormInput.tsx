@@ -203,7 +203,7 @@ const DetailPlanFormInput = (props: Props) => {
                   handleData({ ...data, email: e.target.value });
                 },
               })}
-              placeholder="例　abcd@lucrea"
+              placeholder="例　example@marriyellclub.co.jp"
               value={data.email}
             />
             {errors.email && <span className={Styles.error}>{errors.email.message as string}</span>}

@@ -143,7 +143,7 @@ const ContactFormReservationInput = (props: Props) => {
                       setR_contactFormReservationData({ ...R_contactFormReservationData, email: e.target.value });
                     },
                   })}
-                  placeholder="例　abcd@lucrea"
+                  placeholder="例　example@marriyellclub.co.jp"
                   value={R_contactFormReservationData.email}
                 />
                 {errors.email && <span className={Styles.error}>{errors.email.message as string}</span>}

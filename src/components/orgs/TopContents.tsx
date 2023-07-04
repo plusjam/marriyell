@@ -6,7 +6,7 @@ import LinkToInfo from "../atoms/LinkToInfo";
 const TopContents = () => {
   return (
     <section className={Styles.section}>
-      <SectionHead en=" Contents" ja="各種ご案内" href="content" />
+      <SectionHead en="Content" ja="各種ご案内" href="content" />
       <div className={Styles.container}>
         <LinkToInfo type="warning" />
         <LinkToInfo type="heart" />

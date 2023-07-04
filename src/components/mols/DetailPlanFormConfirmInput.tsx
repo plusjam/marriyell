@@ -110,7 +110,7 @@ const DetailPlanFormConfirmInput = (props: Props) => {
             メールアドレス
           </label>
           <div className={Styles.inputBlock}>
-            <input className={Styles.input} id="email" placeholder="例　abcd@lucrea" value={data.email} readOnly />
+            <input className={Styles.input} id="email" placeholder="例　example@marriyellclub.co.jp" value={data.email} readOnly />
           </div>
         </div>
         <div className={Styles.inputBlockGrid}>

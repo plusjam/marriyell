@@ -17,6 +17,13 @@
 }
 
 .table {
+  &.irregular {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-height: 320px;
+    gap: 0 120px;
+  }
 }
 
 .row {
@@ -24,12 +31,15 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  padding: 16px 16px 23px 2px;
+  padding: 16px 0 23px 2px;
+  max-height: 68px;
+  width: 100%;
 }
 
 .elem {
   font-size: 15px;
   line-height: 1.4;
+  white-space: nowrap;
 }
 
 .priceSet {
@@ -46,11 +56,33 @@
 .unit {
   font-size: 15px;
   color: #707070;
+  white-space: nowrap;
 
   &.just {
     .range {
       visibility: hidden;
     }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .table {
+    &.irregular {
+      gap: 0 32px;
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .table {
+    &.irregular {
+      flex-wrap: nowrap;
+      max-height: unset;
+    }
+  }
+
+  .row {
+    max-height: unset;
   }
 }
 
