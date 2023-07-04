@@ -33,18 +33,19 @@ export type Content = {
     name: string;
   };
   values: {
-    content: { multiple: false; select: string[] };
+    content: { multiple: boolean; select: string[] };
     text: string;
   };
 };
 
-export type OpenTime = {
+export type ContentDescription = {
   scheme: {
     unique_id: string;
     name: string;
   };
   values: {
-    timeRange: string;
+    content: PlanContent;
+    text: string;
   };
 };
 
@@ -75,7 +76,8 @@ export type PlanArticle = {
   description: string;
   visitPrevileges: Previleges[] | null;
   signingPrevileges: Previleges[] | null;
-  contents: Content[];
+  // contents: Content[];
+  contentDescription: ContentDescription[];
 };
 
 export type PlanLists = {
@@ -104,7 +106,8 @@ export type PlanList = {
   description: string;
   visitPrevileges: Previleges[] | null;
   signingPrevileges: Previleges[] | null;
-  contents: Content[];
+  // contents: Content[];
+  contentDescription: ContentDescription[];
 };
 
 /* ------------------------------ */
@@ -125,4 +128,20 @@ export type PlanCategoriesLists = {
   articles: PlanCategory[];
   total: number;
   count: number;
+};
+
+/* ------------------------------ */
+// プラン内容詳細
+/* ------------------------------ */
+export type PlanContent = {
+  multiple: boolean;
+  articles: {
+    id: number | string;
+    code: string;
+    createdAt: string;
+    updatedAt: string;
+    publishedAt: string;
+    title: string;
+    icon: ImageObject | null;
+  }[];
 };
