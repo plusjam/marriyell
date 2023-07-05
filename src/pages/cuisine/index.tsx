@@ -124,13 +124,13 @@ export const getStaticProps: GetStaticProps = async () => {
   // フェア
   =================================================================== */
   const fairUrl = `${process.env.CMS_URL}/api/v1/fair`;
-  const fairRes = axios.get<{ data: FairLists }>(fairUrl, option);
+  const fairRes = axios.get<FairLists>(fairUrl, option);
 
   /* ===================================================================
   // レポート
   =================================================================== */
   const reportUrl = `${process.env.CMS_URL}/api/v1/report`;
-  const reportRes = axios.get<{ data: ReportLists }>(reportUrl, option);
+  const reportRes = axios.get<ReportLists>(reportUrl, option);
 
   const results = await Promise.all([fairRes, reportRes]);
   const fairLists = results[0].data;

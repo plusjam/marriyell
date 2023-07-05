@@ -238,7 +238,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   // お知らせ
   =================================================================== */
   const newsUrl = `${process.env.CMS_URL}/api/v1/news/${code}`;
-  const newsRes = axios.get<{ data: NewsList }>(newsUrl, option);
+  const newsRes = axios.get<NewsList>(newsUrl, option);
 
   const results = await Promise.all([newsRes]);
   const newsList = results[0].data;

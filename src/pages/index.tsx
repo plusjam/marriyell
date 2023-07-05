@@ -120,31 +120,31 @@ export const getStaticProps: GetStaticProps = async () => {
   // フェア
   =================================================================== */
   const fairUrl = `${process.env.CMS_URL}/api/v1/fair`;
-  const fairRes = axios.get<{ data: FairLists }>(fairUrl, option);
+  const fairRes = axios.get<FairLists>(fairUrl, option);
 
   /* ===================================================================
   // プラン
   =================================================================== */
   const planUrl = `${process.env.CMS_URL}/api/v1/plan`;
-  const planRes = axios.get<{ data: PlanLists }>(planUrl, option);
+  const planRes = axios.get<PlanLists>(planUrl, option);
 
   /* ===================================================================
   // レポート
   =================================================================== */
   const reportUrl = `${process.env.CMS_URL}/api/v1/report?limit=4`;
-  const reportRes = axios.get<{ data: ReportLists }>(reportUrl, option);
+  const reportRes = axios.get<ReportLists>(reportUrl, option);
 
   /* ===================================================================
   // お知らせ
   =================================================================== */
   const newsUrl = `${process.env.CMS_URL}/api/v1/news?limit=4`;
-  const newsRes = axios.get<{ data: NewsLists }>(newsUrl, option);
+  const newsRes = axios.get<NewsLists>(newsUrl, option);
 
   /* ===================================================================
   // バナー
   =================================================================== */
   const bannerUrl = `${process.env.CMS_URL}/api/v1/banner`;
-  const bannerRes = axios.get<{ data: BannerLists }>(bannerUrl, option);
+  const bannerRes = axios.get<BannerLists>(bannerUrl, option);
 
   const results = await Promise.all([fairRes, planRes, reportRes, newsRes, bannerRes]);
   const fairLists = results[0].data;

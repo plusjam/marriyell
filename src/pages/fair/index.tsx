@@ -198,25 +198,25 @@ export const getStaticProps: GetStaticProps = async () => {
   // フェア
   =================================================================== */
   const fairUrl = `${process.env.CMS_URL}/api/v1/fair?limit=100`;
-  const fairRes = axios.get<{ data: FairLists }>(fairUrl, option);
+  const fairRes = axios.get<FairLists>(fairUrl, option);
 
   /* ===================================================================
   // フェアカテゴリ
   =================================================================== */
   const fairCategoriesUrl = `${process.env.CMS_URL}/api/v1/fairCategories?limit=100`;
-  const fairCategoriesRes = axios.get<{ data: FairCategoriesLists }>(fairCategoriesUrl, option);
+  const fairCategoriesRes = axios.get<FairCategoriesLists>(fairCategoriesUrl, option);
 
   /* ===================================================================
   // プラン
   =================================================================== */
   const planUrl = `${process.env.CMS_URL}/api/v1/plan`;
-  const planRes = axios.get<{ data: PlanLists }>(planUrl, option);
+  const planRes = axios.get<PlanLists>(planUrl, option);
 
   /* ===================================================================
   // レポート
   =================================================================== */
   const reportUrl = `${process.env.CMS_URL}/api/v1/report?limit=4`;
-  const reportRes = axios.get<{ data: ReportLists }>(reportUrl, option);
+  const reportRes = axios.get<ReportLists>(reportUrl, option);
 
   const results = await Promise.all([fairRes, fairCategoriesRes, planRes, reportRes]);
   const fairLists = results[0].data;
