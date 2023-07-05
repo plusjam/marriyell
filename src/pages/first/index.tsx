@@ -18,7 +18,7 @@ import { META } from "@/textDate/head";
 import { QA } from "@/textDate/qa";
 import axios from "axios";
 import { apricotClient } from "../../../libs/cms";
-import { FairLists } from "../../../typings/fair";
+import { FairCategoriesLists, FairLists } from "../../../typings/fair";
 import { PlanLists } from "../../../typings/plan";
 import { ReportLists } from "../../../typings/report";
 
@@ -101,61 +101,57 @@ export default function Home(props: Props) {
   );
 }
 
-// export const getStaticProps: GetStaticProps = async () => {
-//   const accessKey = process.env.API_KEY;
-//   const secretKey = process.env.API_SECRET;
-//   const token = await apricotClient(accessKey, secretKey);
+export const getStaticProps: GetStaticProps = async () => {
+  const accessKey = process.env.API_KEY;
+  const secretKey = process.env.API_SECRET;
+  const token = await apricotClient(accessKey, secretKey);
 
-//   /* ===================================================================
-//   // フェア
-//   =================================================================== */
-//   const fairUrl = `${process.env.CMS_URL}/api/v1/fair`;
-//   const fairRes: { data: FairLists } = await axios.get(fairUrl, {
-//     headers: {
-//       "Content-Type": "application/json",
-//       "account-access-key": accessKey,
-//       "account-secret-key": secretKey,
-//       authorization: `Bearer ${token.token}`,
-//     },
-//   });
+  const option = {
+    headers: {
+      "Content-Type": "application/json",
+      "account-access-key": accessKey,
+      "account-secret-key": secretKey,
+      authorization: `Bearer ${token.token}`,
+    },
+  };
 
-//   const fairLists: FairLists = fairRes.data;
+  /* ===================================================================
+  // フェア
+  =================================================================== */
+  const fairUrl = `${process.env.CMS_URL}/api/v1/fair`;
+  const fairRes = axios.get<{ data: FairLists }>(fairUrl, option);
 
-//   /* ===================================================================
-//   // プラン
-//   =================================================================== */
-//   const planUrl = `${process.env.CMS_URL}/api/v1/plan`;
-//   const planRes: { data: PlanLists } = await axios.get(planUrl, {
-//     headers: {
-//       "Content-Type": "application/json",
-//       "account-access-key": accessKey,
-//       "account-secret-key": secretKey,
-//       authorization: `Bearer ${token.token}`,
-//     },
-//   });
+  /* ===================================================================
+  // フェアカテゴリ
+  =================================================================== */
+  const fairCategoriesUrl = `${process.env.CMS_URL}/api/v1/fairCategories`;
+  const fairCategoriesRes = axios.get<{ data: FairCategoriesLists }>(fairCategoriesUrl, option);
 
-//   const planLists: PlanLists = planRes.data;
+  /* ===================================================================
+  // プラン
+  =================================================================== */
+  const planUrl = `${process.env.CMS_URL}/api/v1/plan`;
+  const planRes = axios.get<{ data: PlanLists }>(planUrl, option);
 
-//   /* ===================================================================
-//   // レポート
-//   =================================================================== */
-//   const reportUrl = `${process.env.CMS_URL}/api/v1/report?limit=4`;
-//   const reportRes: { data: ReportLists } = await axios.get(reportUrl, {
-//     headers: {
-//       "Content-Type": "application/json",
-//       "account-access-key": accessKey,
-//       "account-secret-key": secretKey,
-//       authorization: `Bearer ${token.token}`,
-//     },
-//   });
+  /* ===================================================================
+  // レポート
+  =================================================================== */
+  const reportUrl = `${process.env.CMS_URL}/api/v1/report?limit=4`;
+  const reportRes = axios.get<{ data: ReportLists }>(reportUrl, option);
 
-//   const reportLists: ReportLists = reportRes.data;
+  const results = await Promise.all([fairRes, fairCategoriesRes, planRes, reportRes]);
+  const fairLists = results[0].data;
+  const fairCategoriesLists = results[1].data;
+  const planLists = results[2].data;
+  const reportLists = results[3].data;
 
-//   return {
-//     props: {
-//       fairLists,
-//       planLists,
-//       reportLists,
-//     },
-//   };
-// };
+  return {
+    props: {
+      fairLists,
+      fairCategoriesLists,
+      planLists,
+      reportLists,
+    },
+    revalidate: 10,
+  };
+};

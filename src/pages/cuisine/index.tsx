@@ -111,45 +111,36 @@ export const getStaticProps: GetStaticProps = async () => {
   const secretKey = process.env.API_SECRET;
   const token = await apricotClient(accessKey, secretKey);
 
-  /* ===================================================================
-  // フェア
-  =================================================================== */
-  const fairUrl = `${process.env.CMS_URL}/api/v1/fair`;
-  const fairRes: { data: FairLists } = await axios.get(fairUrl, {
+  const option = {
     headers: {
       "Content-Type": "application/json",
       "account-access-key": accessKey,
       "account-secret-key": secretKey,
       authorization: `Bearer ${token.token}`,
     },
-  });
+  };
 
-  const fairLists: FairLists = fairRes.data;
+  /* ===================================================================
+  // フェア
+  =================================================================== */
+  const fairUrl = `${process.env.CMS_URL}/api/v1/fair`;
+  const fairRes = axios.get<{ data: FairLists }>(fairUrl, option);
 
   /* ===================================================================
   // レポート
   =================================================================== */
-  // const reportUrl = `${process.env.CMS_URL}/api/v1/report?limit=4`;
-  // const reportRes: { data: ReportLists } = await axios.get(reportUrl, {
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //     "account-access-key": accessKey,
-  //     "account-secret-key": secretKey,
-  //     authorization: `Bearer ${token.token}`,
-  //   },
-  // });
+  const reportUrl = `${process.env.CMS_URL}/api/v1/report`;
+  const reportRes = axios.get<{ data: ReportLists }>(reportUrl, option);
 
-  // const reportLists: ReportLists = reportRes.data;
-  const reportLists: ReportLists = {
-    articles: [],
-    total: 0,
-    count: 0,
-  };
+  const results = await Promise.all([fairRes, reportRes]);
+  const fairLists = results[0].data;
+  const reportLists = results[1].data;
 
   return {
     props: {
       reportLists,
       fairLists,
     },
+    revalidate: 10,
   };
 };

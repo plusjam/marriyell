@@ -200,20 +200,21 @@ export const getStaticPaths = async () => {
   // お知らせ
   =================================================================== */
   const newsUrl = `${process.env.CMS_URL}/api/v1/news`;
-  const newsRes: { data: NewsLists } = await axios.get(newsUrl, {
+  const option = {
     headers: {
       "Content-Type": "application/json",
       "account-access-key": accessKey,
       "account-secret-key": secretKey,
       authorization: `Bearer ${token.token}`,
     },
-  });
+  };
+  const newsRes: { data: NewsLists } = await axios.get(newsUrl, option);
 
   const paths = newsRes.data.articles.map((news) => `/news/${news.code}`);
 
   return {
     paths,
-    fallback: false,
+    fallback: "blocking",
   };
 };
 
@@ -224,24 +225,28 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const secretKey = process.env.API_SECRET;
   const token = await apricotClient(accessKey, secretKey);
 
-  /* ===================================================================
-  // お知らせ
-  =================================================================== */
-  const newsUrl = `${process.env.CMS_URL}/api/v1/news/${code}`;
-  const newsRes: { data: NewsList } = await axios.get(newsUrl, {
+  const option = {
     headers: {
       "Content-Type": "application/json",
       "account-access-key": accessKey,
       "account-secret-key": secretKey,
       authorization: `Bearer ${token.token}`,
     },
-  });
+  };
 
-  const newsList: NewsList = newsRes.data;
+  /* ===================================================================
+  // お知らせ
+  =================================================================== */
+  const newsUrl = `${process.env.CMS_URL}/api/v1/news/${code}`;
+  const newsRes = axios.get<{ data: NewsList }>(newsUrl, option);
+
+  const results = await Promise.all([newsRes]);
+  const newsList = results[0].data;
 
   return {
     props: {
       newsList,
     },
+    revalidate: 10,
   };
 };

@@ -107,102 +107,51 @@ export const getStaticProps: GetStaticProps = async () => {
   const secretKey = process.env.API_SECRET;
   const token = await apricotClient(accessKey, secretKey);
 
-  /* ===================================================================
-  // フェア
-  =================================================================== */
-  const fairUrl = `${process.env.CMS_URL}/api/v1/fair`;
-  const fairRes: { data: FairLists } = await axios.get(fairUrl, {
+  const option = {
     headers: {
       "Content-Type": "application/json",
       "account-access-key": accessKey,
       "account-secret-key": secretKey,
       authorization: `Bearer ${token.token}`,
     },
-  });
+  };
 
-  const fairLists: FairLists = fairRes.data;
-  // console.log("フェア取得", fairLists);
+  /* ===================================================================
+  // フェア
+  =================================================================== */
+  const fairUrl = `${process.env.CMS_URL}/api/v1/fair`;
+  const fairRes = axios.get<{ data: FairLists }>(fairUrl, option);
 
   /* ===================================================================
   // プラン
   =================================================================== */
   const planUrl = `${process.env.CMS_URL}/api/v1/plan`;
-  const planRes: { data: PlanLists } = await axios.get(planUrl, {
-    headers: {
-      "Content-Type": "application/json",
-      "account-access-key": accessKey,
-      "account-secret-key": secretKey,
-      authorization: `Bearer ${token.token}`,
-    },
-  });
-
-  const planLists: PlanLists = planRes.data;
+  const planRes = axios.get<{ data: PlanLists }>(planUrl, option);
 
   /* ===================================================================
   // レポート
   =================================================================== */
-  // const reportUrl = `${process.env.CMS_URL}/api/v1/report?limit=4`;
-  // const reportRes: { data: ReportLists } = await axios.get(reportUrl, {
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //     "account-access-key": accessKey,
-  //     "account-secret-key": secretKey,
-  //     authorization: `Bearer ${token.token}`,
-  //   },
-  // });
-
-  // const reportLists: ReportLists = reportRes.data;
-  const reportLists: ReportLists = {
-    articles: [],
-    total: 0,
-    count: 0,
-  };
-  // console.log("レポート", reportLists);
+  const reportUrl = `${process.env.CMS_URL}/api/v1/report?limit=4`;
+  const reportRes = axios.get<{ data: ReportLists }>(reportUrl, option);
 
   /* ===================================================================
   // お知らせ
   =================================================================== */
   const newsUrl = `${process.env.CMS_URL}/api/v1/news?limit=4`;
-  const newsRes: { data: NewsLists } = await axios.get(newsUrl, {
-    headers: {
-      "Content-Type": "application/json",
-      "account-access-key": accessKey,
-      "account-secret-key": secretKey,
-      authorization: `Bearer ${token.token}`,
-    },
-  });
-
-  const newsLists: NewsLists = newsRes.data;
-
-  /* ===================================================================
-  // お知らせカテゴリ
-  =================================================================== */
-  const newsCategoriesUrl = `${process.env.CMS_URL}/api/v1/newsCategories`;
-  const newsCategoriesRes: { data: NewsCategoriesLists } = await axios.get(newsCategoriesUrl, {
-    headers: {
-      "Content-Type": "application/json",
-      "account-access-key": accessKey,
-      "account-secret-key": secretKey,
-      authorization: `Bearer ${token.token}`,
-    },
-  });
-
-  const newsCategoriesLists: NewsCategoriesLists = newsCategoriesRes.data;
+  const newsRes = axios.get<{ data: NewsLists }>(newsUrl, option);
 
   /* ===================================================================
   // バナー
   =================================================================== */
   const bannerUrl = `${process.env.CMS_URL}/api/v1/banner`;
-  const bannerRes: { data: BannerLists } = await axios.get(bannerUrl, {
-    headers: {
-      "Content-Type": "application/json",
-      "account-access-key": accessKey,
-      "account-secret-key": secretKey,
-      authorization: `Bearer ${token.token}`,
-    },
-  });
+  const bannerRes = axios.get<{ data: BannerLists }>(bannerUrl, option);
 
-  const bannerLists: BannerLists = bannerRes.data;
+  const results = await Promise.all([fairRes, planRes, reportRes, newsRes, bannerRes]);
+  const fairLists = results[0].data;
+  const planLists = results[1].data;
+  const reportLists = results[2].data;
+  const newsLists = results[3].data;
+  const bannerLists = results[4].data;
 
   return {
     props: {
@@ -210,8 +159,8 @@ export const getStaticProps: GetStaticProps = async () => {
       planLists,
       reportLists,
       newsLists,
-      newsCategoriesLists,
       bannerLists,
     },
+    revalidate: 10,
   };
 };
