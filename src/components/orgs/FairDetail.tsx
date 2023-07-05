@@ -70,7 +70,8 @@ const FairDetail = (props: Props) => {
                     {fairList.openTimePulldown.map((elem, index) => {
                       return (
                         <span className={Styles.openTime} key={index}>
-                          {`${elem.values.startHour.select[0]}:${elem.values.startMinutes.select[0]}~${elem.values.endHour.select[0]}:${elem.values.endMinutes.select[0]}`} ｜{" "}
+                          {`${elem.values.startHour.select[0]}:${elem.values.startMinutes.select[0]}~${elem.values.endHour.select[0]}:${elem.values.endMinutes.select[0]}`}{" "}
+                          {fairList.openTimePulldown!.length !== index + 1 && `｜ `}
                         </span>
                       );
                     })}
