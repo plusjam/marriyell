@@ -26,8 +26,8 @@ const UnderlayerHead = (props: Props) => {
         )}
       </h1>
       <picture className={Styles.picture}>
-        <Image src={image} alt="" width={1440} height={318.2} className={Images.pc} />
-        <Image src={spImage} alt="" width={375} height={375} className={Images.sp} />
+        <Image src={image} alt="" width={1440} height={318.2} className={Images.pc} priority />
+        <Image src={spImage} alt="" width={375} height={375} className={Images.sp} priority />
       </picture>
     </section>
   );
