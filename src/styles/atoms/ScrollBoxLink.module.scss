@@ -1,7 +1,7 @@
 .scroll {
   width: 184px;
   height: 116px;
-  border: 1px solid #93c7c3;
+  border: 1px solid #7694be;
   background-color: #fff;
   display: flex;
   flex-direction: column;
@@ -12,6 +12,7 @@
   line-height: 1.73;
   position: relative;
   color: #222222;
+  font-weight: 200;
   text-align: center;
   transition: 0.4s;
   cursor: pointer;
@@ -28,8 +29,8 @@
 
   &:after {
     content: "";
-    border: solid #707070;
-    border-width: 0 1px 1px 0;
+    border: solid #7694be;
+    border-width: 0 2px 2px 0;
     display: inline-block;
     padding: 3px;
     transform: rotate(45deg);
@@ -41,7 +42,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    background: #93c7c3;
+    background: #7694be;
     top: 6px;
     left: 4px;
     z-index: -1;
