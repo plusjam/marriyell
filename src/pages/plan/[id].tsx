@@ -129,20 +129,22 @@ export const getStaticPaths = async () => {
   // プラン
   =================================================================== */
   const planUrl = `${process.env.CMS_URL}/api/v1/plan?limit=100`;
-  const planRes: { data: PlanLists } = await axios.get(planUrl, {
+  const option = {
     headers: {
       "Content-Type": "application/json",
       "account-access-key": accessKey,
       "account-secret-key": secretKey,
       authorization: `Bearer ${token.token}`,
     },
-  });
+  };
+
+  const planRes: { data: PlanLists } = await axios.get(planUrl, option);
 
   const paths = planRes.data.articles.map((plan) => `/plan/${plan.code}`);
 
   return {
     paths,
-    fallback: false,
+    fallback: "blocking",
   };
 };
 
@@ -153,72 +155,52 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const secretKey = process.env.API_SECRET;
   const token = await apricotClient(accessKey, secretKey);
 
-  /* ===================================================================
-  // フェア
-  =================================================================== */
-  const fairUrl = `${process.env.CMS_URL}/api/v1/fair`;
-  const fairRes: { data: FairLists } = await axios.get(fairUrl, {
+  const option = {
     headers: {
       "Content-Type": "application/json",
       "account-access-key": accessKey,
       "account-secret-key": secretKey,
       authorization: `Bearer ${token.token}`,
     },
-  });
+  };
 
-  const fairLists: FairLists = fairRes.data;
+  /* ===================================================================
+  // フェア
+  =================================================================== */
+  const fairUrl = `${process.env.CMS_URL}/api/v1/fair`;
+  const fairRes = axios.get<FairLists>(fairUrl, option);
 
   /* ===================================================================
   // プラン
   =================================================================== */
   const planUrl = `${process.env.CMS_URL}/api/v1/plan/${code}`;
-  const planRes: { data: PlanList } = await axios.get(planUrl, {
-    headers: {
-      "Content-Type": "application/json",
-      "account-access-key": accessKey,
-      "account-secret-key": secretKey,
-      authorization: `Bearer ${token.token}`,
-    },
-  });
-
-  const planList: PlanList = planRes.data;
+  const planRes = axios.get<PlanList>(planUrl, option);
 
   /* ===================================================================
   // プランカテゴリ
   =================================================================== */
   const planCategoriesUrl = `${process.env.CMS_URL}/api/v1/planCategories?limit=100`;
-  const planCategoriesRes: { data: PlanCategoriesLists } = await axios.get(planCategoriesUrl, {
-    headers: {
-      "Content-Type": "application/json",
-      "account-access-key": accessKey,
-      "account-secret-key": secretKey,
-      authorization: `Bearer ${token.token}`,
-    },
-  });
-
-  const planCategoriesLists: PlanCategoriesLists = planCategoriesRes.data;
+  const planCategoriesRes = axios.get<PlanCategoriesLists>(planCategoriesUrl, option);
 
   /* ===================================================================
   // レポート
   =================================================================== */
-  const reportUrl = `${process.env.CMS_URL}/api/v1/report?limit=4`;
-  const reportRes: { data: ReportLists } = await axios.get(reportUrl, {
-    headers: {
-      "Content-Type": "application/json",
-      "account-access-key": accessKey,
-      "account-secret-key": secretKey,
-      authorization: `Bearer ${token.token}`,
-    },
-  });
+  const reportUrl = `${process.env.CMS_URL}/api/v1/report`;
+  const reportRes = axios.get<ReportLists>(reportUrl, option);
 
-  const reportLists: ReportLists = reportRes.data;
+  const results = await Promise.all([fairRes, planRes, planCategoriesRes, reportRes]);
+  const fairLists = results[0].data;
+  const planList = results[1].data;
+  const planCategoriesLists = results[2].data;
+  const reportLists = results[3].data;
 
   return {
     props: {
-      reportLists,
       fairLists,
       planList,
       planCategoriesLists,
+      reportLists,
     },
+    revalidate: 10,
   };
 };

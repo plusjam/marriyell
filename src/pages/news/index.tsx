@@ -140,56 +140,44 @@ export const getStaticProps: GetStaticProps = async () => {
   const secretKey = process.env.API_SECRET;
   const token = await apricotClient(accessKey, secretKey);
 
-  /* ===================================================================
-  // プラン
-  =================================================================== */
-  const planUrl = `${process.env.CMS_URL}/api/v1/plan`;
-  const planRes: { data: PlanLists } = await axios.get(planUrl, {
+  const option = {
     headers: {
       "Content-Type": "application/json",
       "account-access-key": accessKey,
       "account-secret-key": secretKey,
       authorization: `Bearer ${token.token}`,
     },
-  });
+  };
 
-  const planLists: PlanLists = planRes.data;
+  /* ===================================================================
+  // プラン
+  =================================================================== */
+  const planUrl = `${process.env.CMS_URL}/api/v1/plan`;
+  const planRes = axios.get<PlanLists>(planUrl, option);
 
   /* ===================================================================
   // お知らせ
   =================================================================== */
   const newsUrl = `${process.env.CMS_URL}/api/v1/news`;
-  const newsRes: { data: NewsLists } = await axios.get(newsUrl, {
-    headers: {
-      "Content-Type": "application/json",
-      "account-access-key": accessKey,
-      "account-secret-key": secretKey,
-      authorization: `Bearer ${token.token}`,
-    },
-  });
-
-  const newsLists: NewsLists = newsRes.data;
+  const newsRes = axios.get<NewsLists>(newsUrl, option);
 
   /* ===================================================================
   // お知らせカテゴリ
   =================================================================== */
   const newsCategoriesUrl = `${process.env.CMS_URL}/api/v1/newsCategories`;
-  const newsCategoriesRes: { data: NewsCategoriesLists } = await axios.get(newsCategoriesUrl, {
-    headers: {
-      "Content-Type": "application/json",
-      "account-access-key": accessKey,
-      "account-secret-key": secretKey,
-      authorization: `Bearer ${token.token}`,
-    },
-  });
+  const newsCategoriesRes = await axios.get<NewsCategoriesLists>(newsCategoriesUrl, option);
 
-  const newsCategoriesLists: NewsCategoriesLists = newsCategoriesRes.data;
+  const results = await Promise.all([planRes, newsRes, newsCategoriesRes]);
+  const planLists = results[0].data;
+  const newsLists = results[1].data;
+  const newsCategoriesLists = results[2].data;
 
   return {
     props: {
+      planLists,
       newsLists,
       newsCategoriesLists,
-      planLists,
     },
+    revalidate: 10,
   };
 };

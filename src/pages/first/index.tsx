@@ -12,17 +12,16 @@ import WeekendFair from "@/components/orgs/WeekendFair";
 import WhatBridal from "@/components/orgs/WhatBridal";
 import { META } from "@/textDate/head";
 import { QA } from "@/textDate/qa";
+import axios from "axios";
 import { GetStaticProps } from "next";
 import Head from "next/head";
 import React, { useEffect } from "react";
+import { apricotClient } from "../../../libs/cms";
 import useGetWeekend from "../../../libs/useGetWeekend";
 import useModalReport from "../../../libs/useModalReport";
-import { FairList } from "../api/fair";
-import axios from "axios";
 import { FairCategoriesLists, FairLists } from "../../../typings/fair";
-import { ReportLists } from "../../../typings/report";
 import { PlanLists } from "../../../typings/plan";
-import { apricotClient } from "../../../libs/cms";
+import { ReportLists } from "../../../typings/report";
 
 type Props = {
   fairLists: FairLists;
@@ -110,65 +109,44 @@ export const getStaticProps: GetStaticProps = async () => {
   const secretKey = process.env.API_SECRET;
   const token = await apricotClient(accessKey, secretKey);
 
-  /* ===================================================================
-  // フェア
-  =================================================================== */
-  const fairUrl = `${process.env.CMS_URL}/api/v1/fair`;
-  const fairRes: { data: FairLists } = await axios.get(fairUrl, {
+  const option = {
     headers: {
       "Content-Type": "application/json",
       "account-access-key": accessKey,
       "account-secret-key": secretKey,
       authorization: `Bearer ${token.token}`,
     },
-  });
+  };
 
-  const fairLists: FairLists = fairRes.data;
+  /* ===================================================================
+  // フェア
+  =================================================================== */
+  const fairUrl = `${process.env.CMS_URL}/api/v1/fair`;
+  const fairRes = axios.get<FairLists>(fairUrl, option);
 
   /* ===================================================================
   // フェアカテゴリ
   =================================================================== */
   const fairCategoriesUrl = `${process.env.CMS_URL}/api/v1/fairCategories`;
-  const fairCategoriesRes: { data: FairCategoriesLists } = await axios.get(fairCategoriesUrl, {
-    headers: {
-      "Content-Type": "application/json",
-      "account-access-key": accessKey,
-      "account-secret-key": secretKey,
-      authorization: `Bearer ${token.token}`,
-    },
-  });
-
-  const fairCategoriesLists: FairCategoriesLists = fairCategoriesRes.data;
+  const fairCategoriesRes = axios.get<FairCategoriesLists>(fairCategoriesUrl, option);
 
   /* ===================================================================
   // プラン
   =================================================================== */
   const planUrl = `${process.env.CMS_URL}/api/v1/plan`;
-  const planRes: { data: PlanLists } = await axios.get(planUrl, {
-    headers: {
-      "Content-Type": "application/json",
-      "account-access-key": accessKey,
-      "account-secret-key": secretKey,
-      authorization: `Bearer ${token.token}`,
-    },
-  });
-
-  const planLists: PlanLists = planRes.data;
+  const planRes = axios.get<PlanLists>(planUrl, option);
 
   /* ===================================================================
   // レポート
   =================================================================== */
   const reportUrl = `${process.env.CMS_URL}/api/v1/report?limit=4`;
-  const reportRes: { data: ReportLists } = await axios.get(reportUrl, {
-    headers: {
-      "Content-Type": "application/json",
-      "account-access-key": accessKey,
-      "account-secret-key": secretKey,
-      authorization: `Bearer ${token.token}`,
-    },
-  });
+  const reportRes = axios.get<ReportLists>(reportUrl, option);
 
-  const reportLists: ReportLists = reportRes.data;
+  const results = await Promise.all([fairRes, fairCategoriesRes, planRes, reportRes]);
+  const fairLists = results[0].data;
+  const fairCategoriesLists = results[1].data;
+  const planLists = results[2].data;
+  const reportLists = results[3].data;
 
   return {
     props: {
@@ -177,5 +155,6 @@ export const getStaticProps: GetStaticProps = async () => {
       planLists,
       reportLists,
     },
+    revalidate: 10,
   };
 };

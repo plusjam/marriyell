@@ -132,50 +132,37 @@ export const getStaticProps: GetStaticProps = async () => {
   const secretKey = process.env.API_SECRET;
   const token = await apricotClient(accessKey, secretKey);
 
-  /* ===================================================================
-  // フェア
-  =================================================================== */
-  const fairUrl = `${process.env.CMS_URL}/api/v1/fair`;
-  const fairRes: { data: FairLists } = await axios.get(fairUrl, {
+  const option = {
     headers: {
       "Content-Type": "application/json",
       "account-access-key": accessKey,
       "account-secret-key": secretKey,
       authorization: `Bearer ${token.token}`,
     },
-  });
+  };
 
-  const fairLists: FairLists = fairRes.data;
+  /* ===================================================================
+  // フェア
+  =================================================================== */
+  const fairUrl = `${process.env.CMS_URL}/api/v1/fair`;
+  const fairRes = axios.get<FairLists>(fairUrl, option);
 
   /* ===================================================================
   // プラン
   =================================================================== */
   const planUrl = `${process.env.CMS_URL}/api/v1/plan`;
-  const planRes: { data: PlanLists } = await axios.get(planUrl, {
-    headers: {
-      "Content-Type": "application/json",
-      "account-access-key": accessKey,
-      "account-secret-key": secretKey,
-      authorization: `Bearer ${token.token}`,
-    },
-  });
-
-  const planLists: PlanLists = planRes.data;
+  const planRes = axios.get<PlanLists>(planUrl, option);
 
   /* ===================================================================
   // レポート
   =================================================================== */
   const reportUrl = `${process.env.CMS_URL}/api/v1/report?limit=12`;
-  const reportRes: { data: ReportLists } = await axios.get(reportUrl, {
-    headers: {
-      "Content-Type": "application/json",
-      "account-access-key": accessKey,
-      "account-secret-key": secretKey,
-      authorization: `Bearer ${token.token}`,
-    },
-  });
+  const reportRes = axios.get<ReportLists>(reportUrl, option);
 
-  const reportLists: ReportLists = reportRes.data;
+  const results = await Promise.all([fairRes, planRes, reportRes]);
+  const fairLists = results[0].data;
+  const planLists = results[1].data;
+  const reportLists = results[2].data;
 
   return {
     props: {
@@ -183,5 +170,6 @@ export const getStaticProps: GetStaticProps = async () => {
       planLists,
       reportLists,
     },
+    revalidate: 10,
   };
 };
