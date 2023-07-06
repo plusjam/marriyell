@@ -26,60 +26,6 @@ const FairContents = (props: Props) => {
               </div>
             );
           })}
-          {/* <div className={Styles.block}>
-            <div className={Styles.image}>
-              <Image src="/images/" alt="" width={130} height={130} />
-            </div>
-            <div className={Styles.title}>相談会</div>
-            <div className={Styles.description}>
-              【初めての見学・列席経験ゼロでも大丈夫】日程、ご予算など大切なポイントはもちろん、実例を交えながら当日の過ごし方をご提案！初めてのご見学や列席経験がなくても大丈夫！
-            </div>
-          </div>
-          <div className={Styles.block}>
-            <div className={Styles.image}>
-              <Image src="/images/" alt="" width={130} height={130} />
-            </div>
-            <div className={Styles.title}>相談会</div>
-            <div className={Styles.description}>
-              【初めての見学・列席経験ゼロでも大丈夫】日程、ご予算など大切なポイントはもちろん、実例を交えながら当日の過ごし方をご提案！初めてのご見学や列席経験がなくても大丈夫！
-            </div>
-          </div>
-          <div className={Styles.block}>
-            <div className={Styles.image}>
-              <Image src="/images/" alt="" width={130} height={130} />
-            </div>
-            <div className={Styles.title}>相談会</div>
-            <div className={Styles.description}>
-              【初めての見学・列席経験ゼロでも大丈夫】日程、ご予算など大切なポイントはもちろん、実例を交えながら当日の過ごし方をご提案！初めてのご見学や列席経験がなくても大丈夫！
-            </div>
-          </div>
-          <div className={Styles.block}>
-            <div className={Styles.image}>
-              <Image src="/images/" alt="" width={130} height={130} />
-            </div>
-            <div className={Styles.title}>相談会</div>
-            <div className={Styles.description}>
-              【初めての見学・列席経験ゼロでも大丈夫】日程、ご予算など大切なポイントはもちろん、実例を交えながら当日の過ごし方をご提案！初めてのご見学や列席経験がなくても大丈夫！
-            </div>
-          </div>
-          <div className={Styles.block}>
-            <div className={Styles.image}>
-              <Image src="/images/" alt="" width={130} height={130} />
-            </div>
-            <div className={Styles.title}>相談会</div>
-            <div className={Styles.description}>
-              【初めての見学・列席経験ゼロでも大丈夫】日程、ご予算など大切なポイントはもちろん、実例を交えながら当日の過ごし方をご提案！初めてのご見学や列席経験がなくても大丈夫！
-            </div>
-          </div>
-          <div className={Styles.block}>
-            <div className={Styles.image}>
-              <Image src="/images/" alt="" width={130} height={130} />
-            </div>
-            <div className={Styles.title}>相談会</div>
-            <div className={Styles.description}>
-              【初めての見学・列席経験ゼロでも大丈夫】日程、ご予算など大切なポイントはもちろん、実例を交えながら当日の過ごし方をご提案！初めてのご見学や列席経験がなくても大丈夫！
-            </div>
-          </div> */}
         </div>
       </div>
     </section>

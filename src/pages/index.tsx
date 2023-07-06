@@ -21,6 +21,8 @@ import { PlanLists } from "../../typings/plan";
 import { ReportLists } from "../../typings/report";
 import TopNewsEvent from "@/components/orgs/TopNewsEvent";
 import { BannerLists } from "../../typings/banner";
+import TopWeddingReport from "@/components/orgs/TopWeddingReport";
+import TopContents from "@/components/orgs/TopContents";
 
 type Props = {
   fairLists: FairLists;
@@ -92,7 +94,7 @@ export default function Home(props: Props) {
           <TopWeddingPlan planLists={[...planLists.articles]} />
           {/* <TopWeddingReport contents={reportLists.articles} openModal={openModal} /> */}
           <TopNewsEvent contents={newsLists.articles} bannerLists={bannerLists.articles} />
-          {/* <TopContents /> */}
+          <TopContents />
           <InstagramSection />
         </main>
 

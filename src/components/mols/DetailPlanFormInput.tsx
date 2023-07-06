@@ -203,85 +203,87 @@ const DetailPlanFormInput = (props: Props) => {
                   handleData({ ...data, email: e.target.value });
                 },
               })}
-              placeholder="例　example@marriyellclub.co.jp"
+              placeholder="例　abcd@lucrea"
               value={data.email}
             />
             {errors.email && <span className={Styles.error}>{errors.email.message as string}</span>}
           </div>
         </div>
-        <div className={Styles.inputBlockGrid}>
-          <div className={`${Styles.inputBody} ${Styles.inputDate}`}>
-            <label className={`${Styles.label} ${Styles.require}`} htmlFor="date">
-              ご来館希望日
-            </label>
-            <div className={Styles.inputBlockWrap}>
-              <div className={`${Styles.inputBlock} ${Styles.triangle}`}>
-                <input
-                  className={`${Styles.input} ${Styles.date}`}
-                  id="date"
-                  {...register("date", {
-                    required: rules.required,
-                    onChange: (e) => {
-                      handleData({ ...data, date: e.target.value });
-                    },
-                  })}
-                  type="date"
-                  value={data.date}
-                />
-                {errors.date && <span className={Styles.error}>{errors.date.message as string}</span>}
+        {data.type === "direct" && (
+          <div className={Styles.inputBlockGrid}>
+            <div className={`${Styles.inputBody} ${Styles.inputDate}`}>
+              <label className={`${Styles.label} ${Styles.require}`} htmlFor="date">
+                ご来館希望日
+              </label>
+              <div className={Styles.inputBlockWrap}>
+                <div className={`${Styles.inputBlock} ${Styles.triangle}`}>
+                  <input
+                    className={`${Styles.input} ${Styles.date}`}
+                    id="date"
+                    {...register("date", {
+                      required: data.type === "direct" ? rules.required : false,
+                      onChange: (e) => {
+                        handleData({ ...data, date: e.target.value });
+                      },
+                    })}
+                    type="date"
+                    value={data.date}
+                  />
+                  {errors.date && <span className={Styles.error}>{errors.date.message as string}</span>}
+                </div>
+              </div>
+            </div>
+
+            <div className={`${Styles.inputBody} ${Styles.inputTime}`}>
+              <label className={`${Styles.label} ${Styles.require}`} htmlFor="time">
+                ご希望時間
+              </label>
+              <div className={Styles.inputBlockWrap}>
+                <div className={`${Styles.inputBlock} ${Styles.triangle}`}>
+                  <select
+                    {...register("time", {
+                      required: data.type === "direct" ? rules.required : false,
+                      onChange: (e) => {
+                        handleData({ ...data, time: e.target.value });
+                      },
+                    })}
+                    className={`${Styles.input} ${Styles.select}`}
+                    value={data.time}
+                  >
+                    <option value="" hidden selected>
+                      選択してください。
+                    </option>
+                    <option value="9:00">9:00</option>
+                    <option value="9:30">9:30</option>
+                    <option value="10:00">10:00</option>
+                    <option value="10:30">10:30</option>
+                    <option value="11:00">11:00</option>
+                    <option value="11:30">11:30</option>
+                    <option value="12:00">12:00</option>
+                    <option value="12:30">12:30</option>
+                    <option value="13:00">13:00</option>
+                    <option value="13:30">13:30</option>
+                    <option value="14:00">14:00</option>
+                    <option value="14:30">14:30</option>
+                    <option value="15:00">15:00</option>
+                    <option value="15:30">15:30</option>
+                    <option value="16:00">16:00</option>
+                    <option value="16:30">16:30</option>
+                    <option value="17:00">17:00</option>
+                    <option value="17:30">17:30</option>
+                    <option value="18:00">18:00</option>
+                    <option value="18:30">18:30</option>
+                    <option value="19:00">19:00</option>
+                    <option value="19:30">19:30</option>
+                    <option value="20:00">20:00</option>
+                  </select>
+
+                  {errors.time && <span className={Styles.error}>{errors.time.message as string}</span>}
+                </div>
               </div>
             </div>
           </div>
-
-          <div className={`${Styles.inputBody} ${Styles.inputTime}`}>
-            <label className={`${Styles.label} ${Styles.require}`} htmlFor="time">
-              ご希望時間
-            </label>
-            <div className={Styles.inputBlockWrap}>
-              <div className={`${Styles.inputBlock} ${Styles.triangle}`}>
-                <select
-                  {...register("time", {
-                    required: rules.required,
-                    onChange: (e) => {
-                      handleData({ ...data, time: e.target.value });
-                    },
-                  })}
-                  className={`${Styles.input} ${Styles.select}`}
-                  value={data.time}
-                >
-                  <option value="" hidden selected>
-                    選択してください。
-                  </option>
-                  <option value="9:00">9:00</option>
-                  <option value="9:30">9:30</option>
-                  <option value="10:00">10:00</option>
-                  <option value="10:30">10:30</option>
-                  <option value="11:00">11:00</option>
-                  <option value="11:30">11:30</option>
-                  <option value="12:00">12:00</option>
-                  <option value="12:30">12:30</option>
-                  <option value="13:00">13:00</option>
-                  <option value="13:30">13:30</option>
-                  <option value="14:00">14:00</option>
-                  <option value="14:30">14:30</option>
-                  <option value="15:00">15:00</option>
-                  <option value="15:30">15:30</option>
-                  <option value="16:00">16:00</option>
-                  <option value="16:30">16:30</option>
-                  <option value="17:00">17:00</option>
-                  <option value="17:30">17:30</option>
-                  <option value="18:00">18:00</option>
-                  <option value="18:30">18:30</option>
-                  <option value="19:00">19:00</option>
-                  <option value="19:30">19:30</option>
-                  <option value="20:00">20:00</option>
-                </select>
-
-                {errors.time && <span className={Styles.error}>{errors.time.message as string}</span>}
-              </div>
-            </div>
-          </div>
-        </div>
+        )}
         <div className={`${Styles.inputBody}`}>
           <label className={`${Styles.label}`} htmlFor="inquiry">
             ご希望・ご質問など

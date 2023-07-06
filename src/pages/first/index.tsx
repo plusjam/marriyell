@@ -93,7 +93,7 @@ export default function Home(props: Props) {
           <QaSection qaSet={QA[0]} />
           <WeekendFair lists={weekendLists} weekend={selectedWeekend} handleSelect={handleWeekendSelect} />
           <TopWeddingPlan planLists={[...planLists.articles]} />
-          <TopWeddingReport contents={reportLists.articles} openModal={openModal} />
+          {/* <TopWeddingReport contents={reportLists.articles} openModal={openModal} /> */}
 
           <InstagramSection />
         </main>

@@ -166,7 +166,7 @@ export const CONTENT = {
       },
       {
         title: "宿泊施設",
-        caption: "遠方からお越しいただくゲストのための宿泊施設として、ベルセゾン近隣のホテルをご紹介しています",
+        caption: "遠方からお越しいただくゲストのための宿泊施設として、マリエール高崎近隣のホテルをご紹介しています",
         src: "/images/icon_guest_hotel.svg",
       },
       {
