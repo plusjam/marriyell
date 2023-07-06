@@ -17,11 +17,11 @@ const nextConfig = {
   staticPageGenerationTimeout: 200,
   async redirects() {
     return [
-      // {
-      //   source: "/report",
-      //   destination: "/404",
-      //   permanent: false,
-      // },
+      {
+        source: "/report",
+        destination: "/404",
+        permanent: false,
+      },
       // {
       //   source: "/contact",
       //   destination: "/404",

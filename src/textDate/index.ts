@@ -133,10 +133,10 @@ export const sitemapLinks = [
     title: "ご列席の方へ",
     href: "/for-guest",
   },
-  {
-    title: "ウエディングレポート",
-    href: "/report",
-  },
+  // {
+  //   title: "ウエディングレポート",
+  //   href: "/report",
+  // },
   {
     title: "お知らせ・イベント情報",
     href: "/news",
