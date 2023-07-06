@@ -10,6 +10,7 @@ import { apricotClient } from "../../../libs/cms";
 import axios from "axios";
 import InstagramSection from "@/components/orgs/InstagramSection";
 import NewsForm from "@/components/orgs/NewsForm";
+import Image from "next/image";
 
 type Props = {
   newsList: NewsList;
@@ -87,7 +88,7 @@ const HOME = (props: Props) => {
         </div>
 
         <div className={Styles.image}>
-          <img src={image?.url} alt="" width={image?.attributes.width} height={image?.attributes.height} />
+          <Image src={image!.url} alt="" width={image?.attributes.width} height={image?.attributes.height} />
         </div>
       </div>
     );
@@ -98,7 +99,7 @@ const HOME = (props: Props) => {
       <div className={`${Styles.pattern} ${Styles.pattern02}`}>
         {/* 左に画像、右にテキスト */}
         <div className={Styles.image}>
-          <img src={image?.url} alt="" width={image?.attributes.width} height={image?.attributes.height} />
+          <Image src={image!.url} alt="" width={image?.attributes.width} height={image?.attributes.height} />
         </div>
 
         <div className={Styles.text}>
@@ -124,7 +125,7 @@ const HOME = (props: Props) => {
       <div className={`${Styles.pattern} ${Styles.pattern04}`}>
         {/* 画像のみ */}
         <div className={Styles.image}>
-          <img src={image?.url} alt="" width={image?.attributes.width} height={image?.attributes.height} />
+          <Image src={image!.url} alt="" width={image?.attributes.width} height={image?.attributes.height} />
         </div>
       </div>
     );

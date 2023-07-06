@@ -55,7 +55,7 @@ const TopNewsEvent = (props: Props) => {
               return (
                 <Link href={`/news/${content.code}`} className={Styles.list} key={`news${index}`}>
                   <div className={Styles.image}>
-                    <img src={content.eyecatch.url} alt={content.title} />
+                    <Image src={content.eyecatch.url} alt={content.title} width={140} height={140} />
                   </div>
                   <div className={Styles.content}>
                     <div className={Styles.description}>{titleLimit}</div>

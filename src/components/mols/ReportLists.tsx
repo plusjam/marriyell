@@ -1,6 +1,7 @@
 import React from "react";
 import Styles from "@/styles/mols/ReportLists.module.scss";
 import { ReportLists as List } from "../../../typings/report";
+import Image from "next/image";
 
 type Props = {
   contents: List["articles"];
@@ -43,7 +44,7 @@ const ReportLists = (props: Props) => {
             data-duration={0.6}
           >
             <div className={Styles.image} onClick={() => openModal(content.id)}>
-              <img src={`https://img.youtube.com/vi/${content.id}/hqdefault.jpg`} alt="" />
+              <Image src={`https://img.youtube.com/vi/${content.id}/hqdefault.jpg`} alt="" width={311} height={233} />
             </div>
             <div className={Styles.meta}>
               <p className={Styles.category}>{content.place}</p>

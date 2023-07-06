@@ -41,7 +41,7 @@ const TopWeddingPlan = (props: Props) => {
                     <div className={Styles.image}>
                       <picture>
                         <Image src={elem.mainPc.url} alt="" width={elem.mainPc.attributes.width} height={elem.mainPc.attributes.height} className={Images.pc} />
-                        <Image src={elem.mainSp.url} alt="" width={elem.mainSp.attributes.width} height={elem.mainSp.attributes.height} className={Images.pc} />
+                        <Image src={elem.mainSp.url} alt="" width={elem.mainSp.attributes.width} height={elem.mainSp.attributes.height} className={Images.sp} />
                       </picture>
                     </div>
                     <div className={Styles.contents}>

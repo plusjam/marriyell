@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { FairCategoriesLists, FairLists } from "../../../typings/fair";
 import Styles from "../../styles/mols/BridalCategories.module.scss";
 
@@ -17,7 +18,7 @@ const BridalCategories = (props: Props) => {
 
         return (
           <div className={isCategory ? `${Styles.category} ${Styles.selected}` : Styles.category} key={index}>
-            <div className={Styles.image}>{isCategory ? <img src={category.iconFocus.url} alt="" /> : <img src={category.icon.url} alt="" />}</div>
+            <div className={Styles.image}>{isCategory ? <Image src={category.iconFocus.url} alt="" width={12} height={12} /> : <Image src={category.icon.url} alt="" width={12} height={12} />}</div>
             <span>{category.name}</span>
           </div>
         );

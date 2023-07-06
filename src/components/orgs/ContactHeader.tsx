@@ -1,6 +1,7 @@
 import React from "react";
 import Styles from "@/styles/orgs/ContactHeader.module.scss";
 import { Status } from "../../../libs/useApi";
+import Image from "next/image";
 
 type Props = {
   en: string;
@@ -21,11 +22,11 @@ const ContactHeader = (props: Props) => {
         <ul className={Styles.flow}>
           <li className={status === "idle" ? `${Styles.text} ${Styles.done}` : Styles.text}>項目入力</li>
           <li className={Styles.arrow}>
-            <img src="/images/icon_arrow-contact.svg" alt="" />
+            <Image src="/images/icon_arrow-contact.svg" alt="" width={16} height={25} />
           </li>
           <li className={status === "confirm" ? `${Styles.text} ${Styles.done}` : Styles.text}>ご確認</li>
           <li className={Styles.arrow}>
-            <img src="/images/icon_arrow-contact.svg" alt="" />
+            <Image src="/images/icon_arrow-contact.svg" alt="" width={16} height={25} />
           </li>
           <li className={status === "success" ? `${Styles.text} ${Styles.done}` : Styles.text}>完　了</li>
         </ul>

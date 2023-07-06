@@ -5,6 +5,7 @@ import { useRecoilState } from "recoil";
 import { Status } from "../../../libs/useApi";
 import ContactPolicy from "../atoms/ContactPolicy";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 type Props = {
   handleStatus: (status: Status) => void;
@@ -156,7 +157,7 @@ const ContactFormConfirmBrochure = (props: Props) => {
 
           <div className={Styles.note}>
             <div className={Styles.mark}>
-              <img src="/images/icon_note.svg" alt="" />
+              <Image src="/images/icon_note.svg" alt="" width={40} height={40} />
             </div>
             <ul className={Styles.ul}>
               <li className={Styles.li}>送信後、自動返信メールが届かない場合はご記入のアドレスが間違っている可能性がございます。メールのご確認をよろしくお願い致します。</li>

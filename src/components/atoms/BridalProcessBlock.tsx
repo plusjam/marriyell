@@ -20,8 +20,7 @@ const BridalProcessBlock = (props: Props) => {
   return (
     <div className={Styles.block}>
       <div className={Styles.image}>
-        {/* <Image src={src} alt="" width={180} height={180} /> */}
-        <img src={src} alt="" width={180} height={180} />
+        <Image src={src} alt="" width={180} height={180} />
       </div>
       <div className={Styles.contents}>
         <div className={Styles.head}>

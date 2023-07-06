@@ -48,7 +48,7 @@ const InstagramSection = () => {
             {posts.map((post: any, index) => (
               <div className={Styles.post} key={`instagrampost${index}`}>
                 <Link href={post.permalink} target="_blank">
-                  {post.media_type === "VIDEO" ? <img src={post.thumbnail_url} alt="" /> : <img src={post.media_url} alt="" />}
+                  {post.media_type === "VIDEO" ? <img src={post.thumbnail_url} alt="" width={189} height={189} /> : <img src={post.media_url} alt="" width={189} height={189} />}
                 </Link>
               </div>
             ))}

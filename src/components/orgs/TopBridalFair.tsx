@@ -185,7 +185,7 @@ const TopBridalFair = (props: Props) => {
                       <SwiperSlide className={`${Styles.content} fadeinTop`} data-delay={0.2 * index} key={`weekendfair${index + 1}`}>
                         <Link href={`/fair/${content.code}`}>
                           <div className={Styles.image}>
-                            <img src={content.mainPc.url} alt="" width={content.mainPc.attributes.width} height={content.mainPc.attributes.height} />
+                            <Image src={content.mainPc.url} alt="" width={content.mainPc.attributes.width} height={content.mainPc.attributes.height} />
                           </div>
                           <div className={Styles.date}>{date[0].date}</div>
                           <div className={Styles.description}>{textLimit(content.description, 50)}</div>

@@ -21,7 +21,7 @@ const StaticLayoutBrides = (props: Props) => {
           <div className={Styles.imageArea}>
             <div className={Styles.title} dangerouslySetInnerHTML={{ __html: contents.title }}></div>
             <div className={Styles.image}>
-              <img src={contents.src} alt="" width={496} height={284} />
+              <Image src={contents.src} alt="" width={496} height={284} />
             </div>
           </div>
 
