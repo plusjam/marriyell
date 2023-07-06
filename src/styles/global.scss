@@ -4,6 +4,15 @@
   box-sizing: border-box;
 }
 
+html {
+  visibility: hidden;
+}
+
+html.wf-active,
+html.loading-delay {
+  visibility: visible;
+}
+
 body {
   font-family: "yu-mincho-pr6n", sans-serif;
   font-weight: 400;
