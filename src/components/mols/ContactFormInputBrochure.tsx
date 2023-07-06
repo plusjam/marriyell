@@ -1,11 +1,10 @@
 import { ContactBrochureData, contactBrochureData } from "@/pages/contact/brochure";
 import Styles from "@/styles/orgs/ContactForm.module.scss";
-import Link from "next/link";
-import { SubmitHandler, useForm } from "react-hook-form";
-import ContactPolicy from "../atoms/ContactPolicy";
-import { Status } from "../../../libs/useApi";
-import { useRecoilState } from "recoil";
 import Image from "next/image";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { useRecoilState } from "recoil";
+import { Status } from "../../../libs/useApi";
+import ContactPolicy from "../atoms/ContactPolicy";
 
 type Props = {
   handleStatus: (status: Status) => void;

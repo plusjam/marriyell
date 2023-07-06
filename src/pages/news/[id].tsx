@@ -1,16 +1,16 @@
-import { GetStaticProps } from "next";
-import React, { useState } from "react";
-import { NewsCategory, NewsContents, NewsList, NewsLists } from "../../../typings/news";
-import UnderlayerHead from "@/components/orgs/UnderlayerHead";
 import Motion from "@/components/layouts/Motion";
-import Head from "next/head";
-import Styles from "@/styles/pages/News.module.scss";
-import Link from "next/link";
-import { apricotClient } from "../../../libs/cms";
-import axios from "axios";
 import InstagramSection from "@/components/orgs/InstagramSection";
 import NewsForm from "@/components/orgs/NewsForm";
+import UnderlayerHead from "@/components/orgs/UnderlayerHead";
+import Styles from "@/styles/pages/News.module.scss";
+import axios from "axios";
+import { GetStaticProps } from "next";
+import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
+import React, { useState } from "react";
+import { apricotClient } from "../../../libs/cms";
+import { NewsList, NewsLists } from "../../../typings/news";
 
 type Props = {
   newsList: NewsList;

@@ -2,11 +2,11 @@ import Motion from "@/components/layouts/Motion";
 import SectionHead from "@/components/mols/SectionHead";
 import InstagramSection from "@/components/orgs/InstagramSection";
 import ReportModal from "@/components/orgs/ReportModal";
-import TopWeddingReport from "@/components/orgs/TopWeddingReport";
 import Underlayer1 from "@/components/orgs/Underlayer1";
 import Underlayer2 from "@/components/orgs/Underlayer2";
 import Underlayer3 from "@/components/orgs/Underlayer3";
 import WeekendFair from "@/components/orgs/WeekendFair";
+import { META } from "@/textDate/head";
 import axios from "axios";
 import { GetStaticProps } from "next";
 import Head from "next/head";
@@ -17,7 +17,6 @@ import useModalReport from "../../../libs/useModalReport";
 import { FairLists } from "../../../typings/fair";
 import { ReportLists } from "../../../typings/report";
 import { CHEF, CUISINE, MAIN, ORIGINALWEDDING, WEDDINGCAKE } from "../../textDate/cuisine";
-import { META } from "@/textDate/head";
 
 type Props = {
   fairLists: FairLists;

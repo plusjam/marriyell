@@ -1,13 +1,11 @@
-import React, { use } from "react";
-import Styles from "../../styles/orgs/TopNewsEvent.module.scss";
-import SectionHead from "../mols/SectionHead";
-import LinkToLists from "../atoms/LinkToLists";
-import { NewsContents, NewsLists } from "../../../typings/news";
-import Link from "next/link";
-import { IMAGELINKS } from "@/textDate";
 import Image from "next/image";
+import Link from "next/link";
 import { useMediaQuery } from "../../../libs/useMediaQuery";
 import { BannerLists } from "../../../typings/banner";
+import { NewsLists } from "../../../typings/news";
+import Styles from "../../styles/orgs/TopNewsEvent.module.scss";
+import LinkToLists from "../atoms/LinkToLists";
+import SectionHead from "../mols/SectionHead";
 
 type Props = {
   contents: NewsLists["articles"];

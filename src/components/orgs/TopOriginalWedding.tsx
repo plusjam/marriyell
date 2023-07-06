@@ -1,11 +1,9 @@
-import React from "react";
-import SectionHead from "../mols/SectionHead";
-import Styles from "../../styles/orgs/TopOriginalWedding.module.scss";
-import { originalWedding, weddingInfo } from "../../textDate";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import { useMediaQuery } from "../../../libs/useMediaQuery";
-import ContentsAndImage from "../mols/ContentsAndImage";
+import Styles from "../../styles/orgs/TopOriginalWedding.module.scss";
+import { weddingInfo } from "../../textDate";
+import SectionHead from "../mols/SectionHead";
 
 const TopOriginalWedding = () => {
   const isPc = useMediaQuery(768, "min");
@@ -19,11 +17,6 @@ const TopOriginalWedding = () => {
           <br />
           ワンフロア貸切でゲストと最高の1日を過ごすことが出来るプライベート空間でお2人の理想の結婚式を叶えます
         </div>
-        {/* <div className={Styles.container}>
-          {originalWedding.map((item, index) => {
-            return <ContentsAndImage {...item} key={index} reverse={index % 2 === 1} />;
-          })}
-        </div> */}
         <div className={`${Styles.container} ${Styles.plan}`}>
           {weddingInfo.map((info, index) => {
             return (

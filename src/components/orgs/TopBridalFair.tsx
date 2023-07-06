@@ -1,14 +1,13 @@
 import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
+import "swiper/css";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { FairLists } from "../../../typings/fair";
 import Styles from "../../styles/orgs/TopBridalFair.module.scss";
+import CalendarTOP from "../atoms/CalendarTOP";
 import LinkToLists from "../atoms/LinkToLists";
 import SectionHead from "../mols/SectionHead";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import Link from "next/link";
-import { FairList } from "@/pages/api/fair";
-import CalendarTOP from "../atoms/CalendarTOP";
-import { useState } from "react";
-import { FairLists } from "../../../typings/fair";
 
 type Props = {
   lists: FairLists["articles"];
