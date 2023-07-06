@@ -57,7 +57,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
         ></meta>
       </Head>
 
-      <Pagination location={location} />
+      {/* <Pagination location={location} /> */}
       {/* <AnimatePresence mode="wait" initial> */}
       <Animation location={location} key={router.route}>
         <Header {...childProps} isTop={location === "/"} />

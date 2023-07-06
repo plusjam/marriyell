@@ -1,5 +1,6 @@
 import React from "react";
 import Styles from "../../styles/orgs/Underlayer1.module.scss";
+import Images from "../../styles/atoms/Images.module.scss";
 import Image from "next/image";
 import { useMediaQuery } from "../../../libs/useMediaQuery";
 
@@ -20,12 +21,8 @@ const Underlayer1 = (props: Props) => {
     <div className={`${Styles.container}`}>
       <div className={Styles.main}>
         <div className={Styles.image}>
-          <picture>
-            <source srcSet={image} type="image/png" media="(min-width: 768px)" />
-            <source srcSet={spImage} type="image/png" />
-            <img src={image} alt="" width={1440} height={480} />
-          </picture>
-          {/* <Image src={isPc ? image : spImage} alt="" width={1440} height={480} priority /> */}
+          <Image src={image} alt="" width={1440} height={480} priority className={Images.pc} />
+          <Image src={spImage} alt="" width={375} height={375} priority className={Images.sp} />
         </div>
         <div className={Styles.title}>
           <div className={Styles.en}>{en}</div>
