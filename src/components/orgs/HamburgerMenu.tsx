@@ -4,6 +4,7 @@ import { sitemapLinks } from "../../textDate";
 import ButtonSns from "../atoms/ButtonSns";
 import HamburgerButton from "../atoms/HamburgerButton";
 import LinkToBridalFair from "../atoms/LinkToBridalFair";
+import Image from "next/image";
 
 type Props = {
   toggleOpen: () => void;
@@ -20,10 +21,7 @@ const HamburgerMenu = (props: Props) => {
         <div className={Styles.main}>
           <Link href="tel:0120-362-241" className={Styles.phone}>
             <span className={Styles.phoneIcon}>
-              <picture>
-                <source srcSet="/images/icon_phone-white.svg" type="image/svg" />
-                <img src="/images/icon_phone-white.svg" alt="" width={25} height={25} />
-              </picture>
+              <Image src="/images/icon_phone-white.svg" alt="" width={25} height={25} />
             </span>
             0120-362-241
           </Link>

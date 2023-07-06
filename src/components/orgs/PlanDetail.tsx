@@ -1,10 +1,10 @@
-import { PlanLists } from "@/pages/api/plan";
 import Image from "next/image";
+import { PlanCategoriesLists, PlanList } from "../../../typings/plan";
+import Images from "../../styles/atoms/Images.module.scss";
 import Styles from "../../styles/orgs/PlanDetail.module.scss";
 import PlanCategory from "../atoms/PlanCategory";
 import PlanMeta from "../atoms/PlanMeta";
 import Previlege from "../mols/Previlege";
-import { PlanCategoriesLists, PlanList } from "../../../typings/plan";
 
 type Props = {
   content: PlanList;
@@ -25,11 +25,8 @@ const PlanDetail = (props: Props) => {
             }}
           ></div>
           <div className={Styles.image}>
-            <picture>
-              <source srcSet={content.mainPc.url} width={content.mainPc.attributes.width} height={content.mainPc.attributes.height} media="(min-width: 768px)" />
-              <source srcSet={content.mainSp.url} width={content.mainSp.attributes.width} height={content.mainSp.attributes.height} />
-              <img src={content.mainPc.url} alt="" width={content.mainPc.attributes.width} height={content.mainPc.attributes.height} />
-            </picture>
+            <Image src={content.mainPc.url} width={content.mainPc.attributes.width} height={content.mainPc.attributes.height} alt="" className={Images.pc} />
+            <Image src={content.mainSp.url} width={content.mainSp.attributes.width} height={content.mainSp.attributes.height} alt="" className={Images.sp} />
           </div>
           <div className={Styles.contents}>
             <PlanMeta price={content.price} member={content.member} />

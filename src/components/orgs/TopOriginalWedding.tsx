@@ -29,9 +29,7 @@ const TopOriginalWedding = () => {
             return (
               <Link href={info.href} key={index} className={`${Styles.info} fadeinTop`} data-delay={0.2 * index}>
                 <picture>
-                  <source srcSet={info.image} type="image/png" media="(min-width: 768px)" />
-                  <source srcSet={info.spImage} type="image/png" />
-                  <img src={info.image} alt="" width={480} height={480} />
+                  <Image src={info.image} alt="" width={480} height={480} />
                 </picture>
                 <div className={Styles.infotitle}>
                   <div className={Styles.infoen}>{info.en}</div>

@@ -9,16 +9,10 @@ export const MainFlow = () => {
   return (
     <>
       <div className={Styles.main}>
-        <picture>
-          <source srcSet="/images/main_copy.svg" type="image/svg" />
-          <img className={Styles.image} src="/images/main_copy.svg" alt="" width={283} height={64} />
-        </picture>
+        <Image className={Styles.image} src="/images/main_copy.svg" alt="" width={283} height={64} />
         {isPc ? (
           <div className={Styles.scroll}>
-            <picture>
-              <source srcSet="/images/icon_scroll.svg" type="image/svg" />
-              <img src="/images/icon_scroll.svg" alt="" width={16} height={33} />
-            </picture>
+            <Image src="/images/icon_scroll.svg" alt="" width={16} height={33} />
             <div className={Styles.scrollText}>Scroll</div>
           </div>
         ) : (

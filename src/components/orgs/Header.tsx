@@ -6,6 +6,7 @@ import LinkToBridalFair from "../atoms/LinkToBridalFair";
 import { gsap } from "gsap";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import React, { useEffect } from "react";
+import Image from "next/image";
 
 type Props = {
   toggleOpen: () => void;
@@ -42,10 +43,7 @@ const Header = (props: Props) => {
     <header className={isTop ? `${Styles.header} ${Styles.isTop}` : Styles.header} ref={ref}>
       <div className={Styles.logo}>
         <Link href="/">
-          <picture>
-            <source srcSet="/images/art_logo_yoko.png" type="image/png" />
-            <img src="/images/art_logo_yoko.png" alt="マリエール高崎" width={185} height={50} />
-          </picture>
+          <Image src="/images/art_logo_yoko.png" alt="マリエール高崎" width={185} height={50} />
         </Link>
       </div>
 

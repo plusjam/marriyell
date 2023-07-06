@@ -1,5 +1,6 @@
 import React from "react";
 import Styles from "../../styles/mols/ImagesView.module.scss";
+import Images from "../../styles/atoms/Images.module.scss";
 import Image from "next/image";
 import { useMediaQuery } from "../../../libs/useMediaQuery";
 
@@ -24,11 +25,8 @@ const ImagesView = (props: Props) => {
     <div className={reverse ? `${Styles.container} ${Styles.reverse}` : Styles.container}>
       <div className={Styles.main}>
         <div className={Styles.image02}>
-          <picture>
-            <source srcSet={image02} type="image/png" media="(min-width: 768px)" />
-            <source srcSet={spImage02} type="image/png" />
-            <img src={image02} alt="" className="fadein" />
-          </picture>
+          <Image src={image02} alt="" width={600} height={593} className={Images.pc} />
+          <Image src={spImage02} alt="" width={375} height={256} className={Images.sp} />
         </div>
         {copy && description && (
           <div className={Styles.contents}>
@@ -39,20 +37,12 @@ const ImagesView = (props: Props) => {
       </div>
       <div className={Styles.images}>
         <div className={Styles.image03}>
-          {/* <Image src={isPc ? image03 : spImage03} alt="" width={306} height={306} loading="eager" className="fadein" /> */}
-          <picture>
-            <source srcSet={image03} type="image/png" media="(min-width: 768px)" />
-            <source srcSet={spImage03} type="image/png" />
-            <img src={image03} alt="" className="fadein" />
-          </picture>
+          <Image src={image03} alt="" width={306} height={306} className={Images.pc} />
+          <Image src={spImage03} alt="" width={160} height={160} className={Images.sp} />
         </div>
         <div className={Styles.image04}>
-          {/* <Image src={isPc ? image04 : spImage04} alt="" width={306} height={306} loading="eager" className="fadein" /> */}
-          <picture>
-            <source srcSet={image04} type="image/png" media="(min-width: 768px)" />
-            <source srcSet={spImage04} type="image/png" />
-            <img src={image04} alt="" className="fadein" />
-          </picture>
+          <Image src={image04} alt="" width={306} height={306} className={Images.pc} />
+          <Image src={spImage04} alt="" width={160} height={160} className={Images.sp} />
         </div>
       </div>
     </div>

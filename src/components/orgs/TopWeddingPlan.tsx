@@ -2,8 +2,10 @@ import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { PlanLists } from "../../../typings/plan";
 import Styles from "../../styles/orgs/TopWeddingPlan.module.scss";
+import Images from "../../styles/atoms/Images.module.scss";
 import LinkToLists from "../atoms/LinkToLists";
 import SectionHead from "../mols/SectionHead";
+import Image from "next/image";
 
 type Props = {
   planLists: PlanLists["articles"];
@@ -38,9 +40,8 @@ const TopWeddingPlan = (props: Props) => {
                   <Link href={`/plan/${elem.code}`}>
                     <div className={Styles.image}>
                       <picture>
-                        <source srcSet={elem.mainPc.url} media="(min-width: 768px)" />
-                        <source srcSet={elem.mainSp.url} width={elem.mainSp.attributes.width} height={elem.mainSp.attributes.height} />
-                        <img src={elem.mainPc.url} alt="" width={elem.mainPc.attributes.width} height={elem.mainPc.attributes.height} />
+                        <Image src={elem.mainPc.url} alt="" width={elem.mainPc.attributes.width} height={elem.mainPc.attributes.height} className={Images.pc} />
+                        <Image src={elem.mainSp.url} alt="" width={elem.mainSp.attributes.width} height={elem.mainSp.attributes.height} className={Images.pc} />
                       </picture>
                     </div>
                     <div className={Styles.contents}>

@@ -1,10 +1,12 @@
 import { useMediaQuery } from "../../../libs/useMediaQuery";
 import { FairCategoriesLists, FairList } from "../../../typings/fair";
 import Styles from "../../styles/orgs/FairDetail.module.scss";
+import Images from "../../styles/atoms/Images.module.scss";
 import Calendar from "../atoms/Calendar";
 import BridalCategories from "../mols/BridalCategories";
 import Previlege from "../mols/Previlege";
 import { ContactDataDetailFair } from "./DetailFairForm";
+import Image from "next/image";
 
 type Props = {
   fairList: FairList;
@@ -37,11 +39,8 @@ const FairDetail = (props: Props) => {
 
           <div className={Styles.contents}>
             <div className={Styles.image}>
-              <picture>
-                <source srcSet={fairList.mainPc.url} width={fairList.mainPc.attributes.width} height={fairList.mainPc.attributes.height} media="(min-width: 768px)" />
-                <source srcSet={fairList.mainSp.url} width={fairList.mainSp.attributes.width} height={fairList.mainSp.attributes.height} />
-                <img src={fairList.mainPc.url} alt="" width={fairList.mainPc.attributes.width} height={fairList.mainPc.attributes.height} />
-              </picture>
+              <Image src={fairList.mainPc.url} width={fairList.mainPc.attributes.width} height={fairList.mainPc.attributes.height} alt="" className={Images.pc} />
+              <Image src={fairList.mainSp.url} width={fairList.mainSp.attributes.width} height={fairList.mainSp.attributes.height} alt="" className={Images.sp} />
             </div>
             <div className={Styles.categories}>
               <BridalCategories categories={fairList.categories} fairCategoriesLists={fairCategoriesLists} />

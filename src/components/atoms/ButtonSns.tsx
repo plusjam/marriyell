@@ -7,25 +7,11 @@ const ButtonSns = () => {
   return (
     <div className={Atoms.buttons}>
       <Link className={Atoms.button} href="https://www.facebook.com/marriyell.takasaki" target="_blank">
-        {/* <Image src="/images/button_facebook.svg" alt="Facebook" width={40} height={40} /> */}
-        <picture>
-          <source srcSet="/images/art_logo.svg" type="image/svg" />
-          <img src="/images/button_facebook.svg" alt="Facebook" width={40} height={40} />
-        </picture>
+        <Image src="/images/button_facebook.svg" alt="Facebook" width={40} height={40} />
       </Link>
       <Link className={Atoms.button} href="https://www.instagram.com/marriyell.takasaki/" target="_blank">
-        {/* <Image src="/images/button_instagram.svg" alt="Instagram" width={40} height={40} /> */}
-        <picture>
-          <source srcSet="/images/art_logo.svg" type="image/svg" />
-          <img src="/images/button_instagram.svg" alt="Instagram" width={40} height={40} />
-        </picture>
+        <Image src="images/button_instagram.svg" alt="Facebook" width={40} height={40} />
       </Link>
-      {/* <Link className={Atoms.button} href="https://page.line.me/kbm7305t" target="_blank">
-        <picture>
-          <source srcSet="/images/art_logo.svg" type="image/svg" />
-          <img src="/images/button_line.svg" alt="LINE" width={40} height={40} />
-        </picture>
-      </Link> */}
     </div>
   );
 };

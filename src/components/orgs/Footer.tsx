@@ -1,12 +1,8 @@
 import Image from "next/image";
-import React from "react";
-import Styles from "../../styles/orgs/Footer.module.scss";
-import Atoms from "../../styles/atoms/Atoms.module.scss";
 import Link from "next/link";
+import Styles from "../../styles/orgs/Footer.module.scss";
 import { sitemapLinks } from "../../textDate";
-import { useMediaQuery } from "../../../libs/useMediaQuery";
 import ButtonSns from "../atoms/ButtonSns";
-import LinkToRecruit from "../atoms/LinkToRecruit";
 
 const Footer = () => {
   return (
@@ -14,10 +10,7 @@ const Footer = () => {
       <div className={Styles.container}>
         <div className={Styles.body}>
           <div className={Styles.logo}>
-            <picture>
-              <source srcSet="/images/art_logo_tate.png" type="image/png" />
-              <img src="/images/art_logo-nocolor.svg" alt="マリエール高崎" width={171} height={173} />
-            </picture>
+            <Image src="/images/art_logo_tate.png" alt="マリエール高崎" width={171} height={173} />
             <div className={Styles.title}>
               <span>マリエール高崎 </span>
               <span className={Styles.pc}>│</span>
@@ -34,19 +27,13 @@ const Footer = () => {
             <div className={Styles.zipcode}>〒370-0069</div>
             <div className={Styles.address}>
               <span className={Styles.addressIcon}>
-                <picture>
-                  <source srcSet="/images/icon_spot.svg" type="image/png" />
-                  <img src="/images/icon_spot.svg" alt="" width={23} height={23} />
-                </picture>
+                <Image src="/images/icon_spot.svg" alt="" width={23} height={23} />
               </span>
               群馬県高崎市飯塚町1361
             </div>
             <Link href="tel:0120-362-241" className={Styles.phone}>
               <span className={Styles.phoneIcon}>
-                <picture>
-                  <source srcSet="/images/icon_phone.svg" type="image/svg" />
-                  <img src="/images/icon_phone.svg" alt="" width={15} height={15} />
-                </picture>
+                <Image src="/images/icon_phone.svg" alt="" width={15} height={15} />
               </span>
               0120-362-241
             </Link>

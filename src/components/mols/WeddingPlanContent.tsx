@@ -1,5 +1,6 @@
 import React from "react";
 import Styles from "../../styles/mols/WeddingPlanContent.module.scss";
+import Images from "../../styles/atoms/Images.module.scss";
 import Image from "next/image";
 import Link from "next/link";
 import PlanCategory from "../atoms/PlanCategory";
@@ -28,11 +29,8 @@ const WeddingPlanContent = (props: Props) => {
         ></div>
       )}
       <div className={Styles.image}>
-        <picture>
-          <source srcSet={content.mainPc.url} width={content.mainPc.attributes.width} height={content.mainPc.attributes.height} media="(min-width: 768px)" />
-          <source srcSet={content.mainSp.url} width={content.mainSp.attributes.width} height={content.mainSp.attributes.height} />
-          <img src={content.mainPc.url} alt="" width={content.mainPc.attributes.width} height={content.mainPc.attributes.height} />
-        </picture>
+        <Image src={content.mainPc.url} width={content.mainPc.attributes.width} height={content.mainPc.attributes.height} alt="" className={Images.pc} />
+        <Image src={content.mainSp.url} width={content.mainSp.attributes.width} height={content.mainSp.attributes.height} alt="" className={Images.sp} />
       </div>
       <div className={Styles.contents}>
         {isPc && (

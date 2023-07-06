@@ -1,9 +1,8 @@
-import React from "react";
-import Styles from "../../styles/mols/ContentsAndImage.module.scss";
 import Image from "next/image";
-import IconArrow from "../atoms/IconArrow";
 import Link from "next/link";
-import { useMediaQuery } from "../../../libs/useMediaQuery";
+import Images from "../../styles/atoms/Images.module.scss";
+import Styles from "../../styles/mols/ContentsAndImage.module.scss";
+import IconArrow from "../atoms/IconArrow";
 
 type Props = {
   en?: string;
@@ -17,8 +16,6 @@ type Props = {
 
 const ContentsAndImage = (props: Props) => {
   const { en, ja, description, href, image, spImage, reverse = false } = props;
-
-  const isPc = useMediaQuery(768, "min");
 
   return (
     <div className={reverse ? `${Styles.item} ${Styles.reverse} fadein` : `${Styles.item} fadein`} id={en && en.toLocaleLowerCase().replaceAll(" ", "_")}>
@@ -44,11 +41,8 @@ const ContentsAndImage = (props: Props) => {
         )}
       </div>
       <div className={Styles.image}>
-        <picture>
-          <source srcSet={image} type="image/png" media="(min-width: 768px)" />
-          <source srcSet={spImage} type="image/png" />
-          <img src={image} alt="" className="fadein" />
-        </picture>
+        <Image src={image} alt="" width={909} height={531} className={`${Images.pc} fadein`} />
+        <Image src={spImage} alt="" width={297} height={425} className={`${Images.sp} fadein`} />
       </div>
     </div>
   );

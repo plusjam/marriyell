@@ -114,10 +114,7 @@ const TopBridalFair = (props: Props) => {
                     <SwiperSlide className={`${Styles.block} fadeinTop`} data-delay={0.2 * index} key={`bridalfair0${index + 1}`}>
                       <Link href={`/fair/${elem.code}`}>
                         <div className={Styles.image}>
-                          <picture>
-                            <source srcSet={elem.mainPc.url} />
-                            <img src={elem.mainPc.url} alt="" width={elem.mainPc.attributes.width} height={elem.mainPc.attributes.height} />
-                          </picture>
+                          <Image src={elem.mainPc.url} alt="" width={elem.mainPc.attributes.width} height={elem.mainPc.attributes.height} />
                           <div className={Styles.tag}>
                             <div className={Styles.yyyy_mm}>{yyyymm}</div>
                             <div className={Styles.dd}>{date}</div>

@@ -11,10 +11,7 @@ const Loading = (props: Props) => {
 
   return (
     <div className={isLoading ? `${Styles.logo} ${Styles.active}` : Styles.logo}>
-      <picture>
-        <source srcSet="/images/art_logo_tate.png" type="image/png" />
-        <img src="/images/art_logo_tate.png" alt="" width={171} height={173} />
-      </picture>
+      <Image src="/images/art_logo_tate.png" alt="" width={171} height={173} />
     </div>
   );
 };

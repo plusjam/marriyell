@@ -1,5 +1,7 @@
 import React from "react";
 import Styles from "@/styles/orgs/UnderlayerHead.module.scss";
+import Images from "@/styles/atoms/Images.module.scss";
+import Image from "next/image";
 
 type Props = {
   en?: string;
@@ -24,9 +26,8 @@ const UnderlayerHead = (props: Props) => {
         )}
       </h1>
       <picture className={Styles.picture}>
-        <source srcSet={image} media="(min-width: 768px)" />
-        <source srcSet={spImage} media="" />
-        <img src={image} alt="" width={1440} height={318.2} />
+        <Image src={image} alt="" width={1440} height={318.2} className={Images.pc} />
+        <Image src={spImage} alt="" width={375} height={375} className={Images.sp} />
       </picture>
     </section>
   );

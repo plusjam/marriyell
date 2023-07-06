@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import Styles from "../../styles/orgs/InstagramSection.module.scss";
 import Link from "next/link";
+import Image from "next/image";
 
 type instagram = {
   caption: string;
@@ -36,11 +37,7 @@ const InstagramSection = () => {
       <div className={Styles.head}>
         <div className={Styles.headText}>Instagram</div>
         <div className={Styles.haedIcon}>
-          {/* <Image src="/images/icon_instagram.svg" alt="Instagram" width={41} height={41} /> */}
-          <picture>
-            <source srcSet="/images/art_logo.svg" type="image/svg" />
-            <img src="/images/icon_instagram.svg" alt="Instagram" width={41} height={41} />
-          </picture>
+          <Image src="/images/icon_instagram.svg" alt="Instagram" width={41} height={41} />
         </div>
       </div>
       <div className={Styles.container}>
