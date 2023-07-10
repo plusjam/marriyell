@@ -21,7 +21,7 @@ const BridalaFairContent = (props: Props) => {
       <div className={Styles.inner}>
         <div className={Styles.image}>
           <Image src={content.mainPc.url} width={content.mainPc.attributes.width} height={content.mainPc.attributes.height} alt="" className={Images.pc} />
-          <Image src={content.mainSp.url} width={content.mainSp.attributes.width} height={content.mainSp.attributes.height} alt="" className={Images.pc} />
+          <Image src={content.mainSp.url} width={content.mainSp.attributes.width} height={content.mainSp.attributes.height} alt="" className={Images.sp} />
         </div>
 
         <div className={Styles.categories}>
