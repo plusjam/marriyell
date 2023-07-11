@@ -62,6 +62,7 @@ const Calendar = (props: Props) => {
     if (calendarRef.current) {
       const API: CalendarApi = calendarRef.current.getApi();
       API.changeView(!isPc ? "dayGridMonth" : isTop ? "dayGridMonth" : "dayGridWeek");
+      API.gotoDate("2023-06-01");
     }
 
     const adjustCalendarHeight = () => {
