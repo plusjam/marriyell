@@ -183,15 +183,15 @@ a {
 
   &:before {
     position: absolute;
-    top: 50%;
+    top: calc(50% + 1px);
     left: 50%;
     transform: translate(-50%, -50%);
     width: 22px;
     height: 22px;
     border-radius: 99px;
     content: "";
-    z-index: -1;
     border: 1px solid #cb5353;
+    z-index: 1;
   }
 }
 
@@ -404,8 +404,9 @@ a {
 
     .fc-h-event {
       border: none;
-      width: 18px;
-      height: 18px;
+      width: 22px;
+      height: 22px;
+      margin: 0 auto;
     }
   }
 
