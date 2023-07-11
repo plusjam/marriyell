@@ -39,10 +39,8 @@ const TopWeddingPlan = (props: Props) => {
                 <SwiperSlide className={`${Styles.block} fadeinTop`} data-delay={0.2 * index} key={`weddingplan0${index + 1}`}>
                   <Link href={`/plan/${elem.code}`}>
                     <div className={Styles.image}>
-                      <picture>
-                        <Image src={elem.mainPc.url} alt="" width={elem.mainPc.attributes.width} height={elem.mainPc.attributes.height} className={Images.pc} />
-                        <Image src={elem.mainSp.url} alt="" width={elem.mainSp.attributes.width} height={elem.mainSp.attributes.height} className={Images.sp} />
-                      </picture>
+                      <Image src={elem.mainPc.url} alt="" width={elem.mainPc.attributes.width} height={elem.mainPc.attributes.height} className={Images.pc} />
+                      <Image src={elem.mainSp.url} alt="" width={elem.mainSp.attributes.width} height={elem.mainSp.attributes.height} className={Images.sp} />
                     </div>
                     <div className={Styles.contents}>
                       <div className={Styles.contentsHead}>{elem.title}</div>
