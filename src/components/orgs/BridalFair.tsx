@@ -6,10 +6,11 @@ import SectionHead from "../mols/SectionHead";
 type Props = {
   lists: FairLists["articles"];
   fairCategoriesLists: FairCategoriesLists["articles"];
+  selectedDate: string;
 };
 
 const BridalFair = (props: Props) => {
-  const { lists, fairCategoriesLists } = props;
+  const { lists, fairCategoriesLists, selectedDate } = props;
 
   return (
     <section className={Styles.section}>
@@ -23,7 +24,7 @@ const BridalFair = (props: Props) => {
         <div className={Styles.body}>
           {lists.length ? (
             lists.map((content, index) => {
-              return <BridalaFairContent content={content} key={`bridalfaircontent${index}`} fairCategoriesLists={fairCategoriesLists} />;
+              return <BridalaFairContent content={content} key={`bridalfaircontent${index}`} fairCategoriesLists={fairCategoriesLists} selectedDate={selectedDate} />;
             })
           ) : (
             <div className={Styles.nothing}>お探しのコンテンツが見つかりませんでした。</div>

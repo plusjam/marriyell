@@ -46,10 +46,10 @@ export default function Home(props: Props) {
   const router = useRouter();
   const [lists, setLists] = React.useState([...filterdLists]);
   const [weekendLists, setWeekendLists] = React.useState([...filterdLists]);
-
   const { videoID, openModal, closeModal } = useModalReport();
   const { categories, handleSelect } = useSelectFair({ init: [...fairCategoriesLists.articles] });
   const { selected: selectedWeekend, handleSelect: handleWeekendSelect } = useGetWeekend();
+  const [selectedDate, setSelectedDate] = React.useState("");
 
   gsap.registerPlugin(ScrollToPlugin);
 
@@ -132,6 +132,9 @@ export default function Home(props: Props) {
     }
 
     if (targetDate) {
+      // 選択された日付をセット
+      setSelectedDate(targetDate);
+
       // listsからtargetDateと一致するものを抽出
       const initLists = [...filterdLists];
       const selectedDateLists = initLists.filter((list) => {
@@ -166,7 +169,7 @@ export default function Home(props: Props) {
 
           <WeekendFair lists={weekendLists} weekend={selectedWeekend} handleSelect={handleWeekendSelect} />
           <SelectFair categories={categories} handleSelected={handleSelect} getSelectedLists={getSelectedLists} getSelectedDateLists={getSelectedDateLists} />
-          <BridalFair lists={lists} fairCategoriesLists={fairCategoriesLists.articles} />
+          <BridalFair lists={lists} fairCategoriesLists={fairCategoriesLists.articles} selectedDate={selectedDate} />
 
           <TopWeddingPlan planLists={[...planLists.articles]} />
           {/* <TopWeddingReport contents={reportLists.articles} openModal={openModal} /> */}

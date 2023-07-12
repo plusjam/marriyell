@@ -25,6 +25,7 @@ type Props = {
   isDetail?: boolean;
   handleData?: (data: ContactDataDetailFair) => void;
   data?: ContactDataDetailFair;
+  selectedDate: string;
 };
 
 const mouseover = (e: MouseEvent) => {
@@ -46,7 +47,7 @@ const mouseout = (e: MouseEvent) => {
 };
 
 const Calendar = (props: Props) => {
-  const { events, toFairLists = false, isTop = false, code, isDetail = false, handleData, data } = props;
+  const { events, toFairLists = false, isTop = false, code, isDetail = false, handleData, data, selectedDate } = props;
 
   gsap.registerPlugin(ScrollToPlugin);
 
@@ -62,6 +63,7 @@ const Calendar = (props: Props) => {
     if (calendarRef.current) {
       const API: CalendarApi = calendarRef.current.getApi();
       API.changeView(!isPc ? "dayGridMonth" : isTop ? "dayGridMonth" : "dayGridWeek");
+      API.gotoDate(selectedDate !== "" ? selectedDate : new Date());
     }
 
     const adjustCalendarHeight = () => {
