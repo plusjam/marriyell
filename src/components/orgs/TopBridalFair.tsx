@@ -53,11 +53,11 @@ const TopBridalFair = (props: Props) => {
   });
 
   // filteredListssを日付順に並び替え
+  // 最初のcalendarMulti.value[0]が早い順に並び替え
   filteredLists.sort((a, b) => {
-    if (!a.calendarMulti || !b.calendarMulti) return 0;
-    const latestDateA = new Date(a.calendarMulti.values[a.calendarMulti.values.length - 1]);
-    const latestDateB = new Date(b.calendarMulti.values[b.calendarMulti.values.length - 1]);
-    return latestDateA < latestDateB ? -1 : 1;
+    const latestDateA = new Date(a.calendarMulti.values[0]);
+    const latestDateB = new Date(b.calendarMulti.values[0]);
+    return latestDateA.getTime() - latestDateB.getTime();
   });
 
   return (
