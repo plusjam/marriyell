@@ -133,13 +133,21 @@ export const sitemapLinks = [
     title: "ご列席の方へ",
     href: "/for-guest",
   },
-  // {
-  //   title: "ウエディングレポート",
-  //   href: "/report",
-  // },
+  {
+    title: "よくある質問",
+    href: "/faq",
+  },
   {
     title: "お知らせ・イベント情報",
     href: "/news",
+  },
+  {
+    title: "アクセス",
+    href: "/access",
+  },
+  {
+    title: "ウエディングレポート",
+    href: "/report",
   },
   {
     title: "来館予約",
@@ -148,14 +156,6 @@ export const sitemapLinks = [
   {
     title: "資料請求",
     href: "/contact/brochure",
-  },
-  {
-    title: "アクセス",
-    href: "/access",
-  },
-  {
-    title: "よくある質問",
-    href: "/faq",
   },
   {
     title: "お問い合わせ",

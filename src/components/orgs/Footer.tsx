@@ -67,8 +67,9 @@ const Footer = () => {
 
           <div className={Styles.links}>
             {sitemapLinks.map((link, index) => {
+              if (link.href === "/report" && !isPc) return;
               return (
-                <Link href={link.href} className={Styles.link} key={index} target={""}>
+                <Link href={link.href} className={Styles.link} key={index} target={""} style={link.href === "/report" ? { visibility: "hidden", pointerEvents: "none" } : {}}>
                   {link.title}
                 </Link>
               );

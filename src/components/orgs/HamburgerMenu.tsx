@@ -4,6 +4,7 @@ import { sitemapLinks } from "../../textDate";
 import ButtonSns from "../atoms/ButtonSns";
 import HamburgerButton from "../atoms/HamburgerButton";
 import LinkToBridalFair from "../atoms/LinkToBridalFair";
+import { useMediaQuery } from "../../../libs/useMediaQuery";
 
 type Props = {
   toggleOpen: () => void;
@@ -13,6 +14,8 @@ type Props = {
 
 const HamburgerMenu = (props: Props) => {
   const { toggleOpen, isOpen, isTop = false } = props;
+
+  const isPc = useMediaQuery(768, "min");
 
   return (
     <div className={isOpen ? `${Styles.section} ${Styles.open}` : `${Styles.section}`}>
@@ -41,8 +44,9 @@ const HamburgerMenu = (props: Props) => {
       <div className={Styles.body}>
         <div className={Styles.links}>
           {sitemapLinks.map((link, index) => {
+            if (link.href === "/report" && !isPc) return;
             return (
-              <Link href={link.href} className={Styles.link} key={index} target={""}>
+              <Link href={link.href} className={Styles.link} key={index} target={""} style={link.href === "/report" ? { visibility: "hidden", pointerEvents: "none" } : {}}>
                 {link.title}
               </Link>
             );

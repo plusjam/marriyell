@@ -236,8 +236,8 @@ const ContactFormReservationInput = (props: Props) => {
 
               <div className={Styles.phonenote}>
                 ※ 当日をご希望の際は、
-                <a className={Styles.phonea} href="tel:0050-1860-4937">
-                  お電話（☎ 0050-1860-4937）
+                <a className={Styles.phonea} href="tel:0120-362-241">
+                  お電話（☎ 0120-362-241）
                 </a>
                 にてお問い合わせください。
               </div>
