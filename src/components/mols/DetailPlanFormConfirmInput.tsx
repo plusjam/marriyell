@@ -37,7 +37,7 @@ const DetailPlanFormConfirmInput = (props: Props) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ ...data, title: data.title.replaceAll("<br>", " "), date: data.type === "direct" ? data.date : "", time: data.type === "direct" ? data.time : "" }),
+        body: JSON.stringify({ ...data, title: data.title.replaceAll("<br>", " ") }),
       });
       const json = await res.json();
 
@@ -114,31 +114,30 @@ const DetailPlanFormConfirmInput = (props: Props) => {
             <input className={Styles.input} id="email" placeholder="例　example@marriyellclub.co.jp" value={data.email} readOnly />
           </div>
         </div>
-        {data.type === "direct" && (
-          <div className={Styles.inputBlockGrid}>
-            <div className={`${Styles.inputBody} ${Styles.inputDate}`}>
-              <label className={`${Styles.label} ${Styles.require}`} htmlFor="date">
-                ご来館希望日
-              </label>
-              <div className={Styles.inputBlockWrap}>
-                <div className={`${Styles.inputBlock}`}>
-                  <input className={`${Styles.input} ${Styles.date}`} id="date" type="text" value={data.date} readOnly />
-                </div>
-              </div>
-            </div>
-
-            <div className={`${Styles.inputBody} ${Styles.inputTime}`}>
-              <label className={`${Styles.label} ${Styles.require}`} htmlFor="time">
-                ご希望時間
-              </label>
-              <div className={Styles.inputBlockWrap}>
-                <div className={`${Styles.inputBlock}`}>
-                  <input className={`${Styles.input} ${Styles.time}`} id="time" type="text" value={data.time} readOnly />
-                </div>
+        <div className={Styles.inputBlockGrid}>
+          <div className={`${Styles.inputBody} ${Styles.inputDate}`}>
+            <label className={data.type === "direct" ? `${Styles.label} ${Styles.require}` : Styles.label} htmlFor="date">
+              ご来館希望日
+            </label>
+            <div className={Styles.inputBlockWrap}>
+              <div className={`${Styles.inputBlock}`}>
+                <input className={`${Styles.input} ${Styles.date}`} id="date" type="text" value={data.date} readOnly />
               </div>
             </div>
           </div>
-        )}
+
+          <div className={`${Styles.inputBody} ${Styles.inputTime}`}>
+            <label className={data.type === "direct" ? `${Styles.label} ${Styles.require}` : Styles.label} htmlFor="time">
+              ご希望時間
+            </label>
+            <div className={Styles.inputBlockWrap}>
+              <div className={`${Styles.inputBlock}`}>
+                <input className={`${Styles.input} ${Styles.time}`} id="time" type="text" value={data.time} readOnly />
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className={`${Styles.inputBody}`}>
           <label className={`${Styles.label}`} htmlFor="inquiry">
             ご希望・ご質問など
