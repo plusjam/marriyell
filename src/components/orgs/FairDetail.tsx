@@ -51,7 +51,7 @@ const FairDetail = (props: Props) => {
 
           <div className={Styles.info}>
             <div className={Styles.calendar}>
-              <Calendar events={events} code={fairList.code} isDetail handleData={handleData} data={data} />
+              <Calendar events={events} code={fairList.code} isDetail handleData={handleData} data={data} selectedDate={data.date} />
             </div>
 
             {isPc && <div className={Styles.description}>{fairList.description}</div>}

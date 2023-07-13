@@ -8,10 +8,11 @@ import { FairCategoriesLists, FairLists } from "../../../typings/fair";
 type Props = {
   content: FairLists["articles"][0];
   fairCategoriesLists: FairCategoriesLists["articles"];
+  selectedDate: string;
 };
 
 const BridalaFairContent = (props: Props) => {
-  const { content, fairCategoriesLists } = props;
+  const { content, fairCategoriesLists, selectedDate } = props;
 
   return (
     <div className={Styles.content}>
@@ -40,6 +41,7 @@ const BridalaFairContent = (props: Props) => {
                 : []
             }
             code={content.code}
+            selectedDate={selectedDate}
           />
         </div>
 
